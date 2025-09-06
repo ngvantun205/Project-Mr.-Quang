@@ -21,8 +21,5 @@ namespace TDEduEnglish.Views.Pages {
         public CoursesPage() {
             InitializeComponent();
         }
-        private void CourseTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
-            var selectedItem = CourseTreeView.SelectedItem;
-        }
     }
 }

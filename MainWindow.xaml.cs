@@ -22,6 +22,5 @@ namespace TDEduEnglish {
 
             this.DataContext = new HomeViewModel(navigationService);
         }
-      
     }
 }

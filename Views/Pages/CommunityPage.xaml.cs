@@ -12,14 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TDEduEnglish.Services;
+using TDEduEnglish.ViewModels;
 
 namespace TDEduEnglish.Views.Pages {
     /// <summary>
     /// Interaction logic for CommunityPage.xaml
     /// </summary>
     public partial class CommunityPage : Page {
-        public CommunityPage() {
+        public CommunityPage(AppNavigationService appNavigationService) {
             InitializeComponent();
+            this.DataContext = new QuizzesViewModel(appNavigationService);
         }
+
+
     }
 }

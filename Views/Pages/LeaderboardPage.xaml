@@ -8,7 +8,456 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LeaderboardPage">
 
-    <Grid>
-        
-    </Grid>
+    <Page.Resources>
+        <!-- Styles for LeaderBoard -->
+        <Style x:Key="LeaderCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,8,0,0"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" Direction="270" ShadowDepth="2" BlurRadius="15" Opacity="0.1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RankNumberStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+
+        <Style x:Key="TopRankStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="25"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+
+        <Style x:Key="FilterButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FFF1F5F9"/>
+            <Setter Property="Foreground" Value="#FF64748B"/>
+            <Setter Property="BorderBrush" Value="#FFE2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF6366F1"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="#FF6366F1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        </Page.Resources>
+
+        <Grid Background="#FFF8FAFC">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Margin="40,40,40,40">
+
+                    <!-- Header Section -->
+                    <StackPanel Margin="0,0,0,32">
+                        <TextBlock Text="🏆 Bảng xếp hạng" 
+                               FontSize="36" FontWeight="Bold" 
+                               Foreground="#FF1F2937" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,8"/>
+
+                        <TextBlock Text="Cùng nhau chinh phục đỉnh cao tri thức" 
+                               FontSize="16" Foreground="#FF6B7280" 
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,24"/>
+
+                        <!-- Filter Buttons -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Tuần này" Style="{StaticResource FilterButtonStyle}" 
+                               Background="#FF6366F1" Foreground="White" BorderBrush="#FF6366F1"
+                               Margin="0,0,12,0"/>
+                            <Button Content="Tháng này" Style="{StaticResource FilterButtonStyle}" 
+                               Margin="0,0,12,0"/>
+                            <Button Content="Tất cả" Style="{StaticResource FilterButtonStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Top 3 Podium -->
+                    <Grid Margin="0,0,0,40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- 2nd Place -->
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Center" Margin="20,40,20,0">
+                            <Border Style="{StaticResource TopRankStyle}" Background="#FFE5E7EB" 
+                               Margin="0,0,0,16">
+                                <TextBlock Text="👤" FontSize="24" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Nguyễn Minh" FontSize="16" FontWeight="SemiBold" 
+                                  Foreground="#FF1F2937" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                            <TextBlock Text="2,850 XP" FontSize="14" Foreground="#FF6B7280" 
+                                  HorizontalAlignment="Center" Margin="0,0,0,16"/>
+
+                            <!-- Silver Podium -->
+                            <Border Background="#FFC0C0C0" CornerRadius="8,8,0,0" 
+                               Width="120" Height="80" VerticalAlignment="Bottom">
+                                <TextBlock Text="2" FontSize="32" FontWeight="Bold" 
+                                      Foreground="White" HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- 1st Place -->
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                            <Border Style="{StaticResource TopRankStyle}" Background="#FF6366F1" 
+                               Margin="0,0,0,16">
+                                <TextBlock Text="👑" FontSize="24" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Trần Thị Lan" FontSize="18" FontWeight="Bold" 
+                                  Foreground="#FF1F2937" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                            <TextBlock Text="3,420 XP" FontSize="16" Foreground="#FF6366F1" 
+                                  HorizontalAlignment="Center" Margin="0,0,0,16"/>
+
+                            <!-- Gold Podium -->
+                            <Border Background="#FFFFD700" CornerRadius="8,8,0,0" 
+                               Width="140" Height="120" VerticalAlignment="Bottom">
+                                <TextBlock Text="1" FontSize="36" FontWeight="Bold" 
+                                      Foreground="White" HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- 3rd Place -->
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Center" Margin="20,60,20,0">
+                            <Border Style="{StaticResource TopRankStyle}" Background="#FFE5E7EB" 
+                               Margin="0,0,0,16">
+                                <TextBlock Text="👤" FontSize="24" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Lê Văn Đức" FontSize="16" FontWeight="SemiBold" 
+                                  Foreground="#FF1F2937" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                            <TextBlock Text="2,670 XP" FontSize="14" Foreground="#FF6B7280" 
+                                  HorizontalAlignment="Center" Margin="0,0,0,16"/>
+
+                            <!-- Bronze Podium -->
+                            <Border Background="#FFCD7F32" CornerRadius="8,8,0,0" 
+                               Width="100" Height="60" VerticalAlignment="Bottom">
+                                <TextBlock Text="3" FontSize="28" FontWeight="Bold" 
+                                      Foreground="White" HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Leaderboard List -->
+                    <Border Style="{StaticResource LeaderCardStyle}" Margin="0,0,0,16">
+                        <TextBlock Text="📊 Bảng xếp hạng chi tiết" 
+                               FontSize="20" FontWeight="SemiBold" 
+                               Foreground="#FF1F2937"/>
+                    </Border>
+
+                    <!-- Individual Rank Items -->
+                    <Border Style="{StaticResource LeaderCardStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Background="#FFFFEAA7" Style="{StaticResource TopRankStyle}">
+                                <TextBlock Text="4" Style="{StaticResource RankNumberStyle}" 
+                                      Foreground="#FFE17055"/>
+                            </Border>
+
+                            <Border Grid.Column="1" Background="#FFE5E7EB" CornerRadius="25" 
+                               Width="45" Height="45" Margin="10,0">
+                                <TextBlock Text="👤" FontSize="20" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <TextBlock Text="Phạm Thị Hoa" FontSize="16" FontWeight="SemiBold" 
+                                      Foreground="#FF1F2937"/>
+                                <TextBlock Text="Level 15 • Tiếng Anh nâng cao" FontSize="12" 
+                                      Foreground="#FF6B7280"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <TextBlock Text="2,340 XP" FontSize="16" FontWeight="SemiBold" 
+                                      Foreground="#FF6366F1"/>
+                                <TextBlock Text="+180 tuần này" FontSize="11" 
+                                      Foreground="#FF10B981"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock Text="98%" FontSize="14" FontWeight="SemiBold" 
+                                      Foreground="#FF10B981"/>
+                                <TextBlock Text="Độ chính xác" FontSize="10" 
+                                      Foreground="#FF6B7280"/>
+                            </StackPanel>
+
+                            <Border Grid.Column="5" Background="#FFF3F4F6" CornerRadius="20" 
+                               Width="60" Height="30">
+                                <TextBlock Text="🔥 12" FontSize="12" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Foreground="#FFF59E0B"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <Border Style="{StaticResource LeaderCardStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Background="#FFDDA0DD" Style="{StaticResource TopRankStyle}">
+                                <TextBlock Text="5" Style="{StaticResource RankNumberStyle}" 
+                                      Foreground="#FFA0522D"/>
+                            </Border>
+
+                            <Border Grid.Column="1" Background="#FFE5E7EB" CornerRadius="25" 
+                               Width="45" Height="45" Margin="10,0">
+                                <TextBlock Text="👤" FontSize="20" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <TextBlock Text="Hoàng Văn Nam" FontSize="16" FontWeight="SemiBold" 
+                                      Foreground="#FF1F2937"/>
+                                <TextBlock Text="Level 12 • Giao tiếp cơ bản" FontSize="12" 
+                                      Foreground="#FF6B7280"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <TextBlock Text="2,180 XP" FontSize="16" FontWeight="SemiBold" 
+                                      Foreground="#FF6366F1"/>
+                                <TextBlock Text="+210 tuần này" FontSize="11" 
+                                      Foreground="#FF10B981"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock Text="95%" FontSize="14" FontWeight="SemiBold" 
+                                      Foreground="#FF10B981"/>
+                                <TextBlock Text="Độ chính xác" FontSize="10" 
+                                      Foreground="#FF6B7280"/>
+                            </StackPanel>
+
+                            <Border Grid.Column="5" Background="#FFF3F4F6" CornerRadius="20" 
+                               Width="60" Height="30">
+                                <TextBlock Text="🔥 8" FontSize="12" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Foreground="#FFF59E0B"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- Current User Highlight -->
+                    <Border Style="{StaticResource LeaderCardStyle}" 
+                       BorderBrush="#FF6366F1" BorderThickness="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Background="#FF6366F1" Style="{StaticResource TopRankStyle}">
+                                <TextBlock Text="12" Style="{StaticResource RankNumberStyle}" 
+                                      Foreground="White" FontSize="20"/>
+                            </Border>
+
+                            <Border Grid.Column="1" Background="#FF6366F1" CornerRadius="25" 
+                               Width="45" Height="45" Margin="10,0">
+                                <TextBlock Text="😊" FontSize="20" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <TextBlock Text="Bạn (Võ Minh Tâm)" FontSize="16" FontWeight="Bold" 
+                                      Foreground="#FF6366F1"/>
+                                <TextBlock Text="Level 8 • Tiếng Anh căn bản" FontSize="12" 
+                                      Foreground="#FF6B7280"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <TextBlock Text="1,560 XP" FontSize="16" FontWeight="Bold" 
+                                      Foreground="#FF6366F1"/>
+                                <TextBlock Text="+95 tuần này" FontSize="11" 
+                                      Foreground="#FF10B981"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock Text="92%" FontSize="14" FontWeight="SemiBold" 
+                                      Foreground="#FF10B981"/>
+                                <TextBlock Text="Độ chính xác" FontSize="10" 
+                                      Foreground="#FF6B7280"/>
+                            </StackPanel>
+
+                            <Border Grid.Column="5" Background="#FFF3F4F6" CornerRadius="20" 
+                               Width="60" Height="30">
+                                <TextBlock Text="🔥 5" FontSize="12" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Foreground="#FFF59E0B"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- More ranks... -->
+                    <Border Style="{StaticResource LeaderCardStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Background="#FFE5E7EB" Style="{StaticResource TopRankStyle}">
+                                <TextBlock Text="13" Style="{StaticResource RankNumberStyle}" 
+                                      Foreground="#FF6B7280" FontSize="18"/>
+                            </Border>
+
+                            <Border Grid.Column="1" Background="#FFE5E7EB" CornerRadius="25" 
+                               Width="45" Height="45" Margin="10,0">
+                                <TextBlock Text="👤" FontSize="20" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <TextBlock Text="Đặng Thu Hương" FontSize="16" FontWeight="SemiBold" 
+                                      Foreground="#FF1F2937"/>
+                                <TextBlock Text="Level 7 • Từ vựng cơ bản" FontSize="12" 
+                                      Foreground="#FF6B7280"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <TextBlock Text="1,480 XP" FontSize="16" FontWeight="SemiBold" 
+                                      Foreground="#FF6366F1"/>
+                                <TextBlock Text="+75 tuần này" FontSize="11" 
+                                      Foreground="#FF10B981"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock Text="89%" FontSize="14" FontWeight="SemiBold" 
+                                      Foreground="#FFF59E0B"/>
+                                <TextBlock Text="Độ chính xác" FontSize="10" 
+                                      Foreground="#FF6B7280"/>
+                            </StackPanel>
+
+                            <Border Grid.Column="5" Background="#FFF3F4F6" CornerRadius="20" 
+                               Width="60" Height="30">
+                                <TextBlock Text="🔥 3" FontSize="12" 
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Foreground="#FFF59E0B"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- Achievement Section -->
+                    <Border Style="{StaticResource LeaderCardStyle}" Background="#FFF8F9FF" 
+                       Margin="0,32,0,16">
+                        <StackPanel>
+                            <TextBlock Text="🏅 Thành tựu của bạn" 
+                                   FontSize="18" FontWeight="SemiBold" 
+                                   Foreground="#FF1F2937" Margin="0,0,0,16"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                                    <TextBlock Text="📈" FontSize="32" HorizontalAlignment="Center" 
+                                          Margin="0,0,0,8"/>
+                                    <TextBlock Text="Tiến bộ nhanh" FontSize="14" FontWeight="SemiBold" 
+                                          Foreground="#FF10B981" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Tăng 3 hạng" FontSize="12" 
+                                          Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                    <TextBlock Text="🎯" FontSize="32" HorizontalAlignment="Center" 
+                                          Margin="0,0,0,8"/>
+                                    <TextBlock Text="Học đều" FontSize="14" FontWeight="SemiBold" 
+                                          Foreground="#FF6366F1" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="5 ngày liên tục" FontSize="12" 
+                                          Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                                    <TextBlock Text="⭐" FontSize="32" HorizontalAlignment="Center" 
+                                          Margin="0,0,0,8"/>
+                                    <TextBlock Text="Xuất sắc" FontSize="14" FontWeight="SemiBold" 
+                                          Foreground="#FFF59E0B" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="92% chính xác" FontSize="12" 
+                                          Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Call to Action -->
+                    <Border Style="{StaticResource LeaderCardStyle}" Background="#FF6366F1" 
+                       Cursor="Hand">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                <TextBlock Text="🚀 Muốn leo hạng cao hơn?" 
+                                       FontSize="18" FontWeight="SemiBold" 
+                                       Foreground="White" Margin="0,0,0,4"/>
+                                <TextBlock Text="Hoàn thành thêm bài học để kiếm XP và vượt lên các đối thủ!" 
+                                       FontSize="14" Foreground="#FFBFDBFE"/>
+                            </StackPanel>
+
+                            <Button Grid.Column="1" Content="Học ngay" 
+                               Background="White" Foreground="#FF6366F1" 
+                               BorderThickness="0"  
+                               Padding="20,12" FontSize="14" FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
 </Page>

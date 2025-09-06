@@ -11,7 +11,16 @@ namespace TDEduEnglish.ViewModels {
             _navigationService = navigationService;
 
             StartLearningCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(typeof(QuizzesPage));
+                _navigationService.NavigateTo(typeof(CoursesPage));
+            });
+            ProfileCommand = new RelayCommand(o => {
+                _navigationService.NavigateTo(new UserProfilePage(_navigationService));
+            });
+            LoginCommand = new RelayCommand(o => {
+                _navigationService.NavigateTo(new LoginPage(_navigationService));
+            });
+            RegisterCommand = new RelayCommand(o => {
+                _navigationService.NavigateTo(new RegisterPage(_navigationService));
             });
 
             NavigateCommand = new RelayCommand(o => {
@@ -29,23 +38,22 @@ namespace TDEduEnglish.ViewModels {
                         _navigationService.NavigateTo(new QuizzesPage(_navigationService));
                         break;
                     case "CommunityPage":
-                        _navigationService.NavigateTo(typeof(CommunityPage));
+                        _navigationService.NavigateTo(new CommunityPage(_navigationService));
                         break;
                     case "LeaderboardPage":
-                        _navigationService.NavigateTo(typeof(LeaderboardPage));
+                        _navigationService.NavigateTo(new LeaderboardPage(_navigationService));
                         break;
                     default:
                         System.Diagnostics.Debug.WriteLine("Unknown page: " + pageName);
                         break;
                 }
             });
-
-
         }
-
-
         public ICommand StartLearningCommand { get; set; }
         public ICommand NavigateCommand { get; set; }
+        public ICommand ProfileCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
 
 
     }

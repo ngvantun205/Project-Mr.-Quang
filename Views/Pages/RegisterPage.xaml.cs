@@ -16,12 +16,12 @@ using TDEduEnglish.Services;
 
 namespace TDEduEnglish.Views.Pages {
     /// <summary>
-    /// Interaction logic for LeaderboardPage.xaml
+    /// Interaction logic for RegisterPage.xaml
     /// </summary>
-    public partial class LeaderboardPage : Page {
-        public LeaderboardPage(AppNavigationService appNavigationService) {
+    public partial class RegisterPage : Page {
+        public RegisterPage(AppNavigationService appNavigationService) {
             InitializeComponent();
-            this.DataContext = appNavigationService;    
+            this.DataContext = appNavigationService;
         }
     }
 }

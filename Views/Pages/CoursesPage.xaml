@@ -9,58 +9,459 @@
       d:DesignHeight="740" d:DesignWidth="1200"
       Title="CoursesPage">
 
-    <Grid Margin="20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <!-- 20% -->
-            <ColumnDefinition Width="8*"/>
-            <!-- 80% -->
-        </Grid.ColumnDefinitions>
+    <Page.Resources>
+        <!-- Modern Card Style - đồng bộ với MainWindow -->
+        <Style x:Key="ModernCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" Direction="270" 
+                                    ShadowDepth="4" BlurRadius="20" Opacity="0.08"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <!-- Left: TreeView -->
-        <Border Grid.Column="0" Background="#FFEEF5FF" CornerRadius="5" Padding="10">
-            <TreeView x:Name="CourseTreeView" SelectedItemChanged="CourseTreeView_SelectedItemChanged">
-                <!-- Skills -->
-                <TreeViewItem Header="Skills">
-                    <TreeViewItem Header="Listening"/>
-                    <TreeViewItem Header="Speaking"/>
-                    <TreeViewItem Header="Reading"/>
-                    <TreeViewItem Header="Writing"/>
-                </TreeViewItem>
+        <!-- Primary Button Style - đồng bộ với MainWindow -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FF6366F1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF5855E8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF4F46E5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-                <!-- Vocabulary + Grammar -->
-                <TreeViewItem Header="Vocabulary + Grammar">
-                    <TreeViewItem Header="Vocabulary">
-                        <TreeViewItem Header="Topic 1 - Band 5"/>
-                        <TreeViewItem Header="Topic 2 - Band 6"/>
-                        <TreeViewItem Header="Topic 3 - Band 7"/>
-                    </TreeViewItem>
-                    <TreeViewItem Header="Grammar">
-                        <TreeViewItem Header="Tenses"/>
-                        <TreeViewItem Header="Conditionals"/>
-                        <TreeViewItem Header="Modal Verbs"/>
-                        <TreeViewItem Header="Passive Voice"/>
-                    </TreeViewItem>
-                </TreeViewItem>
-            </TreeView>
-        </Border>
+        <!-- Secondary Button Style - đồng bộ với MainWindow -->
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#FF6366F1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FFE5E7EB"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFF8FAFC"/>
+                                <Setter Property="BorderBrush" Value="#FF6366F1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <!-- Right: Frame hiển thị bài học -->
-        <Border Grid.Column="1" Background="White" CornerRadius="5" Padding="20">
-            <Grid>
-                <!-- Frame hiển thị bài học -->
-                <Frame x:Name="CourseContentFrame" NavigationUIVisibility="Hidden"/>
+        <!-- TreeView Item Style - hiện đại -->
+        <Style x:Key="ModernTreeViewItemStyle" TargetType="TreeViewItem">
+            <Setter Property="Foreground" Value="#FF374151"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#FF6366F1"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFF3F4F6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
 
-                <!-- Default content nếu chưa chọn -->
-                <Grid x:Name="DefaultContentGrid">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="F:\admin\Download\appstore icon.png" Width="100" Height="100" Margin="0,0,0,20"/>
-                        <TextBlock Text="Please select a lesson from the left menu" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
+    <!-- Background gradient giống MainWindow -->
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#FFF8FAFC" Offset="0"/>
+                <GradientStop Color="#FFF1F5F9" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Header Section -->
+        <StackPanel Margin="40,20,40,0" VerticalAlignment="Top">
+            <TextBlock Text="Khóa học" FontSize="36" FontWeight="Bold" 
+                      Foreground="#FF1F2937" Margin="0,0,0,8"/>
+            <TextBlock Text="Chọn khóa học phù hợp với trình độ của bạn" 
+                      FontSize="16" Foreground="#FF6B7280" Margin="0,0,0,32"/>
+        </StackPanel>
+
+        <!-- Main Content -->
+        <Grid Margin="40,120,40,40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Sidebar - Course Navigation -->
+            <Border Grid.Column="0" Style="{StaticResource ModernCardStyle}" 
+                   Margin="0,0,20,0" VerticalAlignment="Stretch">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                             HorizontalScrollBarVisibility="Hidden">
+                    <StackPanel>
+                        <!-- Search Box -->
+                        <Border Background="#FFF9FAFB" CornerRadius="8" 
+                               Padding="12,8" Margin="0,0,0,20">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="🔍" FontSize="16" Margin="0,0,8,0" 
+                                          VerticalAlignment="Center"/>
+                                <TextBox Background="Transparent" BorderThickness="0" 
+                                        Text="Tìm kiếm khóa học..." 
+                                        Foreground="#FF9CA3AF" FontSize="14"
+                                        VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Modern Navigation Sidebar -->
+                        <StackPanel>
+                            <!-- Skills Category -->
+                            <StackPanel Margin="0,0,0,24">
+                                <!-- Category Header -->
+                                <Border Background="#FFF3F4F6" CornerRadius="8" Padding="12,8" Margin="0,0,0,12">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="#FF6366F1" CornerRadius="6" Width="32" Height="32" Margin="0,0,12,0">
+                                            <TextBlock Text="🎯" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="Kỹ năng cơ bản" FontSize="16" FontWeight="SemiBold" 
+                                                  Foreground="#FF1F2937" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Skills Items -->
+                                <StackPanel>
+                                    <Button Name="ListeningBtn"  Tag="Listening"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFECFDF5" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="👂" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="Listening" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Name="SpeakingBtn"  Tag="Speaking"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFFEF7E7" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="🗣️" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="Speaking" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Name="ReadingBtn"  Tag="Reading"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFEFF6FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="📖" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="Reading" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Name="WritingBtn" Tag="Writing"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFF5F3FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="✍️" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="Writing" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- Vocabulary & Grammar Category -->
+                            <StackPanel Margin="0,0,0,24">
+                                <!-- Category Header -->
+                                <Border Background="#FFF3F4F6" CornerRadius="8" Padding="12,8" Margin="0,0,0,12">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="#FF10B981" CornerRadius="6" Width="32" Height="32" Margin="0,0,12,0">
+                                            <TextBlock Text="📚" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="Vocabulary and Grammar" FontSize="16" FontWeight="SemiBold" 
+                                                  Foreground="#FF1F2937" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Vocabulary Expandable Section -->
+                                <Expander Header="📝 Vocabulary" IsExpanded="True" FontWeight="Medium" 
+                                         Foreground="#FF4B5563" Margin="0,0,0,8">
+                                    <StackPanel Margin="16,8,0,0">
+                                        <Button Name="VocabBand5Btn"  Tag="VocabBand5"
+                                               Style="{StaticResource SecondaryButtonStyle}" 
+                                               HorizontalContentAlignment="Left" Margin="0,0,0,4"
+                                               ToolTip="Từ vựng cơ bản cho người mới bắt đầu">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#FFDBEAFE" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                    <TextBlock Text="5" FontSize="10" FontWeight="Bold" Foreground="#FF7C3AED"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <TextBlock Text="Topic 1 - Band 5.0" FontSize="13" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <Button Name="VocabBand6Btn" Tag="VocabBand6"
+                                               Style="{StaticResource SecondaryButtonStyle}" 
+                                               HorizontalContentAlignment="Left" Margin="0,0,0,4"
+                                               ToolTip="Từ vựng trung cấp">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#FFFECACA" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                    <TextBlock Text="6" FontSize="10" FontWeight="Bold" Foreground="#FFDC2626"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <TextBlock Text="Topic 2 - Band 6.0" FontSize="13" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <Button Name="VocabBand7Btn"  Tag="VocabBand7"
+                                               Style="{StaticResource SecondaryButtonStyle}" 
+                                               HorizontalContentAlignment="Left" Margin="0,0,0,4"
+                                               ToolTip="Từ vựng nâng cao">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#FFECFDF5" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                    <TextBlock Text="7" FontSize="10" FontWeight="Bold" Foreground="#FF059669"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <TextBlock Text="Topic 3 - Band 7.0" FontSize="13" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </Expander>
+
+                                <!-- Grammar Expandable Section -->
+                                <Expander Header="⚙️ Grammar" IsExpanded="True" FontWeight="Medium" 
+                                         Foreground="#FF4B5563" Margin="0,0,0,8">
+                                    <StackPanel Margin="16,8,0,0">
+                                        <Button Name="TensesBtn"  Tag="Tenses"
+                                               Style="{StaticResource SecondaryButtonStyle}" 
+                                               HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#FFFEF3C7" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                    <TextBlock Text="T" FontSize="10" FontWeight="Bold" Foreground="#FFD97706"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <TextBlock Text="Tenses" FontSize="13" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <Button Name="ConditionalsBtn"  Tag="Conditionals"
+                                               Style="{StaticResource SecondaryButtonStyle}" 
+                                               HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#FFFFE4E6" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                    <TextBlock Text="C" FontSize="10" FontWeight="Bold" Foreground="#FFE11D48"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <TextBlock Text="Conditionals" FontSize="13" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <Button Name="ModalVerbsBtn"  Tag="ModalVerbs"
+                                               Style="{StaticResource SecondaryButtonStyle}" 
+                                               HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#FFE0F2FE" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                    <TextBlock Text="M" FontSize="10" FontWeight="Bold" Foreground="#FF0284C7"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <TextBlock Text="Modal Verbs" FontSize="13" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <Button Name="PassiveVoiceBtn"  Tag="PassiveVoice"
+                                               Style="{StaticResource SecondaryButtonStyle}" 
+                                               HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Background="#FFF0F9FF" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                    <TextBlock Text="P" FontSize="10" FontWeight="Bold" Foreground="#FF0369A1"
+                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                                <TextBlock Text="Passive Voice" FontSize="13" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </Expander>
+                            </StackPanel>
+
+                            <!-- Advanced Courses Category -->
+                            <StackPanel>
+                                <!-- Category Header -->
+                                <Border Background="#FFF3F4F6" CornerRadius="8" Padding="12,8" Margin="0,0,0,12">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Background="#FFF59E0B" CornerRadius="6" Width="32" Height="32" Margin="0,0,12,0">
+                                            <TextBlock Text="🚀" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="Khóa học nâng cao" FontSize="16" FontWeight="SemiBold" 
+                                                  Foreground="#FF1F2937" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Advanced Course Items -->
+                                <StackPanel>
+                                    <Button Name="BusinessEnglishBtn"  Tag="BusinessEnglish"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFF5F3FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="💼" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="Business English" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Name="AcademicEnglishBtn"  Tag="AcademicEnglish"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFECFDF5" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="🎓" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="Academic English" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Name="IELTSBtn"  Tag="IELTS"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFFEF7E7" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="📊" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="IELTS Preparation" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Name="TOEFLBtn"  Tag="TOEFL"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFEFF6FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="📋" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="TOEFL Preparation" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <!-- Right Content Area -->
+            <Border Grid.Column="1" Style="{StaticResource ModernCardStyle}" 
+                   VerticalAlignment="Stretch">
+                <Grid>
+                    <!-- Frame cho lesson content -->
+                    <Frame x:Name="CourseContentFrame" NavigationUIVisibility="Hidden" 
+                          Background="Transparent"/>
+
+                    <!-- Default Welcome Content -->
+                    <Grid x:Name="DefaultContentGrid">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <!-- Hero Icon -->
+                            <Border Background="#FF6366F1" CornerRadius="50" 
+                                   Width="100" Height="100" Margin="0,0,0,24">
+                                <TextBlock Text="📚" FontSize="48" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+
+                            <!-- Welcome Text -->
+                            <TextBlock Text="Chào mừng đến với Khóa học" 
+                                      FontSize="32" FontWeight="Bold" 
+                                      Foreground="#FF1F2937" TextAlignment="Center"
+                                      Margin="0,0,0,12"/>
+
+                            <TextBlock Text="Chọn một bài học từ menu bên trái để bắt đầu hành trình học tập của bạn" 
+                                      FontSize="16" Foreground="#FF6B7280" 
+                                      TextAlignment="Center" TextWrapping="Wrap"
+                                      MaxWidth="400" LineHeight="24"
+                                      Margin="0,0,0,32"/>
+
+                            <!-- Quick Action Buttons -->
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Bắt đầu học" FontSize="16" Height="44" Width="140"
+                                       Style="{StaticResource PrimaryButtonStyle}" 
+                                       Margin="0,0,12,0"/>
+                                <Button Content="Xem hướng dẫn" FontSize="16" Height="44" Width="140"
+                                       Style="{StaticResource SecondaryButtonStyle}"/>
+                            </StackPanel>
+
+                            <!-- Progress Stats -->
+                            <Border Background="#FFF9FAFB" CornerRadius="12" 
+                                   Padding="24,16" Margin="0,40,0,0" MaxWidth="400">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                                        <TextBlock Text="24" FontSize="20" FontWeight="Bold" 
+                                                  Foreground="#FF1F2937" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Bài học" FontSize="12" 
+                                                  Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                        <TextBlock Text="85%" FontSize="20" FontWeight="Bold" 
+                                                  Foreground="#FF10B981" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Hoàn thành" FontSize="12" 
+                                                  Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                                        <TextBlock Text="7.5" FontSize="20" FontWeight="Bold" 
+                                                  Foreground="#FFF59E0B" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Band điểm" FontSize="12" 
+                                                  Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Border>
-
-
+            </Border>
+        </Grid>
     </Grid>
 </Page>
