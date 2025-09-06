@@ -1,0 +1,66 @@
+﻿<Page x:Class="TDEduEnglish.Views.Pages.CoursesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TDEduEnglish.Views.Pages"
+      Background="White"
+      mc:Ignorable="d" 
+      d:DesignHeight="740" d:DesignWidth="1200"
+      Title="CoursesPage">
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <!-- 20% -->
+            <ColumnDefinition Width="8*"/>
+            <!-- 80% -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Left: TreeView -->
+        <Border Grid.Column="0" Background="#FFEEF5FF" CornerRadius="5" Padding="10">
+            <TreeView x:Name="CourseTreeView" SelectedItemChanged="CourseTreeView_SelectedItemChanged">
+                <!-- Skills -->
+                <TreeViewItem Header="Skills">
+                    <TreeViewItem Header="Listening"/>
+                    <TreeViewItem Header="Speaking"/>
+                    <TreeViewItem Header="Reading"/>
+                    <TreeViewItem Header="Writing"/>
+                </TreeViewItem>
+
+                <!-- Vocabulary + Grammar -->
+                <TreeViewItem Header="Vocabulary + Grammar">
+                    <TreeViewItem Header="Vocabulary">
+                        <TreeViewItem Header="Topic 1 - Band 5"/>
+                        <TreeViewItem Header="Topic 2 - Band 6"/>
+                        <TreeViewItem Header="Topic 3 - Band 7"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Grammar">
+                        <TreeViewItem Header="Tenses"/>
+                        <TreeViewItem Header="Conditionals"/>
+                        <TreeViewItem Header="Modal Verbs"/>
+                        <TreeViewItem Header="Passive Voice"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+        </Border>
+
+        <!-- Right: Frame hiển thị bài học -->
+        <Border Grid.Column="1" Background="White" CornerRadius="5" Padding="20">
+            <Grid>
+                <!-- Frame hiển thị bài học -->
+                <Frame x:Name="CourseContentFrame" NavigationUIVisibility="Hidden"/>
+
+                <!-- Default content nếu chưa chọn -->
+                <Grid x:Name="DefaultContentGrid">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="F:\admin\Download\appstore icon.png" Width="100" Height="100" Margin="0,0,0,20"/>
+                        <TextBlock Text="Please select a lesson from the left menu" FontSize="20" FontWeight="Bold" TextAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+
+
+    </Grid>
+</Page>
