@@ -113,9 +113,9 @@
 
         <!-- Header Section -->
         <StackPanel Margin="40,20,40,0" VerticalAlignment="Top">
-            <TextBlock Text="Khóa học" FontSize="36" FontWeight="Bold" 
+            <TextBlock Text="Courses" FontSize="36" FontWeight="Bold" 
                       Foreground="#FF1F2937" Margin="0,0,0,8"/>
-            <TextBlock Text="Chọn khóa học phù hợp với trình độ của bạn" 
+            <TextBlock Text="Choose the course that suits your level" 
                       FontSize="16" Foreground="#FF6B7280" Margin="0,0,0,32"/>
         </StackPanel>
 
@@ -136,10 +136,10 @@
                         <Border Background="#FFF9FAFB" CornerRadius="8" 
                                Padding="12,8" Margin="0,0,0,20">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="🔍" FontSize="16" Margin="0,0,8,0" 
+                                <TextBlock Text="🔍" FontSize="16" Width="20" Margin="0,0,8,0" 
                                           VerticalAlignment="Center"/>
                                 <TextBox Background="Transparent" BorderThickness="0" 
-                                        Text="Tìm kiếm khóa học..." 
+                                        Text="Find courses..." 
                                         Foreground="#FF9CA3AF" FontSize="14"
                                         VerticalAlignment="Center"/>
                             </StackPanel>
@@ -155,7 +155,7 @@
                                         <Border Background="#FF6366F1" CornerRadius="6" Width="32" Height="32" Margin="0,0,12,0">
                                             <TextBlock Text="🎯" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
-                                        <TextBlock Text="Kỹ năng cơ bản" FontSize="16" FontWeight="SemiBold" 
+                                        <TextBlock Text="Basic skills" FontSize="16" FontWeight="SemiBold" 
                                                   Foreground="#FF1F2937" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
@@ -228,7 +228,7 @@
                                         <Button Name="VocabBand5Btn"  Tag="VocabBand5"
                                                Style="{StaticResource SecondaryButtonStyle}" 
                                                HorizontalContentAlignment="Left" Margin="0,0,0,4"
-                                               ToolTip="Từ vựng cơ bản cho người mới bắt đầu">
+                                               ToolTip="Basic vocabulary for beginners">
                                             <StackPanel Orientation="Horizontal">
                                                 <Border Background="#FFDBEAFE" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
                                                     <TextBlock Text="5" FontSize="10" FontWeight="Bold" Foreground="#FF7C3AED"
@@ -241,7 +241,7 @@
                                         <Button Name="VocabBand6Btn" Tag="VocabBand6"
                                                Style="{StaticResource SecondaryButtonStyle}" 
                                                HorizontalContentAlignment="Left" Margin="0,0,0,4"
-                                               ToolTip="Từ vựng trung cấp">
+                                               ToolTip="Intermediate Vocabulary">
                                             <StackPanel Orientation="Horizontal">
                                                 <Border Background="#FFFECACA" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
                                                     <TextBlock Text="6" FontSize="10" FontWeight="Bold" Foreground="#FFDC2626"
@@ -254,7 +254,7 @@
                                         <Button Name="VocabBand7Btn"  Tag="VocabBand7"
                                                Style="{StaticResource SecondaryButtonStyle}" 
                                                HorizontalContentAlignment="Left" Margin="0,0,0,4"
-                                               ToolTip="Từ vựng nâng cao">
+                                               ToolTip="Advanced Vocabulary">
                                             <StackPanel Orientation="Horizontal">
                                                 <Border Background="#FFECFDF5" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
                                                     <TextBlock Text="7" FontSize="10" FontWeight="Bold" Foreground="#FF059669"
@@ -329,7 +329,7 @@
                                         <Border Background="#FFF59E0B" CornerRadius="6" Width="32" Height="32" Margin="0,0,12,0">
                                             <TextBlock Text="🚀" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
-                                        <TextBlock Text="Khóa học nâng cao" FontSize="16" FontWeight="SemiBold" 
+                                        <TextBlock Text="Advanced Courses" FontSize="16" FontWeight="SemiBold" 
                                                   Foreground="#FF1F2937" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
@@ -376,7 +376,7 @@
                                             <Border Background="#FFEFF6FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="📋" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Border>
-                                            <TextBlock Text="TOEFL Preparation" VerticalAlignment="Center"/>
+                                            <TextBlock Text="TOEIC Preparation" VerticalAlignment="Center"/>
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>
@@ -406,23 +406,23 @@
                             </Border>
 
                             <!-- Welcome Text -->
-                            <TextBlock Text="Chào mừng đến với Khóa học" 
+                            <TextBlock Text="Welcome to courses" 
                                       FontSize="32" FontWeight="Bold" 
                                       Foreground="#FF1F2937" TextAlignment="Center"
                                       Margin="0,0,0,12"/>
 
-                            <TextBlock Text="Chọn một bài học từ menu bên trái để bắt đầu hành trình học tập của bạn" 
+                            <TextBlock Text="Select a lesson from the menu on the left to start your learning journey." 
                                       FontSize="16" Foreground="#FF6B7280" 
                                       TextAlignment="Center" TextWrapping="Wrap"
                                       MaxWidth="400" LineHeight="24"
-                                      Margin="0,0,0,32"/>
+                                      Margin="0,0,0,32" Width="380"/>
 
                             <!-- Quick Action Buttons -->
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Bắt đầu học" FontSize="16" Height="44" Width="140"
+                                <Button Content="Start learning" FontSize="16" Height="44" Width="140"
                                        Style="{StaticResource PrimaryButtonStyle}" 
                                        Margin="0,0,12,0"/>
-                                <Button Content="Xem hướng dẫn" FontSize="16" Height="44" Width="140"
+                                <Button Content="See instructions" FontSize="16" Height="44" Width="140"
                                        Style="{StaticResource SecondaryButtonStyle}"/>
                             </StackPanel>
 
@@ -439,21 +439,21 @@
                                     <StackPanel Grid.Column="0" HorizontalAlignment="Center">
                                         <TextBlock Text="24" FontSize="20" FontWeight="Bold" 
                                                   Foreground="#FF1F2937" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Bài học" FontSize="12" 
+                                        <TextBlock Text="Courses" FontSize="12" 
                                                   Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                                         <TextBlock Text="85%" FontSize="20" FontWeight="Bold" 
                                                   Foreground="#FF10B981" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Hoàn thành" FontSize="12" 
+                                        <TextBlock Text="Completed" FontSize="12" 
                                                   Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Column="2" HorizontalAlignment="Center">
                                         <TextBlock Text="7.5" FontSize="20" FontWeight="Bold" 
                                                   Foreground="#FFF59E0B" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Band điểm" FontSize="12" 
+                                        <TextBlock Text="Band" FontSize="12" 
                                                   Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Grid>

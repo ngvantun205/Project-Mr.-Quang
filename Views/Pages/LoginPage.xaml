@@ -256,12 +256,12 @@
                 </Border>
 
                 <!-- Welcome Text -->
-                <TextBlock Text="Chào mừng trở lại!" 
+                <TextBlock Text="Welcome back!" 
                           FontSize="32" FontWeight="Bold" 
                           Foreground="White" HorizontalAlignment="Center"
                           Margin="0,0,0,16"/>
 
-                <TextBlock Text="Tiếp tục hành trình học tiếng Anh của bạn với TDEdu" 
+                <TextBlock Text="Continue your English learning journey with TDEdu" 
                           FontSize="18" Foreground="White" 
                           HorizontalAlignment="Center" TextWrapping="Wrap"
                           TextAlignment="Center" Opacity="0.9"
@@ -276,10 +276,10 @@
                                       VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Học tập cá nhân hóa" 
+                            <TextBlock Text="Personalized Learning" 
                                       FontSize="16" FontWeight="SemiBold" 
                                       Foreground="White"/>
-                            <TextBlock Text="AI thích ứng theo khả năng của bạn" 
+                            <TextBlock Text="AI adapts to your ability" 
                                       FontSize="14" Foreground="White" 
                                       Opacity="0.8"/>
                         </StackPanel>
@@ -292,10 +292,10 @@
                                       VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Đồng bộ đa thiết bị" 
+                            <TextBlock Text="Multi-device sync" 
                                       FontSize="16" FontWeight="SemiBold" 
                                       Foreground="White"/>
-                            <TextBlock Text="Học mọi lúc, mọi nơi" 
+                            <TextBlock Text="Learn anytime, anywhere" 
                                       FontSize="14" Foreground="White" 
                                       Opacity="0.8"/>
                         </StackPanel>
@@ -308,10 +308,10 @@
                                       VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Theo dõi tiến độ" 
+                            <TextBlock Text="Track progress" 
                                       FontSize="16" FontWeight="SemiBold" 
                                       Foreground="White"/>
-                            <TextBlock Text="Thống kê chi tiết và bảng xếp hạng" 
+                            <TextBlock Text="Detailed stats and leaderboards" 
                                       FontSize="14" Foreground="White" 
                                       Opacity="0.8"/>
                         </StackPanel>
@@ -337,12 +337,12 @@
 
                     <!-- Header -->
                     <StackPanel Margin="0,0,0,40">
-                        <TextBlock Text="Đăng nhập" 
+                        <TextBlock Text="Login" 
                                   FontSize="28" FontWeight="Bold" 
                                   Foreground="#FF1F2937" 
                                   HorizontalAlignment="Left"
                                   Margin="0,0,0,8"/>
-                        <TextBlock Text="Nhập thông tin để truy cập tài khoản của bạn" 
+                        <TextBlock Text="Enter your information to access your account" 
                                   FontSize="16" Foreground="#FF6B7280" 
                                   HorizontalAlignment="Left"/>
                     </StackPanel>
@@ -354,7 +354,7 @@
                                Margin="0,0,0,12">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="🔍" FontSize="18" Margin="0,0,12,0"/>
-                                <TextBlock Text="Tiếp tục với Google" FontWeight="Medium"/>
+                                <TextBlock Text="Continue with Google" FontWeight="Medium"/>
                             </StackPanel>
                         </Button>
 
@@ -362,7 +362,7 @@
                                Command="{Binding FacebookLoginCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="📘" FontSize="18" Margin="0,0,12,0"/>
-                                <TextBlock Text="Tiếp tục với Facebook" FontWeight="Medium"/>
+                                <TextBlock Text="Continue with Facebook" FontWeight="Medium"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -372,7 +372,7 @@
                         <Separator Background="#FFE5E7EB"/>
                         <Border Background="White" Padding="16,0" 
                                HorizontalAlignment="Center">
-                            <TextBlock Text="Hoặc đăng nhập bằng email" 
+                            <TextBlock Text="Or login with email" 
                                       FontSize="14" Foreground="#FF6B7280"/>
                         </Border>
                     </Grid>
@@ -388,17 +388,17 @@
                             <TextBox x:Name="EmailTextBox"
                                     Style="{StaticResource ModernTextBoxStyle}"
                                     Text="{Binding Email, Mode=TwoWay}"
-                                    Tag="Nhập địa chỉ email của bạn"/>
+                                    Tag="Enter your email address"/>
                         </StackPanel>
 
                         <!-- Password Field -->
                         <StackPanel Margin="0,0,0,24">
                             <Grid>
-                                <TextBlock Text="Mật khẩu" 
+                                <TextBlock Text="Password" 
                                           FontSize="14" FontWeight="Medium" 
                                           Foreground="#FF374151" 
                                           HorizontalAlignment="Left"/>
-                                <Button Content="Quên mật khẩu?" 
+                                <Button Content="Forgot password?" 
                                        Style="{StaticResource LinkButtonStyle}"
                                        FontSize="14"
                                        HorizontalAlignment="Right"
@@ -410,13 +410,13 @@
                         </StackPanel>
 
                         <!-- Remember Me -->
-                        <CheckBox Content="Ghi nhớ đăng nhập" 
+                        <CheckBox Content="Remember me" 
                                  Style="{StaticResource ModernCheckBoxStyle}"
                                  IsChecked="{Binding RememberMe, Mode=TwoWay}"
                                  Margin="0,0,0,32"/>
 
                         <!-- Login Button -->
-                        <Button Content="Đăng nhập" 
+                        <Button Content="Login" 
                                Style="{StaticResource PrimaryButtonStyle}"
                                Command="{Binding LoginCommand}"
                                IsDefault="True"
@@ -425,10 +425,10 @@
                         <!-- Sign Up Link -->
                         <StackPanel Orientation="Horizontal" 
                                    HorizontalAlignment="Center">
-                            <TextBlock Text="Chưa có tài khoản? " 
+                            <TextBlock Text="Don't have an account? " 
                                       FontSize="14" Foreground="#FF6B7280" 
                                       VerticalAlignment="Center"/>
-                            <Button Content="Đăng ký ngay" 
+                            <Button Content="Sign up now" 
                                    Style="{StaticResource LinkButtonStyle}"
                                    FontSize="14"
                                    Command="{Binding NavigateToRegisterCommand}"/>
@@ -439,13 +439,13 @@
                     <TextBlock Margin="0,40,0,0" TextAlignment="Center"
                               FontSize="12" Foreground="#FF9CA3AF" 
                               TextWrapping="Wrap">
-                        Bằng cách đăng nhập, bạn đồng ý với 
-                        <Button Content="Điều khoản sử dụng" 
+                        By logging in, you agree to our 
+                        <Button Content="Terms of Use" 
                                Style="{StaticResource LinkButtonStyle}" 
-                               FontSize="12"/> và 
-                        <Button Content="Chính sách bảo mật" 
+                               FontSize="12"/> and 
+                        <Button Content="Privacy Policy" 
                                Style="{StaticResource LinkButtonStyle}" 
-                               FontSize="12"/> của chúng tôi.
+                               FontSize="12"/>.
                     </TextBlock>
                 </StackPanel>
             </ScrollViewer>

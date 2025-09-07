@@ -247,11 +247,11 @@
                     <TextBlock Text="🎓" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
 
-                <TextBlock Text="Tham gia cộng đồng học tập" FontSize="28" FontWeight="Bold" 
+                <TextBlock Text="Join the learning community" FontSize="28" FontWeight="Bold" 
                           Foreground="#FF1F2937" HorizontalAlignment="Center" TextWrapping="Wrap"
                           Margin="0,0,0,16"/>
 
-                <TextBlock Text="Hơn 10,000 học viên đã tin tương và đạt được mục tiêu của họ cùng TDEdu"
+                <TextBlock Text="More than 10,000 learners have trusted and achieved their goals with TDEdu"
                           FontSize="16" Foreground="#FF6B7280" HorizontalAlignment="Center" 
                           TextWrapping="Wrap" TextAlignment="Center"/>
 
@@ -259,15 +259,15 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,32,0,0">
                     <StackPanel Margin="0,0,24,0" HorizontalAlignment="Center">
                         <TextBlock Text="10K+" FontSize="20" FontWeight="Bold" Foreground="#FF6366F1" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Học viên" FontSize="12" Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Learners" FontSize="12" Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Margin="0,0,24,0" HorizontalAlignment="Center">
                         <TextBlock Text="500+" FontSize="20" FontWeight="Bold" Foreground="#FF10B981" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Bài học" FontSize="12" Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Lessons" FontSize="12" Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock Text="98%" FontSize="20" FontWeight="Bold" Foreground="#FFF59E0B" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Hài lòng" FontSize="12" Foreground="#FF6B7280" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Satisfaction" FontSize="12" Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -292,17 +292,17 @@
                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
 
-                        <TextBlock Text="Đăng ký tài khoản" FontSize="28" FontWeight="Bold" 
+                        <TextBlock Text="Create Account" FontSize="28" FontWeight="Bold" 
                                   Foreground="#FF1F2937" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Tạo tài khoản để bắt đầu hành trình học tập" FontSize="14" 
+                        <TextBlock Text="Start your learning journey today" FontSize="14" 
                                   Foreground="#FF6B7280" HorizontalAlignment="Center" Margin="0,8,0,0"/>
                     </StackPanel>
 
                     <!-- Social Login -->
                     <StackPanel Margin="0,0,0,24">
-                        <Button Content="🔍 Đăng ký với Google" Style="{StaticResource SocialButtonStyle}" 
+                        <Button Content="🔍 Sign up with Google" Style="{StaticResource SocialButtonStyle}" 
                                Command="{Binding GoogleRegisterCommand}" Margin="0,0,0,12"/>
-                        <Button Content="📘 Đăng ký với Facebook" Style="{StaticResource SocialButtonStyle}"
+                        <Button Content="📘 Sign up with Facebook" Style="{StaticResource SocialButtonStyle}"
                                Command="{Binding FacebookRegisterCommand}"/>
                     </StackPanel>
 
@@ -310,7 +310,7 @@
                     <Grid Margin="0,0,0,24">
                         <Border Height="1" Background="#FFE5E7EB"/>
                         <Border Background="White" Padding="16,0" HorizontalAlignment="Center">
-                            <TextBlock Text="Hoặc đăng ký bằng email" FontSize="14" Foreground="#FF6B7280"/>
+                            <TextBlock Text="Or sign up with email" FontSize="14" Foreground="#FF6B7280"/>
                         </Border>
                     </Grid>
 
@@ -318,11 +318,11 @@
                     <StackPanel>
                         <!-- Full Name -->
                         <StackPanel Margin="0,0,0,20">
-                            <TextBlock Text="Họ và tên" FontSize="14" FontWeight="SemiBold" 
+                            <TextBlock Text="Full Name" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
                             <TextBox x:Name="FullNameTextBox" Style="{StaticResource ModernTextBoxStyle}" 
                                     Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}"
-                                    Tag="Nhập họ và tên của bạn"/>
+                                    Tag="Enter your full name"/>
                         </StackPanel>
 
                         <!-- Email -->
@@ -336,7 +336,7 @@
 
                         <!-- Phone Number -->
                         <StackPanel Margin="0,0,0,20">
-                            <TextBlock Text="Số điện thoại" FontSize="14" FontWeight="SemiBold" 
+                            <TextBlock Text="Phone Number" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
                             <TextBox x:Name="PhoneTextBox" Style="{StaticResource ModernTextBoxStyle}" 
                                     Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
@@ -345,14 +345,14 @@
 
                         <!-- Password -->
                         <StackPanel Margin="0,0,0,20">
-                            <TextBlock Text="Mật khẩu" FontSize="14" FontWeight="SemiBold" 
+                            <TextBlock Text="Password" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
                             <PasswordBox x:Name="PasswordBox" Style="{StaticResource ModernPasswordBoxStyle}"/>
                         </StackPanel>
 
                         <!-- Confirm Password -->
                         <StackPanel Margin="0,0,0,24">
-                            <TextBlock Text="Xác nhận mật khẩu" FontSize="14" FontWeight="SemiBold" 
+                            <TextBlock Text="Confirm Password" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
                             <PasswordBox x:Name="ConfirmPasswordBox" Style="{StaticResource ModernPasswordBoxStyle}"/>
                         </StackPanel>
@@ -361,24 +361,24 @@
                         <CheckBox Style="{StaticResource ModernCheckBoxStyle}" Margin="0,0,0,24"
                                  IsChecked="{Binding AcceptTerms}">
                             <TextBlock TextWrapping="Wrap">
-                                <Run Text="Tôi đồng ý với "/>
-                                <Run Text="Điều khoản sử dụng" Foreground="#FF6366F1" 
+                                <Run Text="I agree to the "/>
+                                <Run Text="Terms of Service" Foreground="#FF6366F1" 
                                      TextDecorations="Underline" Cursor="Hand"/>
-                                <Run Text=" và "/>
-                                <Run Text="Chính sách bảo mật" Foreground="#FF6366F1" 
+                                <Run Text=" and "/>
+                                <Run Text="Privacy Policy" Foreground="#FF6366F1" 
                                      TextDecorations="Underline" Cursor="Hand"/>
                             </TextBlock>
                         </CheckBox>
 
                         <!-- Register Button -->
-                        <Button Content="Đăng ký" Style="{StaticResource PrimaryButtonStyle}" 
+                        <Button Content="Register" Style="{StaticResource PrimaryButtonStyle}" 
                                Command="{Binding RegisterCommand}" Margin="0,0,0,24"/>
 
                         <!-- Login Link -->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="Đã có tài khoản? " FontSize="14" Foreground="#FF6B7280" 
+                            <TextBlock Text="Already have an account? " FontSize="14" Foreground="#FF6B7280" 
                                       VerticalAlignment="Center"/>
-                            <Button Content="Đăng nhập ngay" Style="{StaticResource LinkButtonStyle}" 
+                            <Button Content="Login now" Style="{StaticResource LinkButtonStyle}" 
                                    FontSize="14" Command="{Binding NavigateToLoginCommand}"/>
                         </StackPanel>
                     </StackPanel>
@@ -404,9 +404,9 @@
                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Học với AI" FontSize="16" FontWeight="SemiBold" 
+                            <TextBlock Text="Learn with AI" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937"/>
-                            <TextBlock Text="Công nghệ AI hỗ trợ học tập thông minh" FontSize="12" 
+                            <TextBlock Text="Smart learning powered by AI" FontSize="12" 
                                       Foreground="#FF6B7280"/>
                         </StackPanel>
                     </StackPanel>
@@ -418,9 +418,9 @@
                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Cá nhân hóa" FontSize="16" FontWeight="SemiBold" 
+                            <TextBlock Text="Personalized" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937"/>
-                            <TextBlock Text="Lộ trình học tập phù hợp với bạn" FontSize="12" 
+                            <TextBlock Text="Customized learning path for you" FontSize="12" 
                                       Foreground="#FF6B7280"/>
                         </StackPanel>
                     </StackPanel>
@@ -432,9 +432,9 @@
                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Chứng chỉ" FontSize="16" FontWeight="SemiBold" 
+                            <TextBlock Text="Certificate" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937"/>
-                            <TextBlock Text="Nhận chứng chỉ sau khi hoàn thành" FontSize="12" 
+                            <TextBlock Text="Earn certificates after completion" FontSize="12" 
                                       Foreground="#FF6B7280"/>
                         </StackPanel>
                     </StackPanel>
@@ -446,9 +446,9 @@
                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Cộng đồng" FontSize="16" FontWeight="SemiBold" 
+                            <TextBlock Text="Community" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937"/>
-                            <TextBlock Text="Kết nối với học viên khác" FontSize="12" 
+                            <TextBlock Text="Connect with other learners" FontSize="12" 
                                       Foreground="#FF6B7280"/>
                         </StackPanel>
                     </StackPanel>

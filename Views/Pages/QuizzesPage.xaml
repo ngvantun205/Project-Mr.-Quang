@@ -10,7 +10,7 @@
       Title="QuizzesPage">
 
     <Page.Resources>
-        <!-- Modern Card Style - đồng bộ với MainWindow -->
+        <!-- Modern Card Style - same as MainWindow -->
         <Style x:Key="ModernCardStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="12"/>
@@ -127,7 +127,7 @@
         </Style>
     </Page.Resources>
 
-    <!-- Background gradient giống MainWindow -->
+    <!-- Background gradient same as MainWindow -->
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -141,9 +141,9 @@
 
                 <!-- Header Section -->
                 <StackPanel Margin="0,0,0,32">
-                    <TextBlock Text="Bài kiểm tra" FontSize="36" FontWeight="Bold" 
+                    <TextBlock Text="Quizzes" FontSize="36" FontWeight="Bold" 
                               Foreground="#FF1F2937" Margin="0,0,0,8"/>
-                    <TextBlock Text="Thử thách bản thân với các bài kiểm tra đa dạng và thú vị" 
+                    <TextBlock Text="Challenge yourself with diverse and exciting quizzes" 
                               FontSize="16" Foreground="#FF6B7280"/>
                 </StackPanel>
 
@@ -164,7 +164,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBox Grid.Column="0" Style="{StaticResource ModernSearchBoxStyle}"
-                                    Text="Tìm kiếm bài kiểm tra..." Foreground="#FF9CA3AF"
+                                    Text="Search quizzes..." Foreground="#FF9CA3AF"
                                     BorderThickness="0" Width="350"/>
 
                             <Button Grid.Column="1" Content="🔍" FontSize="16" 
@@ -180,19 +180,19 @@
                             <StackPanel Margin="0,0,20,0">
                                 <TextBlock Text="124" FontSize="20" FontWeight="Bold" 
                                           Foreground="#FF1F2937" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Bài kiểm tra" FontSize="12" 
+                                <TextBlock Text="Quizzes" FontSize="12" 
                                           Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Margin="0,0,20,0">
                                 <TextBlock Text="89%" FontSize="20" FontWeight="Bold" 
                                           Foreground="#FF10B981" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Hoàn thành" FontSize="12" 
+                                <TextBlock Text="Completed" FontSize="12" 
                                           Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel>
                                 <TextBlock Text="8.2" FontSize="20" FontWeight="Bold" 
                                           Foreground="#FFF59E0B" HorizontalAlignment="Center"/>
-                                <TextBlock Text="Điểm TB" FontSize="12" 
+                                <TextBlock Text="Average Score" FontSize="12" 
                                           Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
@@ -202,15 +202,15 @@
                 <!-- Filter Categories -->
                 <Border Style="{StaticResource ModernCardStyle}" Padding="24,16" Margin="0,0,0,32">
                     <StackPanel>
-                        <TextBlock Text="Danh mục" FontSize="16" FontWeight="SemiBold" 
+                        <TextBlock Text="Categories" FontSize="16" FontWeight="SemiBold" 
                                   Foreground="#FF374151" Margin="0,0,0,12"/>
 
                         <WrapPanel Orientation="Horizontal">
-                            <Button Content="📚 Từ vựng" Style="{StaticResource FilterButtonStyle}"/>
-                            <Button Content="⚙️ Ngữ pháp" Style="{StaticResource FilterButtonStyle}"/>
-                            <Button Content="👂 Nghe hiểu" Style="{StaticResource FilterButtonStyle}"/>
-                            <Button Content="📖 Đọc hiểu" Style="{StaticResource FilterButtonStyle}"/>
-                            <Button Content="🗣️ Giao tiếp" Style="{StaticResource FilterButtonStyle}"/>
+                            <Button Content="📚 Vocabulary" Style="{StaticResource FilterButtonStyle}"/>
+                            <Button Content="⚙️ Grammar" Style="{StaticResource FilterButtonStyle}"/>
+                            <Button Content="👂 Listening" Style="{StaticResource FilterButtonStyle}"/>
+                            <Button Content="📖 Reading" Style="{StaticResource FilterButtonStyle}"/>
+                            <Button Content="🗣️ Speaking" Style="{StaticResource FilterButtonStyle}"/>
                             <Button Content="🏢 Business" Style="{StaticResource FilterButtonStyle}"/>
                             <Button Content="🎓 Academic" Style="{StaticResource FilterButtonStyle}"/>
                             <Button Content="📊 IELTS" Style="{StaticResource FilterButtonStyle}"/>
@@ -228,9 +228,9 @@
                     <!-- Section Title -->
                     <StackPanel Grid.Row="0" Orientation="Horizontal" 
                                Margin="0,0,0,20" VerticalAlignment="Center">
-                        <TextBlock Text="Bài kiểm tra phổ biến" FontSize="20" FontWeight="Bold" 
+                        <TextBlock Text="Popular Quizzes" FontSize="20" FontWeight="Bold" 
                                   Foreground="#FF1F2937" VerticalAlignment="Center"/>
-                        <Button Content="Xem tất cả →" Style="{StaticResource FilterButtonStyle}"
+                        <Button Content="View All →" Style="{StaticResource FilterButtonStyle}"
                                Background="Transparent" BorderThickness="0" 
                                Foreground="#FF6366F1" Margin="16,0,0,0"/>
                     </StackPanel>
@@ -259,9 +259,9 @@
 
                                 <!-- Content -->
                                 <StackPanel Grid.Row="1" >
-                                    <TextBlock Text="Từ vựng cơ bản" Padding="20,16" FontSize="18" FontWeight="Bold" 
+                                    <TextBlock Text="Basic Vocabulary" Padding="20,16" FontSize="18" FontWeight="Bold" 
                                               Foreground="#FF1F2937" Margin="0,0,0,4"/>
-                                    <TextBlock Text="Kiểm tra kiến thức từ vựng cơ bản với 20 câu hỏi thú vị" 
+                                    <TextBlock Text="Test your basic vocabulary knowledge with 20 fun questions" 
                                               FontSize="13" Foreground="#FF6B7280" Padding="20,16"
                                               TextWrapping="Wrap" LineHeight="18" Margin="0,0,0,12"/>
 
@@ -273,11 +273,11 @@
 
                                         <StackPanel Grid.Column="0" Orientation="Horizontal">
                                             <Border Background="#FFDBEAFE" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
-                                                <TextBlock Text="20 câu" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="20 questions" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FF7C3AED"/>
                                             </Border>
                                             <Border Background="#FFECFDF5" CornerRadius="4" Padding="6,2">
-                                                <TextBlock Text="15 phút" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="15 minutes" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FF059669"/>
                                             </Border>
                                         </StackPanel>
@@ -308,9 +308,9 @@
                                 </Border>
 
                                 <StackPanel Grid.Row="1" >
-                                    <TextBlock Text="Ngữ pháp nâng cao" Padding="20,16" FontSize="18" FontWeight="Bold" 
+                                    <TextBlock Text="Advanced Grammar" Padding="20,16" FontSize="18" FontWeight="Bold" 
                                               Foreground="#FF1F2937" Margin="0,0,0,4"/>
-                                    <TextBlock Text="Thử thách với các câu hỏi ngữ pháp từ cơ bản đến nâng cao" 
+                                    <TextBlock Text="Challenge yourself with grammar questions from basic to advanced" 
                                               FontSize="13" Foreground="#FF6B7280" Padding="20,16"
                                               TextWrapping="Wrap" LineHeight="18" Margin="0,0,0,12"/>
 
@@ -322,11 +322,11 @@
 
                                         <StackPanel Grid.Column="0" Orientation="Horizontal">
                                             <Border Background="#FFFECACA" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
-                                                <TextBlock Text="25 câu" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="25 questions" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FFDC2626"/>
                                             </Border>
                                             <Border Background="#FFFEF3C7" CornerRadius="4" Padding="6,2">
-                                                <TextBlock Text="30 phút" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="30 minutes" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FFD97706"/>
                                             </Border>
                                         </StackPanel>
@@ -357,9 +357,9 @@
                                 </Border>
 
                                 <StackPanel Grid.Row="1" >
-                                    <TextBlock Text="Nghe hiểu cơ bản" Padding="20,16" FontSize="18" FontWeight="Bold" 
+                                    <TextBlock Text="Basic Listening" Padding="20,16" FontSize="18" FontWeight="Bold" 
                                               Foreground="#FF1F2937" Margin="0,0,0,4"/>
-                                    <TextBlock Text="Luyện tập kỹ năng nghe với audio chất lượng cao" 
+                                    <TextBlock Text="Practice listening skills with high-quality audio" 
                                               FontSize="13" Foreground="#FF6B7280" Padding="20,16"
                                               TextWrapping="Wrap" LineHeight="18" Margin="0,0,0,12"/>
 
@@ -371,11 +371,11 @@
 
                                         <StackPanel Grid.Column="0" Orientation="Horizontal">
                                             <Border Background="#FFEFF6FF" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
-                                                <TextBlock Text="15 câu" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="15 questions" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FF2563EB"/>
                                             </Border>
                                             <Border Background="#FFECFDF5" CornerRadius="4" Padding="6,2">
-                                                <TextBlock Text="20 phút" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="20 minutes" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FF059669"/>
                                             </Border>
                                         </StackPanel>
@@ -406,9 +406,9 @@
                                 </Border>
 
                                 <StackPanel Grid.Row="1">
-                                    <TextBlock Text="Đọc hiểu nâng cao" Padding="20,16" FontSize="18" FontWeight="Bold" 
+                                    <TextBlock Text="Advanced Reading" Padding="20,16" FontSize="18" FontWeight="Bold" 
                                               Foreground="#FF1F2937" Margin="0,0,0,4"/>
-                                    <TextBlock Text="Phát triển kỹ năng đọc hiểu với các bài đọc đa dạng" 
+                                    <TextBlock Text="Improve reading skills with diverse passages" 
                                               FontSize="13" Foreground="#FF6B7280" Padding="20,16"
                                               TextWrapping="Wrap" LineHeight="18" Margin="0,0,0,12"/>
 
@@ -420,11 +420,11 @@
 
                                         <StackPanel Grid.Column="0" Orientation="Horizontal">
                                             <Border Background="#FFDBEAFE" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
-                                                <TextBlock Text="18 câu" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="18 questions" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FF7C3AED"/>
                                             </Border>
                                             <Border Background="#FFFEF3C7" CornerRadius="4" Padding="6,2">
-                                                <TextBlock Text="25 phút" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="25 minutes" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FFD97706"/>
                                             </Border>
                                         </StackPanel>
@@ -455,9 +455,9 @@
                                 </Border>
 
                                 <StackPanel Grid.Row="1" >
-                                    <TextBlock Text="Luyện tập tổng hợp" Padding="20,16" FontSize="18" FontWeight="Bold" 
+                                    <TextBlock Text="Comprehensive Practice" Padding="20,16" FontSize="18" FontWeight="Bold" 
                                               Foreground="#FF1F2937" Margin="0,0,0,4"/>
-                                    <TextBlock Text="Kết hợp tất cả kỹ năng trong một bài kiểm tra toàn diện" 
+                                    <TextBlock Text="Combine all skills in one complete quiz" 
                                               FontSize="13" Foreground="#FF6B7280" Padding="20,16"
                                               TextWrapping="Wrap" LineHeight="18" Margin="0,0,0,12"/>
 
@@ -469,11 +469,11 @@
 
                                         <StackPanel Grid.Column="0" Orientation="Horizontal">
                                             <Border Background="#FFFECACA" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
-                                                <TextBlock Text="35 câu" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="35 questions" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FFDC2626"/>
                                             </Border>
                                             <Border Background="#FFFEF3C7" CornerRadius="4" Padding="6,2">
-                                                <TextBlock Text="45 phút" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="45 minutes" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FFD97706"/>
                                             </Border>
                                         </StackPanel>
@@ -506,7 +506,7 @@
                                 <StackPanel Grid.Row="1" >
                                     <TextBlock Text="IELTS Mock Test" Padding="20,16" FontSize="18" FontWeight="Bold" 
                                               Foreground="#FF1F2937" Margin="0,0,0,4"/>
-                                    <TextBlock Text="Mô phỏng kỳ thi IELTS thực tế với format chuẩn quốc tế" 
+                                    <TextBlock Text="Simulate a real IELTS exam with standard format" 
                                               FontSize="13" Foreground="#FF6B7280" Padding="20,16"
                                               TextWrapping="Wrap" LineHeight="18" Margin="0,0,0,12"/>
 
@@ -518,11 +518,11 @@
 
                                         <StackPanel Grid.Column="0" Orientation="Horizontal">
                                             <Border Background="#FFFFE4E6" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
-                                                <TextBlock Text="40 câu" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="40 questions" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FFDC2626"/>
                                             </Border>
                                             <Border Background="#FFFECACA" CornerRadius="4" Padding="6,2">
-                                                <TextBlock Text="60 phút" FontSize="10" FontWeight="Medium" 
+                                                <TextBlock Text="60 minutes" FontSize="10" FontWeight="Medium" 
                                                           Foreground="#FFDC2626"/>
                                             </Border>
                                         </StackPanel>

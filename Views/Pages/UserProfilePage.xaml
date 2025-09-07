@@ -142,10 +142,10 @@
             <!-- Header Section -->
             <Border Grid.Row="0" Padding="40,32,40,24">
                 <StackPanel>
-                    <TextBlock Text="Hồ sơ người dùng" 
+                    <TextBlock Text="User Profile" 
                               FontSize="32" FontWeight="Bold" 
                               Foreground="#FF1F2937" Margin="0,0,0,8"/>
-                    <TextBlock Text="Quản lý thông tin cá nhân và theo dõi tiến trình học tập" 
+                    <TextBlock Text="Manage personal information and track learning progress" 
                               FontSize="16" Foreground="#FF6B7280"/>
                 </StackPanel>
             </Border>
@@ -178,12 +178,12 @@
                                               Foreground="White" HorizontalAlignment="Center" 
                                               VerticalAlignment="Center"/>
                                 </Border>
-                                <Button Content="Thay đổi ảnh" Style="{StaticResource SecondaryButtonStyle}"/>
+                                <Button Content="Change Picture" Style="{StaticResource SecondaryButtonStyle}"/>
                             </StackPanel>
 
                             <!-- User Info -->
                             <StackPanel Grid.Row="1" Margin="0,0,0,24">
-                                <TextBlock Text="Thông tin cá nhân" FontSize="18" FontWeight="SemiBold" 
+                                <TextBlock Text="Personal Information" FontSize="18" FontWeight="SemiBold" 
                                           Foreground="#FF1F2937" Margin="0,0,0,16"/>
 
                                 <Grid>
@@ -195,9 +195,9 @@
                                     </Grid.RowDefinitions>
 
                                     <StackPanel Grid.Row="0" Margin="0,0,0,16">
-                                        <TextBlock Text="Họ và tên" FontSize="14" FontWeight="Medium" 
+                                        <TextBlock Text="Full Name" FontSize="14" FontWeight="Medium" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
-                                        <TextBox Text="Trương Duy" Style="{StaticResource ModernTextBoxStyle}"/>
+                                        <TextBox Text="Truong Duy" Style="{StaticResource ModernTextBoxStyle}"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="1" Margin="0,0,0,16">
@@ -207,13 +207,13 @@
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="2" Margin="0,0,0,16">
-                                        <TextBlock Text="Số điện thoại" FontSize="14" FontWeight="Medium" 
+                                        <TextBlock Text="Phone Number" FontSize="14" FontWeight="Medium" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
                                         <TextBox Text="+84 123 456 789" Style="{StaticResource ModernTextBoxStyle}"/>
                                     </StackPanel>
 
                                     <StackPanel Grid.Row="3" Margin="0,0,0,16">
-                                        <TextBlock Text="Ngày sinh" FontSize="14" FontWeight="Medium" 
+                                        <TextBlock Text="Date of Birth" FontSize="14" FontWeight="Medium" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
                                         <DatePicker Height="44" FontSize="14" Margin="0"/>
                                     </StackPanel>
@@ -222,8 +222,8 @@
 
                             <!-- Action Buttons -->
                             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Content="Cập nhật" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,12,0"/>
-                                <Button Content="Hủy" Style="{StaticResource SecondaryButtonStyle}"/>
+                                <Button Content="Update" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,12,0"/>
+                                <Button Content="Cancel" Style="{StaticResource SecondaryButtonStyle}"/>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -231,7 +231,7 @@
                     <!-- Settings Card -->
                     <Border Style="{StaticResource ModernCardStyle}">
                         <StackPanel>
-                            <TextBlock Text="Cài đặt" FontSize="18" FontWeight="SemiBold" 
+                            <TextBlock Text="Settings" FontSize="18" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937" Margin="0,0,0,16"/>
 
                             <StackPanel>
@@ -242,9 +242,9 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Thông báo email" FontWeight="Medium" 
+                                            <TextBlock Text="Email Notifications" FontWeight="Medium" 
                                                       Foreground="#FF374151"/>
-                                            <TextBlock Text="Nhận thông báo về tiến trình học tập" 
+                                            <TextBlock Text="Receive notifications about learning progress" 
                                                       FontSize="12" Foreground="#FF6B7280"/>
                                         </StackPanel>
                                         <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
@@ -258,9 +258,9 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Âm thanh" FontWeight="Medium" 
+                                            <TextBlock Text="Sound" FontWeight="Medium" 
                                                       Foreground="#FF374151"/>
-                                            <TextBlock Text="Phát âm thanh khi hoàn thành bài tập" 
+                                            <TextBlock Text="Play sound when finishing exercises" 
                                                       FontSize="12" Foreground="#FF6B7280"/>
                                         </StackPanel>
                                         <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
@@ -274,9 +274,9 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Chế độ tối" FontWeight="Medium" 
+                                            <TextBlock Text="Dark Mode" FontWeight="Medium" 
                                                       Foreground="#FF374151"/>
-                                            <TextBlock Text="Sử dụng giao diện tối" 
+                                            <TextBlock Text="Use dark theme" 
                                                       FontSize="12" Foreground="#FF6B7280"/>
                                         </StackPanel>
                                         <CheckBox Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
@@ -292,7 +292,7 @@
                     <!-- Learning Progress Card -->
                     <Border Style="{StaticResource ModernCardStyle}" Margin="0,0,0,24">
                         <StackPanel>
-                            <TextBlock Text="Tiến trình học tập" FontSize="18" FontWeight="SemiBold" 
+                            <TextBlock Text="Learning Progress" FontSize="18" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937" Margin="0,0,0,16"/>
 
                             <!-- Level Progress -->
@@ -304,9 +304,9 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Trình độ hiện tại" FontSize="14" FontWeight="Medium" 
+                                            <TextBlock Text="Current Level" FontSize="14" FontWeight="Medium" 
                                                       Foreground="#FF374151"/>
-                                            <TextBlock Text="Trung cấp (B1)" FontSize="20" FontWeight="Bold" 
+                                            <TextBlock Text="Intermediate (B1)" FontSize="20" FontWeight="Bold" 
                                                       Foreground="#FF6366F1"/>
                                         </StackPanel>
                                         <Border Grid.Column="1" Background="#FF10B981" CornerRadius="20" 
@@ -324,7 +324,7 @@
                                         <ProgressBar Value="78" Maximum="100" Style="{StaticResource ModernProgressBarStyle}"/>
                                     </StackPanel>
 
-                                    <TextBlock Text="Còn 660 XP để lên level tiếp theo!" 
+                                    <TextBlock Text="660 XP left to reach the next level!" 
                                               FontSize="12" Foreground="#FF10B981" FontWeight="Medium"/>
                                 </StackPanel>
                             </Border>
@@ -341,7 +341,7 @@
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="42" FontSize="24" FontWeight="Bold" 
                                                   Foreground="#FF1F2937" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Ngày streak" FontSize="12" 
+                                        <TextBlock Text="Streak Days" FontSize="12" 
                                                   Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
@@ -351,7 +351,7 @@
                                     <StackPanel HorizontalAlignment="Center">
                                         <TextBlock Text="156" FontSize="24" FontWeight="Bold" 
                                                   Foreground="#FF1F2937" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Bài hoàn thành" FontSize="12" 
+                                        <TextBlock Text="Lessons Completed" FontSize="12" 
                                                   Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
@@ -362,7 +362,7 @@
                     <!-- Achievements Card -->
                     <Border Style="{StaticResource ModernCardStyle}" Margin="0,0,0,24">
                         <StackPanel>
-                            <TextBlock Text="Thành tựu" FontSize="18" FontWeight="SemiBold" 
+                            <TextBlock Text="Achievements" FontSize="18" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937" Margin="0,0,0,16"/>
 
                             <StackPanel>
@@ -382,7 +382,7 @@
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                             <TextBlock Text="Streaker" FontWeight="Medium" 
                                                       Foreground="#FF374151"/>
-                                            <TextBlock Text="Học liên tục 30 ngày" FontSize="12" 
+                                            <TextBlock Text="Study continuously for 30 days" FontSize="12" 
                                                       Foreground="#FF6B7280"/>
                                         </StackPanel>
                                         <TextBlock Grid.Column="2" Text="✓" FontSize="16" FontWeight="Bold" 
@@ -405,7 +405,7 @@
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                             <TextBlock Text="Scholar" FontWeight="Medium" 
                                                       Foreground="#FF374151"/>
-                                            <TextBlock Text="Hoàn thành 100 bài học" FontSize="12" 
+                                            <TextBlock Text="Complete 100 lessons" FontSize="12" 
                                                       Foreground="#FF6B7280"/>
                                         </StackPanel>
                                         <TextBlock Grid.Column="2" Text="✓" FontSize="16" FontWeight="Bold" 
@@ -428,7 +428,7 @@
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                             <TextBlock Text="Perfectionist" FontWeight="Medium" 
                                                       Foreground="#FF374151"/>
-                                            <TextBlock Text="Đạt 100% trong 50 bài quiz" FontSize="12" 
+                                            <TextBlock Text="Score 100% in 50 quizzes" FontSize="12" 
                                                       Foreground="#FF6B7280"/>
                                         </StackPanel>
                                         <TextBlock Grid.Column="2" Text="23/50" FontSize="12" FontWeight="Medium" 
@@ -442,7 +442,7 @@
                     <!-- Recent Activity Card -->
                     <Border Style="{StaticResource ModernCardStyle}">
                         <StackPanel>
-                            <TextBlock Text="Hoạt động gần đây" FontSize="18" FontWeight="SemiBold" 
+                            <TextBlock Text="Recent Activity" FontSize="18" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937" Margin="0,0,0,16"/>
 
                             <StackPanel>
@@ -453,12 +453,12 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Hoàn thành bài 'Present Perfect Tense'" 
+                                            <TextBlock Text="Completed lesson 'Present Perfect Tense'" 
                                                       FontWeight="Medium" FontSize="13" Foreground="#FF374151"/>
                                             <TextBlock Text="Grammar - Level 5" FontSize="11" 
                                                       Foreground="#FF6B7280"/>
                                         </StackPanel>
-                                        <TextBlock Grid.Column="1" Text="2h trước" FontSize="11" 
+                                        <TextBlock Grid.Column="1" Text="2h ago" FontSize="11" 
                                                   Foreground="#FF6B7280" VerticalAlignment="Top"/>
                                     </Grid>
                                 </Border>
@@ -470,12 +470,12 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Đạt điểm cao trong Quiz 'Vocabulary'" 
+                                            <TextBlock Text="Scored high in Quiz 'Vocabulary'" 
                                                       FontWeight="Medium" FontSize="13" Foreground="#FF374151"/>
-                                            <TextBlock Text="95/100 điểm" FontSize="11" 
+                                            <TextBlock Text="95/100 points" FontSize="11" 
                                                       Foreground="#FF10B981"/>
                                         </StackPanel>
-                                        <TextBlock Grid.Column="1" Text="1 ngày" FontSize="11" 
+                                        <TextBlock Grid.Column="1" Text="1 day ago" FontSize="11" 
                                                   Foreground="#FF6B7280" VerticalAlignment="Top"/>
                                     </Grid>
                                 </Border>
@@ -487,12 +487,12 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Grid.Column="0">
-                                            <TextBlock Text="Mở khóa thành tựu 'Streaker'" 
+                                            <TextBlock Text="Unlocked achievement 'Streaker'" 
                                                       FontWeight="Medium" FontSize="13" Foreground="#FF374151"/>
-                                            <TextBlock Text="30 ngày học liên tục" FontSize="11" 
+                                            <TextBlock Text="30 consecutive study days" FontSize="11" 
                                                       Foreground="#FFF59E0B"/>
                                         </StackPanel>
-                                        <TextBlock Grid.Column="1" Text="2 ngày" FontSize="11" 
+                                        <TextBlock Grid.Column="1" Text="2 days ago" FontSize="11" 
                                                   Foreground="#FF6B7280" VerticalAlignment="Top"/>
                                     </Grid>
                                 </Border>

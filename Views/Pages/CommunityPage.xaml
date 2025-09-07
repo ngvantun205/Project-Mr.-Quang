@@ -80,9 +80,9 @@
                 <!-- Action Buttons -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" 
                            VerticalAlignment="Center" Margin="20,0,40,0">
-                    <Button Content="Create Post" FontSize="14" Height="40" Width="100"
+                    <Button Content="Create Post" FontSize="14" Height="40" Width="106"
                            Style="{StaticResource ModernButtonStyle}" Margin="0,0,12,0"/>
-                    <Button Content="Join Group" FontSize="14" Height="40" Width="90"
+                    <Button Content="Join Group" FontSize="14" Height="40" Width="116"
                            Style="{StaticResource SecondaryButtonStyle}"/>
                 </StackPanel>
             </Grid>
@@ -121,16 +121,16 @@
                                Height="40" Width="90" Margin="8,0"/>
                         <Button Content="👥 Members" 
                                Style="{StaticResource SecondaryButtonStyle}"
-                               Height="40" Width="100" Margin="8,0"/>
+                               Height="40" Width="112" Margin="8,0"/>
                         <Button Content="💬 Discussions" 
                                Style="{StaticResource SecondaryButtonStyle}"
-                               Height="40" Width="110" Margin="8,0"/>
+                               Height="40" Width="119" Margin="8,0"/>
                         <Button Content="🎯 Study Groups" 
                                Style="{StaticResource SecondaryButtonStyle}"
-                               Height="40" Width="120" Margin="8,0"/>
+                               Height="40" Width="132" Margin="8,0"/>
                         <Button Content="🏆 Leaderboard" 
                                Style="{StaticResource SecondaryButtonStyle}"
-                               Height="40" Width="120" Margin="8,0"/>
+                               Height="40" Width="129" Margin="8,0"/>
                         <Button Content="📚 Resources" 
                                Style="{StaticResource SecondaryButtonStyle}"
                                Height="40" Width="110" Margin="8,0"/>

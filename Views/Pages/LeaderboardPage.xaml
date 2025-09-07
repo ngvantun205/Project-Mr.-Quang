@@ -74,25 +74,25 @@
 
                     <!-- Header Section -->
                     <StackPanel Margin="0,0,0,32">
-                        <TextBlock Text="🏆 Bảng xếp hạng" 
+                        <TextBlock Text="🏆 Leaderboard" 
                                FontSize="36" FontWeight="Bold" 
                                Foreground="#FF1F2937" 
                                HorizontalAlignment="Center"
                                Margin="0,0,0,8"/>
 
-                        <TextBlock Text="Cùng nhau chinh phục đỉnh cao tri thức" 
+                    <TextBlock Text="Together conquer the peak of knowledge" 
                                FontSize="16" Foreground="#FF6B7280" 
                                HorizontalAlignment="Center"
                                Margin="0,0,0,24"/>
 
                         <!-- Filter Buttons -->
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="Tuần này" Style="{StaticResource FilterButtonStyle}" 
+                            <Button Content="This week" Style="{StaticResource FilterButtonStyle}" 
                                Background="#FF6366F1" Foreground="White" BorderBrush="#FF6366F1"
                                Margin="0,0,12,0"/>
-                            <Button Content="Tháng này" Style="{StaticResource FilterButtonStyle}" 
+                            <Button Content="This month" Style="{StaticResource FilterButtonStyle}" 
                                Margin="0,0,12,0"/>
-                            <Button Content="Tất cả" Style="{StaticResource FilterButtonStyle}"/>
+                            <Button Content="All time" Style="{StaticResource FilterButtonStyle}"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -170,7 +170,7 @@
 
                     <!-- Leaderboard List -->
                     <Border Style="{StaticResource LeaderCardStyle}" Margin="0,0,0,16">
-                        <TextBlock Text="📊 Bảng xếp hạng chi tiết" 
+                        <TextBlock Text="📊 Detail leaderboard" 
                                FontSize="20" FontWeight="SemiBold" 
                                Foreground="#FF1F2937"/>
                     </Border>
@@ -201,21 +201,21 @@
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                 <TextBlock Text="Phạm Thị Hoa" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937"/>
-                                <TextBlock Text="Level 15 • Tiếng Anh nâng cao" FontSize="12" 
+                                <TextBlock Text="Level 15 • Advanced English" FontSize="12" 
                                       Foreground="#FF6B7280"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <TextBlock Text="2,340 XP" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF6366F1"/>
-                                <TextBlock Text="+180 tuần này" FontSize="11" 
+                                <TextBlock Text="+180 this week" FontSize="11" 
                                       Foreground="#FF10B981"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock Text="98%" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF10B981"/>
-                                <TextBlock Text="Độ chính xác" FontSize="10" 
+                                <TextBlock Text="Accurancy" FontSize="10" 
                                       Foreground="#FF6B7280"/>
                             </StackPanel>
 
@@ -253,21 +253,21 @@
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                 <TextBlock Text="Hoàng Văn Nam" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937"/>
-                                <TextBlock Text="Level 12 • Giao tiếp cơ bản" FontSize="12" 
+                                <TextBlock Text="Level 12 • Basic Communication" FontSize="12" 
                                       Foreground="#FF6B7280"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <TextBlock Text="2,180 XP" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF6366F1"/>
-                                <TextBlock Text="+210 tuần này" FontSize="11" 
+                                <TextBlock Text="+210 this week" FontSize="11" 
                                       Foreground="#FF10B981"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock Text="95%" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF10B981"/>
-                                <TextBlock Text="Độ chính xác" FontSize="10" 
+                                <TextBlock Text="Accuracy" FontSize="10" 
                                       Foreground="#FF6B7280"/>
                             </StackPanel>
 
@@ -307,21 +307,21 @@
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                 <TextBlock Text="Bạn (Võ Minh Tâm)" FontSize="16" FontWeight="Bold" 
                                       Foreground="#FF6366F1"/>
-                                <TextBlock Text="Level 8 • Tiếng Anh căn bản" FontSize="12" 
+                                <TextBlock Text="Level 8 • Basic English" FontSize="12" 
                                       Foreground="#FF6B7280"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <TextBlock Text="1,560 XP" FontSize="16" FontWeight="Bold" 
                                       Foreground="#FF6366F1"/>
-                                <TextBlock Text="+95 tuần này" FontSize="11" 
+                                <TextBlock Text="+95 this week" FontSize="11" 
                                       Foreground="#FF10B981"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock Text="92%" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF10B981"/>
-                                <TextBlock Text="Độ chính xác" FontSize="10" 
+                                <TextBlock Text="Accuracy" FontSize="10" 
                                       Foreground="#FF6B7280"/>
                             </StackPanel>
 
@@ -360,21 +360,21 @@
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                 <TextBlock Text="Đặng Thu Hương" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937"/>
-                                <TextBlock Text="Level 7 • Từ vựng cơ bản" FontSize="12" 
+                                <TextBlock Text="Level 7 • Basic vocabulary" FontSize="12" 
                                       Foreground="#FF6B7280"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <TextBlock Text="1,480 XP" FontSize="16" FontWeight="SemiBold" 
                                       Foreground="#FF6366F1"/>
-                                <TextBlock Text="+75 tuần này" FontSize="11" 
+                                <TextBlock Text="+75 this week" FontSize="11" 
                                       Foreground="#FF10B981"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock Text="89%" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FFF59E0B"/>
-                                <TextBlock Text="Độ chính xác" FontSize="10" 
+                                <TextBlock Text="Accuracy" FontSize="10" 
                                       Foreground="#FF6B7280"/>
                             </StackPanel>
 
@@ -391,7 +391,7 @@
                     <Border Style="{StaticResource LeaderCardStyle}" Background="#FFF8F9FF" 
                        Margin="0,32,0,16">
                         <StackPanel>
-                            <TextBlock Text="🏅 Thành tựu của bạn" 
+                            <TextBlock Text="🏅 Your achievement" 
                                    FontSize="18" FontWeight="SemiBold" 
                                    Foreground="#FF1F2937" Margin="0,0,0,16"/>
 
@@ -405,27 +405,27 @@
                                 <StackPanel Grid.Column="0" HorizontalAlignment="Center">
                                     <TextBlock Text="📈" FontSize="32" HorizontalAlignment="Center" 
                                           Margin="0,0,0,8"/>
-                                    <TextBlock Text="Tiến bộ nhanh" FontSize="14" FontWeight="SemiBold" 
+                                    <TextBlock Text="Fast progress" FontSize="14" FontWeight="SemiBold" 
                                           Foreground="#FF10B981" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Tăng 3 hạng" FontSize="12" 
+                                    <TextBlock Text="Increase 3 ranks" FontSize="12" 
                                           Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                                     <TextBlock Text="🎯" FontSize="32" HorizontalAlignment="Center" 
                                           Margin="0,0,0,8"/>
-                                    <TextBlock Text="Học đều" FontSize="14" FontWeight="SemiBold" 
+                                    <TextBlock Text="Study frequently" FontSize="14" FontWeight="SemiBold" 
                                           Foreground="#FF6366F1" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="5 ngày liên tục" FontSize="12" 
+                                    <TextBlock Text="5 countinous days" FontSize="12" 
                                           Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2" HorizontalAlignment="Center">
                                     <TextBlock Text="⭐" FontSize="32" HorizontalAlignment="Center" 
                                           Margin="0,0,0,8"/>
-                                    <TextBlock Text="Xuất sắc" FontSize="14" FontWeight="SemiBold" 
+                                    <TextBlock Text="Exellent" FontSize="14" FontWeight="SemiBold" 
                                           Foreground="#FFF59E0B" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="92% chính xác" FontSize="12" 
+                                    <TextBlock Text="92% Accuracy" FontSize="12" 
                                           Foreground="#FF6B7280" HorizontalAlignment="Center"/>
                                 </StackPanel>
                             </Grid>
@@ -442,14 +442,14 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Text="🚀 Muốn leo hạng cao hơn?" 
+                            <TextBlock Text="🚀 Want to increase your rank?" 
                                        FontSize="18" FontWeight="SemiBold" 
                                        Foreground="White" Margin="0,0,0,4"/>
-                                <TextBlock Text="Hoàn thành thêm bài học để kiếm XP và vượt lên các đối thủ!" 
+                            <TextBlock Text="Complete more lessons to earn XP and get ahead of your opponents!" 
                                        FontSize="14" Foreground="#FFBFDBFE"/>
                             </StackPanel>
 
-                            <Button Grid.Column="1" Content="Học ngay" 
+                            <Button Grid.Column="1" Content="Study now" 
                                Background="White" Foreground="#FF6366F1" 
                                BorderThickness="0"  
                                Padding="20,12" FontSize="14" FontWeight="SemiBold"
