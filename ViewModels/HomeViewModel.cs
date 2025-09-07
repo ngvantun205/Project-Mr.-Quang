@@ -29,7 +29,7 @@ namespace TDEduEnglish.ViewModels {
 
                 switch (pageName) {
                     case "CoursesPage":
-                        _navigationService.NavigateTo(typeof(CoursesPage));
+                        _navigationService.NavigateTo(new CoursesPage(_navigationService));
                         break;
                     case "HomePage":
                         _navigationService.NavigateTo(typeof(HomePage));

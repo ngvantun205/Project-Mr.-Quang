@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TDEduEnglish.Services;
+using TDEduEnglish.ViewModels;
 
 namespace TDEduEnglish.Views.Pages {
     /// <summary>
@@ -21,7 +22,7 @@ namespace TDEduEnglish.Views.Pages {
     public partial class LoginPage : Page {
         public LoginPage(AppNavigationService appNavigationService) {
             InitializeComponent();
-            this.DataContext = appNavigationService;
+            this.DataContext = new LoginViewModel(appNavigationService);
         }
     }
 }

@@ -1,0 +1,502 @@
+﻿<Page x:Class="TDEduEnglish.Views.CoursesPageView.CourseVocabularyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TDEduEnglish.Views.CoursesPageView"
+      Background="White"
+      mc:Ignorable="d" 
+      d:DesignHeight="580" d:DesignWidth="780"
+      Title="CourseVocabularyPage">
+
+    <Page.Resources>
+        <!-- Vocabulary Topic Card Style -->
+        <Style x:Key="VocabularyCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" Direction="270" 
+                                    ShadowDepth="3" BlurRadius="15" Opacity="0.08"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#FF6366F1" Direction="270" 
+                                            ShadowDepth="4" BlurRadius="20" Opacity="0.15"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Topic Icon Style -->
+        <Style x:Key="TopicIconStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+
+        <!-- Topic Title Style -->
+        <Style x:Key="TopicTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#FF1F2937"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <!-- Topic Description Style -->
+        <Style x:Key="TopicDescriptionStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#FF6B7280"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="LineHeight" Value="18"/>
+            <Setter Property="Margin" Value="0,0,0,12"/>
+        </Style>
+
+        <!-- Progress Badge Style -->
+        <Style x:Key="ProgressBadgeStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <!-- Header Section -->
+        <StackPanel Margin="20,20,20,0" VerticalAlignment="Top">
+            <TextBlock Text="Vocabulary Topics" FontSize="28" FontWeight="Bold" 
+                      Foreground="#FF1F2937" Margin="0,0,0,8"/>
+            <TextBlock Text="Choose a topic to expand your vocabulary" 
+                      FontSize="14" Foreground="#FF6B7280" Margin="0,0,0,20"/>
+        </StackPanel>
+
+        <!-- Main Content with ScrollViewer -->
+        <ScrollViewer Margin="20,100,8,20" 
+                     VerticalScrollBarVisibility="Auto" 
+                     HorizontalScrollBarVisibility="Disabled"
+                     Padding="0,0,12,0">
+            <ScrollViewer.Resources>
+                <!-- Custom ScrollBar Style -->
+                <Style TargetType="ScrollBar">
+                    <Setter Property="Background" Value="#FFF1F5F9"/>
+                    <Setter Property="Width" Value="6"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ScrollBar">
+                                <Grid>
+                                    <Rectangle Fill="{TemplateBinding Background}" 
+                                             RadiusX="3" RadiusY="3"/>
+                                    <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                        <Track.Thumb>
+                                            <Thumb Background="#FF6366F1" 
+                                                  />
+                                        </Track.Thumb>
+                                    </Track>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ScrollViewer.Resources>
+
+            <!-- Vocabulary Topics Grid -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Row 1: Basic Topics -->
+                <UniformGrid Grid.Row="0" Columns="4" Margin="0,0,0,8">
+                    <!-- Daily Life -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFECFDF5">
+                                <TextBlock Text="🏠" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Daily Life" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Essential vocabulary for everyday activities and routines" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF10B981">
+                                <TextBlock Text="85%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Food & Drinks -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFFEF7E7">
+                                <TextBlock Text="🍽️" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Food and Drinks" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Vocabulary for restaurants, cooking, and dining experiences" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFF59E0B">
+                                <TextBlock Text="72%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Transportation -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFEFF6FF">
+                                <TextBlock Text="🚗" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Transportation" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Travel, vehicles, and navigation vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF6366F1">
+                                <TextBlock Text="45%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Health & Body -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF5F3FF">
+                                <TextBlock Text="🏥" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Health and Body" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Medical vocabulary and body parts terminology" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFA855F7">
+                                <TextBlock Text="60%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- Row 2: Work & Education -->
+                <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,8">
+                    <!-- Work & Career -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFFEF7E7">
+                                <TextBlock Text="💼" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Work and Career" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Professional vocabulary for workplace communication" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFEF4444">
+                                <TextBlock Text="30%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Education -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFEFF6FF">
+                                <TextBlock Text="🎓" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Education" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Academic vocabulary for school and university settings" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF6366F1">
+                                <TextBlock Text="90%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Technology -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF0F9FF">
+                                <TextBlock Text="💻" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Technology" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Modern tech vocabulary and digital communication" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF06B6D4">
+                                <TextBlock Text="55%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Shopping -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFECFDF5">
+                                <TextBlock Text="🛒" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Shopping" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Retail vocabulary for shopping and consumer experiences" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF10B981">
+                                <TextBlock Text="78%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- Row 3: Leisure & Entertainment -->
+                <UniformGrid Grid.Row="2" Columns="4" Margin="0,0,0,8">
+                    <!-- Sports & Hobbies -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFFEF7E7">
+                                <TextBlock Text="⚽" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Sports and Hobbies" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Recreational activities and leisure vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFF59E0B">
+                                <TextBlock Text="40%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Entertainment -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF5F3FF">
+                                <TextBlock Text="🎭" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Entertainment" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Movies, music, and entertainment industry vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFA855F7">
+                                <TextBlock Text="65%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Travel -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF0F9FF">
+                                <TextBlock Text="✈️" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Travel" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Tourism, hotels, and travel-related vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF06B6D4">
+                                <TextBlock Text="85%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Nature & Weather -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFECFDF5">
+                                <TextBlock Text="🌿" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Nature and Weather" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Environmental and weather-related vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF10B981">
+                                <TextBlock Text="70%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- Row 4: Advanced Topics -->
+                <UniformGrid Grid.Row="3" Columns="4" Margin="0,0,0,8">
+                    <!-- Finance & Money -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFFEF7E7">
+                                <TextBlock Text="💰" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Finance and Money" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Banking, investment, and financial vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFEF4444">
+                                <TextBlock Text="25%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Legal & Government -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF5F3FF">
+                                <TextBlock Text="⚖️" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Legal and Government" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Legal system and government-related vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFA855F7">
+                                <TextBlock Text="15%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Science -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF0F9FF">
+                                <TextBlock Text="🔬" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Science" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Scientific terminology and research vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF06B6D4">
+                                <TextBlock Text="35%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Art & Culture -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFECFDF5">
+                                <TextBlock Text="🎨" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Art and Culture" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Artistic expressions and cultural vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF10B981">
+                                <TextBlock Text="50%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- Row 5: Specialized Topics -->
+                <UniformGrid Grid.Row="4" Columns="4" Margin="0,0,0,8">
+                    <!-- Emotions & Feelings -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF5F3FF">
+                                <TextBlock Text="💝" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Emotions and Feelings" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Express emotions and describe personal feelings" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFA855F7">
+                                <TextBlock Text="80%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Family & Relationships -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFFEF7E7">
+                                <TextBlock Text="👨‍👩‍👧‍👦" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Family and Relationships" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Family members and relationship vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFF59E0B">
+                                <TextBlock Text="95%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Clothing & Fashion -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFEFF6FF">
+                                <TextBlock Text="👗" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Clothing and Fashion" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Fashion terminology and clothing descriptions" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF6366F1">
+                                <TextBlock Text="60%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Communication -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF0F9FF">
+                                <TextBlock Text="📱" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Communication" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Modern communication and social media vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF06B6D4">
+                                <TextBlock Text="75%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- Row 6: Final Topics -->
+                <UniformGrid Grid.Row="5" Columns="4" Margin="0,0,0,20">
+                    <!-- Time & Calendar -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFECFDF5">
+                                <TextBlock Text="📅" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Time and Calendar" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Time expressions and calendar-related vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF10B981">
+                                <TextBlock Text="88%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Colors & Shapes -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF5F3FF">
+                                <TextBlock Text="🎨" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Colors and Shapes" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Basic colors and geometric shapes vocabulary" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFA855F7">
+                                <TextBlock Text="100%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Numbers & Math -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFFEF7E7">
+                                <TextBlock Text="🔢" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Numbers and Math" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Mathematical vocabulary and numerical expressions" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFF59E0B">
+                                <TextBlock Text="92%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Phrasal Verbs -->
+                    <Border Style="{StaticResource VocabularyCardStyle}">
+                        <StackPanel>
+                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFEFF6FF">
+                                <TextBlock Text="🔄" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Phrasal Verbs" Style="{StaticResource TopicTitleStyle}"/>
+                            <TextBlock Text="Essential phrasal verbs for natural communication" 
+                                      Style="{StaticResource TopicDescriptionStyle}"/>
+                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF6366F1">
+                                <TextBlock Text="42%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

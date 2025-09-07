@@ -12,19 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TDEduEnglish.ViewModels;
 
-namespace TDEduEnglish.Views.Pages {
+namespace TDEduEnglish.Views.CoursesPageView {
     /// <summary>
-    /// Interaction logic for CoursesPage.xaml
+    /// Interaction logic for CourseListPage.xaml
     /// </summary>
-    public partial class CoursesPage : Page {
-        public CoursesPage(AppNavigationService appNavigationService) {
+    public partial class CourseListPage : Page {
+        public CourseListPage(AppNavigationService appNavigationService) {
             InitializeComponent();
-
-            var navigationService = new AppNavigationService(CourseListFrame);
-            this.DataContext = new CoursesViewModel(navigationService);
-
+            this.DataContext = appNavigationService;
         }
     }
 }

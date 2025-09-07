@@ -130,7 +130,7 @@
             <Border Grid.Column="0" Style="{StaticResource ModernCardStyle}" 
                    Margin="0,0,20,0" VerticalAlignment="Stretch">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" 
-                             HorizontalScrollBarVisibility="Hidden">
+                             HorizontalScrollBarVisibility="Hidden" Padding="0 0 0 0">
                     <StackPanel>
                         <!-- Search Box -->
                         <Border Background="#FFF9FAFB" CornerRadius="8" 
@@ -138,7 +138,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="🔍" FontSize="16" Width="20" Margin="0,0,8,0" 
                                           VerticalAlignment="Center"/>
-                                <TextBox Background="Transparent" BorderThickness="0" 
+                                <TextBox Background="Transparent" BorderThickness="0" Width="200"
                                         Text="Find courses..." 
                                         Foreground="#FF9CA3AF" FontSize="14"
                                         VerticalAlignment="Center"/>
@@ -162,9 +162,9 @@
 
                                 <!-- Skills Items -->
                                 <StackPanel>
-                                    <Button Name="ListeningBtn"  Tag="Listening"
+                                    <Button Name="ListeningBtn" Command="{Binding ListeningCommand}"  Tag="Listening"
                                            Style="{StaticResource SecondaryButtonStyle}" 
-                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Background="#FFECFDF5" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="👂" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -173,9 +173,9 @@
                                         </StackPanel>
                                     </Button>
 
-                                    <Button Name="SpeakingBtn"  Tag="Speaking"
+                                    <Button Name="SpeakingBtn" Command="{Binding SpeakingCommand}"  Tag="Speaking"
                                            Style="{StaticResource SecondaryButtonStyle}" 
-                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Background="#FFFEF7E7" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="🗣️" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -184,9 +184,9 @@
                                         </StackPanel>
                                     </Button>
 
-                                    <Button Name="ReadingBtn"  Tag="Reading"
+                                    <Button Name="ReadingBtn" Command="{Binding ReadingCommand}"  Tag="Reading"
                                            Style="{StaticResource SecondaryButtonStyle}" 
-                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Background="#FFEFF6FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="📖" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -195,9 +195,9 @@
                                         </StackPanel>
                                     </Button>
 
-                                    <Button Name="WritingBtn" Tag="Writing"
+                                    <Button Name="WritingBtn" Command="{Binding WritingCommand}" Tag="Writing"
                                            Style="{StaticResource SecondaryButtonStyle}" 
-                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Background="#FFF5F3FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="✍️" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -216,109 +216,52 @@
                                         <Border Background="#FF10B981" CornerRadius="6" Width="32" Height="32" Margin="0,0,12,0">
                                             <TextBlock Text="📚" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
-                                        <TextBlock Text="Vocabulary and Grammar" FontSize="16" FontWeight="SemiBold" 
+                                        <TextBlock Text="Vocabulary and Grammar" FontSize="15" FontWeight="SemiBold" 
                                                   Foreground="#FF1F2937" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Border>
 
-                                <!-- Vocabulary Expandable Section -->
-                                <Expander Header="📝 Vocabulary" IsExpanded="True" FontWeight="Medium" 
-                                         Foreground="#FF4B5563" Margin="0,0,0,8">
-                                    <StackPanel Margin="16,8,0,0">
-                                        <Button Name="VocabBand5Btn"  Tag="VocabBand5"
+                                <!-- Vocabulary button -->
+                                <StackPanel>
+                                    <Button Name="VocabularyBtn" Command="{Binding VocabularyCommand}"  Tag="Vocabulary"
+                                           Style="{StaticResource SecondaryButtonStyle}" 
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFECFDF5" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
+                                                <TextBlock Text="📝" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="Vocabulary" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <!--<Button Name="VocabularyBtn" Command="{Binding VocabularyCommand}" Tag="Vocabulary"
                                                Style="{StaticResource SecondaryButtonStyle}" 
                                                HorizontalContentAlignment="Left" Margin="0,0,0,4"
-                                               ToolTip="Basic vocabulary for beginners">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Border Background="#FFDBEAFE" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
-                                                    <TextBlock Text="5" FontSize="10" FontWeight="Bold" Foreground="#FF7C3AED"
+                                               ToolTip="Intermediate Vocabulary" Width="210">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="#FFECFDF5" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                <TextBlock Text="📝 " FontSize="10" FontWeight="Bold" Foreground="#FF6366F1"
                                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <TextBlock Text="Topic 1 - Band 5.0" FontSize="13" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button>
-
-                                        <Button Name="VocabBand6Btn" Tag="VocabBand6"
+                                            </Border>
+                                            <TextBlock Text="Vocabulary" FontSize="13" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>-->
+                                    <!-- Grammar button -->
+                                    <Button Name="GrammarBtn" Command="{Binding GrammarCommand}" Tag="Grammar"
                                                Style="{StaticResource SecondaryButtonStyle}" 
                                                HorizontalContentAlignment="Left" Margin="0,0,0,4"
-                                               ToolTip="Intermediate Vocabulary">
+                                               ToolTip="Intermediate Grammar" Width="210">
                                             <StackPanel Orientation="Horizontal">
-                                                <Border Background="#FFFECACA" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
-                                                    <TextBlock Text="6" FontSize="10" FontWeight="Bold" Foreground="#FFDC2626"
+                                            <Border Background="#FFECFDF5" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
+                                                <TextBlock Text="⚙️ " FontSize="10" FontWeight="Bold" Foreground="#FF6366F1"
                                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Border>
-                                                <TextBlock Text="Topic 2 - Band 6.0" FontSize="13" VerticalAlignment="Center"/>
+                                                <TextBlock Text="Grammar" FontSize="13" VerticalAlignment="Center"/>
                                             </StackPanel>
                                         </Button>
+                                </StackPanel>
 
-                                        <Button Name="VocabBand7Btn"  Tag="VocabBand7"
-                                               Style="{StaticResource SecondaryButtonStyle}" 
-                                               HorizontalContentAlignment="Left" Margin="0,0,0,4"
-                                               ToolTip="Advanced Vocabulary">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Border Background="#FFECFDF5" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
-                                                    <TextBlock Text="7" FontSize="10" FontWeight="Bold" Foreground="#FF059669"
-                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <TextBlock Text="Topic 3 - Band 7.0" FontSize="13" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button>
-                                    </StackPanel>
-                                </Expander>
-
-                                <!-- Grammar Expandable Section -->
-                                <Expander Header="⚙️ Grammar" IsExpanded="True" FontWeight="Medium" 
-                                         Foreground="#FF4B5563" Margin="0,0,0,8">
-                                    <StackPanel Margin="16,8,0,0">
-                                        <Button Name="TensesBtn"  Tag="Tenses"
-                                               Style="{StaticResource SecondaryButtonStyle}" 
-                                               HorizontalContentAlignment="Left" Margin="0,0,0,4">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Border Background="#FFFEF3C7" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
-                                                    <TextBlock Text="T" FontSize="10" FontWeight="Bold" Foreground="#FFD97706"
-                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <TextBlock Text="Tenses" FontSize="13" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button>
-
-                                        <Button Name="ConditionalsBtn"  Tag="Conditionals"
-                                               Style="{StaticResource SecondaryButtonStyle}" 
-                                               HorizontalContentAlignment="Left" Margin="0,0,0,4">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Border Background="#FFFFE4E6" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
-                                                    <TextBlock Text="C" FontSize="10" FontWeight="Bold" Foreground="#FFE11D48"
-                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <TextBlock Text="Conditionals" FontSize="13" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button>
-
-                                        <Button Name="ModalVerbsBtn"  Tag="ModalVerbs"
-                                               Style="{StaticResource SecondaryButtonStyle}" 
-                                               HorizontalContentAlignment="Left" Margin="0,0,0,4">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Border Background="#FFE0F2FE" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
-                                                    <TextBlock Text="M" FontSize="10" FontWeight="Bold" Foreground="#FF0284C7"
-                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <TextBlock Text="Modal Verbs" FontSize="13" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button>
-
-                                        <Button Name="PassiveVoiceBtn"  Tag="PassiveVoice"
-                                               Style="{StaticResource SecondaryButtonStyle}" 
-                                               HorizontalContentAlignment="Left" Margin="0,0,0,4">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Border Background="#FFF0F9FF" CornerRadius="4" Width="20" Height="20" Margin="0,0,8,0">
-                                                    <TextBlock Text="P" FontSize="10" FontWeight="Bold" Foreground="#FF0369A1"
-                                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                                <TextBlock Text="Passive Voice" FontSize="13" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </Button>
-                                    </StackPanel>
-                                </Expander>
+                               
+                               
                             </StackPanel>
 
                             <!-- Advanced Courses Category -->
@@ -338,7 +281,7 @@
                                 <StackPanel>
                                     <Button Name="BusinessEnglishBtn"  Tag="BusinessEnglish"
                                            Style="{StaticResource SecondaryButtonStyle}" 
-                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Background="#FFF5F3FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="💼" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -349,7 +292,7 @@
 
                                     <Button Name="AcademicEnglishBtn"  Tag="AcademicEnglish"
                                            Style="{StaticResource SecondaryButtonStyle}" 
-                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Background="#FFECFDF5" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="🎓" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -360,7 +303,7 @@
 
                                     <Button Name="IELTSBtn"  Tag="IELTS"
                                            Style="{StaticResource SecondaryButtonStyle}" 
-                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Background="#FFFEF7E7" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="📊" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -371,7 +314,7 @@
 
                                     <Button Name="TOEFLBtn"  Tag="TOEFL"
                                            Style="{StaticResource SecondaryButtonStyle}" 
-                                           HorizontalContentAlignment="Left" Margin="0,0,0,4">
+                                           HorizontalContentAlignment="Left" Margin="0,0,0,4" Width="210">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Background="#FFEFF6FF" CornerRadius="4" Width="24" Height="24" Margin="0,0,8,0">
                                                 <TextBlock Text="📋" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -391,8 +334,7 @@
                    VerticalAlignment="Stretch">
                 <Grid>
                     <!-- Frame cho lesson content -->
-                    <Frame x:Name="CourseContentFrame" NavigationUIVisibility="Hidden" 
-                          Background="Transparent"/>
+                    
 
                     <!-- Default Welcome Content -->
                     <Grid x:Name="DefaultContentGrid">
@@ -460,6 +402,8 @@
                             </Border>
                         </StackPanel>
                     </Grid>
+                    <Frame x:Name="CourseListFrame" NavigationUIVisibility="Hidden" 
+                          Background="Transparent"/>
                 </Grid>
             </Border>
         </Grid>

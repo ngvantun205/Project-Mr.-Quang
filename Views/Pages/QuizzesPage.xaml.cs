@@ -23,8 +23,5 @@ namespace TDEduEnglish.Views.Pages
             InitializeComponent();
             this.DataContext = new QuizzesViewModel(navigationService);
         }
-        public void QuizItem_Click(object sender, RoutedEventArgs e) {
-
-        }
     }
 }

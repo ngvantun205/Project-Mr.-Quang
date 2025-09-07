@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using TDEduEnglish.Services;
 
 namespace TDEduEnglish.ViewModels {
-    internal class Leaderboard {
+    internal class LeaderboardViewModel {
        private readonly AppNavigationService _navigationService;
-        public Leaderboard(AppNavigationService navigationService) {
+        public LeaderboardViewModel(AppNavigationService navigationService) {
             _navigationService = navigationService;
         }
     }
