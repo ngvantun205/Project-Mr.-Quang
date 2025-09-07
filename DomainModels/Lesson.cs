@@ -13,16 +13,16 @@ namespace TDEduEnglish.DomainModels {
 		private int courseid;
 
 		public int CourseId { get => courseid; set => Set(ref courseid, value); }
-		private string title;
+		private string title = "";
 
 		public string Title { get => title; set => Set(ref title, value); }
-		private string content;
+		private string content = "";
 
 		public string Content { get => content; set => Set(ref content, value); }
-		private string mediaurl;
+		private string mediaurl	= "";
 
 		public string MediaUrl { get => mediaurl; set => Set(ref mediaurl, value); }
-		private string lessontype;
+		private string lessontype = "";
 
 		public string LessonType { get => lessontype; set => Set(ref lessontype, value); }
 		private int orderindex;

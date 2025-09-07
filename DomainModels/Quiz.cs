@@ -13,19 +13,19 @@ namespace TDEduEnglish.DomainModels {
 		private int lessonid;
 
 		public int LessonId { get => lessonid; set => Set(ref lessonid, value); }
-		private string quiztype;
+		private string quiztype = "";
 
 		public string QuizType { get => quiztype; set => Set(ref quiztype, value); }
-		private string questiontext;
+		private string questiontext = "";
 
 		public string QuestionText { get => questiontext; set => Set(ref questiontext, value); }
-		private string options;
+		private string options = "";
 
 		public string Options { get => options; set => Set(ref options, value); }
-		private string correctanswer;
+		private string correctanswer = "";
 
 		public string CorrectAnswer { get => correctanswer; set => Set(ref correctanswer, value); }
-		private string explanation;
+		private string explanation = ""	;
 
 		public string Explanation { get => explanation; set => Set(ref explanation, value); }
 

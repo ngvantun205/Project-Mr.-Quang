@@ -11,16 +11,16 @@ namespace TDEduEnglish.DomainModels
 		private int courseid;
 
 		public int	CourseId { get => courseid; set => Set(ref courseid, value); }
-        private string title;
+        private string title = "";
 
         public string Title { get => title; set => Set(ref title, value); }
-		private string description;
+		private string description = "";
 
 		public string Description { get => description; set => Set(ref description, value); }
-		private string level;
+		private string level = "";
 
 		public string Level { get => level; set => Set(ref level, value); }
-		private string category;
+		private string category ="";
 
 		public string Category { get => category; set => Set(ref category, value); }
 		private int createby;
