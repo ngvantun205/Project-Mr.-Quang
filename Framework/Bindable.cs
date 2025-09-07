@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Employee_final_exam.Framework {
+namespace TDEduEnglish.Framwork.Bindable {
     public class Bindable : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
         public void Set<T>(ref T prop, T value, [CallerMemberName] string propertyname = "") {
