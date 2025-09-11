@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TDEduEnglish.Framwork.Bindable;
 
 namespace TDEduEnglish.DomainModels {
-    class User : Bindable {
+    public class User : Bindable {
 		private int id;
 
 		public int Id { get => id; set => Set(ref id, value); }

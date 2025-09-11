@@ -18,6 +18,8 @@ namespace TDEduEnglish.Data {
         public DbSet<QuizResult> QuizResults { get; set; }
         public DbSet<WritingSubmission> WritingSubmissions { get; set; }
         public DbSet<Progress> Progresses { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Vocabulary> Vocabularies { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlite("Data Source=TDEduData.db");
         }
