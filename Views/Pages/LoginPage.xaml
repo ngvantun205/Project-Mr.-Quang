@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TDEduEnglish.Views.Pages"
+      xmlns:helpers="clr-namespace:TDEduEnglish.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="740" d:DesignWidth="1200"
       Title="LoginPage">
@@ -18,26 +19,36 @@
             <Setter Property="Padding" Value="16,14"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Height" Value="52"/>
+            <Setter Property="Cursor" Value="IBeam"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="True"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}"
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="12">
+                                CornerRadius="12"
+                                SnapsToDevicePixels="True">
                             <ScrollViewer x:Name="PART_ContentHost"
-                                          Focusable="false"
+                                          Focusable="False"
                                           HorizontalScrollBarVisibility="Hidden"
                                           VerticalScrollBarVisibility="Hidden"
+                                          CanContentScroll="False"
                                           Margin="{TemplateBinding Padding}"/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter Property="BorderBrush" Value="#FF6366F1"/>
-                                <Setter Property="Background" Value="#FFFCFCFD"/>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Opacity" Value="0.56"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" Value="#FFD1D5DB"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FFD1D5DB"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF6366F1"/>
+                                <Setter TargetName="border" Property="Background" Value="#FFFCFCFD"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -54,6 +65,7 @@
             <Setter Property="Padding" Value="16,14"/>
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Height" Value="52"/>
+            <Setter Property="Cursor" Value="IBeam"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="PasswordBox">
@@ -188,6 +200,7 @@
             <Setter Property="Foreground" Value="#FF374151"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="CheckBox">
@@ -386,7 +399,7 @@
                                       Foreground="#FF374151" 
                                       Margin="0,0,0,8"/>
                             <TextBox x:Name="EmailTextBox"
-                                    Style="{StaticResource ModernTextBoxStyle}"
+                                    
                                     Text="{Binding Email, Mode=TwoWay}"
                                     Tag="Enter your email address"/>
                         </StackPanel>
@@ -405,8 +418,8 @@
                                        Command="{Binding ForgotPasswordCommand}"/>
                             </Grid>
                             <PasswordBox x:Name="PasswordBox"
-                                        Style="{StaticResource ModernPasswordBoxStyle}"
-                                        Margin="0,8,0,0"/>
+                                          helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}" 
+                                         Margin="0,8,0,0"/>
                         </StackPanel>
 
                         <!-- Remember Me -->

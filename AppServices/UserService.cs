@@ -16,5 +16,9 @@ namespace TDEduEnglish.AppServices {
         public async Task Add(User user) => await _userRepository.Add(user);
         public async Task Update(User user) => await _userRepository.Update(user);
         public async Task Delete(int id) => await _userRepository.Delete(id);
+        public async Task<User?> GetByEmail(string email) {
+            var users = await _userRepository.GetAll();
+            return users.FirstOrDefault(u => u.Email == email);
+        }
     }
 }

@@ -11,16 +11,16 @@ namespace TDEduEnglish.ViewModels {
             _navigationService = navigationService;
 
             StartLearningCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(typeof(CoursesPage));
+                _navigationService.NavigateTo<CoursesPage>();
             });
             ProfileCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new UserProfilePage(_navigationService));
+                _navigationService.NavigateTo<UserProfilePage>();
             });
             LoginCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new LoginPage(_navigationService));
+                _navigationService.NavigateTo<LoginPage>();
             });
             RegisterCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new RegisterPage(_navigationService));
+                _navigationService.NavigateTo<RegisterPage>();
             });
 
             NavigateCommand = new RelayCommand(o => {
@@ -29,19 +29,19 @@ namespace TDEduEnglish.ViewModels {
 
                 switch (pageName) {
                     case "CoursesPage":
-                        _navigationService.NavigateTo(new CoursesPage(_navigationService));
+                        _navigationService.NavigateTo<CoursesPage>();
                         break;
                     case "HomePage":
-                        _navigationService.NavigateTo(typeof(HomePage));
+                        _navigationService.NavigateTo<HomePage>();
                         break;
                     case "QuizzesPage":
-                        _navigationService.NavigateTo(new QuizzesPage(_navigationService));
+                        _navigationService.NavigateTo<QuizzesPage>();
                         break;
                     case "CommunityPage":
-                        _navigationService.NavigateTo(new CommunityPage(_navigationService));
+                        _navigationService.NavigateTo<CommunityPage>();
                         break;
                     case "LeaderboardPage":
-                        _navigationService.NavigateTo(new LeaderboardPage(_navigationService));
+                        _navigationService.NavigateTo<LeaderboardPage>();
                         break;
                     default:
                         System.Diagnostics.Debug.WriteLine("Unknown page: " + pageName);

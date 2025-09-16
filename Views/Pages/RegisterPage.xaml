@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TDEduEnglish.Views.Pages"
+      xmlns:helpers="clr-namespace:TDEduEnglish.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="740" d:DesignWidth="1200"
       Title="RegisterPage">
@@ -320,7 +321,7 @@
                         <StackPanel Margin="0,0,0,20">
                             <TextBlock Text="Full Name" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
-                            <TextBox x:Name="FullNameTextBox" Style="{StaticResource ModernTextBoxStyle}" 
+                            <TextBox x:Name="FullNameTextBox" 
                                     Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}"
                                     Tag="Enter your full name"/>
                         </StackPanel>
@@ -329,7 +330,7 @@
                         <StackPanel Margin="0,0,0,20">
                             <TextBlock Text="Email" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
-                            <TextBox x:Name="EmailTextBox" Style="{StaticResource ModernTextBoxStyle}" 
+                            <TextBox x:Name="EmailTextBox" 
                                     Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                                     Tag="example@email.com"/>
                         </StackPanel>
@@ -338,7 +339,7 @@
                         <StackPanel Margin="0,0,0,20">
                             <TextBlock Text="Phone Number" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
-                            <TextBox x:Name="PhoneTextBox" Style="{StaticResource ModernTextBoxStyle}" 
+                            <TextBox x:Name="PhoneTextBox" 
                                     Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
                                     Tag="0123456789"/>
                         </StackPanel>
@@ -347,14 +348,14 @@
                         <StackPanel Margin="0,0,0,20">
                             <TextBlock Text="Password" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
-                            <PasswordBox x:Name="PasswordBox" Style="{StaticResource ModernPasswordBoxStyle}"/>
+                            <PasswordBox x:Name="PasswordBox" helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}" />
                         </StackPanel>
 
                         <!-- Confirm Password -->
                         <StackPanel Margin="0,0,0,24">
                             <TextBlock Text="Confirm Password" FontSize="14" FontWeight="SemiBold" 
                                       Foreground="#FF374151" Margin="0,0,0,8"/>
-                            <PasswordBox x:Name="ConfirmPasswordBox" Style="{StaticResource ModernPasswordBoxStyle}"/>
+                            <PasswordBox x:Name="ConfirmPasswordBox" helpers:PasswordBoxHelper.BoundPassword="{Binding ConfirmPassword, Mode=TwoWay}" />
                         </StackPanel>
 
                         <!-- Terms and Privacy -->

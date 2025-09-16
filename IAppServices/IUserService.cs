@@ -12,6 +12,7 @@ namespace TDEduEnglish.IAppServices {
         Task Add(User user);
         Task Update(User user);
         Task Delete(int id);
+        Task<User?> GetByEmail(string email);
 
     }
 }

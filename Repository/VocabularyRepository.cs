@@ -16,7 +16,7 @@ namespace TDEduEnglish.Repository {
         public async Task<Vocabulary?> GetById(int id) => await _context.Vocabularies.FindAsync(id);
         public async Task Add(Vocabulary entity) => await _context.Vocabularies.AddAsync(entity);
         public async Task Update(Vocabulary entity) {
-            var vocabulary = await GetById(entity.Id);
+            var vocabulary = await GetById(entity.VocabularyId);
             if (vocabulary != null) {
                 vocabulary.Word = entity.Word;
                 vocabulary.Meaning = entity.Meaning;

@@ -9,7 +9,7 @@ using TDEduEnglish.Views.CoursesPageView;
 using TDEduEnglish.Views.Pages;
 
 namespace TDEduEnglish.ViewModels {
-    internal class CoursesViewModel {
+    public class CoursesViewModel {
         private readonly AppNavigationService _navigationService;
         public CoursesViewModel(AppNavigationService navigationService) {
             _navigationService = navigationService;

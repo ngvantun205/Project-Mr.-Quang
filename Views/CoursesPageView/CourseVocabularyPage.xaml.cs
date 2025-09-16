@@ -21,7 +21,7 @@ namespace TDEduEnglish.Views.CoursesPageView {
     public partial class CourseVocabularyPage : Page {
         public CourseVocabularyPage(AppNavigationService appNavigationService) {
             InitializeComponent();
-            this.DataContext = new CourseVocabularyViewModel(appNavigationService);
+            this.DataContext = new CourseVocabularyListViewModel(appNavigationService);
         }
     }
 }

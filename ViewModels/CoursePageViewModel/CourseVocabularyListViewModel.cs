@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TDEduEnglish.ViewModels.CoursePageViewModel {
-    internal class CourseVocabularyViewModel {
+    internal class CourseVocabularyListViewModel {
         private readonly AppNavigationService _navigationService;
-        public CourseVocabularyViewModel(AppNavigationService navigationService) {
+        public CourseVocabularyListViewModel(AppNavigationService navigationService) {
             _navigationService = navigationService;
         }
     }

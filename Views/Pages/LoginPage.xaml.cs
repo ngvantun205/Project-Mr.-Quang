@@ -20,9 +20,9 @@ namespace TDEduEnglish.Views.Pages {
     /// Interaction logic for LoginPage.xaml
     /// </summary>
     public partial class LoginPage : Page {
-        public LoginPage(AppNavigationService appNavigationService) {
+        public LoginPage(AppNavigationService appNavigationService, IRepository<User> userRepository, IUserService userService, ISessonService sessonService, IAuthService authService) {
             InitializeComponent();
-            this.DataContext = new LoginViewModel(appNavigationService);
+            this.DataContext = new LoginViewModel(appNavigationService, userRepository, userService, sessonService, authService);
         }
     }
 }

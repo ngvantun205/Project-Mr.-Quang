@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 using TDEduEnglish.ViewModels;
 
 namespace TDEduEnglish.Views.Pages {
-    /// <summary>
-    /// Interaction logic for CoursesPage.xaml
-    /// </summary>
+
     public partial class CoursesPage : Page {
         public CoursesPage(AppNavigationService appNavigationService) {
             InitializeComponent();

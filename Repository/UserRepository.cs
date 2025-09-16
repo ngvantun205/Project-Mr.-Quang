@@ -25,7 +25,7 @@ namespace TDEduEnglish.Repository {
             await _context.SaveChangesAsync();
         }
         public async Task Update(User entity) {
-            var user = await GetById(entity.Id);
+            var user = await GetById(entity.UserId);
             if (user != null) {
                 user.FullName = entity.FullName;
                 user.Email = entity.Email;

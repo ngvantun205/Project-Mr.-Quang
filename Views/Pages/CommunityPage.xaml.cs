@@ -24,7 +24,5 @@ namespace TDEduEnglish.Views.Pages {
             InitializeComponent();
             this.DataContext = new QuizzesViewModel(appNavigationService);
         }
-
-
     }
 }

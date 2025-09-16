@@ -20,9 +20,9 @@ namespace TDEduEnglish.Views.Pages {
     /// Interaction logic for RegisterPage.xaml
     /// </summary>
     public partial class RegisterPage : Page {
-        public RegisterPage(AppNavigationService appNavigationService) {
+        public RegisterPage(AppNavigationService appNavigationService, IUserService userService, IRepository<User> userRepository) {
             InitializeComponent();
-            this.DataContext = new RegisterViewModel(appNavigationService); 
+            this.DataContext = new RegisterViewModel(appNavigationService, userService, userRepository);
         }
     }
 }
