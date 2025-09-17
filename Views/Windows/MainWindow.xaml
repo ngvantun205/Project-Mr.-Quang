@@ -235,7 +235,7 @@
                     <!-- Logged In Mode - Notifications and Profile -->
                     <StackPanel Orientation="Horizontal" 
                                Visibility="{Binding IsLoggedIn, Converter={StaticResource BoolToVisibilityConverter}}">
-
+                        
                         <!-- Notifications Button -->
                         <Grid Margin="0,0,16,0">
                             <Button Command="{Binding NotificationCommand}"
@@ -329,6 +329,12 @@
                                 </Border>
                             </Popup>
                         </Grid>
+                        <StackPanel Margin="10 0 0 0" Orientation="Horizontal" >
+                            <Button Content="Log out" FontSize="14" 
+                               Command="{Binding LogoutCommand}" 
+                               Style="{StaticResource ModernButtonStyle}"/>
+                        </StackPanel>
+
                     </StackPanel>
                 </StackPanel>
             </Grid>

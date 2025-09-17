@@ -9,16 +9,6 @@ namespace TDEduEnglish.ViewModels {
         private readonly AppNavigationService _navigationService;
         private readonly ISessonService _sessonService;
 
-        private string _loginButtonText = "Log in";
-        public string LoginButtonText {
-            get => _loginButtonText;
-            set {
-                if (_loginButtonText != value) {
-                    _loginButtonText = value;
-                    OnPropertyChanged(nameof(LoginButtonText));
-                }
-            }
-        }
 
         public HomeViewModel(AppNavigationService navigationService, ISessonService sessonService) {
             _navigationService = navigationService;
@@ -30,7 +20,8 @@ namespace TDEduEnglish.ViewModels {
             ProfileCommand = new RelayCommand(o => {
                 _navigationService.NavigateTo<UserProfilePage>();
             });
-            
+            LogoutCommand = new RelayCommand(o =>  Logout());
+
 
             NavigateCommand = new RelayCommand(o => {
                 string pageName = o?.ToString();
@@ -61,10 +52,14 @@ namespace TDEduEnglish.ViewModels {
         public ICommand StartLearningCommand { get; set; }
         public ICommand NavigateCommand { get; set; }
         public ICommand ProfileCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
+        private void Logout() {
+            _sessonService.Logout();
+            _navigationService.NavigateToLogWindow();
+        }
     }
 }

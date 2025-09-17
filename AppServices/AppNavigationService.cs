@@ -33,18 +33,22 @@ namespace TDEduEnglish.Services {
             Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive)!;
             currentWindow.Close();
         }
+        public void HideCurrentWindow() {
+            Window currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive)!;
+            currentWindow.Hide();
+        }
 
         public void NavigateToUserWindow() {
             var newWindow = App.Provider?.GetRequiredService<MainWindow>(); 
             Application.Current.MainWindow = newWindow;
-            CloseCurrentWindow();
+            HideCurrentWindow();
             newWindow?.Show();
         }
 
         public void NavigateToLogWindow() {
             var newWindow = App.Provider?.GetRequiredService<LogWindow>();
             Application.Current.MainWindow = newWindow;
-            CloseCurrentWindow();
+            HideCurrentWindow();
             newWindow?.Show();
         }
     }
