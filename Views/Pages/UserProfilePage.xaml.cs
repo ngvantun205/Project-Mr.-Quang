@@ -22,7 +22,7 @@ namespace TDEduEnglish.Views.Pages {
     public partial class UserProfilePage : Page {
         public UserProfilePage(AppNavigationService appNavigationService) {
             InitializeComponent();
-            this.DataContext = new UserProfileViewModel(appNavigationService);
+            this.DataContext = App.Provider?.GetRequiredService<UserProfileViewModel>();
         }
     }
 }

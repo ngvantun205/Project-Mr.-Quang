@@ -231,16 +231,7 @@
                 <StackPanel Grid.Column="2" Orientation="Horizontal" 
                            VerticalAlignment="Center" Margin="0,0,32,0">
 
-                    <!-- Guest Mode - Login/Register Buttons -->
-                    <StackPanel Orientation="Horizontal" >
-                        <Button Content="Log in" FontSize="14" 
-                               Command="{Binding LoginCommand}" Margin="0,0,12,0" 
-                               Style="{StaticResource SecondaryButtonStyle}"/>
-                        <Button Content="Register" FontSize="14" 
-                               Command="{Binding RegisterCommand}" 
-                               Style="{StaticResource ModernButtonStyle}"/>
-                    </StackPanel>
-
+                   
                     <!-- Logged In Mode - Notifications and Profile -->
                     <StackPanel Orientation="Horizontal" 
                                Visibility="{Binding IsLoggedIn, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -416,7 +407,7 @@
                     </StackPanel>
                 </StackPanel>
 
-              
+
                 <Grid Grid.Column="1" Margin="40,0,80,0">
                     <Border CornerRadius="20" Background="White" 
                            Padding="40" VerticalAlignment="Center">

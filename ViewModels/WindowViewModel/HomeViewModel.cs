@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Windows.Input;
 using TDEduEnglish.Commands;
 using TDEduEnglish.Services;
 using TDEduEnglish.Views.Pages;
@@ -6,9 +7,22 @@ using TDEduEnglish.Views.Pages;
 namespace TDEduEnglish.ViewModels {
     public class HomeViewModel {
         private readonly AppNavigationService _navigationService;
+        private readonly ISessonService _sessonService;
 
-        public HomeViewModel(AppNavigationService navigationService) {
+        private string _loginButtonText = "Log in";
+        public string LoginButtonText {
+            get => _loginButtonText;
+            set {
+                if (_loginButtonText != value) {
+                    _loginButtonText = value;
+                    OnPropertyChanged(nameof(LoginButtonText));
+                }
+            }
+        }
+
+        public HomeViewModel(AppNavigationService navigationService, ISessonService sessonService) {
             _navigationService = navigationService;
+            _sessonService = sessonService;
 
             StartLearningCommand = new RelayCommand(o => {
                 _navigationService.NavigateTo<CoursesPage>();
@@ -16,12 +30,7 @@ namespace TDEduEnglish.ViewModels {
             ProfileCommand = new RelayCommand(o => {
                 _navigationService.NavigateTo<UserProfilePage>();
             });
-            LoginCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo<LoginPage>();
-            });
-            RegisterCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo<RegisterPage>();
-            });
+            
 
             NavigateCommand = new RelayCommand(o => {
                 string pageName = o?.ToString();
@@ -52,9 +61,10 @@ namespace TDEduEnglish.ViewModels {
         public ICommand StartLearningCommand { get; set; }
         public ICommand NavigateCommand { get; set; }
         public ICommand ProfileCommand { get; set; }
-        public ICommand LoginCommand { get; set; }
-        public ICommand RegisterCommand { get; set; }
 
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     }
 }

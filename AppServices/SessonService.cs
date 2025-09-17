@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TDEduEnglish.AppServices {
-    internal class SessonService : ISessonService {
+    public class SessonService : ISessonService {
         public User? CurrentUser { get;  set; }
         public Course? CurrentCourse { get;  set; }
         public Quiz? CurrentQuiz { get;  set; }
@@ -14,6 +15,9 @@ namespace TDEduEnglish.AppServices {
         }
         public void Logout() {
             CurrentUser = null;
+        }
+        public User? GetCurrentUser() {
+            return CurrentUser;
         }
 
         public bool IsUserLoggedIn() {

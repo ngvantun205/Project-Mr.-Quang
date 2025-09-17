@@ -10,19 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TDEduEnglish.Services;
 using TDEduEnglish.ViewModels;
+using TDEduEnglish.ViewModels.WindowViewModel;
 
-namespace TDEduEnglish.Views.Pages {
+namespace TDEduEnglish.Views.Windows {
     /// <summary>
-    /// Interaction logic for RegisterPage.xaml
+    /// Interaction logic for LogWindow.xaml
     /// </summary>
-    public partial class RegisterPage : Page {
-        public RegisterPage(AppNavigationService appNavigationService, IUserService userService, IRepository<User> userRepository) {
+    public partial class LogWindow : Window {
+        public LogWindow(AppNavigationService navigationService) {
             InitializeComponent();
-            this.DataContext = new RegisterViewModel(appNavigationService, userService, userRepository);
+            this.DataContext = App.Provider?.GetRequiredService<LogViewModel>();
         }
     }
 }

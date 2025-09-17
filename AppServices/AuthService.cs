@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace TDEduEnglish.AppServices {
     public class AuthService : IAuthService {
-        public AuthService() { }
+        private readonly IUserService _userService;
+        public AuthService(IUserService userSevice) {
+            _userService = userSevice;
+        }
         public async Task<User?> Login(string email, string password) {
             // Dummy implementation for example purposes
             await Task.Delay(100); // Simulate async work
-            if (email == "user1@gmail.com" && password == "123456") {
-                return new User { Email = email, FullName = "Test User" };
+            var user = await _userService.GetByEmail(email);
+             if (user == null || (user != null && user.PasswordHash != password)) return null;
+            else {
+                return user;
             }
-            return null;
         }
     }
 }

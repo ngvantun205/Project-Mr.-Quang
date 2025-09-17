@@ -9,8 +9,10 @@ using TDEduEnglish.Repository;
 using TDEduEnglish.ViewModels;
 using TDEduEnglish.ViewModels.CoursePageViewModel;
 using TDEduEnglish.ViewModels.PageViewModel;
+using TDEduEnglish.ViewModels.WindowViewModel;
 using TDEduEnglish.Views.CoursesPageView;
 using TDEduEnglish.Views.Pages;
+using TDEduEnglish.Views.Windows;
 
 namespace TDEduEnglish {
 
@@ -40,24 +42,22 @@ namespace TDEduEnglish {
             .AddSingleton<AppNavigationService>(sp => new AppNavigationService(null))
 
             .AddTransient<CoursesViewModel>()
-            .AddTransient<HomeViewModel>()
-            .AddTransient<LoginViewModel>()
-            .AddTransient<RegisterViewModel>()
+            .AddSingleton<HomeViewModel>()
             .AddTransient<LeaderboardViewModel>()
             .AddTransient<UserProfileViewModel>()
             .AddTransient<QuizzesViewModel>()
             .AddTransient<CourseVocabularyViewModel>()
             .AddTransient<CommunityViewModel>()
+            .AddTransient<LogViewModel>()
 
             .AddTransient<CourseGrammarViewModel>()
             .AddTransient<CourseListViewModel>()
             .AddTransient<CourseVocabularyListViewModel>()
 
-            .AddTransient<MainWindow>()
+            .AddSingleton<MainWindow>()
+            .AddTransient<LogWindow>()
             
-            .AddTransient<LoginPage>()
-            .AddTransient<RegisterPage>()
-            .AddTransient<HomePage>()
+            .AddSingleton<HomePage>()
             .AddTransient<CoursesPage>()
             .AddTransient<LeaderboardPage>()
             .AddTransient<UserProfilePage>()
@@ -78,10 +78,12 @@ namespace TDEduEnglish {
             //Env.Load();
             using (var scope = Provider?.CreateScope()) {
                 var context = scope?.ServiceProvider.GetRequiredService<AppDbContext>();
+                //context?.Database.EnsureDeleted();
+                context?.Database.EnsureCreated();
                 //context?.SeedData();
 
             }
-            var mainWindow = Provider?.GetRequiredService<MainWindow>();
+            var mainWindow = Provider?.GetRequiredService<LogWindow>();
             mainWindow?.Show();
         }
     }

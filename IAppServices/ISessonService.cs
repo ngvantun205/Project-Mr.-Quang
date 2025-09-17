@@ -11,6 +11,7 @@ namespace TDEduEnglish.IAppServices {
         Quiz? CurrentQuiz { get; set; }
 
         void SetCurrentUser(User user);
+        User? GetCurrentUser();
         void Logout();  
         bool IsUserLoggedIn();
     }
