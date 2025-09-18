@@ -13,15 +13,20 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
         private readonly IVocabularyService _vocabularyService;  
         private readonly IVocabularyRepository _vocabularyRepository;
         private readonly ISessonService _sessonService;
+        
 
         public ObservableCollection<Vocabulary> BeginnerVocabulary { get; set; } = new();
         public ObservableCollection<Vocabulary> IntermediateVocabulary { get; set; } = new();
         public ObservableCollection<Vocabulary> AdvancedVocabulary { get; set; } = new();
+        public string CurrentTopic { get; set; }
+
         public CoursesVocabularyListViewModel(AppNavigationService navigationService, IVocabularyService vocabularyService, IVocabularyRepository vocabularyRepository, ISessonService sessonService) {
             _navigationService = navigationService;
             _vocabularyService = vocabularyService;
             _vocabularyRepository = vocabularyRepository;
             _sessonService = sessonService;
+
+            CurrentTopic = _sessonService.GetCurrentTopic();
 
             LoadData();
         }

@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 namespace TDEduEnglish.AppServices {
     public class SessonService : ISessonService {
         public User? CurrentUser { get;  set; }
-        public Course? CurrentCourse { get;  set; }
         public Quiz? CurrentQuiz { get;  set; }
         public string? CurrentTopic { get; set; }
+        public ReadingLesson? CurrentReading { get; set; }
+        public ListeningLesson? CurrentListening { get; set; }
         public void SetCurrentUser(User user) {
             CurrentUser = user;
         }
@@ -29,6 +30,18 @@ namespace TDEduEnglish.AppServices {
         }
         public void SetCurrentTopic(string topic) {
             CurrentTopic = topic;
+        }
+        public void SetCurrentReading(ReadingLesson reading) {
+            CurrentReading = reading;
+        }
+        public ReadingLesson? GetCurrentReading() {
+            return CurrentReading;
+        }
+        public void SetCurrentListening(ListeningLesson listening) {
+            CurrentListening = listening;
+        }
+        public ListeningLesson? GetCurrentListening() {
+            return CurrentListening;
         }
     }
 }

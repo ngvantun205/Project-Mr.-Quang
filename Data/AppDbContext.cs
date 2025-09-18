@@ -12,114 +12,98 @@ namespace TDEduEnglish.Data {
         public DbSet<User> Users { get; set; }
         public DbSet<Community> Communities { get; set; }
         public DbSet<Leaderboard> Leaderboards { get; set; }
-        public DbSet<Course> MyProperty { get; set; }
-        public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<QuizResult> QuizResults { get; set; }
         public DbSet<WritingSubmission> WritingSubmissions { get; set; }
         public DbSet<Progress> Progresses { get; set; }
-        public DbSet<Course> Courses { get; set; }
         public DbSet<Vocabulary> Vocabularies { get; set; }
+        public DbSet<ReadingLesson> ReadingLessons { get; set; }
+        public DbSet<ReadingQuestion> ReadingQuestions { get; set; }
+        public DbSet<AnswerOption> AnswerOptions { get; set; }
+        public DbSet<UserReadingResult> UserReadingResults { get; set; }
+        public DbSet<ListeningLesson> ListeningLessons { get; set; }
+        public DbSet<ListeningQuestion> ListeningQuestions { get; set; }
+        public DbSet<UserListeningResult> UserListeningResults { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlite("Data Source=TDEduData.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            // USER
-            modelBuilder.Entity<User>()
-                .HasIndex(u => u.Email)
-                .IsUnique();
+            base.OnModelCreating(modelBuilder);
 
-            // COURSE - USER (CreateBy)
-            modelBuilder.Entity<Course>()
-                .HasOne<User>()                // 1 User tạo nhiều Course
-                .WithMany()
-                .HasForeignKey(c => c.CreateBy)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // LESSON - COURSE
-            modelBuilder.Entity<Lesson>()
-                .HasOne<Course>()
-                .WithMany()
-                .HasForeignKey(l => l.CourseId)
+            // ReadingLesson -> ReadingQuestion
+            modelBuilder.Entity<ReadingLesson>()
+                .HasMany(r => r.Questions)
+                .WithOne() // chưa có property navigation ngược
+                .HasForeignKey("ReadingLessonId") // EF sẽ tạo cột FK
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // QUIZ - LESSON
-            modelBuilder.Entity<Quiz>()
-                .HasOne<Lesson>()
-                .WithMany()
-                .HasForeignKey(q => q.LessonId)
+            // ReadingQuestion -> AnswerOption
+            modelBuilder.Entity<ReadingQuestion>()
+                .HasMany(q => q.Options)
+                .WithOne()
+                .HasForeignKey("ReadingQuestionId")
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // QUIZRESULT - QUIZ
-            modelBuilder.Entity<QuizResult>()
-                .HasOne<Quiz>()
+            // User -> UserReadingResult
+            modelBuilder.Entity<UserReadingResult>()
+                .HasOne<User>() // không có navigation property User trong model
                 .WithMany()
-                .HasForeignKey(qr => qr.QuizId)
+                .HasForeignKey(urr => urr.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // QUIZRESULT - USER
+            modelBuilder.Entity<UserReadingResult>()
+                .HasOne<ReadingLesson>() // không có navigation property ReadingLesson trong model
+                .WithMany()
+                .HasForeignKey(urr => urr.ReadingLessonId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // QuizResult -> User
             modelBuilder.Entity<QuizResult>()
                 .HasOne<User>()
                 .WithMany()
                 .HasForeignKey(qr => qr.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // PROGRESS - USER
+            // QuizResult -> Quiz
+            modelBuilder.Entity<QuizResult>()
+                .HasOne<Quiz>()
+                .WithMany()
+                .HasForeignKey(qr => qr.QuizId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Leaderboard -> User
+            modelBuilder.Entity<Leaderboard>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(lb => lb.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Progress -> User
             modelBuilder.Entity<Progress>()
                 .HasOne<User>()
                 .WithMany()
                 .HasForeignKey(p => p.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // PROGRESS - COURSE
-            modelBuilder.Entity<Progress>()
-                .HasOne<Course>()
-                .WithMany()
-                .HasForeignKey(p => p.CourseId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            // PROGRESS - LESSON
-            modelBuilder.Entity<Progress>()
-                .HasOne<Lesson>()
-                .WithMany()
-                .HasForeignKey(p => p.LessonId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            // WRITINGSUBMISSION - USER
+            // WritingSubmission -> User
             modelBuilder.Entity<WritingSubmission>()
                 .HasOne<User>()
                 .WithMany()
                 .HasForeignKey(ws => ws.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // WRITINGSUBMISSION - LESSON
-            modelBuilder.Entity<WritingSubmission>()
-                .HasOne<Lesson>()
-                .WithMany()
-                .HasForeignKey(ws => ws.LessonId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            // LEADERBOARD - USER
-            modelBuilder.Entity<Leaderboard>()
-                .HasOne<User>()
-                .WithMany()
-                .HasForeignKey(l => l.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            // COMMUNITY - USER
+            // WritingSubmission -> Lesson (nếu có bảng Lesson thì mapping thêm, còn hiện tại giữ nguyên int LessonId)
+            // Community -> User (UserId)
             modelBuilder.Entity<Community>()
                 .HasOne<User>()
                 .WithMany()
                 .HasForeignKey(c => c.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // COMMUNITY COMMENT (self reference)
-            modelBuilder.Entity<Community>()
-                .HasOne<Community>()
-                .WithMany()
-                .HasForeignKey(c => c.CommentId)
-                .OnDelete(DeleteBehavior.Restrict);
+            // Khai báo các bảng khác như Vocabulary không có quan hệ
+            modelBuilder.Entity<Vocabulary>();
         }
+
 
     }
 }

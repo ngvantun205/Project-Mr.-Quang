@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace TDEduEnglish.IAppServices {
     public interface ISessonService {
         User? CurrentUser { get; set; }
-        Course? CurrentCourse { get; set; }
         Quiz? CurrentQuiz { get; set; }
+        ReadingLesson? CurrentReading { get; set; }
+        ListeningLesson? CurrentListening { get; set; }
         string? CurrentTopic { get; set; }
         void SetCurrentUser(User user);
         User? GetCurrentUser();
@@ -16,5 +17,10 @@ namespace TDEduEnglish.IAppServices {
         bool IsUserLoggedIn();
         string GetCurrentTopic();
         void SetCurrentTopic(string topic);
+        void SetCurrentReading(ReadingLesson reading);
+        ReadingLesson? GetCurrentReading();   
+        void SetCurrentListening(ListeningLesson listening);   
+        ListeningLesson? GetCurrentListening();
+
     }
 }

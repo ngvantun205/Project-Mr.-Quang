@@ -57,6 +57,11 @@ namespace TDEduEnglish.Services {
             HideCurrentWindow();
             newWindow?.Show();
         }   
+        public void NavigateToReadingWindow() {
+            var newWindow = App.Provider?.GetRequiredService<ReadingWindow>();
+            Application.Current.MainWindow = newWindow;
+            newWindow?.Show();
+        }   
     }
 
 }

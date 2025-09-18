@@ -9,7 +9,7 @@ using TDEduEnglish.DomainModels;
 using TDEduEnglish.IRepository;
 
 namespace TDEduEnglish.Repository {
-    internal class UserRepository : IRepository<User>{
+    internal class UserRepository : IUserRepository{
         private readonly AppDbContext _context;
         public UserRepository(AppDbContext context) {
             _context = context;
@@ -22,6 +22,9 @@ namespace TDEduEnglish.Repository {
         }
         public async Task Add(User entity) {
             await _context.Users.AddAsync(entity);
+
+
+
             await _context.SaveChangesAsync();
         }
         public async Task Update(User entity) {
@@ -42,6 +45,9 @@ namespace TDEduEnglish.Repository {
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
             }
+        }
+        public async Task<User?> GetByEmail(string email) {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
     }

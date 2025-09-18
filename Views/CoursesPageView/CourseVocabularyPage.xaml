@@ -140,47 +140,53 @@
 
                     <!-- Food & Drinks -->
                     <Border Style="{StaticResource VocabularyCardStyle}">
-                        <StackPanel>
-                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFFEF7E7">
-                                <TextBlock Text="🍽️" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <TextBlock Text="Food and Drinks" Style="{StaticResource TopicTitleStyle}"/>
-                            <TextBlock Text="Vocabulary for restaurants, cooking, and dining experiences" 
+                        <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding FoodAndDrinksCommand}" Margin="-16,-16,-16,-16">
+                            <StackPanel>
+                                <Border Style="{StaticResource TopicIconStyle}" Background="#FFFEF7E7">
+                                    <TextBlock Text="🍽️" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="Food and Drinks" Style="{StaticResource TopicTitleStyle}"/>
+                                <TextBlock Text="Vocabulary for restaurants, cooking, and dining experiences" 
                                       Style="{StaticResource TopicDescriptionStyle}"/>
-                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFF59E0B">
-                                <TextBlock Text="72%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
-                            </Border>
-                        </StackPanel>
+                                <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFF59E0B">
+                                    <TextBlock Text="72%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                                </Border>
+                            </StackPanel>
+                        </Button>
                     </Border>
 
                     <!-- Transportation -->
                     <Border Style="{StaticResource VocabularyCardStyle}">
-                        <StackPanel>
-                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFEFF6FF">
-                                <TextBlock Text="🚗" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <TextBlock Text="Transportation" Style="{StaticResource TopicTitleStyle}"/>
-                            <TextBlock Text="Travel, vehicles, and navigation vocabulary" 
+                        <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding TransportationCommand}" Margin="-16,-16,-16,-16">
+                            <StackPanel>
+                                <Border Style="{StaticResource TopicIconStyle}" Background="#FFEFF6FF">
+                                    <TextBlock Text="🚗" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="Transportations" Style="{StaticResource TopicTitleStyle}"/>
+                                <TextBlock Text="Travel, vehicles, and navigation vocabulary" 
                                       Style="{StaticResource TopicDescriptionStyle}"/>
-                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF6366F1">
-                                <TextBlock Text="45%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
-                            </Border>
-                        </StackPanel>
+                                <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FF6366F1">
+                                    <TextBlock Text="45%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                                </Border>
+                            </StackPanel>
+                        </Button>
                     </Border>
 
                     <!-- Health & Body -->
                     <Border Style="{StaticResource VocabularyCardStyle}">
-                        <StackPanel>
-                            <Border Style="{StaticResource TopicIconStyle}" Background="#FFF5F3FF">
-                                <TextBlock Text="🏥" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <TextBlock Text="Health and Body" Style="{StaticResource TopicTitleStyle}"/>
-                            <TextBlock Text="Medical vocabulary and body parts terminology" 
+                        <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding HealthAndBodyCommand}" Margin="-16,-16,-16,-16">
+                            <StackPanel>
+                                <Border Style="{StaticResource TopicIconStyle}" Background="#FFF5F3FF">
+                                    <TextBlock Text="🏥" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <TextBlock Text="Health and Body" Style="{StaticResource TopicTitleStyle}"/>
+                                <TextBlock Text="Medical vocabulary and body parts terminology" 
                                       Style="{StaticResource TopicDescriptionStyle}"/>
-                            <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFA855F7">
-                                <TextBlock Text="60%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
-                            </Border>
-                        </StackPanel>
+                                <Border Style="{StaticResource ProgressBadgeStyle}" Background="#FFA855F7">
+                                    <TextBlock Text="60%" FontSize="11" Foreground="White" FontWeight="SemiBold"/>
+                                </Border>
+                            </StackPanel>
+                        </Button>
                     </Border>
                 </UniformGrid>
 

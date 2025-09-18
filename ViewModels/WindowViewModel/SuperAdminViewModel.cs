@@ -13,36 +13,32 @@ using System.Windows.Navigation;
 namespace TDEduEnglish.ViewModels.WindowViewModel {
     class SuperAdminViewModel {
         private readonly AppNavigationService appNavigationService;
-        private readonly IRepository<User> userRepository;
         private readonly IUserService userService;
-        private readonly IVocabularyRepository vocabularyRepository;
         private readonly IVocabularyService vocabularyService;  
         private readonly ISessonService sessonService;
-        private readonly IRepository<Course> courseRepository;
-        private readonly ICourseService courseService;
+        private readonly IReadingService readingService;
 
         public ICommand LogoutCommand { get; set; }
         public ICommand AddVocabularyCommand { get; set; }
+        public ICommand AddReadingLessonCommand { get; set; }
 
-        public SuperAdminViewModel(AppNavigationService appNavigationService, IRepository<Course> courseRepository, ISessonService sessonService, IUserService userService, IVocabularyService vocabularyService, ICourseService courseService, IRepository<User> userRepository, IVocabularyRepository vocabularyRepository) {
+        public SuperAdminViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IUserService userService, IVocabularyService vocabularyService, IReadingService readingService) {
             this.appNavigationService = appNavigationService;
             this.sessonService = sessonService;
             this.userService = userService;
             this.vocabularyService = vocabularyService;
-            this.courseService = courseService;
-            this.userRepository = userRepository;
-            this.vocabularyRepository = vocabularyRepository;
-            this.courseRepository = courseRepository;
+            this.readingService = readingService;
 
             LogoutCommand = new RelayCommand( o => Logout());
-            AddVocabularyCommand = new RelayCommand(o => AddVocabularyFromJsonFile());
+            AddVocabularyCommand = new RelayCommand(async o =>await AddVocabularyFromJsonFile());
+            AddReadingLessonCommand = new RelayCommand(async o => await AddReadingLessonFromJsonFile());
         }
         private void Logout() {
             sessonService.Logout();
             appNavigationService.NavigateToLogWindow();
         }
 
-        private async void AddVocabularyFromJsonFile() {
+        private async Task AddVocabularyFromJsonFile() {
             var openFileDialog = new OpenFileDialog {
                 Title = "Select a JSON file",
                 Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
@@ -74,6 +70,41 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private async Task AddReadingLessonFromJsonFile() {
+            var openFileDialog = new OpenFileDialog {
+                Title = "Select a JSON file",
+                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
+            };
+
+            if (openFileDialog.ShowDialog() == true) {
+                string filePath = openFileDialog.FileName;
+                try {
+                    // Đọc nội dung JSON từ file
+                    string jsonContent = await File.ReadAllTextAsync(filePath);
+
+                    // Parse JSON thành List<Vocabulary>
+                    var readinglessons = JsonSerializer.Deserialize<List<ReadingLesson>>(jsonContent);
+
+                    if (readinglessons != null && readinglessons.Count > 0) {
+                        // Gọi AddListAsync vào service/repository
+                        await readingService.AddListAsync(readinglessons);
+
+                        MessageBox.Show($"✅ Đã thêm {readinglessons.Count} bài đọc vào cơ sở dữ liệu.",
+                                        "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else {
+                        MessageBox.Show("⚠️ File JSON rỗng hoặc không đúng định dạng.",
+                                        "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                catch (Exception ex) {
+                    MessageBox.Show($"❌ Lỗi khi đọc file JSON: {ex.Message}",
+                                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+
         }
     }
 }

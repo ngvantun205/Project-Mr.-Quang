@@ -29,16 +29,21 @@ namespace TDEduEnglish {
             .AddDbContext<Data.AppDbContext>()
 
             .AddScoped<IRepository<User>, UserRepository>()
-            .AddScoped<IRepository<Course>, CourseRepository>()
             .AddScoped<IRepository<Vocabulary>, VocabularyRepository>()
             .AddScoped<IVocabularyRepository, VocabularyRepository>()
+            .AddScoped<IUserRepository, UserRepository>()
+            .AddScoped<IReadingRepository, ReadingRepository>()
+            .AddScoped<IListeningRepository, ListeningRepository>()
+
+            .AddScoped<UserReadingResult>()
+            .AddScoped<UserListeningResult>()
 
             .AddScoped<IUserService, UserService>()
-            .AddScoped<ICourseService, CourseService>()
             .AddScoped<IVocabularyService, VocabularyService>()
             .AddScoped<ISessonService, SessonService>()
             .AddScoped<IAuthService, AuthService>()
-
+            .AddScoped<IReadingService, ReadingService>()
+            .AddScoped<IListeningService, ListeningService>()
 
             .AddSingleton<AppNavigationService>(sp => new AppNavigationService(null))
 
@@ -50,15 +55,18 @@ namespace TDEduEnglish {
             .AddTransient<CommunityViewModel>()
             .AddTransient<LogViewModel>()
             .AddTransient<SuperAdminViewModel>()
+            .AddTransient<CourseReadingListViewModel>()
+            .AddTransient<ReadingViewModel>()
 
+            .AddTransient<CourseListeningListViewModel>()
             .AddTransient<CourseVocabularyViewModel>()
             .AddTransient<CourseGrammarViewModel>()
-            .AddTransient<CourseListViewModel>()
             .AddTransient<CoursesVocabularyListViewModel>()
 
             .AddSingleton<MainWindow>()
             .AddTransient<LogWindow>()
             .AddSingleton<SuperAdminWindow>()
+            .AddTransient<ReadingWindow>()  
 
             .AddSingleton<HomePage>()
             .AddTransient<CoursesPage>()
@@ -68,8 +76,10 @@ namespace TDEduEnglish {
             .AddTransient<CommunityPage>()
             .AddTransient<CourseVocabularyPage>()
             .AddTransient<CourseGrammarPage>()
-            .AddTransient<CourseListPage>()
             .AddTransient<CoursesVocabularyListPage>()
+            .AddTransient<CourseReadingListPage>()
+            .AddTransient<CourseListeningListPage>()
+            .AddTransient<CourseListeningListPage>()
 
             .BuildServiceProvider();
 
@@ -78,7 +88,6 @@ namespace TDEduEnglish {
 
         protected override void OnStartup(StartupEventArgs e) {
             base.OnStartup(e);
-            //Env.Load();
             using (var scope = Provider?.CreateScope()) {
                 var context = scope?.ServiceProvider.GetRequiredService<AppDbContext>();
                 //context?.Database.EnsureDeleted();
@@ -88,7 +97,7 @@ namespace TDEduEnglish {
             }
             var mainWindow = Provider?.GetRequiredService<LogWindow>();
             mainWindow?.Show();
-        }
+        }9/19/2025
     }
 
 

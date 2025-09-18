@@ -136,7 +136,7 @@
                     <Border Background="#FF6366F1" CornerRadius="12" Padding="12,6" Margin="0,0,12,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="🎯" FontSize="14" Margin="0,0,6,0"/>
-                            <TextBlock Text="Topic: Animals" FontSize="12" FontWeight="SemiBold" 
+                            <TextBlock Text="{Binding CurrentTopic}" FontSize="12" FontWeight="SemiBold" 
                                       Foreground="White"/>
                         </StackPanel>
                     </Border>

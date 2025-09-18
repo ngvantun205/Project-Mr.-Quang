@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TDEduEnglish.ViewModels.CoursePageViewModel;
 using TDEduEnglish.Views.CoursesPageView;
 using TDEduEnglish.Views.Pages;
 
@@ -13,23 +14,18 @@ namespace TDEduEnglish.ViewModels {
         private readonly AppNavigationService _navigationService;
         public CoursesViewModel(AppNavigationService navigationService) {
             _navigationService = navigationService;
-            ListeningCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new CourseListPage(_navigationService));
-            });
-            SpeakingCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new CourseListPage(_navigationService));
-            });
-            ReadingCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new CourseListPage(_navigationService));
-            });
-            WritingCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new CourseListPage(_navigationService));
-            });
+            
             VocabularyCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new CourseVocabularyPage(_navigationService));
+                _navigationService.NavigateTo< CourseVocabularyPage>();
             });
             GrammarCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo(new CourseGrammarPage(_navigationService));
+                _navigationService.NavigateTo<CourseGrammarPage>();
+            });
+            ReadingCommand = new RelayCommand(o => {
+                _navigationService.NavigateTo<CourseReadingListPage>();
+            });
+            ListeningCommand = new RelayCommand(o => {
+                _navigationService.NavigateTo<CourseListeningListPage>();
             });
         }
        

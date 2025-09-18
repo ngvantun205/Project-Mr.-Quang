@@ -291,9 +291,9 @@
                         <TextBlock Text="CONTENT MANAGEMENT" FontSize="11" FontWeight="SemiBold" 
                                   Foreground="#FF9CA3AF" Margin="24,24,0,8"/>
 
-                        <Button Content="📚 Courses" 
+                        <Button Content="📚 Reading" 
                                Command="{Binding NavigateCommand}" 
-                               CommandParameter="Courses"
+                               CommandParameter="Reading"
                                Style="{StaticResource AdminMenuItemStyle}"/>
 
                         <Button Content="📝 Lessons" 
@@ -584,8 +584,8 @@
                                     </Grid.ColumnDefinitions>
 
                                     <StackPanel Grid.Column="0" Margin="0,0,12,0">
-                                        <Button Content="+ Add Course" 
-                                               Command="{Binding AddCourseCommand}" 
+                                        <Button Content="+ Add Reading Lesson" 
+                                               Command="{Binding AddReadingLessonCommand}" 
                                                Style="{StaticResource CompactButtonStyle}"
                                                HorizontalAlignment="Stretch" Height="36" Margin="0,0,0,8"/>
                                         <Button Content="+ Add Lesson" 
