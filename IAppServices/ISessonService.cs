@@ -9,10 +9,12 @@ namespace TDEduEnglish.IAppServices {
         User? CurrentUser { get; set; }
         Course? CurrentCourse { get; set; }
         Quiz? CurrentQuiz { get; set; }
-
+        string? CurrentTopic { get; set; }
         void SetCurrentUser(User user);
         User? GetCurrentUser();
         void Logout();  
         bool IsUserLoggedIn();
+        string GetCurrentTopic();
+        void SetCurrentTopic(string topic);
     }
 }

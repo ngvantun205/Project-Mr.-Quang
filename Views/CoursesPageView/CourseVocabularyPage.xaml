@@ -123,7 +123,7 @@
                 <UniformGrid Grid.Row="0" Columns="4" Margin="0,0,0,8">
                     <!-- Daily Life -->
                     <Border Style="{StaticResource VocabularyCardStyle}">
-                        <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding DailyLifeCommand}">
+                        <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding DailyLifeCommand}" Margin="-16,-16,-16,-16">
                             <StackPanel>
                             <Border Style="{StaticResource TopicIconStyle}" Background="#FFECFDF5">
                                 <TextBlock Text="🏠" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>

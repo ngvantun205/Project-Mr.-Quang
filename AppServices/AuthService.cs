@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,12 @@ namespace TDEduEnglish.AppServices {
             _userService = userSevice;
         }
         public async Task<User?> Login(string email, string password) {
-            // Dummy implementation for example purposes
-            await Task.Delay(100); // Simulate async work
+            await Task.Delay(100); 
             var user = await _userService.GetByEmail(email);
-             if (user == null || (user != null && user.PasswordHash != password)) return null;
-            else {
+            if (user != null && user.PasswordHash == password) {
                 return user;
             }
+            else return null;
         }
     }
 }

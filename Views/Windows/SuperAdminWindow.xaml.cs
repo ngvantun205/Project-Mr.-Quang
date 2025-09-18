@@ -10,18 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TDEduEnglish.ViewModels.CoursePageViewModel;
+using TDEduEnglish.ViewModels.WindowViewModel;
 
-namespace TDEduEnglish.Views.CoursesPageView {
+namespace TDEduEnglish.Views.Windows {
     /// <summary>
-    /// Interaction logic for CourseVocabularyPage.xaml
+    /// Interaction logic for SuperAdminWindow.xaml
     /// </summary>
-    public partial class CourseVocabularyPage : Page {
-        public CourseVocabularyPage(AppNavigationService appNavigationService) {
+    public partial class SuperAdminWindow : Window {
+        public SuperAdminWindow() {
             InitializeComponent();
-            this.DataContext = App.Provider?.GetRequiredService<CourseVocabularyViewModel>();
+            this.DataContext = App.Provider?.GetRequiredService<SuperAdminViewModel>();
         }
     }
 }

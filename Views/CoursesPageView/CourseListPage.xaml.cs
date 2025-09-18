@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TDEduEnglish.ViewModels.CoursePageViewModel;
 
 namespace TDEduEnglish.Views.CoursesPageView {
     /// <summary>
@@ -20,7 +21,7 @@ namespace TDEduEnglish.Views.CoursesPageView {
     public partial class CourseListPage : Page {
         public CourseListPage(AppNavigationService appNavigationService) {
             InitializeComponent();
-            this.DataContext = appNavigationService;
+            this.DataContext = App.Provider?.GetRequiredService<CourseListViewModel>();
         }
     }
 }

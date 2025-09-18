@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TDEduEnglish.Data;
+using TDEduEnglish.IRepository;
 
 namespace TDEduEnglish.Repository {
-    internal class VocabularyRepository : IRepository<Vocabulary> {
+    internal class VocabularyRepository : IVocabularyRepository {
         private readonly AppDbContext _context;
         public VocabularyRepository(AppDbContext context) {
             _context = context;
@@ -30,6 +31,14 @@ namespace TDEduEnglish.Repository {
                 _context.Vocabularies.Remove(vocabulary);
                 await _context.SaveChangesAsync();
             }
+        }
+        public Task<IEnumerable<Vocabulary>> GetByLevelTopic(string level, string topic) {
+            var vocabularies = _context.Vocabularies.Where(v => v.Level == level && v.Topic == topic);
+            return Task.FromResult(vocabularies.AsEnumerable());
+        }
+        public async Task AddListAsync(IEnumerable<Vocabulary> vocabularies) {
+            await _context.Vocabularies.AddRangeAsync(vocabularies);
+            await _context.SaveChangesAsync();
         }
     }
 }

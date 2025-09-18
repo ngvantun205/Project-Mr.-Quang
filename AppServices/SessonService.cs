@@ -10,6 +10,7 @@ namespace TDEduEnglish.AppServices {
         public User? CurrentUser { get;  set; }
         public Course? CurrentCourse { get;  set; }
         public Quiz? CurrentQuiz { get;  set; }
+        public string? CurrentTopic { get; set; }
         public void SetCurrentUser(User user) {
             CurrentUser = user;
         }
@@ -22,6 +23,12 @@ namespace TDEduEnglish.AppServices {
 
         public bool IsUserLoggedIn() {
             return CurrentUser != null;
+        }
+        public string GetCurrentTopic() {
+            return CurrentTopic ?? "";
+        }
+        public void SetCurrentTopic(string topic) {
+            CurrentTopic = topic;
         }
     }
 }

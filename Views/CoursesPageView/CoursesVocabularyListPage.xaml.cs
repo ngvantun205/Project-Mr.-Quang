@@ -14,17 +14,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TDEduEnglish.ViewModels.CoursePageViewModel;
 
-namespace TDEduEnglish.Views.CoursesPageView
+namespace TDEduEnglish.Views.CoursesPageView 
 {
-    /// <summary>
-    /// Interaction logic for CoursesVocabularyListPage.xaml
-    /// </summary>
+
     public partial class CoursesVocabularyListPage : Page
     {
         public CoursesVocabularyListPage(AppNavigationService appNavigationService)
         {
             InitializeComponent();
-            this.DataContext = new CourseVocabularyListViewModel(appNavigationService);
+            this.DataContext = App.Provider?.GetRequiredService<CoursesVocabularyListViewModel>();
         }
     }
 }

@@ -51,6 +51,12 @@ namespace TDEduEnglish.Services {
             HideCurrentWindow();
             newWindow?.Show();
         }
+        public void NavigateToSuperAdminWindow() {
+            var newWindow = App.Provider?.GetRequiredService<SuperAdminWindow>();
+            Application.Current.MainWindow = newWindow;
+            HideCurrentWindow();
+            newWindow?.Show();
+        }   
     }
 
 }

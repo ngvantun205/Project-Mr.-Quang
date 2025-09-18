@@ -8,11 +8,11 @@ using TDEduEnglish.Data;
 using TDEduEnglish.Repository;
 using TDEduEnglish.ViewModels;
 using TDEduEnglish.ViewModels.CoursePageViewModel;
-using TDEduEnglish.ViewModels.PageViewModel;
 using TDEduEnglish.ViewModels.WindowViewModel;
 using TDEduEnglish.Views.CoursesPageView;
 using TDEduEnglish.Views.Pages;
 using TDEduEnglish.Views.Windows;
+using CourseVocabularyViewModel = TDEduEnglish.ViewModels.CoursePageViewModel.CourseVocabularyViewModel;
 
 namespace TDEduEnglish {
 
@@ -31,6 +31,7 @@ namespace TDEduEnglish {
             .AddScoped<IRepository<User>, UserRepository>()
             .AddScoped<IRepository<Course>, CourseRepository>()
             .AddScoped<IRepository<Vocabulary>, VocabularyRepository>()
+            .AddScoped<IVocabularyRepository, VocabularyRepository>()
 
             .AddScoped<IUserService, UserService>()
             .AddScoped<ICourseService, CourseService>()
@@ -46,17 +47,19 @@ namespace TDEduEnglish {
             .AddTransient<LeaderboardViewModel>()
             .AddTransient<UserProfileViewModel>()
             .AddTransient<QuizzesViewModel>()
-            .AddTransient<CourseVocabularyViewModel>()
             .AddTransient<CommunityViewModel>()
             .AddTransient<LogViewModel>()
+            .AddTransient<SuperAdminViewModel>()
 
+            .AddTransient<CourseVocabularyViewModel>()
             .AddTransient<CourseGrammarViewModel>()
             .AddTransient<CourseListViewModel>()
-            .AddTransient<CourseVocabularyListViewModel>()
+            .AddTransient<CoursesVocabularyListViewModel>()
 
             .AddSingleton<MainWindow>()
             .AddTransient<LogWindow>()
-            
+            .AddSingleton<SuperAdminWindow>()
+
             .AddSingleton<HomePage>()
             .AddTransient<CoursesPage>()
             .AddTransient<LeaderboardPage>()
@@ -66,7 +69,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseVocabularyPage>()
             .AddTransient<CourseGrammarPage>()
             .AddTransient<CourseListPage>()
-            .AddTransient<CoursesVocabularyList>()
+            .AddTransient<CoursesVocabularyListPage>()
 
             .BuildServiceProvider();
 

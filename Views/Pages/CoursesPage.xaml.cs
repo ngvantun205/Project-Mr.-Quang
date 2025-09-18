@@ -17,12 +17,12 @@ using TDEduEnglish.ViewModels;
 namespace TDEduEnglish.Views.Pages {
 
     public partial class CoursesPage : Page {
+        private readonly AppNavigationService _appNavigationService;
         public CoursesPage(AppNavigationService appNavigationService) {
             InitializeComponent();
+            _appNavigationService = appNavigationService;
 
-            var navigationService = new AppNavigationService(CourseListFrame);
-            this.DataContext = new CoursesViewModel(navigationService);
-
+            this.DataContext = App.Provider?.GetRequiredService<CoursesViewModel>();
         }
     }
 }

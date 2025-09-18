@@ -10,8 +10,12 @@ namespace TDEduEnglish.DomainModels {
         [Key]
         public int VocabularyId { get; set; }
         public string Word { get; set; } = "";
+        public string WordType { get; set; } = "";
         public string Meaning { get; set; } = "";
+        public string IPATranscription { get; set; } = "";
         public string ExampleSentence { get; set; } = "";
+        public string Level { get; set; } = "";
+        public string Topic { get; set; } = "";
 
     }
 }
