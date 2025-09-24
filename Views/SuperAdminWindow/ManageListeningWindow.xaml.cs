@@ -10,18 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TDEduEnglish.ViewModels.SuperAdminViewModel;
 
-namespace TDEduEnglish.Views.SuperAdmin {
+namespace TDEduEnglish.Views.SuperAdminWindow {
     /// <summary>
-    /// Interaction logic for ReadingManagementPage.xaml
+    /// Interaction logic for ManageListeningWindow.xaml
     /// </summary>
-    public partial class ReadingManagementPage : Page {
-        public ReadingManagementPage() {
+    public partial class ManageListeningWindow : Window {
+        public ManageListeningWindow() {
             InitializeComponent();
-            this.DataContext = App.Provider?.GetRequiredService<ManageReadingViewModel>();
+            this.DataContext = App.Provider?.GetRequiredService<ManageListeningViewModel>();
         }
     }
 }

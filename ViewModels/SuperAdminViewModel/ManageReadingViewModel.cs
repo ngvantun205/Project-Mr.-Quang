@@ -11,7 +11,6 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using TDEduEnglish.Views.Pages;
-using TDEduEnglish.Views.SuperAdmin;
 
 namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
     internal class ManageReadingViewModel {

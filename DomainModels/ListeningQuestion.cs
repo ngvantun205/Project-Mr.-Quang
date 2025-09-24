@@ -9,6 +9,7 @@ namespace TDEduEnglish.DomainModels {
     public class ListeningQuestion {
         [Key]
         public int ListeningQuestionId { get; set; }
+        public int ListeningLessonId { get; set; }
         public string CorrectAnswer { get; set; } = "";
         public int QuestionNumber { get; set; }
         public string QuestionText { get; set; } = "";
@@ -17,5 +18,9 @@ namespace TDEduEnglish.DomainModels {
         public string Option3 { get; set; } = "#";
         public string Option4 { get; set; } = "#";
         public string Explanation { get; set; } = "";
+        public bool IsOption1Selected { get; set; } = false;
+        public bool IsOption2Selected { get; set; } = false;
+        public bool IsOption3Selected { get; set; } = false;
+        public bool IsOption4Selected { get; set; } = false;
     }
 }

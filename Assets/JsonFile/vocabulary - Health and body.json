@@ -1,0 +1,903 @@
+[
+  {
+    "Word": "head",
+    "WordType": "noun",
+    "Meaning": "The part of the body above the neck where the brain, eyes, ears, nose, and mouth are.",
+    "IPATranscription": "/hɛd/",
+    "ExampleSentence": "I have a pain in my head.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "arm",
+    "WordType": "noun",
+    "Meaning": "Each of the two upper limbs of the human body from the shoulder to the hand.",
+    "IPATranscription": "/ɑːrm/",
+    "ExampleSentence": "He broke his arm playing football.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "leg",
+    "WordType": "noun",
+    "Meaning": "Each of the limbs on which a person or animal walks and stands.",
+    "IPATranscription": "/lɛɡ/",
+    "ExampleSentence": "My legs feel tired after the long walk.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "foot",
+    "WordType": "noun",
+    "Meaning": "The lower extremity of the leg below the ankle, on which a person stands or walks.",
+    "IPATranscription": "/fʊt/",
+    "ExampleSentence": "I hurt my foot when I was running.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "hand",
+    "WordType": "noun",
+    "Meaning": "The end part of a person's arm beyond the wrist, including the palm, fingers, and thumb.",
+    "IPATranscription": "/hænd/",
+    "ExampleSentence": "Please wash your hands before dinner.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "eye",
+    "WordType": "noun",
+    "Meaning": "Each of a pair of globular organs in the head through which people and vertebrate animals see.",
+    "IPATranscription": "/aɪ/",
+    "ExampleSentence": "She has beautiful blue eyes.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "doctor",
+    "WordType": "noun",
+    "Meaning": "A person who is qualified to treat people who are ill.",
+    "IPATranscription": "/ˈdɑːk.tɚ/",
+    "ExampleSentence": "You should see a doctor if you feel unwell.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "nurse",
+    "WordType": "noun",
+    "Meaning": "A person trained to care for the sick or infirm, especially in a hospital.",
+    "IPATranscription": "/nɝːs/",
+    "ExampleSentence": "The nurse gave him his medication.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "sick",
+    "WordType": "adjective",
+    "Meaning": "Affected by physical or mental illness.",
+    "IPATranscription": "/sɪk/",
+    "ExampleSentence": "He was sick with the flu.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "healthy",
+    "WordType": "adjective",
+    "Meaning": "In a good physical or mental condition; in good health.",
+    "IPATranscription": "/ˈhɛl.θi/",
+    "ExampleSentence": "Eating vegetables is very healthy.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "eat",
+    "WordType": "verb",
+    "Meaning": "Put (food) into the mouth and chew and swallow it.",
+    "IPATranscription": "/iːt/",
+    "ExampleSentence": "It's important to eat a balanced diet.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "sleep",
+    "WordType": "verb",
+    "Meaning": "To rest your mind and body by closing your eyes and becoming unconscious.",
+    "IPATranscription": "/sliːp/",
+    "ExampleSentence": "You need to sleep for at least eight hours a night.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "pain",
+    "WordType": "noun",
+    "Meaning": "A highly unpleasant physical sensation caused by illness or injury.",
+    "IPATranscription": "/peɪn/",
+    "ExampleSentence": "I have a sharp pain in my back.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "fever",
+    "WordType": "noun",
+    "Meaning": "An abnormally high body temperature, usually accompanied by shivering and a headache.",
+    "IPATranscription": "/ˈfiː.vɚ/",
+    "ExampleSentence": "The child has a high fever.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "stomach",
+    "WordType": "noun",
+    "Meaning": "The internal organ in which the major part of the digestion of food occurs.",
+    "IPATranscription": "/ˈstʌm.ək/",
+    "ExampleSentence": "My stomach hurts after eating that spicy food.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "heart",
+    "WordType": "noun",
+    "Meaning": "The muscular organ in humans and other animals that pumps blood through the circulatory system.",
+    "IPATranscription": "/hɑːrt/",
+    "ExampleSentence": "Exercise is good for your heart.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "blood",
+    "WordType": "noun",
+    "Meaning": "The red liquid that circulates in the arteries and veins of humans and other vertebrate animals.",
+    "IPATranscription": "/blʌd/",
+    "ExampleSentence": "He lost a lot of blood in the accident.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "bone",
+    "WordType": "noun",
+    "Meaning": "Any of the pieces of hard, whitish tissue making up the skeleton in humans and other vertebrates.",
+    "IPATranscription": "/boʊn/",
+    "ExampleSentence": "Calcium helps to build strong bones.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "skin",
+    "WordType": "noun",
+    "Meaning": "The thin layer of tissue forming the natural outer covering of the body of a person or animal.",
+    "IPATranscription": "/skɪn/",
+    "ExampleSentence": "It's important to protect your skin from the sun.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "muscle",
+    "WordType": "noun",
+    "Meaning": "A band or bundle of fibrous tissue in a human or animal body that has the ability to contract, producing movement.",
+    "IPATranscription": "/ˈmʌs.əl/",
+    "ExampleSentence": "He pulled a muscle in his leg while running.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "brain",
+    "WordType": "noun",
+    "Meaning": "An organ of soft nervous tissue contained in the skull of vertebrates, functioning as the coordinating center of the body.",
+    "IPATranscription": "/breɪn/",
+    "ExampleSentence": "The brain controls all the functions of the body.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "run",
+    "WordType": "verb",
+    "Meaning": "Move at a speed faster than a walk, never having both or all the feet on the ground at the same time.",
+    "IPATranscription": "/rʌn/",
+    "ExampleSentence": "I like to run in the park every morning.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "walk",
+    "WordType": "verb",
+    "Meaning": "Move at a regular pace by lifting and setting down each foot in turn, never having both feet off the ground at once.",
+    "IPATranscription": "/wɔːk/",
+    "ExampleSentence": "Walking is a gentle form of exercise.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "drink",
+    "WordType": "verb",
+    "Meaning": "Take (a liquid) into the mouth and swallow.",
+    "IPATranscription": "/drɪŋk/",
+    "ExampleSentence": "You should drink plenty of water every day.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "wash",
+    "WordType": "verb",
+    "Meaning": "Clean with water and, typically, soap or detergent.",
+    "IPATranscription": "/wɑːʃ/",
+    "ExampleSentence": "Remember to wash your hands to prevent germs from spreading.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "tooth",
+    "WordType": "noun",
+    "Meaning": "A hard, calcified structure in the jaws of most vertebrates, used for biting and chewing.",
+    "IPATranscription": "/tuːθ/",
+    "ExampleSentence": "I need to see a dentist about this painful tooth.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "ache",
+    "WordType": "noun",
+    "Meaning": "A continuous or prolonged dull pain in a part of one's body.",
+    "IPATranscription": "/eɪk/",
+    "ExampleSentence": "I have a dull ache in my shoulder.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "pill",
+    "WordType": "noun",
+    "Meaning": "A small round mass of solid medicine for swallowing whole.",
+    "IPATranscription": "/pɪl/",
+    "ExampleSentence": "The doctor told me to take one pill every morning.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "rest",
+    "WordType": "verb",
+    "Meaning": "Cease work or movement in order to relax, refresh oneself, or recover strength.",
+    "IPATranscription": "/rɛst/",
+    "ExampleSentence": "You look tired, you should get some rest.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "cold",
+    "WordType": "noun",
+    "Meaning": "A common viral infection of the nose and throat.",
+    "IPATranscription": "/koʊld/",
+    "ExampleSentence": "I think I'm catching a cold.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "back",
+    "WordType": "noun",
+    "Meaning": "The rear surface of the human body from the shoulders to the hips.",
+    "IPATranscription": "/bæk/",
+    "ExampleSentence": "He injured his back lifting heavy boxes.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "nose",
+    "WordType": "noun",
+    "Meaning": "The part of the face that contains the nostrils and the organs of smell and is used for breathing.",
+    "IPATranscription": "/noʊz/",
+    "ExampleSentence": "He has a runny nose because of his cold.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "mouth",
+    "WordType": "noun",
+    "Meaning": "The opening in the lower part of the human face, surrounded by the lips, through which food is taken in.",
+    "IPATranscription": "/maʊθ/",
+    "ExampleSentence": "Don't speak with your mouth full.",
+    "Level": "Beginner",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "lungs",
+    "WordType": "noun",
+    "Meaning": "The pair of organs situated within the rib cage, consisting of elastic sacs with branching passages into which air is drawn.",
+    "IPATranscription": "/lʌŋz/",
+    "ExampleSentence": "Smoking is very damaging to the lungs.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "kidney",
+    "WordType": "noun",
+    "Meaning": "Each of a pair of organs in the abdominal cavity of mammals, birds, and reptiles, that excrete urine.",
+    "IPATranscription": "/ˈkɪd.ni/",
+    "ExampleSentence": "Drinking enough water is essential for kidney function.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "liver",
+    "WordType": "noun",
+    "Meaning": "A large lobed glandular organ in the abdomen of vertebrates, involved in many metabolic processes.",
+    "IPATranscription": "/ˈlɪv.ɚ/",
+    "ExampleSentence": "The liver plays a vital role in detoxifying the body.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "digest",
+    "WordType": "verb",
+    "Meaning": "Break down (food) in the alimentary canal into substances that can be absorbed and used by the body.",
+    "IPATranscription": "/daɪˈdʒɛst/",
+    "ExampleSentence": "It takes several hours for the stomach to digest a large meal.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "breathe",
+    "WordType": "verb",
+    "Meaning": "Take air into the lungs and then expel it, as a regular physiological process.",
+    "IPATranscription": "/briːð/",
+    "ExampleSentence": "It's refreshing to breathe the clean mountain air.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "exercise",
+    "WordType": "noun",
+    "Meaning": "Activity requiring physical effort, carried out to sustain or improve health and fitness.",
+    "IPATranscription": "/ˈɛk.sɚ.saɪz/",
+    "ExampleSentence": "Regular exercise can reduce the risk of heart disease.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "nutrition",
+    "WordType": "noun",
+    "Meaning": "The process of providing or obtaining the food necessary for health and growth.",
+    "IPATranscription": "/nuːˈtrɪʃ.ən/",
+    "ExampleSentence": "Good nutrition is crucial for a child's development.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "vitamin",
+    "WordType": "noun",
+    "Meaning": "A group of organic compounds which are essential for normal growth and nutrition and are required in small quantities in the diet.",
+    "IPATranscription": "/ˈvaɪ.t̬ə.mɪn/",
+    "ExampleSentence": "Oranges are a good source of Vitamin C.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "calorie",
+    "WordType": "noun",
+    "Meaning": "A unit of energy, often used as a measurement of the amount of energy that food provides.",
+    "IPATranscription": "/ˈkæl.ɚ.i/",
+    "ExampleSentence": "This meal contains about 500 calories.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "symptom",
+    "WordType": "noun",
+    "Meaning": "A physical or mental feature which is regarded as indicating a condition of disease.",
+    "IPATranscription": "/ˈsɪmp.təm/",
+    "ExampleSentence": "A sore throat is a common symptom of a cold.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "diagnosis",
+    "WordType": "noun",
+    "Meaning": "The identification of the nature of an illness or other problem by examination of the symptoms.",
+    "IPATranscription": "/ˌdaɪ.əɡˈnoʊ.sɪs/",
+    "ExampleSentence": "The doctor's diagnosis was that she had the flu.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "treatment",
+    "WordType": "noun",
+    "Meaning": "Medical care given to a patient for an illness or injury.",
+    "IPATranscription": "/ˈtriːt.mənt/",
+    "ExampleSentence": "He is receiving treatment for a knee injury.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "prescription",
+    "WordType": "noun",
+    "Meaning": "An instruction written by a medical practitioner that authorizes a patient to be provided a medicine or treatment.",
+    "IPATranscription": "/prɪˈskrɪp.ʃən/",
+    "ExampleSentence": "You can take this prescription to any pharmacy.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "vaccine",
+    "WordType": "noun",
+    "Meaning": "A substance used to stimulate the production of antibodies and provide immunity against one or several diseases.",
+    "IPATranscription": "/vækˈsiːn/",
+    "ExampleSentence": "The measles vaccine is highly effective.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "allergy",
+    "WordType": "noun",
+    "Meaning": "A damaging immune response by the body to a substance, especially pollen, fur, a particular food, or dust.",
+    "IPATranscription": "/ˈæl.ɚ.dʒi/",
+    "ExampleSentence": "She has a severe allergy to peanuts.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "inflammation",
+    "WordType": "noun",
+    "Meaning": "A localized physical condition in which part of the body becomes reddened, swollen, hot, and often painful.",
+    "IPATranscription": "/ˌɪn.fləˈmeɪ.ʃən/",
+    "ExampleSentence": "The medicine helps to reduce inflammation.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "chronic",
+    "WordType": "adjective",
+    "Meaning": "(Of an illness) persisting for a long time or constantly recurring.",
+    "IPATranscription": "/ˈkrɑː.nɪk/",
+    "ExampleSentence": "He suffers from chronic back pain.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "acute",
+    "WordType": "adjective",
+    "Meaning": "(Of a bad, difficult, or unwelcome situation or illness) present or experienced to a severe or intense degree; short-lived.",
+    "IPATranscription": "/əˈkjuːt/",
+    "ExampleSentence": "He was hospitalized with an acute infection.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "injury",
+    "WordType": "noun",
+    "Meaning": "An instance of being injured; harm or damage.",
+    "IPATranscription": "/ˈɪn.dʒər.i/",
+    "ExampleSentence": "She sustained a serious injury in the car crash.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "fracture",
+    "WordType": "noun",
+    "Meaning": "The cracking or breaking of a hard object or material, especially a bone.",
+    "IPATranscription": "/ˈfræk.tʃɚ/",
+    "ExampleSentence": "The X-ray showed a small fracture in his wrist.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "infection",
+    "WordType": "noun",
+    "Meaning": "The process of infecting or the state of being infected.",
+    "IPATranscription": "/ɪnˈfɛk.ʃən/",
+    "ExampleSentence": "You should clean the wound to prevent infection.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "virus",
+    "WordType": "noun",
+    "Meaning": "An infective agent that typically consists of a nucleic acid molecule in a protein coat and is too small to be seen by light microscopy.",
+    "IPATranscription": "/ˈvaɪ.rəs/",
+    "ExampleSentence": "The common cold is caused by a virus.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "bacteria",
+    "WordType": "noun",
+    "Meaning": "A large group of unicellular microorganisms which have cell walls but lack organelles and an organized nucleus.",
+    "IPATranscription": "/bækˈtɪr.i.ə/",
+    "ExampleSentence": "Some bacteria are harmful, but many are beneficial.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "antibiotic",
+    "WordType": "noun",
+    "Meaning": "A medicine that inhibits the growth of or destroys microorganisms.",
+    "IPATranscription": "/ˌæn.t̬i.baɪˈɑː.t̬ɪk/",
+    "ExampleSentence": "The doctor prescribed an antibiotic for the bacterial infection.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "metabolism",
+    "WordType": "noun",
+    "Meaning": "The chemical processes that occur within a living organism in order to maintain life.",
+    "IPATranscription": "/məˈtæb.əl.ɪ.zəm/",
+    "ExampleSentence": "Exercise can help to boost your metabolism.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "immune system",
+    "WordType": "noun",
+    "Meaning": "The organs and processes of the body that provide resistance to infection and toxins.",
+    "IPATranscription": "/ɪˈmjuːn ˌsɪs.təm/",
+    "ExampleSentence": "A healthy diet helps to support your immune system.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "posture",
+    "WordType": "noun",
+    "Meaning": "The position in which someone holds their body when standing or sitting.",
+    "IPATranscription": "/ˈpɑːs.tʃɚ/",
+    "ExampleSentence": "Sitting at a desk all day can lead to poor posture.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "hydration",
+    "WordType": "noun",
+    "Meaning": "The process of causing something to absorb water; being adequately hydrated.",
+    "IPATranscription": "/haɪˈdreɪ.ʃən/",
+    "ExampleSentence": "Proper hydration is important, especially when exercising.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "physician",
+    "WordType": "noun",
+    "Meaning": "A person qualified to practice medicine; a doctor.",
+    "IPATranscription": "/fɪˈzɪʃ.ən/",
+    "ExampleSentence": "A general physician can refer you to a specialist.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "therapy",
+    "WordType": "noun",
+    "Meaning": "Treatment intended to relieve or heal a disorder.",
+    "IPATranscription": "/ˈθer.ə.pi/",
+    "ExampleSentence": "He is undergoing physical therapy for his injured knee.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "anxiety",
+    "WordType": "noun",
+    "Meaning": "A feeling of worry, nervousness, or unease, typically about an imminent event or something with an uncertain outcome.",
+    "IPATranscription": "/æŋˈzaɪ.ə.t̬i/",
+    "ExampleSentence": "Many people suffer from anxiety in stressful situations.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "depression",
+    "WordType": "noun",
+    "Meaning": "A mental health disorder characterized by persistently depressed mood or loss of interest in activities, causing significant impairment in daily life.",
+    "IPATranscription": "/dɪˈpreʃ.ən/",
+    "ExampleSentence": "It is important to seek help for depression.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "joint",
+    "WordType": "noun",
+    "Meaning": "A structure in the human or animal body at which two parts of the skeleton are fitted together.",
+    "IPATranscription": "/dʒɔɪnt/",
+    "ExampleSentence": "The knee is the largest joint in the body.",
+    "Level": "Intermediate",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "cardiovascular",
+    "WordType": "adjective",
+    "Meaning": "Relating to the heart and blood vessels.",
+    "IPATranscription": "/ˌkɑːr.di.oʊˈvæs.kjə.lɚ/",
+    "ExampleSentence": "Regular aerobic exercise improves cardiovascular health.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "respiratory",
+    "WordType": "adjective",
+    "Meaning": "Relating to or affecting respiration or the organs of respiration.",
+    "IPATranscription": "/ˈres.pə.rə.tɔːr.i/",
+    "ExampleSentence": "Asthma is a chronic respiratory disease.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "neurological",
+    "WordType": "adjective",
+    "Meaning": "Relating to the anatomy, functions, and organic disorders of nerves and the nervous system.",
+    "IPATranscription": "/ˌnʊr.əˈlɑː.dʒɪ.kəl/",
+    "ExampleSentence": "The patient underwent a series of neurological tests.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "endocrine",
+    "WordType": "adjective",
+    "Meaning": "Relating to glands which secrete hormones or other products directly into the blood.",
+    "IPATranscription": "/ˈɛn.də.krɪn/",
+    "ExampleSentence": "The endocrine system regulates hormones in the body.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "prognosis",
+    "WordType": "noun",
+    "Meaning": "The likely course of a medical condition.",
+    "IPATranscription": "/prɑːɡˈnoʊ.sɪs/",
+    "ExampleSentence": "The doctor gave him a positive prognosis for recovery.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "holistic",
+    "WordType": "adjective",
+    "Meaning": "Characterized by the treatment of the whole person, taking into account mental and social factors, rather than just the symptoms of a disease.",
+    "IPATranscription": "/hoʊˈlɪs.tɪk/",
+    "ExampleSentence": "Holistic medicine considers the mind, body, and spirit.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "physiotherapy",
+    "WordType": "noun",
+    "Meaning": "The treatment of disease, injury, or deformity by physical methods such as massage, heat treatment, and exercise.",
+    "IPATranscription": "/ˌfɪz.i.oʊˈθer.ə.pi/",
+    "ExampleSentence": "She is having physiotherapy to regain movement in her arm.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "pharmacology",
+    "WordType": "noun",
+    "Meaning": "The branch of medicine concerned with the uses, effects, and modes of action of drugs.",
+    "IPATranscription": "/ˌfɑːr.məˈkɑː.lə.dʒi/",
+    "ExampleSentence": "He is studying pharmacology at university.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "epidemiology",
+    "WordType": "noun",
+    "Meaning": "The branch of medicine which deals with the incidence, distribution, and possible control of diseases.",
+    "IPATranscription": "/ˌɛp.ə.diː.miˈɑː.lə.dʒi/",
+    "ExampleSentence": "Epidemiology helps us understand how diseases spread.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "pathogen",
+    "WordType": "noun",
+    "Meaning": "A bacterium, virus, or other microorganism that can cause disease.",
+    "IPATranscription": "/ˈpæθ.ə.dʒən/",
+    "ExampleSentence": "The laboratory is working to identify the pathogen.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "asymptomatic",
+    "WordType": "adjective",
+    "Meaning": "(Of a condition or a person) producing or showing no symptoms.",
+    "IPATranscription": "/ˌeɪ.sɪmp.təˈmæt̬.ɪk/",
+    "ExampleSentence": "Many infections can be asymptomatic, making them hard to detect.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "comorbidity",
+    "WordType": "noun",
+    "Meaning": "The simultaneous presence of two or more diseases or medical conditions in a patient.",
+    "IPATranscription": "/ˌkoʊ.mɔːrˈbɪd.ə.t̬i/",
+    "ExampleSentence": "Diabetes often has a high comorbidity with heart disease.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "subcutaneous",
+    "WordType": "adjective",
+    "Meaning": "Situated or applied under the skin.",
+    "IPATranscription": "/ˌsʌb.kjuːˈteɪ.ni.əs/",
+    "ExampleSentence": "Insulin is typically administered as a subcutaneous injection.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "intravenous",
+    "WordType": "adjective",
+    "Meaning": "Existing or taking place within, or administered into, a vein or veins.",
+    "IPATranscription": "/ˌɪn.trəˈviː.nəs/",
+    "ExampleSentence": "The patient received fluids through an intravenous drip.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "congenital",
+    "WordType": "adjective",
+    "Meaning": "(Of a disease or physical abnormality) present from birth.",
+    "IPATranscription": "/kənˈdʒɛn.ə.t̬əl/",
+    "ExampleSentence": "He was diagnosed with a congenital heart defect.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "palliative",
+    "WordType": "adjective",
+    "Meaning": "(Of a treatment) relieving pain or alleviating a problem without dealing with the underlying cause.",
+    "IPATranscription": "/ˈpæl.i.ə.t̬ɪv/",
+    "ExampleSentence": "Palliative care focuses on improving the quality of life for patients.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "carcinogen",
+    "WordType": "noun",
+    "Meaning": "A substance capable of causing cancer in living tissue.",
+    "IPATranscription": "/kɑːrˈsɪn.ə.dʒən/",
+    "ExampleSentence": "Tobacco smoke contains several known carcinogens.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "biopsy",
+    "WordType": "noun",
+    "Meaning": "An examination of tissue removed from a living body to discover the presence, cause, or extent of a disease.",
+    "IPATranscription": "/ˈbaɪ.ɑːp.si/",
+    "ExampleSentence": "A biopsy confirmed the presence of cancerous cells.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "oncology",
+    "WordType": "noun",
+    "Meaning": "The study and treatment of tumors.",
+    "IPATranscription": "/ɑːŋˈkɑː.lə.dʒi/",
+    "ExampleSentence": "She works in the oncology department of the hospital.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "hematology",
+    "WordType": "noun",
+    "Meaning": "The study of the physiology of the blood.",
+    "IPATranscription": "/ˌhiː.məˈtɑː.lə.dʒi/",
+    "ExampleSentence": "Hematology is the branch of medicine concerned with blood disorders.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "geriatrics",
+    "WordType": "noun",
+    "Meaning": "The branch of medicine or social science dealing with the health and care of old people.",
+    "IPATranscription": "/ˌdʒer.iˈæt.rɪks/",
+    "ExampleSentence": "Geriatrics focuses on the unique health needs of the elderly.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "pediatrics",
+    "WordType": "noun",
+    "Meaning": "The branch of medicine dealing with children and their diseases.",
+    "IPATranscription": "/ˌpiː.diˈæt.rɪks/",
+    "ExampleSentence": "He is a specialist in pediatrics.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "orthopedics",
+    "WordType": "noun",
+    "Meaning": "The branch of medicine dealing with the correction of deformities of bones or muscles.",
+    "IPATranscription": "/ˌɔːr.θəˈpiː.dɪks/",
+    "ExampleSentence": "The orthopedics department treats bone and joint injuries.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "anesthesia",
+    "WordType": "noun",
+    "Meaning": "Insensibility to pain, especially as artificially induced by the administration of gases or the injection of drugs before surgical operations.",
+    "IPATranscription": "/ˌæn.əsˈθiː.ʒə/",
+    "ExampleSentence": "The patient was put under general anesthesia before the surgery.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "contagious",
+    "WordType": "adjective",
+    "Meaning": "(Of a disease) spread from one person or organism to another by direct or indirect contact.",
+    "IPATranscription": "/kənˈteɪ.dʒəs/",
+    "ExampleSentence": "Chickenpox is a highly contagious disease.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "hereditary",
+    "WordType": "adjective",
+    "Meaning": "Determined by genetic factors and therefore able to be passed on from parents to their offspring.",
+    "IPATranscription": "/həˈred.ə.ter.i/",
+    "ExampleSentence": "Some forms of baldness are hereditary.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "malaise",
+    "WordType": "noun",
+    "Meaning": "A general feeling of discomfort, illness, or uneasiness whose exact cause is difficult to identify.",
+    "IPATranscription": "/məˈleɪz/",
+    "ExampleSentence": "She complained of a general malaise and fatigue.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "placebo",
+    "WordType": "noun",
+    "Meaning": "A harmless pill, medicine, or procedure prescribed more for the psychological benefit to the patient than for any physiological effect.",
+    "IPATranscription": "/pləˈsiː.boʊ/",
+    "ExampleSentence": "In the clinical trial, one group received the drug and the other received a placebo.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "suture",
+    "WordType": "noun",
+    "Meaning": "A stitch or row of stitches holding together the edges of a wound or surgical incision.",
+    "IPATranscription": "/ˈsuː.tʃɚ/",
+    "ExampleSentence": "The doctor used a fine thread to make the suture.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "syndrome",
+    "WordType": "noun",
+    "Meaning": "A group of symptoms which consistently occur together, or a condition characterized by a set of associated symptoms.",
+    "IPATranscription": "/ˈsɪn.droʊm/",
+    "ExampleSentence": "Chronic fatigue syndrome can be difficult to diagnose.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "triage",
+    "WordType": "noun",
+    "Meaning": "The process of determining the priority of patients' treatments based on the severity of their condition.",
+    "IPATranscription": "/ˈtriː.ɑːʒ/",
+    "ExampleSentence": "Nurses in the emergency room are responsible for triage.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "vaccination",
+    "WordType": "noun",
+    "Meaning": "The administration of a vaccine to help the immune system develop protection from a disease.",
+    "IPATranscription": "/ˌvæk.səˈneɪ.ʃən/",
+    "ExampleSentence": "Childhood vaccination is essential for public health.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "zymotic",
+    "WordType": "adjective",
+    "Meaning": "Relating to or denoting a disease caused by a microorganism that produces fermentation, such as a fever.",
+    "IPATranscription": "/zaɪˈmɑː.t̬ɪk/",
+    "ExampleSentence": "Cholera is considered a zymotic disease.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  },
+  {
+    "Word": "ailment",
+    "WordType": "noun",
+    "Meaning": "An illness, typically a minor one.",
+    "IPATranscription": "/ˈeɪl.mənt/",
+    "ExampleSentence": "He suffered from a variety of minor ailments in his old age.",
+    "Level": "Advanced",
+    "Topic": "Health and Body"
+  }
+]
+

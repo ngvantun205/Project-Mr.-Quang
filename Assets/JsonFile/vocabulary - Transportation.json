@@ -1,0 +1,903 @@
+[
+  {
+    "Word": "car",
+    "WordType": "noun",
+    "Meaning": "xe hơi",
+    "IPATranscription": "/kɑːr/",
+    "ExampleSentence": "My father drives his car to work every day.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "bus",
+    "WordType": "noun",
+    "Meaning": "xe buýt",
+    "IPATranscription": "/bʌs/",
+    "ExampleSentence": "I take the bus to school in the morning.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "train",
+    "WordType": "noun",
+    "Meaning": "tàu hỏa",
+    "IPATranscription": "/treɪn/",
+    "ExampleSentence": "The train will arrive at the station at 3 PM.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "bike",
+    "WordType": "noun",
+    "Meaning": "xe đạp",
+    "IPATranscription": "/baɪk/",
+    "ExampleSentence": "He likes to ride his bike in the park.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "plane",
+    "WordType": "noun",
+    "Meaning": "máy bay",
+    "IPATranscription": "/pleɪn/",
+    "ExampleSentence": "We will travel to Da Nang by plane.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "boat",
+    "WordType": "noun",
+    "Meaning": "thuyền",
+    "IPATranscription": "/bəʊt/",
+    "ExampleSentence": "They rented a small boat to go fishing on the lake.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "ship",
+    "WordType": "noun",
+    "Meaning": "tàu thủy",
+    "IPATranscription": "/ʃɪp/",
+    "ExampleSentence": "The large ship carried hundreds of containers.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "road",
+    "WordType": "noun",
+    "Meaning": "con đường",
+    "IPATranscription": "/rəʊd/",
+    "ExampleSentence": "This road leads to the city center.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "street",
+    "WordType": "noun",
+    "Meaning": "đường phố",
+    "IPATranscription": "/striːt/",
+    "ExampleSentence": "There are many shops on this street.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "drive",
+    "WordType": "verb",
+    "Meaning": "lái xe",
+    "IPATranscription": "/draɪv/",
+    "ExampleSentence": "Can you drive a car?",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "fly",
+    "WordType": "verb",
+    "Meaning": "bay",
+    "IPATranscription": "/flaɪ/",
+    "ExampleSentence": "I'm excited to fly for the first time.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "walk",
+    "WordType": "verb",
+    "Meaning": "đi bộ",
+    "IPATranscription": "/wɔːk/",
+    "ExampleSentence": "I prefer to walk to the supermarket.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "stop",
+    "WordType": "verb",
+    "Meaning": "dừng lại",
+    "IPATranscription": "/stɒp/",
+    "ExampleSentence": "You must stop at the red light.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "ticket",
+    "WordType": "noun",
+    "Meaning": "vé",
+    "IPATranscription": "/ˈtɪk.ɪt/",
+    "ExampleSentence": "I bought a train ticket online.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "station",
+    "WordType": "noun",
+    "Meaning": "nhà ga",
+    "IPATranscription": "/ˈsteɪ.ʃən/",
+    "ExampleSentence": "Let's meet at the train station.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "airport",
+    "WordType": "noun",
+    "Meaning": "sân bay",
+    "IPATranscription": "/ˈeə.pɔːt/",
+    "ExampleSentence": "We need to be at the airport two hours before the flight.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "traffic",
+    "WordType": "noun",
+    "Meaning": "giao thông",
+    "IPATranscription": "/ˈtræf.ɪk/",
+    "ExampleSentence": "The traffic is heavy during rush hour.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "taxi",
+    "WordType": "noun",
+    "Meaning": "xe taxi",
+    "IPATranscription": "/ˈtæk.si/",
+    "ExampleSentence": "It's raining, let's take a taxi.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "truck",
+    "WordType": "noun",
+    "Meaning": "xe tải",
+    "IPATranscription": "/trʌk/",
+    "ExampleSentence": "A large truck was blocking the road.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "motorcycle",
+    "WordType": "noun",
+    "Meaning": "xe máy",
+    "IPATranscription": "/ˈməʊ.təˌsaɪ.kəl/",
+    "ExampleSentence": "He rides his motorcycle to the countryside on weekends.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "subway",
+    "WordType": "noun",
+    "Meaning": "tàu điện ngầm",
+    "IPATranscription": "/ˈsʌb.weɪ/",
+    "ExampleSentence": "The subway is a fast way to travel around the city.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "ride",
+    "WordType": "verb",
+    "Meaning": "cưỡi, đi (xe)",
+    "IPATranscription": "/raɪd/",
+    "ExampleSentence": "She learned to ride a bike when she was five.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "travel",
+    "WordType": "verb",
+    "Meaning": "đi lại, du lịch",
+    "IPATranscription": "/ˈtræv.əl/",
+    "ExampleSentence": "I love to travel and explore new places.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "park",
+    "WordType": "verb",
+    "Meaning": "đỗ xe",
+    "IPATranscription": "/pɑːk/",
+    "ExampleSentence": "You can't park your car here.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "driver",
+    "WordType": "noun",
+    "Meaning": "tài xế",
+    "IPATranscription": "/ˈdraɪ.vər/",
+    "ExampleSentence": "The bus driver was very friendly.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "passenger",
+    "WordType": "noun",
+    "Meaning": "hành khách",
+    "IPATranscription": "/ˈpæs.ən.dʒər/",
+    "ExampleSentence": "All passengers must fasten their seatbelts.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "map",
+    "WordType": "noun",
+    "Meaning": "bản đồ",
+    "IPATranscription": "/mæp/",
+    "ExampleSentence": "I need a map to find the hotel.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "fast",
+    "WordType": "adjective",
+    "Meaning": "nhanh",
+    "IPATranscription": "/fɑːst/",
+    "ExampleSentence": "A sports car is very fast.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "slow",
+    "WordType": "adjective",
+    "Meaning": "chậm",
+    "IPATranscription": "/sləʊ/",
+    "ExampleSentence": "The traffic was so slow this morning.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "go",
+    "WordType": "verb",
+    "Meaning": "đi",
+    "IPATranscription": "/ɡəʊ/",
+    "ExampleSentence": "We will go to the beach tomorrow.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "left",
+    "WordType": "noun/adverb",
+    "Meaning": "bên trái",
+    "IPATranscription": "/left/",
+    "ExampleSentence": "Turn left at the next corner.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "right",
+    "WordType": "noun/adverb",
+    "Meaning": "bên phải",
+    "IPATranscription": "/raɪt/",
+    "ExampleSentence": "The post office is on your right.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "journey",
+    "WordType": "noun",
+    "Meaning": "hành trình",
+    "IPATranscription": "/ˈdʒɜː.ni/",
+    "ExampleSentence": "Have a safe journey!",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "run",
+    "WordType": "verb",
+    "Meaning": "chạy (chuyến)",
+    "IPATranscription": "/rʌn/",
+    "ExampleSentence": "The buses run every 10 minutes.",
+    "Level": "Beginner",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "vehicle",
+    "WordType": "noun",
+    "Meaning": "phương tiện",
+    "IPATranscription": "/ˈvɪə.kəl/",
+    "ExampleSentence": "A car is a type of motor vehicle.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "engine",
+    "WordType": "noun",
+    "Meaning": "động cơ",
+    "IPATranscription": "/ˈen.dʒɪn/",
+    "ExampleSentence": "I think there is a problem with the car's engine.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "traffic jam",
+    "WordType": "noun",
+    "Meaning": "kẹt xe",
+    "IPATranscription": "/ˈtræf.ɪk ˌdʒæm/",
+    "ExampleSentence": "We were stuck in a traffic jam for an hour.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "public transport",
+    "WordType": "noun",
+    "Meaning": "giao thông công cộng",
+    "IPATranscription": "/ˌpʌb.lɪk ˈtræn.spɔːt/",
+    "ExampleSentence": "Using public transport helps reduce pollution.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "commute",
+    "WordType": "verb/noun",
+    "Meaning": "đi lại hàng ngày",
+    "IPATranscription": "/kəˈmjuːt/",
+    "ExampleSentence": "His daily commute to the city takes two hours.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "destination",
+    "WordType": "noun",
+    "Meaning": "điểm đến",
+    "IPATranscription": "/ˌdes.tɪˈneɪ.ʃən/",
+    "ExampleSentence": "Our final destination is Paris.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "departure",
+    "WordType": "noun",
+    "Meaning": "sự khởi hành",
+    "IPATranscription": "/dɪˈpɑː.tʃər/",
+    "ExampleSentence": "Please check the departure board for your flight information.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "arrival",
+    "WordType": "noun",
+    "Meaning": "sự đến nơi",
+    "IPATranscription": "/əˈraɪ.vəl/",
+    "ExampleSentence": "We waited for his arrival at the airport.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "platform",
+    "WordType": "noun",
+    "Meaning": "sân ga",
+    "IPATranscription": "/ˈplæt.fɔːm/",
+    "ExampleSentence": "The train to London will depart from platform 4.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "gate",
+    "WordType": "noun",
+    "Meaning": "cổng (sân bay)",
+    "IPATranscription": "/ɡeɪt/",
+    "ExampleSentence": "Please proceed to gate 21 for boarding.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "luggage",
+    "WordType": "noun",
+    "Meaning": "hành lý",
+    "IPATranscription": "/ˈlʌɡ.ɪdʒ/",
+    "ExampleSentence": "You can only take one piece of carry-on luggage.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "highway",
+    "WordType": "noun",
+    "Meaning": "xa lộ",
+    "IPATranscription": "/ˈhaɪ.weɪ/",
+    "ExampleSentence": "The accident happened on a busy highway.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "intersection",
+    "WordType": "noun",
+    "Meaning": "giao lộ",
+    "IPATranscription": "/ˌɪn.təˈsek.ʃən/",
+    "ExampleSentence": "There's a traffic light at the next intersection.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "pedestrian",
+    "WordType": "noun",
+    "Meaning": "người đi bộ",
+    "IPATranscription": "/pəˈdes.tri.ən/",
+    "ExampleSentence": "This area is for pedestrians only.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "sidewalk",
+    "WordType": "noun",
+    "Meaning": "vỉa hè",
+    "IPATranscription": "/ˈsaɪd.wɔːk/",
+    "ExampleSentence": "It's safer to walk on the sidewalk.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "navigate",
+    "WordType": "verb",
+    "Meaning": "điều hướng, định vị",
+    "IPATranscription": "/ˈnæv.ɪ.ɡeɪt/",
+    "ExampleSentence": "He used a GPS to navigate through the city.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "ferry",
+    "WordType": "noun",
+    "Meaning": "phà",
+    "IPATranscription": "/ˈfer.i/",
+    "ExampleSentence": "We took a ferry to the island.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "cruise",
+    "WordType": "noun",
+    "Meaning": "chuyến du ngoạn biển",
+    "IPATranscription": "/kruːz/",
+    "ExampleSentence": "They went on a Caribbean cruise for their honeymoon.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "helicopter",
+    "WordType": "noun",
+    "Meaning": "máy bay trực thăng",
+    "IPATranscription": "/ˈhel.ɪˌkɒp.tər/",
+    "ExampleSentence": "The news crew filmed the event from a helicopter.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "scooter",
+    "WordType": "noun",
+    "Meaning": "xe tay ga",
+    "IPATranscription": "/ˈskuː.tər/",
+    "ExampleSentence": "A scooter is a convenient way to get around town.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "fare",
+    "WordType": "noun",
+    "Meaning": "tiền vé",
+    "IPATranscription": "/feər/",
+    "ExampleSentence": "What's the bus fare to the city center?",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "pilot",
+    "WordType": "noun",
+    "Meaning": "phi công",
+    "IPATranscription": "/ˈpaɪ.lət/",
+    "ExampleSentence": "The pilot announced that we would be landing soon.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "captain",
+    "WordType": "noun",
+    "Meaning": "thuyền trưởng",
+    "IPATranscription": "/ˈkæp.tɪn/",
+    "ExampleSentence": "The captain is in charge of the ship.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "roundabout",
+    "WordType": "noun",
+    "Meaning": "vòng xuyến",
+    "IPATranscription": "/ˈraʊnd.ə.baʊt/",
+    "ExampleSentence": "Take the third exit at the roundabout.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "crosswalk",
+    "WordType": "noun",
+    "Meaning": "vạch sang đường",
+    "IPATranscription": "/ˈkrɒs.wɔːk/",
+    "ExampleSentence": "Always use the crosswalk to cross the street.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "route",
+    "WordType": "noun",
+    "Meaning": "tuyến đường",
+    "IPATranscription": "/ruːt/",
+    "ExampleSentence": "The bus route goes past my house.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "fuel",
+    "WordType": "noun",
+    "Meaning": "nhiên liệu",
+    "IPATranscription": "/ˈfjuː.əl/",
+    "ExampleSentence": "We need to stop for fuel before we leave.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "delay",
+    "WordType": "noun/verb",
+    "Meaning": "sự chậm trễ / trì hoãn",
+    "IPATranscription": "/dɪˈleɪ/",
+    "ExampleSentence": "Our flight was subject to a long delay.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "cancel",
+    "WordType": "verb",
+    "Meaning": "hủy bỏ",
+    "IPATranscription": "/ˈkæn.səl/",
+    "ExampleSentence": "The train was cancelled due to bad weather.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "license",
+    "WordType": "noun",
+    "Meaning": "bằng lái, giấy phép",
+    "IPATranscription": "/ˈlaɪ.səns/",
+    "ExampleSentence": "You need a valid driver's license to rent a car.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "rental",
+    "WordType": "noun",
+    "Meaning": "sự thuê mướn",
+    "IPATranscription": "/ˈren.təl/",
+    "ExampleSentence": "We arranged a car rental for our holiday.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "seatbelt",
+    "WordType": "noun",
+    "Meaning": "dây an toàn",
+    "IPATranscription": "/ˈsiːt.belt/",
+    "ExampleSentence": "Always wear your seatbelt when you are in a car.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "schedule",
+    "WordType": "noun",
+    "Meaning": "lịch trình",
+    "IPATranscription": "/ˈʃedʒ.uːl/",
+    "ExampleSentence": "Let me check the train schedule.",
+    "Level": "Intermediate",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "infrastructure",
+    "WordType": "noun",
+    "Meaning": "cơ sở hạ tầng",
+    "IPATranscription": "/ˈɪn.frəˌstrʌk.tʃər/",
+    "ExampleSentence": "The government is investing in improving the country's transportation infrastructure.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "logistics",
+    "WordType": "noun",
+    "Meaning": "hậu cần",
+    "IPATranscription": "/ləˈdʒɪs.tɪks/",
+    "ExampleSentence": "The logistics of organizing a major event are complex.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "autonomous vehicle",
+    "WordType": "noun",
+    "Meaning": "phương tiện tự hành",
+    "IPATranscription": "/ɔːˈtɒn.ə.məs ˈvɪə.kəl/",
+    "ExampleSentence": "Autonomous vehicles are expected to revolutionize transportation.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "congestion",
+    "WordType": "noun",
+    "Meaning": "sự tắc nghẽn",
+    "IPATranscription": "/kənˈdʒes.tʃən/",
+    "ExampleSentence": "Traffic congestion is a major problem in many large cities.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "propulsion",
+    "WordType": "noun",
+    "Meaning": "hệ thống đẩy",
+    "IPATranscription": "/prəˈpʌl.ʃən/",
+    "ExampleSentence": "The new spacecraft has an advanced ion propulsion system.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "navigation system",
+    "WordType": "noun",
+    "Meaning": "hệ thống định vị",
+    "IPATranscription": "/ˌnæv.ɪˈɡeɪ.ʃən ˌsɪs.təm/",
+    "ExampleSentence": "Most modern cars are equipped with a satellite navigation system.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "embark",
+    "WordType": "verb",
+    "Meaning": "lên tàu/máy bay",
+    "IPATranscription": "/ɪmˈbɑːk/",
+    "ExampleSentence": "Passengers are requested to embark 30 minutes before departure.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "disembark",
+    "WordType": "verb",
+    "Meaning": "xuống tàu/máy bay",
+    "IPATranscription": "/ˌdɪs.ɪmˈbɑːk/",
+    "ExampleSentence": "Please wait until the aircraft has come to a complete stop before you disembark.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "vessel",
+    "WordType": "noun",
+    "Meaning": "tàu lớn",
+    "IPATranscription": "/ˈves.əl/",
+    "ExampleSentence": "The port is busy with commercial and naval vessels.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "aviation",
+    "WordType": "noun",
+    "Meaning": "ngành hàng không",
+    "IPATranscription": "/ˌeɪ.viˈeɪ.ʃən/",
+    "ExampleSentence": "The aviation industry was heavily impacted by the pandemic.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "maritime",
+    "WordType": "adjective",
+    "Meaning": "thuộc về hàng hải",
+    "IPATranscription": "/ˈmær.ɪ.taɪm/",
+    "ExampleSentence": "The country has a rich maritime history.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "freight",
+    "WordType": "noun",
+    "Meaning": "hàng hóa vận chuyển",
+    "IPATranscription": "/freɪt/",
+    "ExampleSentence": "The ship carries both passengers and freight.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "cargo",
+    "WordType": "noun",
+    "Meaning": "hàng hóa (trên tàu, máy bay)",
+    "IPATranscription": "/ˈkɑː.ɡəʊ/",
+    "ExampleSentence": "The plane was carrying a cargo of medical supplies.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "locomotive",
+    "WordType": "noun",
+    "Meaning": "đầu máy xe lửa",
+    "IPATranscription": "/ˌləʊ.kəˈməʊ.tɪv/",
+    "ExampleSentence": "A powerful diesel locomotive pulled the long train.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "fuselage",
+    "WordType": "noun",
+    "Meaning": "thân máy bay",
+    "IPATranscription": "/ˈfjuː.zəl.ɑːʒ/",
+    "ExampleSentence": "The fuselage is the main body of an aircraft.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "tarmac",
+    "WordType": "noun",
+    "Meaning": "đường băng, sân đỗ máy bay",
+    "IPATranscription": "/ˈtɑː.mæk/",
+    "ExampleSentence": "The plane waited on the tarmac for an hour before take-off.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "itinerary",
+    "WordType": "noun",
+    "Meaning": "lịch trình chuyến đi",
+    "IPATranscription": "/aɪˈtɪn.ər.ər.i/",
+    "ExampleSentence": "Our travel agent sent us the detailed itinerary for our trip.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "circumnavigate",
+    "WordType": "verb",
+    "Meaning": "đi vòng quanh (thế giới)",
+    "IPATranscription": "/ˌsɜː.kəmˈnæv.ɪ.ɡeɪt/",
+    "ExampleSentence": "Ferdinand Magellan was the first to circumnavigate the globe.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "hyperloop",
+    "WordType": "noun",
+    "Meaning": "tàu siêu tốc (trong ống)",
+    "IPATranscription": "/ˈhaɪ.pə.luːp/",
+    "ExampleSentence": "The hyperloop is a proposed mode of passenger and freight transportation.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "monorail",
+    "WordType": "noun",
+    "Meaning": "tàu một ray",
+    "IPATranscription": "/ˈmɒn.əʊ.reɪl/",
+    "ExampleSentence": "The monorail provides a scenic view of the city.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "shuttle",
+    "WordType": "noun",
+    "Meaning": "xe con thoi, xe đưa đón",
+    "IPATranscription": "/ˈʃʌt.əl/",
+    "ExampleSentence": "There is a free shuttle service between the hotel and the airport.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "convoy",
+    "WordType": "noun",
+    "Meaning": "đoàn xe (hộ tống)",
+    "IPATranscription": "/ˈkɒn.vɔɪ/",
+    "ExampleSentence": "A convoy of trucks was escorted by the police.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "fleet",
+    "WordType": "noun",
+    "Meaning": "đội xe, hạm đội",
+    "IPATranscription": "/fliːt/",
+    "ExampleSentence": "The company operates a large fleet of delivery vehicles.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "terminal",
+    "WordType": "noun",
+    "Meaning": "nhà ga (sân bay, bến cảng)",
+    "IPATranscription": "/ˈtɜː.mɪ.nəl/",
+    "ExampleSentence": "Our flight departs from Terminal 2.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "commuter",
+    "WordType": "noun",
+    "Meaning": "người đi làm xa hàng ngày",
+    "IPATranscription": "/kəˈmjuː.tər/",
+    "ExampleSentence": "The morning train is usually full of commuters.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "mass transit",
+    "WordType": "noun",
+    "Meaning": "phương tiện công cộng khối lượng lớn",
+    "IPATranscription": "/ˌmæs ˈtræn.zɪt/",
+    "ExampleSentence": "Major cities rely on mass transit to move millions of people daily.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "pedestrianize",
+    "WordType": "verb",
+    "Meaning": "phố đi bộ hóa",
+    "IPATranscription": "/pəˈdes.tri.ə.naɪz/",
+    "ExampleSentence": "The city council plans to pedestrianize the main shopping street.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "consignment",
+    "WordType": "noun",
+    "Meaning": "lô hàng ký gửi",
+    "IPATranscription": "/kənˈsaɪn.mənt/",
+    "ExampleSentence": "We just received a large consignment of books.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "intermodal",
+    "WordType": "adjective",
+    "Meaning": "liên phương thức",
+    "IPATranscription": "/ˌɪn.təˈməʊ.dəl/",
+    "ExampleSentence": "Intermodal transportation involves using multiple modes of transportation.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "aerodynamics",
+    "WordType": "noun",
+    "Meaning": "khí động lực học",
+    "IPATranscription": "/ˌeə.rəʊ.daɪˈnæm.ɪks/",
+    "ExampleSentence": "The aerodynamics of the car's design helps it to go faster.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "junction",
+    "WordType": "noun",
+    "Meaning": "nút giao thông",
+    "IPATranscription": "/ˈdʒʌŋk.ʃən/",
+    "ExampleSentence": "Follow the signs for the motorway at the next junction.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "teleportation",
+    "WordType": "noun",
+    "Meaning": "dịch chuyển tức thời",
+    "IPATranscription": "/ˌtel.ɪ.pɔːˈteɪ.ʃən/",
+    "ExampleSentence": "Teleportation is a common theme in science fiction stories.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  },
+  {
+    "Word": "right-of-way",
+    "WordType": "noun",
+    "Meaning": "quyền ưu tiên (trên đường)",
+    "IPATranscription": "/ˌraɪt.əvˈweɪ/",
+    "ExampleSentence": "Pedestrians in a crosswalk have the right-of-way.",
+    "Level": "Advanced",
+    "Topic": "Transportation"
+  }
+]
+

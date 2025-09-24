@@ -1,0 +1,902 @@
+[
+  {
+    "Word": "apple",
+    "WordType": "noun",
+    "Meaning": "quả táo",
+    "IPATranscription": "/ˈæp.əl/",
+    "ExampleSentence": "An apple a day keeps the doctor away.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "bread",
+    "WordType": "noun",
+    "Meaning": "bánh mì",
+    "IPATranscription": "/bred/",
+    "ExampleSentence": "I eat bread and eggs for breakfast.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "water",
+    "WordType": "noun",
+    "Meaning": "nước",
+    "IPATranscription": "/ˈwɔː.tər/",
+    "ExampleSentence": "You should drink at least 2 liters of water every day.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "eat",
+    "WordType": "verb",
+    "Meaning": "ăn",
+    "IPATranscription": "/iːt/",
+    "ExampleSentence": "What time do you usually eat dinner?",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "milk",
+    "WordType": "noun",
+    "Meaning": "sữa",
+    "IPATranscription": "/mɪlk/",
+    "ExampleSentence": "My son drinks a glass of milk before bed.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "rice",
+    "WordType": "noun",
+    "Meaning": "cơm, gạo",
+    "IPATranscription": "/raɪs/",
+    "ExampleSentence": "Rice is a staple food in many Asian countries.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "chicken",
+    "WordType": "noun",
+    "Meaning": "thịt gà",
+    "IPATranscription": "/ˈtʃɪk.ɪn/",
+    "ExampleSentence": "We are having roasted chicken for dinner.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "fish",
+    "WordType": "noun",
+    "Meaning": "cá",
+    "IPATranscription": "/fɪʃ/",
+    "ExampleSentence": "I prefer fish to meat because it's healthier.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "fruit",
+    "WordType": "noun",
+    "Meaning": "trái cây",
+    "IPATranscription": "/fruːt/",
+    "ExampleSentence": "You should eat five portions of fruit and vegetables a day.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "juice",
+    "WordType": "noun",
+    "Meaning": "nước ép",
+    "IPATranscription": "/dʒuːs/",
+    "ExampleSentence": "Would you like a glass of orange juice?",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "sugar",
+    "WordType": "noun",
+    "Meaning": "đường",
+    "IPATranscription": "/ˈʃʊɡ.ər/",
+    "ExampleSentence": "I don't take sugar in my coffee.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "salt",
+    "WordType": "noun",
+    "Meaning": "muối",
+    "IPATranscription": "/sɒlt/",
+    "ExampleSentence": "This soup needs a little more salt.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "tea",
+    "WordType": "noun",
+    "Meaning": "trà",
+    "IPATranscription": "/tiː/",
+    "ExampleSentence": "In the afternoon, she enjoys a cup of tea.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "coffee",
+    "WordType": "noun",
+    "Meaning": "cà phê",
+    "IPATranscription": "/ˈkɒf.i/",
+    "ExampleSentence": "He needs a strong coffee to wake up in the morning.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "breakfast",
+    "WordType": "noun",
+    "Meaning": "bữa sáng",
+    "IPATranscription": "/ˈbrek.fəst/",
+    "ExampleSentence": "Breakfast is the most important meal of the day.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "lunch",
+    "WordType": "noun",
+    "Meaning": "bữa trưa",
+    "IPATranscription": "/lʌntʃ/",
+    "ExampleSentence": "Let's meet for lunch at 12:30 PM.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "dinner",
+    "WordType": "noun",
+    "Meaning": "bữa tối",
+    "IPATranscription": "/ˈdɪn.ər/",
+    "ExampleSentence": "She is cooking a special dinner for her guests.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "hungry",
+    "WordType": "adjective",
+    "Meaning": "đói bụng",
+    "IPATranscription": "/ˈhʌŋ.ɡri/",
+    "ExampleSentence": "I'm so hungry I could eat a horse.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "thirsty",
+    "WordType": "adjective",
+    "Meaning": "khát nước",
+    "IPATranscription": "/ˈθɜː.sti/",
+    "ExampleSentence": "After the long run, I was very thirsty.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "cake",
+    "WordType": "noun",
+    "Meaning": "bánh ngọt",
+    "IPATranscription": "/keɪk/",
+    "ExampleSentence": "We had a chocolate cake for her birthday.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "cheese",
+    "WordType": "noun",
+    "Meaning": "phô mai",
+    "IPATranscription": "/tʃiːz/",
+    "ExampleSentence": "Pizza is not complete without melted cheese on top.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "vegetable",
+    "WordType": "noun",
+    "Meaning": "rau củ",
+    "IPATranscription": "/ˈvedʒ.tə.bəl/",
+    "ExampleSentence": "Broccoli and carrots are my favorite vegetables.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "soup",
+    "WordType": "noun",
+    "Meaning": "súp, canh",
+    "IPATranscription": "/suːp/",
+    "ExampleSentence": "A warm bowl of chicken soup is perfect for a cold day.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "tasty",
+    "WordType": "adjective",
+    "Meaning": "ngon",
+    "IPATranscription": "/ˈteɪ.sti/",
+    "ExampleSentence": "This is a very tasty meal.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "drink",
+    "WordType": "verb",
+    "Meaning": "uống",
+    "IPATranscription": "/drɪŋk/",
+    "ExampleSentence": "What would you like to drink with your meal?",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "egg",
+    "WordType": "noun",
+    "Meaning": "trứng",
+    "IPATranscription": "/eɡ/",
+    "ExampleSentence": "Would you like a boiled egg or a fried egg?",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "potato",
+    "WordType": "noun",
+    "Meaning": "khoai tây",
+    "IPATranscription": "/pəˈteɪ.təʊ/",
+    "ExampleSentence": "French fries are made from potatoes.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "sweet",
+    "WordType": "adjective",
+    "Meaning": "ngọt",
+    "IPATranscription": "/swiːt/",
+    "ExampleSentence": "This dessert is too sweet for me.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "fork",
+    "WordType": "noun",
+    "Meaning": "cái nĩa",
+    "IPATranscription": "/fɔːk/",
+    "ExampleSentence": "In Western culture, people eat with a knife and fork.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "spoon",
+    "WordType": "noun",
+    "Meaning": "cái thìa",
+    "IPATranscription": "/spuːn/",
+    "ExampleSentence": "You need a spoon to eat soup.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "knife",
+    "WordType": "noun",
+    "Meaning": "con dao",
+    "IPATranscription": "/naɪf/",
+    "ExampleSentence": "Be careful, that knife is very sharp.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "plate",
+    "WordType": "noun",
+    "Meaning": "cái đĩa",
+    "IPATranscription": "/pleɪt/",
+    "ExampleSentence": "He finished everything on his plate.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "cup",
+    "WordType": "noun",
+    "Meaning": "cái tách",
+    "IPATranscription": "/kʌp/",
+    "ExampleSentence": "She offered me a cup of tea.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "snack",
+    "WordType": "noun",
+    "Meaning": "bữa ăn nhẹ",
+    "IPATranscription": "/snæk/",
+    "ExampleSentence": "I usually have a light snack around 3 PM.",
+    "Level": "Beginner",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "ingredient",
+    "WordType": "noun",
+    "Meaning": "nguyên liệu",
+    "IPATranscription": "/ɪnˈɡriː.di.ənt/",
+    "ExampleSentence": "The main ingredients for this dish are flour, eggs, and sugar.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "recipe",
+    "WordType": "noun",
+    "Meaning": "công thức nấu ăn",
+    "IPATranscription": "/ˈres.ɪ.pi/",
+    "ExampleSentence": "Do you have a good recipe for chocolate cake?",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "delicious",
+    "WordType": "adjective",
+    "Meaning": "ngon miệng",
+    "IPATranscription": "/dɪˈlɪʃ.əs/",
+    "ExampleSentence": "The meal was absolutely delicious.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "beverage",
+    "WordType": "noun",
+    "Meaning": "đồ uống",
+    "IPATranscription": "/ˈbev.ər.ɪdʒ/",
+    "ExampleSentence": "The restaurant offers a wide variety of beverages.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "dessert",
+    "WordType": "noun",
+    "Meaning": "món tráng miệng",
+    "IPATranscription": "/dɪˈzɜːt/",
+    "ExampleSentence": "For dessert, I'll have the apple pie.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "appetizer",
+    "WordType": "noun",
+    "Meaning": "món khai vị",
+    "IPATranscription": "/ˈæp.ə.taɪ.zər/",
+    "ExampleSentence": "We ordered some spring rolls as an appetizer.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "main course",
+    "WordType": "noun",
+    "Meaning": "món chính",
+    "IPATranscription": "/ˌmeɪn ˈkɔːs/",
+    "ExampleSentence": "I had steak for my main course.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "grill",
+    "WordType": "verb",
+    "Meaning": "nướng (vỉ)",
+    "IPATranscription": "/ɡrɪl/",
+    "ExampleSentence": "Let's grill some sausages in the backyard.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "bake",
+    "WordType": "verb",
+    "Meaning": "nướng (lò)",
+    "IPATranscription": "/beɪk/",
+    "ExampleSentence": "I love to bake cookies on weekends.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "fry",
+    "WordType": "verb",
+    "Meaning": "chiên, rán",
+    "IPATranscription": "/fraɪ/",
+    "ExampleSentence": "He is frying some eggs in the kitchen.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "boil",
+    "WordType": "verb",
+    "Meaning": "luộc, đun sôi",
+    "IPATranscription": "/bɔɪl/",
+    "ExampleSentence": "Could you please boil the water for tea?",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "steam",
+    "WordType": "verb",
+    "Meaning": "hấp",
+    "IPATranscription": "/stiːm/",
+    "ExampleSentence": "Steaming vegetables helps to retain their nutrients.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "bitter",
+    "WordType": "adjective",
+    "Meaning": "đắng",
+    "IPATranscription": "/ˈbɪt.ər/",
+    "ExampleSentence": "Dark chocolate has a rich, bitter flavor.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "sour",
+    "WordType": "adjective",
+    "Meaning": "chua",
+    "IPATranscription": "/saʊər/",
+    "ExampleSentence": "This lemon is very sour.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "spicy",
+    "WordType": "adjective",
+    "Meaning": "cay",
+    "IPATranscription": "/ˈspaɪ.si/",
+    "ExampleSentence": "I enjoy eating spicy Thai food.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "fresh",
+    "WordType": "adjective",
+    "Meaning": "tươi",
+    "IPATranscription": "/freʃ/",
+    "ExampleSentence": "These vegetables were picked fresh from the garden this morning.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "organic",
+    "WordType": "adjective",
+    "Meaning": "hữu cơ",
+    "IPATranscription": "/ɔːˈɡæn.ɪk/",
+    "ExampleSentence": "She prefers to buy organic food whenever possible.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "vegetarian",
+    "WordType": "noun/adjective",
+    "Meaning": "người ăn chay / chay",
+    "IPATranscription": "/ˌvedʒ.əˈteə.ri.ən/",
+    "ExampleSentence": "She has been a vegetarian for ten years.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "poultry",
+    "WordType": "noun",
+    "Meaning": "gia cầm",
+    "IPATranscription": "/ˈpəʊl.tri/",
+    "ExampleSentence": "The menu includes a variety of meat and poultry dishes.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "seafood",
+    "WordType": "noun",
+    "Meaning": "hải sản",
+    "IPATranscription": "/ˈsiː.fuːd/",
+    "ExampleSentence": "We had a delicious seafood platter at the restaurant.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "cutlery",
+    "WordType": "noun",
+    "Meaning": "bộ dao nĩa",
+    "IPATranscription": "/ˈkʌt.lər.i/",
+    "ExampleSentence": "The waiter laid out the cutlery on the table.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "flavor",
+    "WordType": "noun",
+    "Meaning": "hương vị",
+    "IPATranscription": "/ˈfleɪ.vər/",
+    "ExampleSentence": "The soup has a very rich flavor.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "nutritious",
+    "WordType": "adjective",
+    "Meaning": "bổ dưỡng",
+    "IPATranscription": "/njuːˈtrɪʃ.əs/",
+    "ExampleSentence": "A balanced diet should be both nutritious and delicious.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "roast",
+    "WordType": "verb",
+    "Meaning": "quay, nướng",
+    "IPATranscription": "/rəʊst/",
+    "ExampleSentence": "We're going to roast a chicken for Sunday lunch.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "diet",
+    "WordType": "noun",
+    "Meaning": "chế độ ăn uống",
+    "IPATranscription": "/ˈdaɪ.ət/",
+    "ExampleSentence": "He is on a special diet to lose weight.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "herb",
+    "WordType": "noun",
+    "Meaning": "rau thơm",
+    "IPATranscription": "/hɜːb/",
+    "ExampleSentence": "Rosemary is a popular herb used in cooking.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "spice",
+    "WordType": "noun",
+    "Meaning": "gia vị (khô)",
+    "IPATranscription": "/spaɪs/",
+    "ExampleSentence": "Cinnamon and nutmeg are common spices.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "caffeine",
+    "WordType": "noun",
+    "Meaning": "caffeine",
+    "IPATranscription": "/ˈkæf.iːn/",
+    "ExampleSentence": "I try to avoid caffeine in the evening.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "beverage",
+    "WordType": "noun",
+    "Meaning": "đồ uống",
+    "IPATranscription": "/ˈbev.ər.ɪdʒ/",
+    "ExampleSentence": "The price includes food and beverages.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "creamy",
+    "WordType": "adjective",
+    "Meaning": "mịn, béo ngậy",
+    "IPATranscription": "/ˈkriː.mi/",
+    "ExampleSentence": "The pasta sauce was rich and creamy.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "crunchy",
+    "WordType": "adjective",
+    "Meaning": "giòn",
+    "IPATranscription": "/ˈkrʌn.tʃi/",
+    "ExampleSentence": "She likes crunchy apples.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "menu",
+    "WordType": "noun",
+    "Meaning": "thực đơn",
+    "IPATranscription": "/ˈmen.juː/",
+    "ExampleSentence": "Could we see the menu, please?",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "chef",
+    "WordType": "noun",
+    "Meaning": "đầu bếp",
+    "IPATranscription": "/ʃef/",
+    "ExampleSentence": "The chef prepared a wonderful meal for us.",
+    "Level": "Intermediate",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "culinary",
+    "WordType": "adjective",
+    "Meaning": "thuộc về ẩm thực",
+    "IPATranscription": "/ˈkʌl.ɪ.nər.i/",
+    "ExampleSentence": "He graduated from a prestigious culinary school.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "gastronomy",
+    "WordType": "noun",
+    "Meaning": "nghệ thuật ẩm thực",
+    "IPATranscription": "/ɡæsˈtrɒn.ə.mi/",
+    "ExampleSentence": "Gastronomy is the study of the relationship between food and culture.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "palatable",
+    "WordType": "adjective",
+    "Meaning": "ngon miệng, dễ chịu",
+    "IPATranscription": "/ˈpæl.ə.tə.bəl/",
+    "ExampleSentence": "The restaurant serves palatable dishes at a reasonable price.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "succulent",
+    "WordType": "adjective",
+    "Meaning": "mọng nước, ngon ngọt",
+    "IPATranscription": "/ˈsʌk.jə.lənt/",
+    "ExampleSentence": "The roast duck was tender and succulent.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "gourmet",
+    "WordType": "noun/adjective",
+    "Meaning": "người sành ăn / cao cấp",
+    "IPATranscription": "/ˈɡʊə.meɪ/",
+    "ExampleSentence": "This shop sells gourmet coffee and chocolates.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "sommelier",
+    "WordType": "noun",
+    "Meaning": "người hầu rượu",
+    "IPATranscription": "/ˈsɒm.əl.jeɪ/",
+    "ExampleSentence": "The sommelier recommended a perfect wine to pair with our meal.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "fermentation",
+    "WordType": "noun",
+    "Meaning": "sự lên men",
+    "IPATranscription": "/ˌfɜː.menˈteɪ.ʃən/",
+    "ExampleSentence": "Wine is produced through the fermentation of grapes.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "emulsify",
+    "WordType": "verb",
+    "Meaning": "nhũ hóa",
+    "IPATranscription": "/ɪˈmʌl.sɪ.faɪ/",
+    "ExampleSentence": "You need to slowly add oil to the vinegar to emulsify it for the dressing.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "sauté",
+    "WordType": "verb",
+    "Meaning": "áp chảo",
+    "IPATranscription": "/ˈsəʊ.teɪ/",
+    "ExampleSentence": "First, sauté the onions and garlic in a little olive oil.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "braise",
+    "WordType": "verb",
+    "Meaning": "om, hầm",
+    "IPATranscription": "/breɪz/",
+    "ExampleSentence": "She decided to braise the beef with red wine and vegetables.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "garnish",
+    "WordType": "verb/noun",
+    "Meaning": "trang trí món ăn / đồ trang trí",
+    "IPATranscription": "/ˈɡɑː.nɪʃ/",
+    "ExampleSentence": "Garnish the soup with fresh parsley before serving.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "delicacy",
+    "WordType": "noun",
+    "Meaning": "đặc sản, cao lương mỹ vị",
+    "IPATranscription": "/ˈdel.ɪ.kə.si/",
+    "ExampleSentence": "In some countries, fried insects are considered a delicacy.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "umami",
+    "WordType": "noun",
+    "Meaning": "vị ngọt thịt (vị thứ 5)",
+    "IPATranscription": "/uˈmɑː.mi/",
+    "ExampleSentence": "Mushrooms and soy sauce are rich in umami flavor.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "astringent",
+    "WordType": "adjective",
+    "Meaning": "chát",
+    "IPATranscription": "/əˈstrɪn.dʒənt/",
+    "ExampleSentence": "Unripe persimmons have a very astringent taste.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "pungent",
+    "WordType": "adjective",
+    "Meaning": "hăng, nồng",
+    "IPATranscription": "/ˈpʌn.dʒənt/",
+    "ExampleSentence": "The pungent smell of blue cheese filled the room.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "bland",
+    "WordType": "adjective",
+    "Meaning": "nhạt nhẽo",
+    "IPATranscription": "/blænd/",
+    "ExampleSentence": "The soup was rather bland, so I added some spices.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "zest",
+    "WordType": "noun",
+    "Meaning": "vỏ (cam, chanh)",
+    "IPATranscription": "/zest/",
+    "ExampleSentence": "Add the lemon zest to the cake mixture.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "connoisseur",
+    "WordType": "noun",
+    "Meaning": "người sành sỏi",
+    "IPATranscription": "/ˌkɒn.əˈsɜːr/",
+    "ExampleSentence": "He is a connoisseur of fine wines.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "savory",
+    "WordType": "adjective",
+    "Meaning": "mặn, đậm đà (không ngọt)",
+    "IPATranscription": "/ˈseɪ.vər.i/",
+    "ExampleSentence": "I prefer savory snacks like crisps to sweet ones like chocolate.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "scrumptious",
+    "WordType": "adjective",
+    "Meaning": "tuyệt hảo",
+    "IPATranscription": "/ˈskrʌmp.ʃəs/",
+    "ExampleSentence": "She served a scrumptious three-course meal.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "deglaze",
+    "WordType": "verb",
+    "Meaning": "hòa tan phần cháy dính ở đáy chảo",
+    "IPATranscription": "/diːˈɡleɪz/",
+    "ExampleSentence": "Deglaze the pan with wine to make a sauce.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "infusion",
+    "WordType": "noun",
+    "Meaning": "sự hãm (trà), sự ngâm",
+    "IPATranscription": "/ɪnˈfjuː.ʒən/",
+    "ExampleSentence": "She made a herbal infusion to help her relax.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "condiment",
+    "WordType": "noun",
+    "Meaning": "đồ gia vị (ăn kèm)",
+    "IPATranscription": "/ˈkɒn.dɪ.mənt/",
+    "ExampleSentence": "The restaurant has a wide range of condiments, such as ketchup and mustard.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "wholesome",
+    "WordType": "adjective",
+    "Meaning": "lành mạnh, bổ dưỡng",
+    "IPATranscription": "/ˈhəʊl.səm/",
+    "ExampleSentence": "The food served is simple, wholesome, and delicious.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "artisan",
+    "WordType": "adjective/noun",
+    "Meaning": "thủ công / thợ thủ công",
+    "IPATranscription": "/ˈɑː.tɪ.zæn/",
+    "ExampleSentence": "They sell artisan breads and cheeses.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "morsel",
+    "WordType": "noun",
+    "Meaning": "miếng nhỏ",
+    "IPATranscription": "/ˈmɔː.səl/",
+    "ExampleSentence": "He ate every last morsel of the cake.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "palate",
+    "WordType": "noun",
+    "Meaning": "vị giác, khẩu vị",
+    "IPATranscription": "/ˈpæl.ət/",
+    "ExampleSentence": "The dish was a delight to the palate.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "satiate",
+    "WordType": "verb",
+    "Meaning": "làm cho no, thỏa mãn",
+    "IPATranscription": "/ˈseɪ.ʃi.eɪt/",
+    "ExampleSentence": "The large meal was enough to satiate even the hungriest of diners.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "simmer",
+    "WordType": "verb",
+    "Meaning": "ninh, om nhỏ lửa",
+    "IPATranscription": "/ˈsɪm.ər/",
+    "ExampleSentence": "Let the sauce simmer gently for 20 minutes.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "vintage",
+    "WordType": "noun",
+    "Meaning": "mùa nho, rượu vang của một năm cụ thể",
+    "IPATranscription": "/ˈvɪn.tɪdʒ/",
+    "ExampleSentence": "This is a bottle of the 2005 vintage.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "aromatic",
+    "WordType": "adjective",
+    "Meaning": "thơm",
+    "IPATranscription": "/ˌær.əˈmæt.ɪk/",
+    "ExampleSentence": "The kitchen was filled with the aromatic scent of herbs and spices.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "distill",
+    "WordType": "verb",
+    "Meaning": "chưng cất",
+    "IPATranscription": "/dɪˈstɪl/",
+    "ExampleSentence": "Whisky is made by distilling fermented grain mash.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  },
+  {
+    "Word": "quencher",
+    "WordType": "noun",
+    "Meaning": "thức uống giải khát",
+    "IPATranscription": "/ˈkwen.tʃər/",
+    "ExampleSentence": "On a hot day, there's nothing like a tall glass of lemonade as a thirst quencher.",
+    "Level": "Advanced",
+    "Topic": "Food and Drinks"
+  }
+]

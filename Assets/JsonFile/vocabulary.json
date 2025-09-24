@@ -1,0 +1,902 @@
+[
+  {
+    "Word": "Eat",
+    "WordType": "Verb",
+    "Meaning": "Ăn",
+    "IPATranscription": "/iːt/",
+    "ExampleSentence": "I eat breakfast every morning.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Drink",
+    "WordType": "Verb",
+    "Meaning": "Uống",
+    "IPATranscription": "/drɪŋk/",
+    "ExampleSentence": "She drinks water after running.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Sleep",
+    "WordType": "Verb",
+    "Meaning": "Ngủ",
+    "IPATranscription": "/sliːp/",
+    "ExampleSentence": "He sleeps eight hours a day.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Wake up",
+    "WordType": "Verb",
+    "Meaning": "Thức dậy",
+    "IPATranscription": "/ˈweɪk ʌp/",
+    "ExampleSentence": "I wake up at 6 a.m.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Go",
+    "WordType": "Verb",
+    "Meaning": "Đi",
+    "IPATranscription": "/ɡoʊ/",
+    "ExampleSentence": "They go to school by bus.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Come",
+    "WordType": "Verb",
+    "Meaning": "Đến",
+    "IPATranscription": "/kʌm/",
+    "ExampleSentence": "She comes home late.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Run",
+    "WordType": "Verb",
+    "Meaning": "Chạy",
+    "IPATranscription": "/rʌn/",
+    "ExampleSentence": "I run every morning in the park.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Walk",
+    "WordType": "Verb",
+    "Meaning": "Đi bộ",
+    "IPATranscription": "/wɔːk/",
+    "ExampleSentence": "We walk to the market.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Sit",
+    "WordType": "Verb",
+    "Meaning": "Ngồi",
+    "IPATranscription": "/sɪt/",
+    "ExampleSentence": "She sits on the chair.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Stand",
+    "WordType": "Verb",
+    "Meaning": "Đứng",
+    "IPATranscription": "/stænd/",
+    "ExampleSentence": "They stand in line.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Read",
+    "WordType": "Verb",
+    "Meaning": "Đọc",
+    "IPATranscription": "/riːd/",
+    "ExampleSentence": "He reads a book every night.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Write",
+    "WordType": "Verb",
+    "Meaning": "Viết",
+    "IPATranscription": "/raɪt/",
+    "ExampleSentence": "I write emails at work.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Cook",
+    "WordType": "Verb",
+    "Meaning": "Nấu ăn",
+    "IPATranscription": "/kʊk/",
+    "ExampleSentence": "My mom cooks dinner every evening.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Clean",
+    "WordType": "Verb",
+    "Meaning": "Làm sạch",
+    "IPATranscription": "/kliːn/",
+    "ExampleSentence": "She cleans the house on Sunday.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Wash",
+    "WordType": "Verb",
+    "Meaning": "Rửa, giặt",
+    "IPATranscription": "/wɒʃ/",
+    "ExampleSentence": "I wash my hands before eating.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Buy",
+    "WordType": "Verb",
+    "Meaning": "Mua",
+    "IPATranscription": "/baɪ/",
+    "ExampleSentence": "He buys food at the supermarket.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Pay",
+    "WordType": "Verb",
+    "Meaning": "Trả tiền",
+    "IPATranscription": "/peɪ/",
+    "ExampleSentence": "I pay with cash.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Work",
+    "WordType": "Verb",
+    "Meaning": "Làm việc",
+    "IPATranscription": "/wɜːrk/",
+    "ExampleSentence": "She works in an office.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Study",
+    "WordType": "Verb",
+    "Meaning": "Học tập",
+    "IPATranscription": "/ˈstʌdi/",
+    "ExampleSentence": "I study English every day.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Play",
+    "WordType": "Verb",
+    "Meaning": "Chơi",
+    "IPATranscription": "/pleɪ/",
+    "ExampleSentence": "The kids play football in the yard.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Friend",
+    "WordType": "Noun",
+    "Meaning": "Bạn bè",
+    "IPATranscription": "/frɛnd/",
+    "ExampleSentence": "He is my best friend.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Family",
+    "WordType": "Noun",
+    "Meaning": "Gia đình",
+    "IPATranscription": "/ˈfæməli/",
+    "ExampleSentence": "I love my family.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Food",
+    "WordType": "Noun",
+    "Meaning": "Thức ăn",
+    "IPATranscription": "/fuːd/",
+    "ExampleSentence": "The food is delicious.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Water",
+    "WordType": "Noun",
+    "Meaning": "Nước",
+    "IPATranscription": "/ˈwɔːtər/",
+    "ExampleSentence": "I drink water every day.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "House",
+    "WordType": "Noun",
+    "Meaning": "Ngôi nhà",
+    "IPATranscription": "/haʊs/",
+    "ExampleSentence": "Their house is very big.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Room",
+    "WordType": "Noun",
+    "Meaning": "Phòng",
+    "IPATranscription": "/ruːm/",
+    "ExampleSentence": "My room is clean.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Bed",
+    "WordType": "Noun",
+    "Meaning": "Giường",
+    "IPATranscription": "/bɛd/",
+    "ExampleSentence": "The baby is sleeping in the bed.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Chair",
+    "WordType": "Noun",
+    "Meaning": "Ghế",
+    "IPATranscription": "/tʃɛər/",
+    "ExampleSentence": "I sit on the chair.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Table",
+    "WordType": "Noun",
+    "Meaning": "Bàn",
+    "IPATranscription": "/ˈteɪbəl/",
+    "ExampleSentence": "We eat at the table.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Car",
+    "WordType": "Noun",
+    "Meaning": "Xe hơi",
+    "IPATranscription": "/kɑːr/",
+    "ExampleSentence": "He drives a red car.",
+    "Level": "Beginner",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Schedule",
+    "WordType": "Noun",
+    "Meaning": "Lịch trình",
+    "IPATranscription": "/ˈskɛdʒuːl/",
+    "ExampleSentence": "I have a busy schedule this week.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Appointment",
+    "WordType": "Noun",
+    "Meaning": "Cuộc hẹn",
+    "IPATranscription": "/əˈpɔɪntmənt/",
+    "ExampleSentence": "She has a doctor’s appointment tomorrow.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Groceries",
+    "WordType": "Noun",
+    "Meaning": "Đồ tạp hóa",
+    "IPATranscription": "/ˈɡroʊsəriz/",
+    "ExampleSentence": "I need to buy some groceries.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Laundry",
+    "WordType": "Noun",
+    "Meaning": "Giặt giũ",
+    "IPATranscription": "/ˈlɔːndri/",
+    "ExampleSentence": "She does the laundry every weekend.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Commute",
+    "WordType": "Verb",
+    "Meaning": "Đi lại (giữa nhà và nơi làm)",
+    "IPATranscription": "/kəˈmjuːt/",
+    "ExampleSentence": "I commute by train.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Message",
+    "WordType": "Noun",
+    "Meaning": "Tin nhắn",
+    "IPATranscription": "/ˈmɛsɪdʒ/",
+    "ExampleSentence": "He sent me a message.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Call",
+    "WordType": "Verb",
+    "Meaning": "Gọi điện",
+    "IPATranscription": "/kɔːl/",
+    "ExampleSentence": "I call my parents every Sunday.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Charge",
+    "WordType": "Verb",
+    "Meaning": "Sạc điện",
+    "IPATranscription": "/tʃɑːrdʒ/",
+    "ExampleSentence": "I need to charge my phone.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Exercise",
+    "WordType": "Verb",
+    "Meaning": "Tập thể dục",
+    "IPATranscription": "/ˈɛksərsaɪz/",
+    "ExampleSentence": "She exercises at the gym.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Healthy",
+    "WordType": "Adjective",
+    "Meaning": "Khỏe mạnh",
+    "IPATranscription": "/ˈhɛlθi/",
+    "ExampleSentence": "He eats a healthy diet.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Hungry",
+    "WordType": "Adjective",
+    "Meaning": "Đói",
+    "IPATranscription": "/ˈhʌŋɡri/",
+    "ExampleSentence": "I am very hungry now.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Thirsty",
+    "WordType": "Adjective",
+    "Meaning": "Khát",
+    "IPATranscription": "/ˈθɜːrsti/",
+    "ExampleSentence": "She is thirsty after the run.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Shower",
+    "WordType": "Noun",
+    "Meaning": "Vòi sen",
+    "IPATranscription": "/ˈʃaʊər/",
+    "ExampleSentence": "I take a shower in the morning.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Brush",
+    "WordType": "Verb",
+    "Meaning": "Đánh răng/chải tóc",
+    "IPATranscription": "/brʌʃ/",
+    "ExampleSentence": "I brush my teeth twice a day.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Homework",
+    "WordType": "Noun",
+    "Meaning": "Bài tập về nhà",
+    "IPATranscription": "/ˈhoʊmwɜːrk/",
+    "ExampleSentence": "He does his homework before dinner.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Vacation",
+    "WordType": "Noun",
+    "Meaning": "Kỳ nghỉ",
+    "IPATranscription": "/veɪˈkeɪʃən/",
+    "ExampleSentence": "We go on vacation in summer.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Neighbor",
+    "WordType": "Noun",
+    "Meaning": "Hàng xóm",
+    "IPATranscription": "/ˈneɪbər/",
+    "ExampleSentence": "Our neighbors are very kind.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Relax",
+    "WordType": "Verb",
+    "Meaning": "Thư giãn",
+    "IPATranscription": "/rɪˈlæks/",
+    "ExampleSentence": "She relaxes by listening to music.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Prepare",
+    "WordType": "Verb",
+    "Meaning": "Chuẩn bị",
+    "IPATranscription": "/prɪˈpɛr/",
+    "ExampleSentence": "I prepare lunch every day.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Check",
+    "WordType": "Verb",
+    "Meaning": "Kiểm tra",
+    "IPATranscription": "/tʃɛk/",
+    "ExampleSentence": "He checks his email in the morning.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Spend",
+    "WordType": "Verb",
+    "Meaning": "Dành thời gian/tiêu tiền",
+    "IPATranscription": "/spɛnd/",
+    "ExampleSentence": "I spend time with family at weekends.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Meet",
+    "WordType": "Verb",
+    "Meaning": "Gặp gỡ",
+    "IPATranscription": "/miːt/",
+    "ExampleSentence": "We meet our friends after work.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Late",
+    "WordType": "Adjective",
+    "Meaning": "Muộn",
+    "IPATranscription": "/leɪt/",
+    "ExampleSentence": "He is late for school.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Tired",
+    "WordType": "Adjective",
+    "Meaning": "Mệt",
+    "IPATranscription": "/ˈtaɪərd/",
+    "ExampleSentence": "I am tired after work.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Hungry",
+    "WordType": "Adjective",
+    "Meaning": "Đói bụng",
+    "IPATranscription": "/ˈhʌŋɡri/",
+    "ExampleSentence": "The children are hungry now.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Market",
+    "WordType": "Noun",
+    "Meaning": "Chợ",
+    "IPATranscription": "/ˈmɑːrkɪt/",
+    "ExampleSentence": "We buy vegetables at the market.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Clothes",
+    "WordType": "Noun",
+    "Meaning": "Quần áo",
+    "IPATranscription": "/kloʊðz/",
+    "ExampleSentence": "She buys new clothes.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Shoes",
+    "WordType": "Noun",
+    "Meaning": "Giày",
+    "IPATranscription": "/ʃuːz/",
+    "ExampleSentence": "His shoes are very clean.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Phone",
+    "WordType": "Noun",
+    "Meaning": "Điện thoại",
+    "IPATranscription": "/foʊn/",
+    "ExampleSentence": "I call my mom on the phone.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Key",
+    "WordType": "Noun",
+    "Meaning": "Chìa khóa",
+    "IPATranscription": "/kiː/",
+    "ExampleSentence": "I lost my house key.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Wallet",
+    "WordType": "Noun",
+    "Meaning": "Ví",
+    "IPATranscription": "/ˈwɑːlɪt/",
+    "ExampleSentence": "He put money in his wallet.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Bag",
+    "WordType": "Noun",
+    "Meaning": "Túi",
+    "IPATranscription": "/bæɡ/",
+    "ExampleSentence": "Her bag is on the table.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Computer",
+    "WordType": "Noun",
+    "Meaning": "Máy tính",
+    "IPATranscription": "/kəmˈpjuːtər/",
+    "ExampleSentence": "I use the computer at work.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Internet",
+    "WordType": "Noun",
+    "Meaning": "Mạng internet",
+    "IPATranscription": "/ˈɪntərˌnɛt/",
+    "ExampleSentence": "The internet is very fast here.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Music",
+    "WordType": "Noun",
+    "Meaning": "Âm nhạc",
+    "IPATranscription": "/ˈmjuːzɪk/",
+    "ExampleSentence": "I listen to music every night.",
+    "Level": "Intermediate",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Routine",
+    "WordType": "Noun",
+    "Meaning": "Thói quen hằng ngày",
+    "IPATranscription": "/ruːˈtiːn/",
+    "ExampleSentence": "He has a strict morning routine.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Productivity",
+    "WordType": "Noun",
+    "Meaning": "Năng suất",
+    "IPATranscription": "/ˌproʊdʌkˈtɪvɪti/",
+    "ExampleSentence": "Morning exercise improves productivity.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Efficiency",
+    "WordType": "Noun",
+    "Meaning": "Hiệu quả",
+    "IPATranscription": "/ɪˈfɪʃənsi/",
+    "ExampleSentence": "He works with high efficiency.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Procrastinate",
+    "WordType": "Verb",
+    "Meaning": "Trì hoãn",
+    "IPATranscription": "/proʊˈkræs.tɪ.neɪt/",
+    "ExampleSentence": "Don’t procrastinate on your tasks.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Multitask",
+    "WordType": "Verb",
+    "Meaning": "Làm nhiều việc cùng lúc",
+    "IPATranscription": "/ˈmʌltiˌtæsk/",
+    "ExampleSentence": "She can multitask while cooking.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Prioritize",
+    "WordType": "Verb",
+    "Meaning": "Ưu tiên",
+    "IPATranscription": "/praɪˈɔːrətaɪz/",
+    "ExampleSentence": "You should prioritize your health.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Appointment",
+    "WordType": "Noun",
+    "Meaning": "Lịch hẹn",
+    "IPATranscription": "/əˈpɔɪntmənt/",
+    "ExampleSentence": "I have a dentist appointment.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Obligation",
+    "WordType": "Noun",
+    "Meaning": "Nghĩa vụ",
+    "IPATranscription": "/ˌɑːblɪˈɡeɪʃən/",
+    "ExampleSentence": "Work is a daily obligation.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Chore",
+    "WordType": "Noun",
+    "Meaning": "Việc vặt hằng ngày",
+    "IPATranscription": "/tʃɔːr/",
+    "ExampleSentence": "Washing dishes is a daily chore.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Errand",
+    "WordType": "Noun",
+    "Meaning": "Việc vặt phải đi làm",
+    "IPATranscription": "/ˈɛrənd/",
+    "ExampleSentence": "I run errands on weekends.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Hygiene",
+    "WordType": "Noun",
+    "Meaning": "Vệ sinh cá nhân",
+    "IPATranscription": "/ˈhaɪdʒiːn/",
+    "ExampleSentence": "Good hygiene is important.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Diet",
+    "WordType": "Noun",
+    "Meaning": "Chế độ ăn uống",
+    "IPATranscription": "/ˈdaɪət/",
+    "ExampleSentence": "He follows a healthy diet.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Balance",
+    "WordType": "Noun",
+    "Meaning": "Cân bằng",
+    "IPATranscription": "/ˈbæləns/",
+    "ExampleSentence": "Work-life balance is essential.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Motivation",
+    "WordType": "Noun",
+    "Meaning": "Động lực",
+    "IPATranscription": "/ˌmoʊtɪˈveɪʃən/",
+    "ExampleSentence": "Motivation helps you succeed.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Determination",
+    "WordType": "Noun",
+    "Meaning": "Sự quyết tâm",
+    "IPATranscription": "/dɪˌtɜːrmɪˈneɪʃən/",
+    "ExampleSentence": "She studies with determination.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Habit",
+    "WordType": "Noun",
+    "Meaning": "Thói quen",
+    "IPATranscription": "/ˈhæbɪt/",
+    "ExampleSentence": "Reading is a good habit.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Focus",
+    "WordType": "Verb",
+    "Meaning": "Tập trung",
+    "IPATranscription": "/ˈfoʊkəs/",
+    "ExampleSentence": "I focus on my studies.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Organize",
+    "WordType": "Verb",
+    "Meaning": "Sắp xếp",
+    "IPATranscription": "/ˈɔːrɡənaɪz/",
+    "ExampleSentence": "She organizes her desk daily.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Arrange",
+    "WordType": "Verb",
+    "Meaning": "Sắp đặt",
+    "IPATranscription": "/əˈreɪndʒ/",
+    "ExampleSentence": "I arrange my clothes neatly.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Discipline",
+    "WordType": "Noun",
+    "Meaning": "Kỷ luật",
+    "IPATranscription": "/ˈdɪsəplɪn/",
+    "ExampleSentence": "Discipline is necessary in life.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Responsibility",
+    "WordType": "Noun",
+    "Meaning": "Trách nhiệm",
+    "IPATranscription": "/rɪˌspɑːnsəˈbɪləti/",
+    "ExampleSentence": "Taking care of children is a big responsibility.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Leisure",
+    "WordType": "Noun",
+    "Meaning": "Thời gian rảnh",
+    "IPATranscription": "/ˈlɛʒər/",
+    "ExampleSentence": "I read books in my leisure time.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Opportunity",
+    "WordType": "Noun",
+    "Meaning": "Cơ hội",
+    "IPATranscription": "/ˌɑːpərˈtuːnəti/",
+    "ExampleSentence": "She took the opportunity to rest.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Challenge",
+    "WordType": "Noun",
+    "Meaning": "Thử thách",
+    "IPATranscription": "/ˈtʃælɪndʒ/",
+    "ExampleSentence": "Balancing work and study is a challenge.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Achievement",
+    "WordType": "Noun",
+    "Meaning": "Thành tựu",
+    "IPATranscription": "/əˈtʃiːvmənt/",
+    "ExampleSentence": "Her biggest achievement is graduating.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Deadline",
+    "WordType": "Noun",
+    "Meaning": "Hạn chót",
+    "IPATranscription": "/ˈdɛdlaɪn/",
+    "ExampleSentence": "We have a deadline tomorrow.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Stress",
+    "WordType": "Noun",
+    "Meaning": "Căng thẳng",
+    "IPATranscription": "/strɛs/",
+    "ExampleSentence": "Work can cause a lot of stress.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Relaxation",
+    "WordType": "Noun",
+    "Meaning": "Sự thư giãn",
+    "IPATranscription": "/ˌriːlækˈseɪʃən/",
+    "ExampleSentence": "Music is a form of relaxation.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Concentration",
+    "WordType": "Noun",
+    "Meaning": "Sự tập trung",
+    "IPATranscription": "/ˌkɑːnsənˈtreɪʃən/",
+    "ExampleSentence": "This game requires concentration.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Productive",
+    "WordType": "Adjective",
+    "Meaning": "Có năng suất",
+    "IPATranscription": "/prəˈdʌktɪv/",
+    "ExampleSentence": "She had a productive day.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Schedule",
+    "WordType": "Noun",
+    "Meaning": "Lịch trình",
+    "IPATranscription": "/ˈskɛdʒuːl/",
+    "ExampleSentence": "I organize my schedule weekly.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Habitual",
+    "WordType": "Adjective",
+    "Meaning": "Thường xuyên, theo thói quen",
+    "IPATranscription": "/həˈbɪtʃuəl/",
+    "ExampleSentence": "He is a habitual late sleeper.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Persistence",
+    "WordType": "Noun",
+    "Meaning": "Sự kiên trì",
+    "IPATranscription": "/pərˈsɪstəns/",
+    "ExampleSentence": "Persistence leads to success.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Consistency",
+    "WordType": "Noun",
+    "Meaning": "Sự nhất quán",
+    "IPATranscription": "/kənˈsɪstənsi/",
+    "ExampleSentence": "Consistency is key to improvement.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  },
+  {
+    "Word": "Fulfillment",
+    "WordType": "Noun",
+    "Meaning": "Sự mãn nguyện",
+    "IPATranscription": "/fʊlˈfɪlmənt/",
+    "ExampleSentence": "Helping others brings fulfillment.",
+    "Level": "Advanced",
+    "Topic": "Daily Life"
+  }
+]

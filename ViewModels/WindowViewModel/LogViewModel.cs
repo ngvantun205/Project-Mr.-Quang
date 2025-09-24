@@ -48,7 +48,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel
             //_userRepository.Add(new User {
             //    FullName = "Admin",
             //    Email = "admin@gmail.com",
-            //    PasswordHash = "123456",
+            //    PasswordHash = "123",
             //    Role = "SuperAdmin"
             //});
         }

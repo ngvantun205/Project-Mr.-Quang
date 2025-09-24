@@ -15,7 +15,6 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
         private readonly IReadingQuestionService _readingQuestionService;
 
         public ICommand StartReadingCommand { get; set; }
-        public ICommand ShowResultCommand { get; set; }
 
         public List<ReadingLesson> BeginnerReadings { get; set; } = new List<ReadingLesson>();
         public List<ReadingLesson> IntermediateReadings { get; set; } = new List<ReadingLesson>();
@@ -29,9 +28,6 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
             CurrentUser = _sessonService.GetCurrentUser();
             StartReadingCommand = new RelayCommand(StartReading);
             _readingQuestionService = readingQuestionService;
-
-            ShowResultCommand = new RelayCommand(o => ShowResult(o));
-
             LoadData();
             
         }
@@ -49,12 +45,6 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
                 _navigationService.NavigateToReadingWindow();
             }
 
-        }
-        private void ShowResult(object? obj) {
-            if (obj is ReadingLesson lesson) {
-                _sessonService.SetCurrentReading(lesson);
-                _navigationService.NavigateToUserReadingResultWindow();
-            }
         }
 
         private void LoadData() {

@@ -74,6 +74,16 @@ namespace TDEduEnglish.Services {
             var newwindow = App.Provider?.GetRequiredService<UserReadingResultWindow>();
             newwindow?.Show();
         }
+        public void NavigateToListeningWindow() {
+            var newwindow = App.Provider?.GetRequiredService<ListeningWindow>();
+            Application.Current.MainWindow = newwindow;
+            newwindow?.Show();
+        }
+        public void NavigateToManageListeningWindow() {
+            var newwindow = App.Provider?.GetRequiredService<ManageListeningWindow>();
+            Application.Current.MainWindow = newwindow;
+            newwindow?.Show();
+        }
     }
 
 }
