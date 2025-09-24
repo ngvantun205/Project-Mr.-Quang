@@ -11,16 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TDEduEnglish.Repository;
 using TDEduEnglish.ViewModels.WindowViewModel;
 
 namespace TDEduEnglish.Views.Windows {
-    public partial class SuperAdminWindow : Window {
-        private readonly AppNavigationService _navigationService;
-        public SuperAdminWindow(AppNavigationService navigationService) {
+    /// <summary>
+    /// Interaction logic for UserReadingResultWindow.xaml
+    /// </summary>
+    public partial class UserReadingResultWindow : Window {
+        public UserReadingResultWindow() {
             InitializeComponent();
-            _navigationService = navigationService;
-
-            this.DataContext = App.Provider?.GetRequiredService<SuperAdminViewModel>();
+            this.DataContext = App.Provider?.GetRequiredService<UserReadingResultViewModel>();   
         }
     }
 }

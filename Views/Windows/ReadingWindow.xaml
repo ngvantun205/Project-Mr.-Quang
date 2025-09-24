@@ -270,17 +270,14 @@
                                                        Margin="0,0,0,16" 
                                                        TextWrapping="Wrap"/>
 
-                                            <!-- Answer Options -->
-                                            <ItemsControl ItemsSource="{Binding Options}">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <RadioButton GroupName="{Binding DataContext.ReadingQuestions.ReadingQuestionId, 
-                                                            RelativeSource={RelativeSource AncestorType=Window}}"
-                                                                     Content="{Binding OptionText}"
-                                                                     IsChecked="{Binding IsSelected, Mode=TwoWay}"/>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
+                                            <RadioButton   Content="{Binding Option1}"
+                                                           IsChecked="{Binding IsOption1Selected, Mode=TwoWay}"/>
+                                            <RadioButton   Content="{Binding Option2}" 
+                                                           IsChecked="{Binding IsOption2Selected, Mode=TwoWay}"/>
+                                            <RadioButton   Content="{Binding Option3}" 
+                                                           IsChecked="{Binding IsOption3Selected, Mode=TwoWay}"/>
+                                            <RadioButton   Content="{Binding Option4}"
+                                                           IsChecked="{Binding IsOption4Selected, Mode=TwoWay}"/>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>

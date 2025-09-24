@@ -15,14 +15,12 @@ namespace TDEduEnglish.Repository {
         public async Task<IEnumerable<ListeningLesson>> GetAll() {
             return await _context.ListeningLessons
                 .Include(r => r.Questions)
-                    .ThenInclude(q => q.Options)
                 .ToListAsync();
         }
 
         public async Task<ListeningLesson?> GetById(int id) {
             return await _context.ListeningLessons
                 .Include(r => r.Questions)
-                    .ThenInclude(q => q.Options)
                 .FirstOrDefaultAsync(r => r.ListeningLessonId == id);
         }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using TDEduEnglish.Views.SuperAdminWindow;
 using TDEduEnglish.Views.Windows;
 
 namespace TDEduEnglish.Services {
@@ -26,7 +27,7 @@ namespace TDEduEnglish.Services {
         }
 
         public void NavigateToEnglishApp() {
-            
+
         }
 
         public void CloseCurrentWindow() {
@@ -39,7 +40,7 @@ namespace TDEduEnglish.Services {
         }
 
         public void NavigateToUserWindow() {
-            var newWindow = App.Provider?.GetRequiredService<MainWindow>(); 
+            var newWindow = App.Provider?.GetRequiredService<MainWindow>();
             Application.Current.MainWindow = newWindow;
             HideCurrentWindow();
             newWindow?.Show();
@@ -52,16 +53,27 @@ namespace TDEduEnglish.Services {
             newWindow?.Show();
         }
         public void NavigateToSuperAdminWindow() {
-            var newWindow = App.Provider?.GetRequiredService<SuperAdminWindow>();
-            Application.Current.MainWindow = newWindow;
-            HideCurrentWindow();
-            newWindow?.Show();
-        }   
+            using (var scope = App.Provider!.CreateScope()) {
+                var newWindow = scope.ServiceProvider.GetRequiredService<SuperAdminWindow>();
+                Application.Current.MainWindow = newWindow;
+                HideCurrentWindow();
+                newWindow.Show();
+            }
+        }
         public void NavigateToReadingWindow() {
             var newWindow = App.Provider?.GetRequiredService<ReadingWindow>();
             Application.Current.MainWindow = newWindow;
             newWindow?.Show();
-        }   
+        }
+        public void NavigateToManageReadingWindow() {
+            var newwindow = App.Provider?.GetRequiredService<ManageReadingWindow>();
+            Application.Current.MainWindow = newwindow;
+            newwindow?.Show();
+        }
+        public void NavigateToUserReadingResultWindow() {
+            var newwindow = App.Provider?.GetRequiredService<UserReadingResultWindow>();
+            newwindow?.Show();
+        }
     }
 
 }

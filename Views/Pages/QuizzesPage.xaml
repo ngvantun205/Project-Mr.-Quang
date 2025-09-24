@@ -249,12 +249,15 @@
                                 </Grid.RowDefinitions>
 
                                 <!-- Image placeholder -->
-                                <Border Grid.Row="0" Background="#FF6366F1" CornerRadius="12,12,0,0">
-                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                
+                                <Border  Grid.Row="0" Background="#FF6366F1" CornerRadius="12,12,0,0">
+                                    <Button Background="Transparent" Command="{Binding BasicQuizCommand}">
+                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                                         <TextBlock Text="📝" FontSize="32" Margin="0,0,0,8"/>
                                         <TextBlock Text="Vocabulary Quiz" FontSize="14" 
                                                   Foreground="White" FontWeight="Medium"/>
                                     </StackPanel>
+                                    </Button>
                                 </Border>
 
                                 <!-- Content -->

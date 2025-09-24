@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using TDEduEnglish.Views.Pages;
+using TDEduEnglish.Views.SuperAdmin;
 
 namespace TDEduEnglish.ViewModels.WindowViewModel {
     class SuperAdminViewModel {
@@ -20,7 +22,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
 
         public ICommand LogoutCommand { get; set; }
         public ICommand AddVocabularyCommand { get; set; }
-        public ICommand AddReadingLessonCommand { get; set; }
+        public ICommand ManageReadingCommand { get; set; }
 
         public SuperAdminViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IUserService userService, IVocabularyService vocabularyService, IReadingService readingService) {
             this.appNavigationService = appNavigationService;
@@ -31,7 +33,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
 
             LogoutCommand = new RelayCommand( o => Logout());
             AddVocabularyCommand = new RelayCommand(async o =>await AddVocabularyFromJsonFile());
-            AddReadingLessonCommand = new RelayCommand(async o => await AddReadingLessonFromJsonFile());
+            ManageReadingCommand = new RelayCommand(o => appNavigationService.NavigateToManageReadingWindow());
         }
         private void Logout() {
             sessonService.Logout();
@@ -72,39 +74,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
         }
 
-        private async Task AddReadingLessonFromJsonFile() {
-            var openFileDialog = new OpenFileDialog {
-                Title = "Select a JSON file",
-                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
-            };
-
-            if (openFileDialog.ShowDialog() == true) {
-                string filePath = openFileDialog.FileName;
-                try {
-                    // Đọc nội dung JSON từ file
-                    string jsonContent = await File.ReadAllTextAsync(filePath);
-
-                    // Parse JSON thành List<Vocabulary>
-                    var readinglessons = JsonSerializer.Deserialize<List<ReadingLesson>>(jsonContent);
-
-                    if (readinglessons != null && readinglessons.Count > 0) {
-                        // Gọi AddListAsync vào service/repository
-                        await readingService.AddListAsync(readinglessons);
-
-                        MessageBox.Show($"✅ Đã thêm {readinglessons.Count} bài đọc vào cơ sở dữ liệu.",
-                                        "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else {
-                        MessageBox.Show("⚠️ File JSON rỗng hoặc không đúng định dạng.",
-                                        "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show($"❌ Lỗi khi đọc file JSON: {ex.Message}",
-                                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-
-        }
+        
     }
 }

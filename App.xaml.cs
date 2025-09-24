@@ -8,9 +8,12 @@ using TDEduEnglish.Data;
 using TDEduEnglish.Repository;
 using TDEduEnglish.ViewModels;
 using TDEduEnglish.ViewModels.CoursePageViewModel;
+using TDEduEnglish.ViewModels.SuperAdminViewModel;
 using TDEduEnglish.ViewModels.WindowViewModel;
 using TDEduEnglish.Views.CoursesPageView;
 using TDEduEnglish.Views.Pages;
+using TDEduEnglish.Views.SuperAdmin;
+using TDEduEnglish.Views.SuperAdminWindow;
 using TDEduEnglish.Views.Windows;
 using CourseVocabularyViewModel = TDEduEnglish.ViewModels.CoursePageViewModel.CourseVocabularyViewModel;
 
@@ -30,10 +33,13 @@ namespace TDEduEnglish {
 
             .AddScoped<IRepository<User>, UserRepository>()
             .AddScoped<IRepository<Vocabulary>, VocabularyRepository>()
+            .AddScoped<IRepository<ReadingQuestion>, ReadingQuestionRepository>()
             .AddScoped<IVocabularyRepository, VocabularyRepository>()
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<IReadingRepository, ReadingRepository>()
             .AddScoped<IListeningRepository, ListeningRepository>()
+            .AddScoped<IReadingQuestionRepository, ReadingQuestionRepository>()
+            .AddScoped<IUserReadingResultRepository, UserReadingResultRepository>()
 
             .AddScoped<UserReadingResult>()
             .AddScoped<UserListeningResult>()
@@ -44,8 +50,10 @@ namespace TDEduEnglish {
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<IReadingService, ReadingService>()
             .AddScoped<IListeningService, ListeningService>()
+            .AddScoped<IReadingQuestionService, ReadingQuestionService>()
+            .AddScoped<IUserReadingResultService, UserReadingResultService>()
 
-            .AddSingleton<AppNavigationService>(sp => new AppNavigationService(null))
+            .AddScoped<AppNavigationService>(sp => new AppNavigationService(null))
 
             .AddTransient<CoursesViewModel>()
             .AddSingleton<HomeViewModel>()
@@ -57,6 +65,8 @@ namespace TDEduEnglish {
             .AddTransient<SuperAdminViewModel>()
             .AddTransient<CourseReadingListViewModel>()
             .AddTransient<ReadingViewModel>()
+            .AddTransient<ManageReadingViewModel>()
+            .AddTransient<UserReadingResultViewModel>()
 
             .AddTransient<CourseListeningListViewModel>()
             .AddTransient<CourseVocabularyViewModel>()
@@ -67,6 +77,8 @@ namespace TDEduEnglish {
             .AddTransient<LogWindow>()
             .AddSingleton<SuperAdminWindow>()
             .AddTransient<ReadingWindow>()  
+            .AddTransient<ManageReadingWindow>()
+            .AddTransient<UserReadingResultWindow>()
 
             .AddSingleton<HomePage>()
             .AddTransient<CoursesPage>()
@@ -80,6 +92,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseReadingListPage>()
             .AddTransient<CourseListeningListPage>()
             .AddTransient<CourseListeningListPage>()
+            .AddTransient<ReadingManagementPage>()
 
             .BuildServiceProvider();
 
@@ -97,7 +110,7 @@ namespace TDEduEnglish {
             }
             var mainWindow = Provider?.GetRequiredService<LogWindow>();
             mainWindow?.Show();
-        }9/19/2025
+        }
     }
 
 

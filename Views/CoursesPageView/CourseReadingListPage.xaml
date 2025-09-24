@@ -201,12 +201,6 @@
                                                 </TextBlock.Text>
                                             </TextBlock>
                                             <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock Text="{Binding Questions.Count}" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
-                                            <TextBlock Text="q" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
                                         </StackPanel>
 
                                         <!-- Start Button -->
@@ -278,12 +272,6 @@
                                                 </TextBlock.Text>
                                             </TextBlock>
                                             <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock Text="{Binding Questions.Count}" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
-                                            <TextBlock Text="q" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
                                         </StackPanel>
 
                                         <Button Grid.Row="3" 
@@ -354,12 +342,7 @@
                                                 </TextBlock.Text>
                                             </TextBlock>
                                             <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock Text="{Binding Questions.Count}" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
-                                            <TextBlock Text="q" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
+                                            <Button Style="{StaticResource SecondaryButtonStyle}"  Height="35" FontSize="10" Content="View result before" Command="{Binding ShowResultCommand}"/>
                                         </StackPanel>
 
                                         <Button Grid.Row="3" 

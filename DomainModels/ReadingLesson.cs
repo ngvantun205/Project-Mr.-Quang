@@ -13,7 +13,7 @@ namespace TDEduEnglish.DomainModels {
         public string Title { get; set; } = "";   // tiêu đề bài đọc
         public string Content { get; set; } = ""; // nội dung đoạn văn
         public ICollection<ReadingQuestion> Questions { get; set; } = new List<ReadingQuestion>(); // danh sách câu hỏi
-        public string Level { get; set; } = "";   // A1, A2, B1...
+        public string Level { get; set; } = "";   // Beginner, Intermediate, Advanced
         public TimeSpan? SuggestedTime { get; set; } // gợi ý thời gian đọc
     }
 }
