@@ -8,5 +8,6 @@ namespace TDEduEnglish.IRepository {
     internal interface IUserReadingResultRepository : IRepository<UserReadingResult> {
         Task<IEnumerable<UserReadingResult>> GetByUserId(int id);
         Task<IEnumerable<UserReadingResult>> GetByReadingLessonId(int id);
+        Task<IEnumerable<UserReadingResult>> GetByUserIdAndLessonId(int userId, int lessonId);
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Permissions;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,6 +44,11 @@ namespace TDEduEnglish.Repository {
         }
         public async Task<IEnumerable<UserReadingResult>> GetByReadingLessonId(int lessonid) {
             return await _context.UserReadingResults.Where(result => result.ReadingLessonId == lessonid).ToListAsync();
+        }
+        public async Task<IEnumerable<UserReadingResult>> GetByUserIdAndLessonId(int userId, int lessonId) {
+            return await _context.UserReadingResults
+                .Where(result => result.UserId == userId && result.ReadingLessonId == lessonId)
+                .ToListAsync();
         }
 
     }

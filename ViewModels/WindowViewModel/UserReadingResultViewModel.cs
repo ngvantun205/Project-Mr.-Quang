@@ -19,7 +19,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             _sessonService = sessonService;
             _userReadingResultRepository = userReadingResultRepository;
             
-            Results = _userReadingResultRepository.GetByUserId(_sessonService.GetCurrentUser()!.UserId).Result;
+            Results = _userReadingResultRepository.GetByUserIdAndLessonId(_sessonService.GetCurrentUser().UserId, _sessonService.GetCurrentReading().ReadingLessonId).Result;
         }
 
     }
