@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace TDEduEnglish.DomainModels {
         [Key]
         public int ReadingQuestionId { get; set; }
         public int ReadingLessonId { get; set; }
+
+        [ForeignKey(nameof(ReadingLessonId))]
+        public ReadingLesson ReadingLesson { get; set; }
         public int QuestionNumber { get; set; }
         public string QuestionText { get; set; } = "";
         public string Option1 { get; set; } = "#";

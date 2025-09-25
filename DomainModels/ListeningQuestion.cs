@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,10 @@ namespace TDEduEnglish.DomainModels {
         [Key]
         public int ListeningQuestionId { get; set; }
         public int ListeningLessonId { get; set; }
+
+        [ForeignKey(nameof(ListeningLessonId))]
+        public ListeningLesson ListeningLesson { get; set; }
+
         public string CorrectAnswer { get; set; } = "";
         public int QuestionNumber { get; set; }
         public string QuestionText { get; set; } = "";

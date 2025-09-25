@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using TDEduEnglish.Data;
 using TDEduEnglish.DomainModels;
 using TDEduEnglish.IRepository;
@@ -22,9 +23,6 @@ namespace TDEduEnglish.Repository {
         }
         public async Task Add(User entity) {
             await _context.Users.AddAsync(entity);
-
-
-
             await _context.SaveChangesAsync();
         }
         public async Task Update(User entity) {

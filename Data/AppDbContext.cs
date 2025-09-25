@@ -23,42 +23,42 @@ namespace TDEduEnglish.Data {
             optionsBuilder.UseSqlite("Data Source=TDEduData.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<ReadingLesson>()
-                .HasMany(r => r.Questions)
-                .WithOne() 
-                .HasForeignKey("ReadingLessonId") 
+            // ListeningLesson – ListeningQuestion
+            modelBuilder.Entity<ListeningQuestion>()
+                .HasOne(q => q.ListeningLesson)
+                .WithMany(l => l.Questions)
+                .HasForeignKey(q => q.ListeningLessonId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<ReadingQuestion>();
+            // ReadingLesson – ReadingQuestion
+            modelBuilder.Entity<ReadingQuestion>()
+                .HasOne(q => q.ReadingLesson)
+                .WithMany(l => l.Questions)
+                .HasForeignKey(q => q.ReadingLessonId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // User – UserListeningResult
+            modelBuilder.Entity<UserListeningResult>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.ListeningResults)
+                .HasForeignKey(r => r.UserId);
+
+            modelBuilder.Entity<UserListeningResult>()
+                .HasOne(r => r.ListeningLesson)
+                .WithMany(l => l.UserListeningResults)
+                .HasForeignKey(r => r.ListeningLessonId);
+
+            // User – UserReadingResult
             modelBuilder.Entity<UserReadingResult>()
-                .HasOne<User>() 
-                .WithMany()
-                .HasForeignKey(urr => urr.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(r => r.User)
+                .WithMany(u => u.ReadingResults)
+                .HasForeignKey(r => r.UserId);
 
             modelBuilder.Entity<UserReadingResult>()
-                .HasOne<ReadingLesson>() 
-                .WithMany()
-                .HasForeignKey(urr => urr.ReadingLessonId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<QuizResult>()
-                .HasOne<User>()
-                .WithMany()
-                .HasForeignKey(qr => qr.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<QuizResult>()
-                .HasOne<Quiz>()
-                .WithMany()
-                .HasForeignKey(qr => qr.QuizId)
-                .OnDelete(DeleteBehavior.Cascade);            
-
-            modelBuilder.Entity<Vocabulary>();
+                .HasOne(r => r.ReadingLesson)
+                .WithMany(l => l.UserReadingResults)
+                .HasForeignKey(r => r.ReadingLessonId);
         }
-
 
     }
 }

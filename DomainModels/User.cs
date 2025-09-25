@@ -18,6 +18,7 @@ namespace TDEduEnglish.DomainModels {
         public DateTime JoinDate { get; set; } = DateTime.Now;
         public DateTime DateOfBirth { get; set; }
         public string Level { get; set; } = "";
-
+        public ICollection<UserListeningResult> ListeningResults { get; set; } = new List<UserListeningResult>();
+        public ICollection<UserReadingResult> ReadingResults { get; set; } = new List<UserReadingResult>();
     }
 }

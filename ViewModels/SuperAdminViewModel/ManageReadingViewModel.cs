@@ -29,15 +29,12 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
         public ICommand EditReadingQuestionCommand { get; set; }
         public ICommand DeleteReadingQuestionCommand { get; set; }
         public ICommand AddReadingQuestionCommand { get; set; }
+
         private ObservableCollection<ReadingLesson> readinglessons;
 
         public ObservableCollection<ReadingLesson> ReadingLessons {get => readinglessons; set {
                 Set(ref  readinglessons, value);
                 OnPropertyChanged(nameof(ReadingLessons));
-                if(SelectedReadingLesson != null) {
-                    ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetByLessonId(SelectedReadingLesson.ReadingLessonId).Result);
-                }
-                ReadingQuestions = new ObservableCollection<ReadingQuestion>();
             } }
         private ObservableCollection<ReadingQuestion> readingQuestions;
         public ObservableCollection<ReadingQuestion> ReadingQuestions { get => readingQuestions; set {
@@ -45,7 +42,16 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                 OnPropertyChanged(nameof(ReadingQuestions));
             } }
 
-        public ReadingLesson SelectedReadingLesson { get; set; }
+        private ReadingLesson selectedReadingLesson;
+
+        public ReadingLesson SelectedReadingLesson {  get => selectedReadingLesson; set {
+                Set(ref selectedReadingLesson, value);
+                if (selectedReadingLesson != null) {
+                    ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetByLessonId(selectedReadingLesson.ReadingLessonId).Result);
+                }
+            }
+        }
+
         public ReadingQuestion SelectedReadingQuestion { get; set; }
 
 
@@ -79,7 +85,7 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             if (obj is ReadingQuestion question) {
                 var result = MessageBox.Show($"Are you sure you want to delete the reading question '{question.QuestionText}'?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes) {
-                    await readingQuestionRepository.Delete(question.ReadingQuestionId);
+                    await readingQuestionService.Delete(question.ReadingQuestionId);
                     ReadingQuestions.Remove(question);
                     MessageBox.Show("Reading question deleted successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -128,11 +134,11 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                     string jsonContent = await File.ReadAllTextAsync(filePath);
                     var readingQuestions = JsonSerializer.Deserialize<List<ReadingQuestion>>(jsonContent);
                     if (readingQuestions != null && readingQuestions.Count > 0) {
-                        await readingQuestionRepository.AddListAsync(readingQuestions);
+                        await readingQuestionService.AddListAsync(readingQuestions);
 
                         MessageBox.Show($"✅ Đã thêm {readingQuestions.Count} câu hỏi đọc vào cơ sở d�� liệu.",
                                         "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionRepository.GetAll().Result);
+                        ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetAll().Result);
                     }
                     else {
                         MessageBox.Show("⚠️ File JSON rỗng hoặc không đúng định dạng.",

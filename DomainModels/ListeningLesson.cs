@@ -16,6 +16,7 @@ namespace TDEduEnglish.DomainModels {
         public TimeSpan? SuggestedTime { get; set; }
 
         public string? ListeningAudioPath { get; set; }
-        public IEnumerable<ListeningQuestion>? Questions { get; set; }
+        public ICollection<ListeningQuestion>? Questions { get; set; } = new List<ListeningQuestion>();
+        public ICollection<UserListeningResult> UserListeningResults { get; set; } = new List<UserListeningResult>();
     }
 }
