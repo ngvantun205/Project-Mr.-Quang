@@ -19,5 +19,8 @@ namespace TDEduEnglish.Views.Windows {
             InitializeComponent();
             this.DataContext = App.Provider?.GetRequiredService<ListeningViewModel>();
         }
+
+        
     }
+
 }

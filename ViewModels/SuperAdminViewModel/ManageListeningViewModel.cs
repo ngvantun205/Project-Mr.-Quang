@@ -33,7 +33,6 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
         }
 
         private ObservableCollection<ListeningQuestion> listeningQuestions;
-
         public ObservableCollection<ListeningQuestion> ListeningQuestions {
             get => listeningQuestions;
             set {
@@ -72,7 +71,6 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             ImportQuestionFromJsonCommand = new RelayCommand(async o => await ImportListeningQuestionFromJsonFile());
 
             ListeningLessons = new ObservableCollection<ListeningLesson>(_listeningService.GetAll().Result);
-
             ListeningQuestions = new ObservableCollection<ListeningQuestion>(_listeningQuestionService.GetAll().Result);    
         }
 

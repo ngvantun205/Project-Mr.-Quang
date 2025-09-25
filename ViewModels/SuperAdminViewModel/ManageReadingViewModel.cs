@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -13,36 +15,48 @@ using System.Windows.Navigation;
 using TDEduEnglish.Views.Pages;
 
 namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
-    internal class ManageReadingViewModel {
+    internal class ManageReadingViewModel : Bindable, INotifyPropertyChanged {
         private readonly AppNavigationService _navigationService;
         private readonly IReadingService readingService;
         private readonly ISessonService sessonService;  
-        private readonly IReadingQuestionRepository readingQuestionRepository;
+        private readonly IReadingQuestionService readingQuestionService;
 
         public ICommand ImportReadingLessonCommand { get; set; }
         public ICommand EditReadingLessonCommand { get; set; }
         public ICommand DeleteReadingLessonCommand { get; set; }
         public ICommand AddReadingLessonCommand { get; set; }
-        public ObservableCollection<ReadingLesson> ReadingLessons { get; set; }
-
         public ICommand ImportReadingQuestionCommand { get; set; }
         public ICommand EditReadingQuestionCommand { get; set; }
         public ICommand DeleteReadingQuestionCommand { get; set; }
         public ICommand AddReadingQuestionCommand { get; set; }
-        public ObservableCollection<ReadingQuestion> ReadingQuestions { get; set; }
+        private ObservableCollection<ReadingLesson> readinglessons;
+
+        public ObservableCollection<ReadingLesson> ReadingLessons {get => readinglessons; set {
+                Set(ref  readinglessons, value);
+                OnPropertyChanged(nameof(ReadingLessons));
+                if(SelectedReadingLesson != null) {
+                    ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetByLessonId(SelectedReadingLesson.ReadingLessonId).Result);
+                }
+                ReadingQuestions = new ObservableCollection<ReadingQuestion>();
+            } }
+        private ObservableCollection<ReadingQuestion> readingQuestions;
+        public ObservableCollection<ReadingQuestion> ReadingQuestions { get => readingQuestions; set {
+                Set(ref readingQuestions, value);
+                OnPropertyChanged(nameof(ReadingQuestions));
+            } }
 
         public ReadingLesson SelectedReadingLesson { get; set; }
         public ReadingQuestion SelectedReadingQuestion { get; set; }
 
 
-        public ManageReadingViewModel(AppNavigationService appNavigationService, IReadingService readingService, ISessonService sessonService, IReadingQuestionRepository readingQuestionRepository) {
+        public ManageReadingViewModel(AppNavigationService appNavigationService, IReadingService readingService, ISessonService sessonService, IReadingQuestionService readingQuestionService) {
             this._navigationService = appNavigationService;
             this.readingService = readingService;
             this.sessonService = sessonService;
-            this.readingQuestionRepository = readingQuestionRepository;
+            this.readingQuestionService = readingQuestionService;
 
             ReadingLessons = new ObservableCollection<ReadingLesson>(readingService.GetAll().Result);
-            ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionRepository.GetAll().Result);
+            ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetAll().Result);
 
             ImportReadingLessonCommand = new RelayCommand(async o => await AddReadingLessonFromJsonFile());
             DeleteReadingLessonCommand = new RelayCommand(async o => await DeleteReadingLesson(SelectedReadingLesson));
@@ -132,6 +146,9 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             }
 
         }
-
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

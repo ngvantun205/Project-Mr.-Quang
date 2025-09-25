@@ -9,6 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Audio\listening1.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Audio\listening1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
@@ -19,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Assets\Images\" />
-    <Folder Include="Assets\Audio\" />
     <Folder Include="VocabularySource\" />
   </ItemGroup>
 

@@ -87,12 +87,12 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
 
                 if (_elapsedSeconds >= totalSeconds && !_isSubmitted) {
                     _timer.Stop();
-                    SubmitAnswers(); // ⏰ auto submit
+                    SubmitAnswers(); 
                 }
             };
             _timer.Start();
         }
-        private async void SubmitAnswers() {
+        private async Task SubmitAnswers() {
             if (_isSubmitted) return; 
             _isSubmitted = true;
             int correct = 0;
@@ -128,7 +128,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             _navigationService.NavigateToUserReadingResultWindow();
         }
 
-
+       
         private void Exit() {
             _navigationService.NavigateToUserWindow();
         }

@@ -140,7 +140,26 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="TimerProgressStyle" TargetType="ProgressBar">
+            <Setter Property="Background" Value="#FFE5E7EB"/>
+            <Setter Property="Foreground" Value="#FF6366F1"/>
+            <Setter Property="Height" Value="6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Border Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Rectangle x:Name="PART_Track" />
+                                <Rectangle x:Name="PART_Indicator" 
+                                           Fill="{TemplateBinding Foreground}" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
+    
 
     <Grid>
         <!-- Fixed Header Section -->
@@ -172,13 +191,16 @@
                                       HorizontalAlignment="Center" 
                                       VerticalAlignment="Center"/>
                         </Border>
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="{Binding Title}" 
+                        <WrapPanel>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Title}" 
                                       FontSize="18" FontWeight="SemiBold" 
                                       Foreground="#FF1F2937"/>
-                            <TextBlock Text="{Binding Level}" 
+                                <TextBlock Text="{Binding Level}" 
                                       FontSize="12" Foreground="#FF6B7280"/>
-                        </StackPanel>
+                            </StackPanel>
+                            <MediaElement Source="{Binding AudioSource}" LoadedBehavior="Manual"></MediaElement>
+                        </WrapPanel>
                     </StackPanel>
 
                     <!-- Timer Section -->
@@ -192,8 +214,8 @@
                             </StackPanel>
                         </Border>
 
-                        <Button Content="⏸️" 
-                               Command="{Binding PauseTimerCommand}"
+                        <Button Content="Exit" 
+                               Command="{Binding ExitCommand}"
                                Style="{StaticResource SmallIconButtonStyle}"
                                ToolTip="Pause Timer"/>
                     </StackPanel>
@@ -201,7 +223,7 @@
 
                 <!-- Audio Controls Row -->
                 <Border Grid.Row="1" Background="#FFF9FAFB" CornerRadius="10" Padding="16">
-                    <Grid>
+                    <Grid HorizontalAlignment="Right" Width="1120">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
@@ -209,30 +231,40 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Play/Pause Button -->
-                        <Button Grid.Column="0" 
+                        <WrapPanel>
+                            <Button Grid.Column="0" Command="{Binding PlayPauseCommand}"
                                Content="{Binding IsPlaying}"
-                               Command="{Binding PlayPauseCommand}"
+                               x:Name="btnPlay"
                                Style="{StaticResource SmallIconButtonStyle}"
-                               Width="44" Height="44"
-                               FontSize="18"
-                               Margin="0,0,16,0"/>
+                               Width="45" Height="44"
+                               FontSize="18" Padding="0"
+                               Margin="10,0,15,10" />
+                        <Button Grid.Column="0" Command="{Binding Previous5sCommand}"
+                               Content="Pre 5s"
+                               x:Name="btnPrevious5s"
+                               Style="{StaticResource SmallIconButtonStyle}"
+                               Width="65" Height="44"
+                               FontSize="18" Padding="0"
+                               Margin="0,0,15,0" />
+                            <Button Grid.Column="0" Command="{Binding Next5sCommand}"
+                               Content="Next 5s"
+                               x:Name="btnNext5s"
+                               Style="{StaticResource SmallIconButtonStyle}"
+                               Width="70" Height="44"
+                               FontSize="18" Padding="0"
+                               Margin="0,-0,15,0" />
+                        </WrapPanel>
 
                         <!-- Progress Bar -->
                         <Grid Grid.Column="1" VerticalAlignment="Center">
-                            <Slider x:Name="AudioProgressSlider"
-                                   Value="{Binding CurrentPosition}"
-                                   Maximum="{Binding TotalDuration}"
-                                   IsEnabled="{Binding IsAudioLoaded}"
-                                   Height="24"
-                                   Style="{StaticResource {x:Type Slider}}"/>
+                            <ProgressBar Style="{StaticResource TimerProgressStyle}" 
+                                 Value="{Binding CurrentPosition}"   Maximum="{Binding TotalDuration}"/>
 
                             <StackPanel Orientation="Horizontal" 
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        Margin="0,0,0,0">
                                 <TextBlock Text="{Binding CurrentPositionText}" 
-                                          FontSize="11" Foreground="#FF6B7280"/>
-                                <TextBlock Text=" / " 
                                           FontSize="11" Foreground="#FF6B7280"/>
                                 <TextBlock Text="{Binding TotalDurationText}" 
                                           FontSize="11" Foreground="#FF6B7280"/>
@@ -251,7 +283,7 @@
                                       VerticalAlignment="Center" 
                                       Margin="0,0,8,0"/>
 
-                            <Slider Value="{Binding Volume}" 
+                            <Slider Value="{Binding Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                    Minimum="0" Maximum="1" 
                                    Width="80" Height="24"
                                    VerticalAlignment="Center"/>
@@ -262,7 +294,7 @@
         </Grid>
 
         <!-- Questions Section -->
-        <ScrollViewer Margin="0,140,0,80" 
+        <ScrollViewer Margin="0,160,0,80" 
                      VerticalScrollBarVisibility="Auto"
                      HorizontalScrollBarVisibility="Disabled"
                      Background="Transparent">
