@@ -89,6 +89,11 @@ namespace TDEduEnglish.Services {
             Application.Current.MainWindow = newwindow;
             newwindow?.Show();
         }
+        public void NavigateToManageVocabularyWindow() {
+            var newwindow = App.Provider?.GetRequiredService<ManageVocabularyWindow>();
+            Application.Current.MainWindow = newwindow;
+            newwindow?.Show();
+        }
     }
 
 }

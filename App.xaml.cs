@@ -68,11 +68,14 @@ namespace TDEduEnglish {
             .AddTransient<SuperAdminViewModel>()
             .AddTransient<CourseReadingListViewModel>()
             .AddTransient<ReadingViewModel>()
-            .AddTransient<ManageReadingViewModel>()
             .AddTransient<UserReadingResultViewModel>()
             .AddTransient<ListeningViewModel>()
+
             .AddTransient<ManageListeningViewModel>()
             .AddTransient<ManageUserViewModel>()
+            .AddTransient<ManageVocabularyViewModel>()
+            .AddTransient<ManageReadingViewModel>()
+
 
             .AddTransient<CourseListeningListViewModel>()
             .AddTransient<CourseVocabularyViewModel>()
@@ -88,6 +91,7 @@ namespace TDEduEnglish {
             .AddTransient<ListeningWindow>()
             .AddTransient<ManageListeningWindow>()
             .AddTransient<ManageUserWindow>()
+            .AddTransient<ManageVocabularyWindow>()
 
             .AddSingleton<HomePage>()
             .AddTransient<CoursesPage>()
