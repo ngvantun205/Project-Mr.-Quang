@@ -84,6 +84,11 @@ namespace TDEduEnglish.Services {
             Application.Current.MainWindow = newwindow;
             newwindow?.Show();
         }
+        public void NavigateToManageUserWindow() {
+            var newwindow = App.Provider?.GetRequiredService<ManageUserWindow>();
+            Application.Current.MainWindow = newwindow;
+            newwindow?.Show();
+        }
     }
 
 }
