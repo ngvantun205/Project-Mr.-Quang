@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,42 +19,45 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
     internal class ManageReadingViewModel : Bindable, INotifyPropertyChanged {
         private readonly AppNavigationService _navigationService;
         private readonly IReadingService readingService;
-        private readonly ISessonService sessonService;  
+        private readonly ISessonService sessonService;
         private readonly IReadingQuestionService readingQuestionService;
 
         public ICommand ImportReadingLessonCommand { get; set; }
-        public ICommand EditReadingLessonCommand { get; set; }
+        public ICommand UpdateReadingLessonCommand { get; set; }
         public ICommand DeleteReadingLessonCommand { get; set; }
         public ICommand AddReadingLessonCommand { get; set; }
         public ICommand ImportReadingQuestionCommand { get; set; }
-        public ICommand EditReadingQuestionCommand { get; set; }
+        public ICommand UpdateReadingQuestionCommand { get; set; }
         public ICommand DeleteReadingQuestionCommand { get; set; }
         public ICommand AddReadingQuestionCommand { get; set; }
 
         private ObservableCollection<ReadingLesson> readinglessons;
 
-        public ObservableCollection<ReadingLesson> ReadingLessons {get => readinglessons; set {
-                Set(ref  readinglessons, value);
+        public ObservableCollection<ReadingLesson> ReadingLessons {
+            get => readinglessons; set {
+                Set(ref readinglessons, value);
                 OnPropertyChanged(nameof(ReadingLessons));
-            } }
+            }
+        }
         private ObservableCollection<ReadingQuestion> readingQuestions;
-        public ObservableCollection<ReadingQuestion> ReadingQuestions { get => readingQuestions; set {
+        public ObservableCollection<ReadingQuestion> ReadingQuestions {
+            get => readingQuestions; set {
                 Set(ref readingQuestions, value);
                 OnPropertyChanged(nameof(ReadingQuestions));
-            } }
+            }
+        }
 
         private ReadingLesson selectedReadingLesson;
 
-        public ReadingLesson SelectedReadingLesson {  get => selectedReadingLesson; set {
+        public ReadingLesson SelectedReadingLesson {
+            get => selectedReadingLesson; set {
                 Set(ref selectedReadingLesson, value);
                 if (selectedReadingLesson != null) {
                     ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetByLessonId(selectedReadingLesson.ReadingLessonId).Result);
                 }
             }
         }
-
         public ReadingQuestion SelectedReadingQuestion { get; set; }
-
 
         public ManageReadingViewModel(AppNavigationService appNavigationService, IReadingService readingService, ISessonService sessonService, IReadingQuestionService readingQuestionService) {
             this._navigationService = appNavigationService;
@@ -64,12 +68,36 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             ReadingLessons = new ObservableCollection<ReadingLesson>(readingService.GetAll().Result);
             ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetAll().Result);
 
-            ImportReadingLessonCommand = new RelayCommand(async o => await AddReadingLessonFromJsonFile());
+            ImportReadingLessonCommand = new RelayCommand(async o => await ImportReadingLessonFromJsonFile());
             DeleteReadingLessonCommand = new RelayCommand(async o => await DeleteReadingLesson(SelectedReadingLesson));
-            
-            ImportReadingQuestionCommand = new RelayCommand(async o => await AddReadingQuestionFromJsonFile());
-            DeleteReadingQuestionCommand = new RelayCommand(async o => await DeleteReadingQuestion(SelectedReadingQuestion));
+            AddReadingLessonCommand = new RelayCommand(async o => await AddReadingLesson());
+            UpdateReadingLessonCommand = new RelayCommand(async o => await UpdateReadingLesson(SelectedReadingLesson));
 
+            ImportReadingQuestionCommand = new RelayCommand(async o => await ImportReadingQuestionFromJsonFile());
+            DeleteReadingQuestionCommand = new RelayCommand(async o => await DeleteReadingQuestion(SelectedReadingQuestion));
+            AddReadingQuestionCommand = new RelayCommand(async o =>  await AddReadingQuestion());
+            UpdateReadingQuestionCommand = new RelayCommand(async o => await UpdateReadingQuestion(SelectedReadingQuestion));
+        }
+        private async Task AddReadingLesson() {
+            var lesson = new ReadingLesson();
+            ReadingLessons.Add(lesson);
+            await readingService.Add(lesson);
+        }
+        private async Task AddReadingQuestion() {
+            var question = new ReadingQuestion();
+            ReadingQuestions.Add(question);
+            await readingQuestionService.Add(question);
+        }
+        private async Task UpdateReadingLesson(object? o) {
+            if(o is ReadingLesson readingLesson) {
+                await readingService.Update(readingLesson);
+                MessageBox.Show("Reading lesson is updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }private async Task UpdateReadingQuestion(object? o) {
+            if(o is ReadingQuestion question) {
+                await readingQuestionService.Update(question);
+                MessageBox.Show("Reading question is updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
         private async Task DeleteReadingLesson(object obj) {
             if (obj is ReadingLesson lesson) {
@@ -92,7 +120,8 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             }
         }
 
-        private async Task AddReadingLessonFromJsonFile() {
+        private async Task ImportReadingLessonFromJsonFile() {
+
             var openFileDialog = new OpenFileDialog {
                 Title = "Select a JSON file",
                 Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
@@ -122,35 +151,42 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             }
 
         }
-        private async Task AddReadingQuestionFromJsonFile() {
-            var openFileDialog = new OpenFileDialog {
-                Title = "Select a JSON file",
-                Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
-            };
+        private async Task ImportReadingQuestionFromJsonFile() {
+            if (selectedReadingLesson != null) {
+                var openFileDialog = new OpenFileDialog {
+                    Title = "Select a JSON file",
+                    Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*"
+                };
 
-            if (openFileDialog.ShowDialog() == true) {
-                string filePath = openFileDialog.FileName;
-                try {
-                    string jsonContent = await File.ReadAllTextAsync(filePath);
-                    var readingQuestions = JsonSerializer.Deserialize<List<ReadingQuestion>>(jsonContent);
-                    if (readingQuestions != null && readingQuestions.Count > 0) {
-                        await readingQuestionService.AddListAsync(readingQuestions);
+                if (openFileDialog.ShowDialog() == true) {
+                    string filePath = openFileDialog.FileName;
+                    try {
+                        string jsonContent = await File.ReadAllTextAsync(filePath);
+                        var readingQuestions = JsonSerializer.Deserialize<List<ReadingQuestion>>(jsonContent);
+                        if (readingQuestions != null && readingQuestions.Count > 0) {
+                            foreach(var readingQuestion in readingQuestions) {
+                                readingQuestion.ReadingLessonId = selectedReadingLesson.ReadingLessonId;
+                            }
+                            await readingQuestionService.AddListAsync(readingQuestions);
 
-                        MessageBox.Show($"✅ Đã thêm {readingQuestions.Count} câu hỏi đọc vào cơ sở d�� liệu.",
-                                        "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetAll().Result);
+                            MessageBox.Show($"✅ Đã thêm {readingQuestions.Count} câu hỏi đọc vào cơ sở d�� liệu.",
+                                            "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetAll().Result);
+                        }
+                        else {
+                            MessageBox.Show("⚠️ File JSON rỗng hoặc không đúng định dạng.",
+                                            "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
-                    else {
-                        MessageBox.Show("⚠️ File JSON rỗng hoặc không đúng định dạng.",
-                                        "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    catch (Exception ex) {
+                        MessageBox.Show($"❌ Lỗi khi đọc file JSON: {ex.Message}",
+                                        "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show($"❌ Lỗi khi đọc file JSON: {ex.Message}",
-                                    "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
+            else {
+                MessageBox.Show("Please select a lesson to add questions");
+            }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null) {

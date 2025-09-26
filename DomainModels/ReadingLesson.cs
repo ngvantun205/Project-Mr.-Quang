@@ -14,7 +14,7 @@ namespace TDEduEnglish.DomainModels {
         public string Content { get; set; } = "";  
         public string Level { get; set; } = ""; 
         public TimeSpan? SuggestedTime { get; set; } 
-        public ICollection<ReadingQuestion> Questions { get; set; } = new List<ReadingQuestion>(); // danh sách câu hỏi
+        public ICollection<ReadingQuestion> Questions { get; set; } = new List<ReadingQuestion>();
         public ICollection<UserReadingResult> UserReadingResults { get; set; } = new List<UserReadingResult>();
     }
 }

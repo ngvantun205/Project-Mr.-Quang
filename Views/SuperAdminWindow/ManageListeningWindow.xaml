@@ -61,7 +61,7 @@
             <Setter Property="CanUserAddRows" Value="False"/>
             <Setter Property="CanUserDeleteRows" Value="False"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="IsReadOnly" Value="False"/>
         </Style>
     </Window.Resources>
 
@@ -96,9 +96,9 @@
 
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
                     <Button Content="Import JSON" Style="{StaticResource SmallPrimaryButton}" Command="{Binding ImportLessonFromJsonCommand}"/>
-                    <Button Content="Add Lesson" Style="{StaticResource SmallPrimaryButton}" Command="{Binding AddLessonCommand}"/>
-                    <Button Content="Edit" Style="{StaticResource SmallPrimaryButton}" Command="{Binding EditLessonCommand}" />
-                    <Button Content="Delete" Style="{StaticResource SmallPrimaryButton}" Command="{Binding DeleteLessonCommand}" />
+                    <Button Content="Add Lesson" Style="{StaticResource SmallPrimaryButton}" Command="{Binding AddListeningLessonCommand}"/>
+                    <Button Content="Update" Style="{StaticResource SmallPrimaryButton}" Command="{Binding UpdateListeningLessonCommand}" />
+                    <Button Content="Delete" Style="{StaticResource SmallPrimaryButton}" Command="{Binding DeleteListeningLessonCommand}" />
                 </StackPanel>
             </DockPanel>
         </Border>
@@ -183,16 +183,16 @@
 
                         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,8">
                             <TextBlock Text="Questions" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <Button Content="Add Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding AddQuestionCommand}" Margin="8,0"/>
-                            <Button Content="Edit Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding EditQuestionCommand}" />
-                            <Button Content="Del Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding DeleteQuestionCommand}" />
+                            <Button Content="Add Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding AddListeningQuestionCommand}" Margin="8,0"/>
+                            <Button Content="Update Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding UpdateListeningQuestionCommand}" />
+                            <Button Content="Del Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding DeleteListeningQuestionCommand}" />
                             <Button Content="Import JSON" Style="{StaticResource SmallPrimaryButton}" Command="{Binding ImportQuestionFromJsonCommand}" />
 
                         </StackPanel>
 
                         <DataGrid Grid.Row="1" Style="{StaticResource CompactDataGrid}" 
                                   ItemsSource="{Binding ListeningQuestions}"
-                                  SelectedItem="{Binding SelectedQuestion, Mode=TwoWay}">
+                                  SelectedItem="{Binding SelectedQuestion, Mode=TwoWay}" SelectionChanged="DataGrid_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" Binding="{Binding QuestionNumber}" Width="50"/>
                                 <DataGridTextColumn Header="Question" Binding="{Binding QuestionText}" Width="*"/>

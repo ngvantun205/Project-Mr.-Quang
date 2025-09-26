@@ -13,6 +13,5 @@ namespace TDEduEnglish.IAppServices {
         Task Add(ReadingQuestion entity);
         Task Update(ReadingQuestion entity);
         Task Delete(int id);
-
     }
 }

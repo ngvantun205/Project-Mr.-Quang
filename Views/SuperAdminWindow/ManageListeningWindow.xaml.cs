@@ -22,5 +22,9 @@ namespace TDEduEnglish.Views.SuperAdminWindow {
             InitializeComponent();
             this.DataContext = App.Provider?.GetRequiredService<ManageListeningViewModel>();
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
     }
 }
