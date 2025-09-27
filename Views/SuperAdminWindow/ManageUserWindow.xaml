@@ -149,7 +149,7 @@
                           ItemsSource="{Binding Users}"
                           SelectedItem="{Binding SelectedUser, Mode=TwoWay}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" 
+                        <DataGridTextColumn Header="ID" Binding="{Binding UserId}" 
                                             HeaderStyle="{StaticResource DataGridHeaderStyle}" Width="60"/>
                         <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" 
                                             HeaderStyle="{StaticResource DataGridHeaderStyle}" Width="200"/>

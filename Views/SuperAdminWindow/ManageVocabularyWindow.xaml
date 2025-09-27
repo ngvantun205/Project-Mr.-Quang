@@ -162,15 +162,6 @@
             <DataGrid ItemsSource="{Binding VocabularyList}" 
                       SelectedItem="{Binding SelectedVocabulary}" 
                       Style="{StaticResource ModernDataGrid}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Word" Binding="{Binding Word}" Width="150"/>
-                    <DataGridTextColumn Header="Type" Binding="{Binding WordType}" Width="80"/>
-                    <DataGridTextColumn Header="Meaning" Binding="{Binding Meaning}" Width="200"/>
-                    <DataGridTextColumn Header="IPA" Binding="{Binding IPATranscription}" Width="120"/>
-                    <DataGridTextColumn Header="Example" Binding="{Binding ExampleSentence}" Width="250"/>
-                    <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="80"/>
-                    <DataGridTextColumn Header="Topic" Binding="{Binding Topic}" Width="120"/>
-                </DataGrid.Columns>
             </DataGrid>
         </Border>
     </Grid>

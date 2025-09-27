@@ -12,7 +12,7 @@ namespace TDEduEnglish.DomainModels {
         public int UserId { get; set; }
         public string FullName { get; set; } = "";
         public string Email { get; set; } = "";
-        public string PasswordHash { get; set; } = "";
+        public string PasswordHash { get; set; } = "123";
         public string PhoneNumber { get; set; } = "";
         public string Role { get; set; } = "";
         public DateTime JoinDate { get; set; } = DateTime.Now;
