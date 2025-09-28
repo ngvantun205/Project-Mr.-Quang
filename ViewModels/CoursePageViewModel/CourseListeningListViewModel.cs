@@ -25,13 +25,13 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
             _listeningQuestionService = listeningQuestionService;
             _sessonService = sessonService;
 
-            StartListeningCommand = new RelayCommand(async o => StartListening(o)); 
+            StartListeningCommand = new RelayCommand( o =>  StartListening(o)); 
             LoadData();           
         }
-        private void StartListening(object? o) {
+        private async Task StartListening(object? o) {
             if(o is ListeningLesson lesson) {
                 _sessonService.SetCurrentListening(lesson);
-                var listeningquestions =  _listeningQuestionService.GetByListeningId(lesson.ListeningLessonId).Result;
+                var listeningquestions =  await _listeningQuestionService.GetByListeningId(lesson.ListeningLessonId);
                 foreach(var item in listeningquestions) {
                     item.IsOption1Selected = false;
                     item.IsOption2Selected = false;

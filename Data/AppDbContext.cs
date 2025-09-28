@@ -8,7 +8,7 @@ using TDEduEnglish.DomainModels;
 using TDEduEnglish.Views.Pages;
 
 namespace TDEduEnglish.Data {
-    internal class AppDbContext : DbContext {
+    public class AppDbContext : DbContext {
         public DbSet<User> Users { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<QuizResult> QuizResults { get; set; }
@@ -19,6 +19,8 @@ namespace TDEduEnglish.Data {
         public DbSet<ListeningLesson> ListeningLessons { get; set; }
         public DbSet<ListeningQuestion> ListeningQuestions { get; set; }
         public DbSet<UserListeningResult> UserListeningResults { get; set; }
+        public DbSet<Writing> Writings { get; set; }
+        public DbSet<AIChat> AIChats { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlite("Data Source=TDEduData.db");
         }

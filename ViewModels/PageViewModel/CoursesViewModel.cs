@@ -14,21 +14,14 @@ namespace TDEduEnglish.ViewModels {
         private readonly AppNavigationService _navigationService;
         public CoursesViewModel(AppNavigationService navigationService) {
             _navigationService = navigationService;
-            
-            VocabularyCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo< CourseVocabularyPage>();
-            });
-            GrammarCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo<CourseGrammarPage>();
-            });
-            ReadingCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo<CourseReadingListPage>();
-            });
-            ListeningCommand = new RelayCommand(o => {
-                _navigationService.NavigateTo<CourseListeningListPage>();
-            });
+
+            VocabularyCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseVocabularyPage>());
+            GrammarCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseGrammarPage>());
+            ReadingCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseReadingListPage>());
+            ListeningCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseListeningListPage>());
+            WritingCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseWritingPage>());
         }
-       
+
         public ICommand ListeningCommand { get; set; }
         public ICommand SpeakingCommand { get; set; }
         public ICommand ReadingCommand { get; set; }

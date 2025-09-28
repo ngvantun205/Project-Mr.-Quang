@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GenerativeAI;
+using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
 using System.Runtime.InteropServices.JavaScript;
@@ -41,6 +42,8 @@ namespace TDEduEnglish {
             .AddScoped<IUserReadingResultRepository, UserReadingResultRepository>()
             .AddScoped<IListeningQuestionRepository, ListeningQuestionRepository>()
             .AddScoped<IUserListeningResultRepository, UserListeningResultRepository>()
+            .AddScoped<IAIChatRepository, AIChatRepository>()
+            .AddScoped<IWritingRepository, WritingRepository>()
 
             .AddScoped<UserReadingResult>()
             .AddScoped<UserListeningResult>()
@@ -55,6 +58,8 @@ namespace TDEduEnglish {
             .AddScoped<IUserReadingResultService, UserReadingResultService>()
             .AddScoped<IListeningQuestionService, ListeningQuestionService>()
             .AddScoped<IUserListeningResultService, UserListeningResultService>()
+            .AddScoped<IAIChatService, AIChatService>()
+            .AddScoped<IWritingService, WritingService>()
 
             .AddScoped<AppNavigationService>(sp => new AppNavigationService(null))
 
@@ -81,6 +86,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseVocabularyViewModel>()
             .AddTransient<CourseGrammarViewModel>()
             .AddTransient<CoursesVocabularyListViewModel>()
+            .AddTransient<CourseWritingViewModel>()
 
             .AddSingleton<MainWindow>()
             .AddTransient<LogWindow>()
@@ -104,7 +110,9 @@ namespace TDEduEnglish {
             .AddTransient<CoursesVocabularyListPage>()
             .AddTransient<CourseReadingListPage>()
             .AddTransient<CourseListeningListPage>()
-            .AddTransient<CourseListeningListPage>()
+            .AddTransient<CourseWritingPage>()
+
+            .AddScoped<GenerativeModel>()
 
             .BuildServiceProvider();
 

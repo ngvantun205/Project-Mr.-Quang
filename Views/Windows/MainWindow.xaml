@@ -231,11 +231,11 @@
                 <StackPanel Grid.Column="2" Orientation="Horizontal" 
                            VerticalAlignment="Center" Margin="0,0,32,0">
 
-                   
+
                     <!-- Logged In Mode - Notifications and Profile -->
                     <StackPanel Orientation="Horizontal" 
                                Visibility="{Binding IsLoggedIn, Converter={StaticResource BoolToVisibilityConverter}}">
-                        
+
                         <!-- Notifications Button -->
                         <Grid Margin="0,0,16,0">
                             <Button Command="{Binding NotificationCommand}"

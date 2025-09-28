@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TDEduEnglish.DomainModels {
-    internal class Vocabulary {
+    public class Vocabulary {
         [Key]
         public int VocabularyId { get; set; }
         public string Word { get; set; } = "";

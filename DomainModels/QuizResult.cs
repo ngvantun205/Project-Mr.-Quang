@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TDEduEnglish.DomainModels {
-    class QuizResult : Bindable {
+    public class QuizResult : Bindable {
         [Key]
         public int QuizResultId { get; set; }
         public int UserId { get; set; }
