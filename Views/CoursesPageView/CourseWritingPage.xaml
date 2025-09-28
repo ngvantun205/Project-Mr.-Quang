@@ -512,16 +512,17 @@
 
                                                         <!-- Writing Preview -->
                                                         <StackPanel Grid.Column="1">
-                                                            <TextBlock Text="{Binding WritingText}" 
+                                                            <TextBlock Text="{Binding Text}" 
                                                                   FontSize="12" FontWeight="SemiBold" 
                                                                   Foreground="#FF1F2937" Margin="0,0,0,2"/>
-                                                            <TextBlock Text="{Binding WritingText}" 
+                                                            <TextBlock Text="{Binding FeedBack}" 
                                                                   FontSize="11" Foreground="#FF6B7280" 
                                                                   TextTrimming="CharacterEllipsis" MaxWidth="300"
                                                                   MaxHeight="30" TextWrapping="Wrap"/>
                                                         </StackPanel>
 
                                                         <!-- Score -->
+                                                        <!--
                                                         <Border Grid.Column="2" CornerRadius="8" 
                                                            Padding="6,3" Margin="0,0,8,0">
                                                             <Border.Style>
@@ -542,7 +543,7 @@
                                                             <TextBlock Text="{Binding Score, StringFormat='{}{0:F1}/10'}" 
                                                                   FontSize="11" FontWeight="Bold" 
                                                                   Foreground="White"/>
-                                                        </Border>
+                                                        </Border>-->
 
                                                         <!-- View Button -->
                                                         <Button Grid.Column="3" Content="View" 
@@ -555,24 +556,6 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
-
-                                    <!-- Empty State -->
-                                    <Border x:Name="EmptyHistoryPanel" 
-                                       Background="#FFF9FAFB" CornerRadius="8" 
-                                       Padding="30" Margin="0,15,0,0"
-                                       Visibility="{Binding HasWritingHistory}" Height="476">
-                                        <StackPanel HorizontalAlignment="Center">
-                                            <TextBlock Text="📝" FontSize="32" 
-                                                  HorizontalAlignment="Center" Opacity="0.3"/>
-                                            <TextBlock Text="No writing submissions yet" 
-                                                  FontSize="14" FontWeight="SemiBold" 
-                                                  Foreground="#FF6B7280" HorizontalAlignment="Center" 
-                                                  Margin="0,10,0,6"/>
-                                            <TextBlock Text="Start writing to see your progress here!" 
-                                                  FontSize="11" Foreground="#FF9CA3AF" 
-                                                  HorizontalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Border>
                                 </StackPanel>
                             </ScrollViewer>
                         </Border>

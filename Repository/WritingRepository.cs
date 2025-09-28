@@ -35,7 +35,6 @@ namespace TDEduEnglish.Repository {
                 existingwriting.Text = writing.Text;
                 existingwriting.Feedback = writing.Feedback;
                 existingwriting.SubmitDate = writing.SubmitDate;
-                existingwriting.Score = writing.Score;
                 await _context.SaveChangesAsync();
             }
         }

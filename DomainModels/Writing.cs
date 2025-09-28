@@ -12,6 +12,5 @@ namespace TDEduEnglish.DomainModels {
         public string Feedback { get; set; } = "";
         public int UserId { get; set; }
         public DateTime SubmitDate { get; set; } = DateTime.Now;
-        public double Score { get; set; }   
     }
 }
