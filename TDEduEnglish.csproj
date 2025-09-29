@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="VocabularySource\**" />
+    <EmbeddedResource Remove="VocabularySource\**" />
+    <None Remove="VocabularySource\**" />
+    <Page Remove="VocabularySource\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\Audio\listening1.mp3" />
   </ItemGroup>
 
@@ -26,12 +33,25 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.9" />
     <PackageReference Include="Mscc.GenerativeAI" Version="2.8.12" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Assets\Images\" />
-    <Folder Include="VocabularySource\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0-windows\appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\JsonFile\appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

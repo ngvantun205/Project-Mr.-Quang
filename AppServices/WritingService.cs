@@ -1,7 +1,9 @@
 ﻿using GenerativeAI.Types;
+using Microsoft.Extensions.Configuration;
 using Mscc.GenerativeAI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +12,16 @@ namespace TDEduEnglish.AppServices {
     public class WritingService : IWritingService {
         private readonly IWritingRepository _writingRepository;
         private readonly GenerativeModel _model;
-        public WritingService(IWritingRepository writingRepository, string apiKey = "AIzaSyC4nDtN-OVQ4DuPpMSk-99fsiKU0cf5pIM", string modelName = "gemini-2.5-flash") {
+        public WritingService(IWritingRepository writingRepository) {
             _writingRepository = writingRepository;
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            string apiKey = config["GeminiSettings:GeminiAPIKey"];
+            string modelName = config["GeminiSettings:ModelName"];
+
             var api = new GoogleAI(apiKey);
             _model = api.GenerativeModel(model: modelName);
         }
