@@ -312,6 +312,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
+                                        <!-- Số thứ tự câu hỏi -->
                                         <Border Grid.Column="0" 
                                                Background="#FF6366F1" 
                                                CornerRadius="6" 
@@ -324,13 +325,25 @@
                                                       VerticalAlignment="Center"/>
                                         </Border>
 
-                                        <TextBlock Grid.Column="1" 
-                                                  Text="{Binding QuestionText}" 
-                                                  FontSize="16" FontWeight="Medium"
-                                                  Foreground="#FF1F2937"
-                                                  TextWrapping="Wrap"
-                                                  VerticalAlignment="Center"/>
+                                        <!-- 🔹 Câu hỏi (đã chuyển sang RichTextBox) -->
+                                        <RichTextBox Grid.Column="1"
+                                                     IsReadOnly="True"
+                                                     BorderThickness="0"
+                                                     FontSize="16"
+                                                     FontWeight="Medium"
+                                                     Foreground="#FF1F2937"
+                                                     Background="Transparent"
+                                                     
+                                                     
+                                                     VerticalAlignment="Center">
+                                            <FlowDocument>
+                                                <Paragraph>
+                                                    <Run Text="{Binding QuestionText}" />
+                                                </Paragraph>
+                                            </FlowDocument>
+                                        </RichTextBox>
 
+                                        <!-- Trạng thái đã trả lời -->
                                         <Border Grid.Column="2" 
                                                Background="{Binding IsAnswered}"
                                                CornerRadius="4" 
@@ -341,23 +354,75 @@
                                         </Border>
                                     </Grid>
 
-                                    <!-- Answer Options -->
+                                    <!-- 🔸 Answer Options (đã chuyển sang RichTextBox) -->
                                     <StackPanel Margin="0,0,0,0">
-                                        <RadioButton Content="{Binding Option1}" 
-                                                    IsChecked="{Binding IsOption1Selected}"
-                                                    Style="{StaticResource AnswerOptionStyle}"/>
+                                        <RadioButton IsChecked="{Binding IsOption1Selected}"
+                                                    Style="{StaticResource AnswerOptionStyle}">
+                                            <RadioButton.Content>
+                                                <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                             FontSize="14"
+                                                             Foreground="#FF374151"
+                                                             Background="Transparent"
+                                                             >
+                                                    <FlowDocument>
+                                                        <Paragraph>
+                                                            <Run Text="{Binding Option1}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </RichTextBox>
+                                            </RadioButton.Content>
+                                        </RadioButton>
 
-                                        <RadioButton Content="{Binding Option2}" 
-                                                    IsChecked="{Binding IsOption2Selected}"
-                                                    Style="{StaticResource AnswerOptionStyle}"/>
+                                        <RadioButton IsChecked="{Binding IsOption2Selected}"
+                                                    Style="{StaticResource AnswerOptionStyle}">
+                                            <RadioButton.Content>
+                                                <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                             FontSize="14"
+                                                             Foreground="#FF374151"
+                                                             Background="Transparent"
+                                                            >
+                                                    <FlowDocument>
+                                                        <Paragraph>
+                                                            <Run Text="{Binding Option2}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </RichTextBox>
+                                            </RadioButton.Content>
+                                        </RadioButton>
 
-                                        <RadioButton Content="{Binding Option3}" 
-                                                    IsChecked="{Binding IsOption3Selected}"
-                                                    Style="{StaticResource AnswerOptionStyle}"/>
+                                        <RadioButton IsChecked="{Binding IsOption3Selected}"
+                                                    Style="{StaticResource AnswerOptionStyle}">
+                                            <RadioButton.Content>
+                                                <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                             FontSize="14"
+                                                             Foreground="#FF374151"
+                                                             Background="Transparent"
+                                                             >
+                                                    <FlowDocument>
+                                                        <Paragraph>
+                                                            <Run Text="{Binding Option3}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </RichTextBox>
+                                            </RadioButton.Content>
+                                        </RadioButton>
 
-                                        <RadioButton Content="{Binding Option4}" 
-                                                    IsChecked="{Binding IsOption4Selected}"
-                                                    Style="{StaticResource AnswerOptionStyle}"/>
+                                        <RadioButton IsChecked="{Binding IsOption4Selected}"
+                                                    Style="{StaticResource AnswerOptionStyle}">
+                                            <RadioButton.Content>
+                                                <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                             FontSize="14"
+                                                             Foreground="#FF374151"
+                                                             Background="Transparent"
+                                                             >
+                                                    <FlowDocument>
+                                                        <Paragraph>
+                                                            <Run Text="{Binding Option4}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </RichTextBox>
+                                            </RadioButton.Content>
+                                        </RadioButton>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -419,6 +484,21 @@
                            IsEnabled="{Binding CanSubmit}"
                            FontWeight="Bold"/>
                 </StackPanel>
+                <Popup IsOpen="{Binding IsPopupOpen}"
+               Placement="MousePoint"
+               StaysOpen="False">
+                    <Border Background="#FF111827" CornerRadius="6" Padding="8,4">
+                        <TextBlock Text="➕ Thêm vào từ vựng của tôi"
+                           Foreground="White" FontSize="13"
+                           Cursor="Hand">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick"
+                                      Command="{Binding AddToVocabularyCommand}"
+                                      CommandParameter="{Binding SelectedWord}" />
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </Border>
+                </Popup>
             </Grid>
         </Border>
     </Grid>

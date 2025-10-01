@@ -13,7 +13,7 @@ namespace TDEduEnglish.ViewModels {
         public QuizzesViewModel(AppNavigationService navigationService) {
             _navigationService = navigationService;
 
-            BasicQuizCommand = new RelayCommand(o => _navigationService.NavigateToSuperAdminWindow());
+            BasicQuizCommand = new RelayCommand(o => _navigationService.NavigateToQuizWindow());
         }
     }
 }

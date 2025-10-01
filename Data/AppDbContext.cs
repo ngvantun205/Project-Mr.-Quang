@@ -21,6 +21,7 @@ namespace TDEduEnglish.Data {
         public DbSet<UserListeningResult> UserListeningResults { get; set; }
         public DbSet<Writing> Writings { get; set; }
         public DbSet<AIChat> AIChats { get; set; }
+        public DbSet<UserVocabulary> UserVocabularies { get; set; } 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlite("Data Source=TDEduData.db");
         }

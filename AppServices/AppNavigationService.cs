@@ -94,6 +94,11 @@ namespace TDEduEnglish.Services {
             Application.Current.MainWindow = newwindow;
             newwindow?.Show();
         }
+        public void NavigateToQuizWindow() {
+            var newwindow = App.Provider?.GetRequiredService<QuizWindow>();
+            Application.Current.MainWindow = newwindow;
+            newwindow?.Show();
+        }
     }
 
 }

@@ -44,6 +44,7 @@ namespace TDEduEnglish {
             .AddScoped<IUserListeningResultRepository, UserListeningResultRepository>()
             .AddScoped<IAIChatRepository, AIChatRepository>()
             .AddScoped<IWritingRepository, WritingRepository>()
+            .AddScoped<IUserVocabularyRepository, UserVocabularyRepository>()
 
             .AddScoped<UserReadingResult>()
             .AddScoped<UserListeningResult>()
@@ -60,6 +61,7 @@ namespace TDEduEnglish {
             .AddScoped<IUserListeningResultService, UserListeningResultService>()
             .AddScoped<IAIChatService, AIChatService>()
             .AddScoped<IWritingService, WritingService>()
+            .AddScoped<IUserVocabularyService, UserVocabularyService>()
 
             .AddScoped<AppNavigationService>(sp => new AppNavigationService(null))
 
@@ -87,6 +89,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseGrammarViewModel>()
             .AddTransient<CoursesVocabularyListViewModel>()
             .AddTransient<CourseWritingViewModel>()
+            .AddTransient<CourseMyVocabularyViewModel>()
 
             .AddSingleton<MainWindow>()
             .AddTransient<LogWindow>()
@@ -98,6 +101,7 @@ namespace TDEduEnglish {
             .AddTransient<ManageListeningWindow>()
             .AddTransient<ManageUserWindow>()
             .AddTransient<ManageVocabularyWindow>()
+            .AddTransient<QuizWindow>()
 
             .AddSingleton<HomePage>()
             .AddTransient<CoursesPage>()
@@ -111,6 +115,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseReadingListPage>()
             .AddTransient<CourseListeningListPage>()
             .AddTransient<CourseWritingPage>()
+            .AddTransient<CourseMyVocabularyPage>()
 
             .AddScoped<GenerativeModel>()
 

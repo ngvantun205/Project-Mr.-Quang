@@ -4,11 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TDEduEnglish.Views.Windows"
+        xmlns:behaviors="clr-namespace:TDEduEnglish.Behaviors"
         Background="Black"
         mc:Ignorable="d"
-        Title="ReadingWindow" Height="740" Width="1200">
+        Title="ReadingWindow" Height="740" Width="1200"
+        PreviewMouseDown="Window_PreviewMouseDown">
+
     <Window.Resources>
-        <!-- Compact Modern Button Style -->
+        <!-- Giữ nguyên toàn bộ Style -->
         <Style x:Key="CompactButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#FF6366F1"/>
             <Setter Property="Foreground" Value="White"/>
@@ -39,7 +42,6 @@
             </Setter>
         </Style>
 
-        <!-- Secondary Compact Button Style -->
         <Style x:Key="CompactSecondaryButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="#FF6366F1"/>
@@ -73,7 +75,6 @@
             </Setter>
         </Style>
 
-        <!-- Radio Button Style for Options -->
         <Style x:Key="OptionRadioButtonStyle" TargetType="RadioButton">
             <Setter Property="Foreground" Value="#FF374151"/>
             <Setter Property="FontSize" Value="14"/>
@@ -124,7 +125,6 @@
             </Setter>
         </Style>
 
-        <!-- Timer Progress Bar Style -->
         <Style x:Key="TimerProgressStyle" TargetType="ProgressBar">
             <Setter Property="Background" Value="#FFE5E7EB"/>
             <Setter Property="Foreground" Value="#FF6366F1"/>
@@ -209,21 +209,33 @@
                 <ScrollViewer Padding="32" VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <!-- Reading Title -->
-                        <TextBlock Text="{Binding Title}" 
-                                   FontSize="24" FontWeight="Bold" 
-                                   Foreground="#FF1F2937" 
-                                   Margin="0,0,0,20" 
-                                   TextWrapping="Wrap"/>
+                        <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                     FontSize="24" FontWeight="Bold" 
+                                     Foreground="#FF1F2937" 
+                                     Margin="0,0,0,20">
+                            <FlowDocument>
+                                <Paragraph>
+                                    <Run Text="{Binding Title}" />
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
 
                         <Separator Background="#FFE5E7EB" Margin="0,0,0,24"/>
 
-                        <!-- Reading Content -->
-                        <TextBlock Text="{Binding Content}" 
-                                   FontSize="16" 
-                                   Foreground="#FF374151" 
-                                   LineHeight="26" 
-                                   TextWrapping="Wrap"
-                                   TextAlignment="Justify"/>
+                        <RichTextBox IsReadOnly="True"
+                 BorderThickness="0"
+                 FontSize="16"
+                 Foreground="#FF374151"
+                 Background="Transparent"
+                 Padding="0"
+                 IsDocumentEnabled="True"
+                 behaviors:TextSelectionBehavior.SelectedTextCommand="{Binding WordSelectedCommand}">
+                            <FlowDocument>
+                                <Paragraph TextAlignment="Justify" LineHeight="26">
+                                    <Run Text="{Binding Content}" />
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
@@ -264,20 +276,81 @@
                                             </StackPanel>
 
                                             <!-- Question Text -->
-                                            <TextBlock Text="{Binding QuestionText}" 
-                                                       FontSize="15" FontWeight="Medium"
-                                                       Foreground="#FF1F2937" 
-                                                       Margin="0,0,0,16" 
-                                                       TextWrapping="Wrap"/>
+                                            <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                         FontSize="15" FontWeight="Medium"
+                                                         Foreground="#FF1F2937" 
+                                                         Margin="0,0,0,16"
+                                                         behaviors:TextSelectionBehavior.SelectedTextCommand="{Binding DataContext.WordSelectedCommand, 
+                RelativeSource={RelativeSource AncestorType=Window}}">
+                                                <FlowDocument>
+                                                    <Paragraph>
+                                                        <Run Text="{Binding QuestionText}" />
+                                                    </Paragraph>
+                                                </FlowDocument>
+                                            </RichTextBox>
 
-                                            <RadioButton   Content="{Binding Option1}"
-                                                           IsChecked="{Binding IsOption1Selected, Mode=TwoWay}"/>
-                                            <RadioButton   Content="{Binding Option2}" 
-                                                           IsChecked="{Binding IsOption2Selected, Mode=TwoWay}"/>
-                                            <RadioButton   Content="{Binding Option3}" 
-                                                           IsChecked="{Binding IsOption3Selected, Mode=TwoWay}"/>
-                                            <RadioButton   Content="{Binding Option4}"
-                                                           IsChecked="{Binding IsOption4Selected, Mode=TwoWay}"/>
+                                            <!-- Options -->
+                                            <RadioButton IsChecked="{Binding IsOption1Selected, Mode=TwoWay}">
+                                                <RadioButton.Content>
+                                                    <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                                 FontSize="14" Foreground="#FF374151"
+                                                                 Padding="0" behaviors:TextSelectionBehavior.SelectedTextCommand="{Binding DataContext.WordSelectedCommand, 
+                RelativeSource={RelativeSource AncestorType=Window}}">
+                                                        <FlowDocument>
+                                                            <Paragraph>
+                                                                <Run Text="{Binding Option1}" />
+                                                            </Paragraph>
+                                                        </FlowDocument>
+                                                    </RichTextBox>
+                                                    
+                                                </RadioButton.Content>
+                                                
+                                            </RadioButton>
+
+                                            <RadioButton IsChecked="{Binding IsOption2Selected, Mode=TwoWay}">
+                                                <RadioButton.Content>
+                                                    <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                                 FontSize="14" Foreground="#FF374151"
+                                                                 Padding="0" behaviors:TextSelectionBehavior.SelectedTextCommand="{Binding DataContext.WordSelectedCommand, 
+                RelativeSource={RelativeSource AncestorType=Window}}">
+                                                        <FlowDocument>
+                                                            <Paragraph>
+                                                                <Run Text="{Binding Option2}" />
+                                                            </Paragraph>
+                                                        </FlowDocument>
+                                                    </RichTextBox>
+                                                </RadioButton.Content>
+                                            </RadioButton>
+
+                                            <RadioButton IsChecked="{Binding IsOption3Selected, Mode=TwoWay}">
+                                                <RadioButton.Content>
+                                                    <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                                 FontSize="14" Foreground="#FF374151"
+                                                                 Padding="0" behaviors:TextSelectionBehavior.SelectedTextCommand="{Binding DataContext.WordSelectedCommand, 
+                RelativeSource={RelativeSource AncestorType=Window}}">
+                                                        <FlowDocument>
+                                                            <Paragraph>
+                                                                <Run Text="{Binding Option3}" />
+                                                            </Paragraph>
+                                                        </FlowDocument>
+                                                    </RichTextBox>
+                                                </RadioButton.Content>
+                                            </RadioButton>
+
+                                            <RadioButton IsChecked="{Binding IsOption4Selected, Mode=TwoWay}"> 
+                                                <RadioButton.Content>
+                                                    <RichTextBox IsReadOnly="True" BorderThickness="0"
+                                                                 FontSize="14" Foreground="#FF374151"
+                                                                 Padding="0" behaviors:TextSelectionBehavior.SelectedTextCommand="{Binding DataContext.WordSelectedCommand, 
+                RelativeSource={RelativeSource AncestorType=Window}}">
+                                                        <FlowDocument>
+                                                            <Paragraph>
+                                                                <Run Text="{Binding Option4}" />
+                                                            </Paragraph>
+                                                        </FlowDocument>
+                                                    </RichTextBox>
+                                                </RadioButton.Content>
+                                            </RadioButton>
                                         </StackPanel>
                                     </Border>
                                 </DataTemplate>
@@ -312,6 +385,58 @@
                     </Border>
                 </Grid>
             </Border>
+            <Popup IsOpen="{Binding IsPopupOpen}"
+       Placement="MousePoint"
+       StaysOpen="False">
+                <Border Background="#FF111827" 
+            CornerRadius="8" 
+            Padding="12"
+            MinWidth="180">
+                    <StackPanel>
+                        <!-- Từ được chọn -->
+                        <TextBlock Text="{Binding SelectedWord}"
+                       Foreground="#60A5FA"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       MaxWidth="250"/>
+
+                        <!-- Separator nhẹ -->
+                        <Border Height="1" 
+                    Background="#1F2937"
+                    Margin="0,2"/>
+
+                        <!-- Button thêm từ vựng -->
+                        <Border Background="#1F2937"
+                    CornerRadius="6"
+                    Padding="10,6"
+                    Cursor="Hand">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#374151"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick"
+                                  Command="{Binding AddToVocabularyCommand}"
+                                  CommandParameter="{Binding SelectedWord}" />
+                            </Border.InputBindings>
+
+                            <TextBlock Foreground="White" 
+                           FontSize="13"
+                           TextAlignment="Center">
+                    <Run Text="➕"/>
+                    <Run Text="Thêm vào từ vựng của tôi"/>
+                            </TextBlock>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Popup>
         </Grid>
     </Grid>
 </Window>

@@ -269,6 +269,23 @@
                                 </StackPanel>
                             </Border>
                         </Button>
+                        <Button  Command="{Binding MyVocabularyCommand}" Tag="My Vocabulary"
+                               Style="{StaticResource CourseButtonStyle}" Grid.Column="2">
+                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#FFF5F3FF" CornerRadius="50" Width="80" Height="80" 
+                                           Margin="0,0,0,15">
+                                        <TextBlock Text="⚙️" FontSize="36" 
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="My Vocabulary" FontSize="20" FontWeight="SemiBold" 
+                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
+                                    <TextBlock Text="Master English grammar rules" 
+                                              FontSize="13" Foreground="#FF6B7280" 
+                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
+                                </StackPanel>
+                            </Border>
+                        </Button>
                     </Grid>
                 </StackPanel>
 

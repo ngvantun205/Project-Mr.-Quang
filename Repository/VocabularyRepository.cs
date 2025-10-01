@@ -40,5 +40,8 @@ namespace TDEduEnglish.Repository {
             await _context.Vocabularies.AddRangeAsync(vocabularies);
             await _context.SaveChangesAsync();
         }
+        public async Task<Vocabulary?> GetByWord(string word) {
+            return await _context.Vocabularies.FirstOrDefaultAsync(v =>  v.Word.ToLower() == word.ToLower());
+        }
     }
 }

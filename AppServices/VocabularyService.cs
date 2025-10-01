@@ -19,5 +19,6 @@ namespace TDEduEnglish.AppServices {
         public async Task Delete(int id) => await _vocabularyRepository.Delete(id);
         public async Task<IEnumerable<Vocabulary>> GetByLevelTopic(string level, string topic) => await _vocabularyRepository.GetByLevelTopic(level, topic);
         public async Task AddListAsync(IEnumerable<Vocabulary> vocabularies) => await _vocabularyRepository.AddListAsync(vocabularies);
+        public async Task<Vocabulary?> GetByWord(string word) => await _vocabularyRepository.GetByWord(word);
     }
 }

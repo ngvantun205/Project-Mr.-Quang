@@ -11,20 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TDEduEnglish.ViewModels.WindowViewModel;
 
 namespace TDEduEnglish.Views.Windows {
     /// <summary>
-    /// Interaction logic for ReadingWindow.xaml
+    /// Interaction logic for QuizWindow.xaml
     /// </summary>
-    public partial class ReadingWindow : Window {
-        public ReadingWindow() {
+    public partial class QuizWindow : Window {
+        public QuizWindow() {
             InitializeComponent();
-            this.DataContext = App.Provider?.GetService<ReadingViewModel>();
-        }
-        private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e) {
-            if (DataContext is ReadingViewModel vm)
-                vm.IsPopupOpen = false;
         }
     }
 }

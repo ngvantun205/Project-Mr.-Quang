@@ -5,3 +5,4 @@ global using TDEduEnglish.DomainModels;
 global using TDEduEnglish.IAppServices;
 global using TDEduEnglish.IRepository;
 global using Microsoft.Extensions.DependencyInjection;
+global using TDEduEnglish.Converters;

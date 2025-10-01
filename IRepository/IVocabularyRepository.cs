@@ -8,6 +8,6 @@ namespace TDEduEnglish.IRepository {
     internal interface IVocabularyRepository : IRepository<Vocabulary> {
         Task<IEnumerable<Vocabulary>> GetByLevelTopic(string level, string topic);
         Task AddListAsync(IEnumerable<Vocabulary> vocabularies);   
-        
+        Task<Vocabulary?> GetByWord(string word);
     }
 }
