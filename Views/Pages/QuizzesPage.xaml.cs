@@ -21,7 +21,7 @@ namespace TDEduEnglish.Views.Pages
     {
         public QuizzesPage(AppNavigationService navigationService) {
             InitializeComponent();
-            this.DataContext = new QuizzesViewModel(navigationService);
+            this.DataContext = App.Provider?.GetRequiredService<QuizzesViewModel>();
         }
     }
 }

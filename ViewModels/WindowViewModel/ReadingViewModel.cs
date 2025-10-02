@@ -87,7 +87,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 WordSelectedCommand = new RelayCommand(o => OnWordSelected(o as string));
                 AddToVocabularyCommand = new RelayCommand(o => OnAddToVocabulary());
 
-                StartTimer();
+                _ = StartTimer();
 
             }
 
@@ -130,13 +130,13 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
         }
 
-        private void StartTimer() {
+        private async Task StartTimer() {
             _elapsedSeconds = 0;
             _isSubmitted = false;
             _timer = new DispatcherTimer {
                 Interval = TimeSpan.FromSeconds(1)
             };
-            _timer.Tick += (s, e) => {
+            _timer.Tick += async (s, e) => {
                 _elapsedSeconds++;
 
                 int totalSeconds = (int)(readingLesson.SuggestedTime?.TotalSeconds ?? 0);
@@ -147,7 +147,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
 
                 if (_elapsedSeconds >= totalSeconds && !_isSubmitted) {
                     _timer.Stop();
-                    SubmitAnswers();
+                    await SubmitAnswers();
                 }
             };
             _timer.Start();

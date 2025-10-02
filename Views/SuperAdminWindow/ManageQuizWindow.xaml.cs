@@ -10,18 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TDEduEnglish.Services;
-using TDEduEnglish.ViewModels;
+using TDEduEnglish.ViewModels.SuperAdminViewModel;
 
-namespace TDEduEnglish.Views.Pages {
+namespace TDEduEnglish.Views.SuperAdminWindow {
     /// <summary>
-    /// Interaction logic for CommunityPage.xaml
+    /// Interaction logic for ManageQuizWindow.xaml
     /// </summary>
-    public partial class CommunityPage : Page {
-        public CommunityPage(AppNavigationService appNavigationService) {
+    public partial class ManageQuizWindow : Window {
+        public ManageQuizWindow() {
             InitializeComponent();
+            this.DataContext = App.Provider?.GetRequiredService<ManageQuizViewModel>();
         }
     }
 }

@@ -317,7 +317,7 @@
 
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="{Binding TimeRemaining}" 
-                                  FontSize="36" FontWeight="Bold" 
+                                  FontSize="26" FontWeight="Bold" 
                                   Foreground="White" 
                                   HorizontalAlignment="Center"/>
                         <TextBlock Text="giây" 
@@ -346,6 +346,7 @@
                            Foreground="White"
                            FontSize="24" FontWeight="Bold"
                            Width="48" Height="48"
+                            Padding="0"
                            Style="{StaticResource NavButtonStyle}"/>
                 </StackPanel>
             </Grid>
@@ -383,7 +384,7 @@
                                       TextWrapping="Wrap"
                                       LineHeight="40"/>
                         </Border>
-
+ 
                         <!-- Answers Grid -->
                         <Grid>
                             <Grid.RowDefinitions>
@@ -446,7 +447,7 @@
                                CornerRadius="16" 
                                Padding="24" 
                                Margin="0,16,0,0"
-                               Visibility="{Binding ShowExplanation, Converter={StaticResource BoolToVisibilityConverter}}">
+                               Visibility="{Binding ShowShowExplaination, Converter={StaticResource BoolToVisibilityConverter}}">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                                     <TextBlock Text="💡" FontSize="24" Margin="0,0,12,0"/>
@@ -455,7 +456,7 @@
                                               Foreground="#FF3B82F6"
                                               VerticalAlignment="Center"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding CurrentQuestion.Explananation}" 
+                                <TextBlock Text="{Binding CurrentQuestion.ShowExplaination}" 
                                           FontSize="16" 
                                           Foreground="#FF1F2937"
                                           TextWrapping="Wrap"

@@ -88,8 +88,6 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                 OnPropertyChanged(nameof(SuggestedTime));
             }
         }
-
-
         public ReadingQuestion SelectedReadingQuestion { get; set; }
 
         public ManageReadingViewModel(AppNavigationService appNavigationService, IReadingService readingService, ISessonService sessonService, IReadingQuestionService readingQuestionService) {

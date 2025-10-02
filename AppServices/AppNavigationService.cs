@@ -99,6 +99,11 @@ namespace TDEduEnglish.Services {
             Application.Current.MainWindow = newwindow;
             newwindow?.Show();
         }
+        public void NavigateToManageQuizWindow() {
+            var newwindow = App.Provider?.GetRequiredService<ManageQuizWindow>();
+            Application.Current.MainWindow = newwindow;
+            newwindow?.Show();
+        }
     }
 
 }

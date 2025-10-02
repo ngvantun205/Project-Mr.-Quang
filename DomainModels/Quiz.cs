@@ -13,6 +13,6 @@ namespace TDEduEnglish.DomainModels {
         public string Title { get; set; } = "";
         public string Level { get; set; } = "";
         public string Topic { get; set; } = "";
-        public ICollection<QuizQuestion> Options { get; set; } = new List<QuizQuestion>();
+        public IEnumerable<QuizQuestion> Options { get; set; }
 	}
 }

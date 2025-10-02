@@ -6,3 +6,6 @@ global using TDEduEnglish.IAppServices;
 global using TDEduEnglish.IRepository;
 global using Microsoft.Extensions.DependencyInjection;
 global using TDEduEnglish.Converters;
+global using System.ComponentModel;
+global using System.Collections.Generic;
+global using System.Collections.ObjectModel;

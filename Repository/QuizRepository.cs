@@ -38,5 +38,9 @@ namespace TDEduEnglish.Repository {
         }
         public async Task<IEnumerable<Quiz>> GetByLevel(string level) => await _context.Quizzes.Where(x => x.Level == level).ToListAsync();
         public async Task<IEnumerable<Quiz>> GetByTopic(string topic) => await _context.Quizzes.Where(q => q.Topic == topic).ToListAsync(); 
+        public async Task AddListAsync(IEnumerable<Quiz> quizzes) {
+            await _context.Quizzes.AddRangeAsync(quizzes);
+            await _context.SaveChangesAsync();
+        }
     }
 }

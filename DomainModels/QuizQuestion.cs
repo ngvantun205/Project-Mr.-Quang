@@ -15,7 +15,7 @@ namespace TDEduEnglish.DomainModels {
         public Quiz Quiz { get; set; }
         public string QuestionText { get; set; } = "";
         public string CorrectAnswer { get; set; } = "";
-        public string Explananation { get; set; } = "";
+        public string Explaination { get; set; } = "";
         public TimeSpan AnswerTime { get; set; }    
         public string Option1 { get; set; } = "";
         public string Option2 { get; set; } = "";

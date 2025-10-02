@@ -8,5 +8,6 @@ namespace TDEduEnglish.IRepository {
     public interface IQuizRepository : IRepository<Quiz> {
         Task<IEnumerable<Quiz>> GetByLevel(string level);
         Task<IEnumerable<Quiz>> GetByTopic(string topic);
+        Task AddListAsync(IEnumerable<Quiz> quizzes);
     }
 }

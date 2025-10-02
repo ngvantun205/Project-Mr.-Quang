@@ -13,5 +13,6 @@ namespace TDEduEnglish.IAppServices {
         Task Update(Quiz quiz);
         Task<IEnumerable<Quiz>> GetByLevel(string  level);  
         Task<IEnumerable<Quiz>> GetByTopic(string  topic);
+        Task AddListAsync(IEnumerable<Quiz> quizzes);
     }
 }

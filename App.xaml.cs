@@ -23,9 +23,7 @@ namespace TDEduEnglish {
         private static IServiceProvider? _serviceProvider;
         public static IServiceProvider? Provider { get => _serviceProvider ??= ConfigureServices(); }
 
-        public App() {
-
-        }
+        public App() { }
 
         private static IServiceProvider ConfigureServices() {
             return new ServiceCollection()
@@ -87,6 +85,7 @@ namespace TDEduEnglish {
             .AddTransient<ManageUserViewModel>()
             .AddTransient<ManageVocabularyViewModel>()
             .AddTransient<ManageReadingViewModel>()
+            .AddTransient<ManageQuizViewModel>()
 
 
             .AddTransient<CourseListeningListViewModel>()
@@ -107,6 +106,7 @@ namespace TDEduEnglish {
             .AddTransient<ManageUserWindow>()
             .AddTransient<ManageVocabularyWindow>()
             .AddTransient<QuizWindow>()
+            .AddTransient<ManageQuizWindow>()
 
             .AddSingleton<HomePage>()
             .AddTransient<CoursesPage>()

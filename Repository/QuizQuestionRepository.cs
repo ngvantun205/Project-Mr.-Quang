@@ -30,7 +30,7 @@ namespace TDEduEnglish.Repository {
             if (q != null) {
                 q.QuestionText = entity.QuestionText;
                 q.CorrectAnswer = entity.CorrectAnswer;
-                q.Explananation = entity.Explananation;
+                q.Explaination = entity.Explaination;
                 q.AnswerTime = entity.AnswerTime;
                 q.Option1 = entity.Option1;
                 q.Option2 = entity.Option2;
@@ -40,5 +40,9 @@ namespace TDEduEnglish.Repository {
             }
         }
         public async Task<IEnumerable<QuizQuestion>> GetByQuizId(int quizid) => await _context.QuizQuestions.Where(x => x.QuizId == quizid).ToListAsync();
+        public async Task AddListAsync(IEnumerable<QuizQuestion> questions) {
+            await _context.QuizQuestions.AddRangeAsync(questions);
+            await _context.SaveChangesAsync();
+        }
     }
 }
