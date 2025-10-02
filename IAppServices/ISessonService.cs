@@ -13,14 +13,16 @@ namespace TDEduEnglish.IAppServices {
         string? CurrentTopic { get; set; }
         void SetCurrentUser(User user);
         User? GetCurrentUser();
-        void Logout();  
+        void Logout();
         bool IsUserLoggedIn();
         string GetCurrentTopic();
         void SetCurrentTopic(string topic);
         void SetCurrentReading(ReadingLesson reading);
-        ReadingLesson? GetCurrentReading();   
-        void SetCurrentListening(ListeningLesson listening);   
+        ReadingLesson? GetCurrentReading();
+        void SetCurrentListening(ListeningLesson listening);
         ListeningLesson? GetCurrentListening();
+        Quiz? GetCurrentQuiz();
+        void SetCurrentQuiz(Quiz quiz);
 
     }
 }

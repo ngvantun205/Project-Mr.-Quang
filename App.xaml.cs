@@ -21,7 +21,7 @@ namespace TDEduEnglish {
 
     public partial class App : Application {
         private static IServiceProvider? _serviceProvider;
-        public static IServiceProvider? Provider { get => _serviceProvider ??= ConfigureServices();  }
+        public static IServiceProvider? Provider { get => _serviceProvider ??= ConfigureServices(); }
 
         public App() {
 
@@ -45,6 +45,8 @@ namespace TDEduEnglish {
             .AddScoped<IAIChatRepository, AIChatRepository>()
             .AddScoped<IWritingRepository, WritingRepository>()
             .AddScoped<IUserVocabularyRepository, UserVocabularyRepository>()
+            .AddScoped<IQuizRepository, QuizRepository>()
+            .AddScoped<IQuizQuestionRepository, QuizQuestionRepository>()
 
             .AddScoped<UserReadingResult>()
             .AddScoped<UserListeningResult>()
@@ -62,6 +64,8 @@ namespace TDEduEnglish {
             .AddScoped<IAIChatService, AIChatService>()
             .AddScoped<IWritingService, WritingService>()
             .AddScoped<IUserVocabularyService, UserVocabularyService>()
+            .AddScoped<IQuizService, QuizService>()
+            .AddScoped<IQuizQuestionService, QuizQuestionService>()
 
             .AddScoped<AppNavigationService>(sp => new AppNavigationService(null))
 
@@ -77,6 +81,7 @@ namespace TDEduEnglish {
             .AddTransient<ReadingViewModel>()
             .AddTransient<UserReadingResultViewModel>()
             .AddTransient<ListeningViewModel>()
+            .AddTransient<QuizViewModel>()
 
             .AddTransient<ManageListeningViewModel>()
             .AddTransient<ManageUserViewModel>()
@@ -94,7 +99,7 @@ namespace TDEduEnglish {
             .AddSingleton<MainWindow>()
             .AddTransient<LogWindow>()
             .AddSingleton<SuperAdminWindow>()
-            .AddTransient<ReadingWindow>()  
+            .AddTransient<ReadingWindow>()
             .AddTransient<ManageReadingWindow>()
             .AddTransient<UserReadingResultWindow>()
             .AddTransient<ListeningWindow>()

@@ -283,7 +283,7 @@
 
                 <!-- Quiz Info -->
                 <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding CurrentQuiz.Title}" 
+                    <TextBlock Text="{Binding Title}" 
                               FontSize="24" FontWeight="Bold" 
                               Foreground="White" Margin="0,0,0,4"/>
                     <StackPanel Orientation="Horizontal">
@@ -291,14 +291,14 @@
                                Padding="12,6" Margin="0,0,8,0">
                             <TextBlock Foreground="White" FontWeight="SemiBold">
                                 <Run Text="📊"/>
-                                <Run Text="{Binding CurrentQuiz.Level}"/>
+                                <Run Text="{Binding Level}"/>
                             </TextBlock>
                         </Border>
                         <Border Background="#4DFFFFFF" CornerRadius="12" 
                                Padding="12,6">
                             <TextBlock Foreground="White" FontWeight="SemiBold">
                                 <Run Text="📚"/>
-                                <Run Text="{Binding CurrentQuiz.Topic}"/>
+                                <Run Text="{Binding Topic}"/>
                             </TextBlock>
                         </Border>
                     </StackPanel>
@@ -400,7 +400,7 @@
 
                             <!-- Option 1 - Red -->
                             <RadioButton Grid.Row="0" Grid.Column="0"
-                                        Content="A" 
+                                         Foreground="#FFEF4444" Content="A"
                                         CommandParameter="{Binding CurrentQuestion.Option1}"
                                         GroupName="QuizAnswers"
                                         IsChecked="{Binding CurrentQuestion.IsOption1Selected}"
@@ -410,7 +410,7 @@
 
                             <!-- Option 2 - Blue -->
                             <RadioButton Grid.Row="0" Grid.Column="2"
-                                        Content="B" 
+                                        Content="B" Foreground="#FF3B82F6"
                                         CommandParameter="{Binding CurrentQuestion.Option2}"
                                         GroupName="QuizAnswers"
                                         IsChecked="{Binding CurrentQuestion.IsOption2Selected}"
@@ -420,7 +420,7 @@
 
                             <!-- Option 3 - Orange -->
                             <RadioButton Grid.Row="1" Grid.Column="0"
-                                        Content="C" 
+                                        Content="C" Foreground="#FFF59E0B"
                                         CommandParameter="{Binding CurrentQuestion.Option3}"
                                         GroupName="QuizAnswers"
                                         IsChecked="{Binding CurrentQuestion.IsOption3Selected}"
@@ -430,7 +430,7 @@
 
                             <!-- Option 4 - Green -->
                             <RadioButton Grid.Row="1" Grid.Column="2"
-                                        Content="D" 
+                                        Content="D" Foreground="#FF10B981"
                                         CommandParameter="{Binding CurrentQuestion.Option4}"
                                         GroupName="QuizAnswers"
                                         IsChecked="{Binding CurrentQuestion.IsOption4Selected}"

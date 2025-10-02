@@ -12,7 +12,7 @@ namespace TDEduEnglish.DomainModels {
         public int QuizId { get; set; }
         public string Title { get; set; } = "";
         public string Level { get; set; } = "";
-        public string Topic { get; set; }
+        public string Topic { get; set; } = "";
         public ICollection<QuizQuestion> Options { get; set; } = new List<QuizQuestion>();
 	}
 }

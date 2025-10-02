@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace TDEduEnglish.AppServices {
     public class SessonService : ISessonService {
@@ -25,23 +26,13 @@ namespace TDEduEnglish.AppServices {
         public bool IsUserLoggedIn() {
             return CurrentUser != null;
         }
-        public string GetCurrentTopic() {
-            return CurrentTopic ?? "";
-        }
-        public void SetCurrentTopic(string topic) {
-            CurrentTopic = topic;
-        }
-        public void SetCurrentReading(ReadingLesson reading) {
-            CurrentReading = reading;
-        }
-        public ReadingLesson? GetCurrentReading() {
-            return CurrentReading;
-        }
-        public void SetCurrentListening(ListeningLesson listening) {
-            CurrentListening = listening;
-        }
-        public ListeningLesson? GetCurrentListening() {
-            return CurrentListening;
-        }
+        public string? GetCurrentTopic() => CurrentTopic;
+        public void SetCurrentTopic(string topic) =>  CurrentTopic = topic;
+        public void SetCurrentReading(ReadingLesson reading) => CurrentReading = reading;
+        public ReadingLesson? GetCurrentReading() => CurrentReading;
+        public void SetCurrentListening(ListeningLesson listening) => CurrentListening = listening;
+        public ListeningLesson? GetCurrentListening() => CurrentListening;
+        public Quiz? GetCurrentQuiz() => CurrentQuiz;
+        public void SetCurrentQuiz(Quiz quiz) => CurrentQuiz = quiz;
     }
 }

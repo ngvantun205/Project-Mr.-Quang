@@ -28,6 +28,8 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
             get => userVocabularies; set {
                 Set(ref userVocabularies, value);
                 OnPropertyChanged(nameof(UserVocabularies));
+                if(UserVocabularies == null ||  UserVocabularies.Count < 1) IsEmpty = true;
+                else IsEmpty = false;
             }
         }
         public ICommand DeleteWordCommand { get; set; }
@@ -35,27 +37,22 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
             _userVocabularyService = userVocabularyService;
             _sessonService = sessonService;
 
-            DeleteWordCommand = new RelayCommand(async o => DeleteWord(o));
+            DeleteWordCommand = new RelayCommand(async o => await DeleteWord(o));
 
             _ = LoadData();
         }
         private async Task LoadData() {
             var uservocab = await _userVocabularyService.GetByUserId(_sessonService.GetCurrentUser().UserId);
-            if (uservocab == null) {
-                IsEmpty = true;
-                return;
-            }
-            else {
-                UserVocabularies = new ObservableCollection<UserVocabulary>(uservocab);
-                IsEmpty = false; 
-            }
+            UserVocabularies = uservocab != null
+                ? new ObservableCollection<UserVocabulary>(uservocab)
+                : new ObservableCollection<UserVocabulary>();
         }
         private async Task DeleteWord(object o) {
             if(o is UserVocabulary vocabulary) {
                 var result = MessageBox.Show($"Are you sure you want to remove word '{vocabulary.Word}'? ", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes) {
                     await _userVocabularyService.Delete(vocabulary.UserVocabularyId);
-                    _ = LoadData();
+                    await LoadData();
                 }
             }
         }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TDEduEnglish.ViewModels.WindowViewModel;
 
 namespace TDEduEnglish.Views.Windows {
     /// <summary>
@@ -19,6 +20,7 @@ namespace TDEduEnglish.Views.Windows {
     public partial class QuizWindow : Window {
         public QuizWindow() {
             InitializeComponent();
+            this.DataContext = App.Provider?.GetRequiredService<QuizViewModel>();
         }
     }
 }

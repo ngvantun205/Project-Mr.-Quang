@@ -11,6 +11,7 @@ namespace TDEduEnglish.Data {
     public class AppDbContext : DbContext {
         public DbSet<User> Users { get; set; }
         public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<QuizQuestion> QuizQuestions { get; set; }
         public DbSet<QuizResult> QuizResults { get; set; }
         public DbSet<Vocabulary> Vocabularies { get; set; }
         public DbSet<ReadingLesson> ReadingLessons { get; set; }

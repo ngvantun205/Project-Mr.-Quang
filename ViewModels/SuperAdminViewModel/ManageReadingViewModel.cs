@@ -48,15 +48,48 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
         }
 
         private ReadingLesson selectedReadingLesson;
-
         public ReadingLesson SelectedReadingLesson {
             get => selectedReadingLesson; set {
                 Set(ref selectedReadingLesson, value);
                 if (selectedReadingLesson != null) {
                     ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetByLessonId(selectedReadingLesson.ReadingLessonId).Result);
+                    Title = SelectedReadingLesson.Title;
+                    Content = SelectedReadingLesson.Content;
+                    Level = SelectedReadingLesson.Level;
+                    SuggestedTime = SelectedReadingLesson.SuggestedTime;
                 }
             }
         }
+        private string title;
+        public string Title {
+            get => title; set {
+                Set(ref title, value);
+                OnPropertyChanged(nameof(Title));
+            }
+        }
+        private string level;
+        public string Level {
+            get => level; set {
+                Set(ref level, value);
+                OnPropertyChanged(nameof(Level));
+            }
+        }
+        private string content;
+        public string Content {
+            get => content; set {
+                Set(ref content, value);
+                OnPropertyChanged(nameof(Content));
+            }
+        }
+        private TimeSpan? suggestedtime;
+        public TimeSpan? SuggestedTime {
+            get => suggestedtime; set {
+                Set(ref suggestedtime, value);
+                OnPropertyChanged(nameof(SuggestedTime));
+            }
+        }
+
+
         public ReadingQuestion SelectedReadingQuestion { get; set; }
 
         public ManageReadingViewModel(AppNavigationService appNavigationService, IReadingService readingService, ISessonService sessonService, IReadingQuestionService readingQuestionService) {
@@ -75,8 +108,16 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
 
             ImportReadingQuestionCommand = new RelayCommand(async o => await ImportReadingQuestionFromJsonFile());
             DeleteReadingQuestionCommand = new RelayCommand(async o => await DeleteReadingQuestion(SelectedReadingQuestion));
-            AddReadingQuestionCommand = new RelayCommand(async o =>  await AddReadingQuestion());
+            AddReadingQuestionCommand = new RelayCommand(async o => await AddReadingQuestion());
             UpdateReadingQuestionCommand = new RelayCommand(async o => await UpdateReadingQuestion(SelectedReadingQuestion));
+
+            _ = LoadData();
+        }
+        private async Task LoadData() {
+            var lessons = await readingService.GetAll();
+            ReadingLessons = lessons != null ?  new ObservableCollection<ReadingLesson>(lessons) :  new ObservableCollection<ReadingLesson>();
+            var questions = await readingQuestionService.GetAll();
+            ReadingQuestions = questions != null ? new ObservableCollection<ReadingQuestion>(questions) : new ObservableCollection<ReadingQuestion>();
         }
         private async Task AddReadingLesson() {
             var lesson = new ReadingLesson();
@@ -89,12 +130,18 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             await readingQuestionService.Add(question);
         }
         private async Task UpdateReadingLesson(object? o) {
-            if(o is ReadingLesson readingLesson) {
+            if (o is ReadingLesson readingLesson) {
+                SelectedReadingLesson.Title = Title;
+                SelectedReadingLesson.Level = Level;
+                SelectedReadingLesson.Content = Content;
+                SelectedReadingLesson.SuggestedTime = SuggestedTime;
                 await readingService.Update(readingLesson);
+                await LoadData();
                 MessageBox.Show("Reading lesson is updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-        }private async Task UpdateReadingQuestion(object? o) {
-            if(o is ReadingQuestion question) {
+        }
+        private async Task UpdateReadingQuestion(object? o) {
+            if (o is ReadingQuestion question) {
                 await readingQuestionService.Update(question);
                 MessageBox.Show("Reading question is updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -164,7 +211,7 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                         string jsonContent = await File.ReadAllTextAsync(filePath);
                         var readingQuestions = JsonSerializer.Deserialize<List<ReadingQuestion>>(jsonContent);
                         if (readingQuestions != null && readingQuestions.Count > 0) {
-                            foreach(var readingQuestion in readingQuestions) {
+                            foreach (var readingQuestion in readingQuestions) {
                                 readingQuestion.ReadingLessonId = selectedReadingLesson.ReadingLessonId;
                             }
                             await readingQuestionService.AddListAsync(readingQuestions);

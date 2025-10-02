@@ -157,9 +157,9 @@
                     <UniformGrid Grid.Row="1" Columns="2" Margin="0,0,0,8" HorizontalAlignment="Stretch">
                         <StackPanel>
                             <TextBlock Text="Title" />
-                            <TextBox Text="{Binding EditingLesson.Title, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock Text="Level" Margin="0,6,0,0"/>
-                            <ComboBox ItemsSource="{Binding AvailableLevels}" SelectedItem="{Binding EditingLesson.Level}" >
+                            <ComboBox ItemsSource="{Binding AvailableLevels}" SelectedItem="{Binding Level}" >
                                 <ComboBox.Items>
                                     <ComboBoxItem Content="Beginner"/>
                                     <ComboBoxItem Content="Intermediate"/>
@@ -170,10 +170,10 @@
 
                         <StackPanel>
                             <TextBlock Text="Suggested Time (hh:mm:ss)" />
-                            <TextBox Text="{Binding EditingLesson.SuggestedTimeString, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Text="{Binding SuggestedTime, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock Text="Content" Margin="0,6,0,0"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBox Text="{Binding EditingLesson.Content}" Width="240" />
+                                <TextBox Text="{Binding Content}" Width="240" />
                                 <Button Style="{StaticResource SmallIconButton}" Command="{Binding BrowseAudioCommand}" ToolTip="Browse">
                                     <TextBlock Text="⋯" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </Button>
@@ -199,11 +199,17 @@
 
                         <DataGrid Grid.Row="1" Style="{StaticResource CompactDataGrid}" 
                                   ItemsSource="{Binding ReadingQuestions}"
-                                  SelectedItem="{Binding SelectedReadingQuestion, Mode=TwoWay}">
+                                  SelectedItem="{Binding SelectedReadingQuestion, Mode=TwoWay}"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" Binding="{Binding QuestionNumber}" Width="50"/>
-                                <DataGridTextColumn Header="Question" Binding="{Binding QuestionText}" Width="*"/>
-                                <DataGridTextColumn Header="Correct" Binding="{Binding CorrectAnswer}" Width="90"/>
+                                <DataGridTextColumn Header="Question" Binding="{Binding QuestionText}" Width="150"/>
+                                <DataGridTextColumn Header="Correct" Binding="{Binding CorrectAnswer}" Width="120"/>
+                                <DataGridTextColumn Header="Option1" Binding="{Binding Option1}" Width="120"/>
+                                <DataGridTextColumn Header="Option2" Binding="{Binding Option2}" Width="120"/>
+                                <DataGridTextColumn Header="Option3" Binding="{Binding Option3}" Width="120"/>
+                                <DataGridTextColumn Header="Option4" Binding="{Binding Option4}" Width="120"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
