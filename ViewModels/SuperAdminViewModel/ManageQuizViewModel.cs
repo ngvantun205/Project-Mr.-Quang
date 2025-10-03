@@ -12,6 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TDEduEnglish.DomainModels;
 
 namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
     public class ManageQuizViewModel : Bindable, INotifyPropertyChanged {
@@ -85,11 +86,11 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             ImportQuizCommand = new RelayCommand(async o => await ImportQuizFromJsonFile());
             AddQuizCommand = new RelayCommand(async o => await AddQuiz());
             DeleteQuizCommand = new RelayCommand(async o => await DeleteQuiz(SelectedQuiz));
-            UpdateQuizCommand = new RelayCommand(async o => await UpdateQuiz(SelectedQuiz));
+            UpdateQuizCommand = new RelayCommand(async o => await UpdateQuiz());
             ImportQuizQuestionCommand = new RelayCommand(async o => await ImportQuizQuestionFromJsonFile());
             AddQuizQuestionCommand = new RelayCommand(async o => await AddQuizQuestion());
             DeleteQuizQuestionCommand = new RelayCommand(async o => await DeleteQuizQuestion(SelectedQuizQuestion));
-            UpdateQuizQuestionCommand = new RelayCommand(async o => await UpdateQuizQuestion(SelectedQuizQuestion));
+            UpdateQuizQuestionCommand = new RelayCommand(async o => await UpdateQuizQuestion());
 
             _ = LoadData();
         }
@@ -136,21 +137,19 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             else
                 MessageBox.Show("Please select a quiz to delete");
         }
-        private async Task UpdateQuiz(object o) {
-            if (o is Quiz quiz) {
+        private async Task UpdateQuiz() {
+            foreach(var quiz in Quizzes) {
                 await _quizService.Update(quiz);
-                MessageBox.Show("Update successfully", "Successfully", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            else
-                MessageBox.Show("Please select a quiz to update", "Updating...", MessageBoxButton.OK, MessageBoxImage.Information);
+            await LoadData();
+            MessageBox.Show("Update successfully", "Successfully", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-        private async Task UpdateQuizQuestion(object o) {
-            if (o is QuizQuestion quiz) {
-                await _quizQuestionService.Update(quiz);
-                MessageBox.Show("Update successfully", "Successfully", MessageBoxButton.OK, MessageBoxImage.Information);
+        private async Task UpdateQuizQuestion() {
+            foreach(var question in QuizQuestions) {
+                await _quizQuestionService.Update(question);
             }
-            else
-                MessageBox.Show("Please select a quiz question to update", "Updating...", MessageBoxButton.OK, MessageBoxImage.Information);
+            await LoadData();
+            MessageBox.Show("Update successfully", "Successfully", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private async Task ImportQuizFromJsonFile() {
             OpenFileDialog openFileDialog = new OpenFileDialog();

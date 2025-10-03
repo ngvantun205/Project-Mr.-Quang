@@ -26,7 +26,7 @@ namespace TDEduEnglish.Repository {
             }
         }
         public async Task Update(QuizQuestion entity) {
-            var q = await GetById(entity.QuizId);
+            var q = await GetById(entity.QuizQuestionId);
             if (q != null) {
                 q.QuestionText = entity.QuestionText;
                 q.CorrectAnswer = entity.CorrectAnswer;

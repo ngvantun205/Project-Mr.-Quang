@@ -77,14 +77,19 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             ImportQuestionFromJsonCommand = new RelayCommand(async o => await ImportListeningQuestionFromJsonFile());
             AddListeningLessonCommand = new RelayCommand(async o => await AddListeningLesson());
             AddListeningQuestionCommand = new RelayCommand(async o => await AddListeningQuestion());
-            UpdateListeningLessonCommand = new RelayCommand(async o => await UpdateListeningLesson(SelectedLesson));
-            UpdateListeningQuestionCommand = new RelayCommand(async o => await UpdateListeningQuestion(SelectedQuestion));
+            UpdateListeningLessonCommand = new RelayCommand(async o => await UpdateListeningLesson());
+            UpdateListeningQuestionCommand = new RelayCommand(async o => await UpdateListeningQuestion());
             DeleteListeningLessonCommand = new RelayCommand(async o => await DeleteListeningLesson(SelectedLesson));
             DeleteListeningQuestionCommand = new RelayCommand(async o => await DeleteListeningQuestion(SelectedQuestion));
 
-            ListeningLessons = new ObservableCollection<ListeningLesson>(_listeningService.GetAll().Result);
-            ListeningQuestions = new ObservableCollection<ListeningQuestion>(_listeningQuestionService.GetAll().Result);
+            _ = LoadData();
 
+        }
+        private async Task LoadData() {
+            var lessons = await _listeningService.GetAll();
+            ListeningLessons = lessons != null ? new ObservableCollection<ListeningLesson>(lessons) : new ObservableCollection<ListeningLesson>();  
+            var questions = await _listeningQuestionService.GetAll();   
+            ListeningQuestions = questions != null ? new ObservableCollection<ListeningQuestion>(questions) : new ObservableCollection<ListeningQuestion>();
         }
         private async Task AddListeningLesson() {
             var lesson = new ListeningLesson();
@@ -96,23 +101,19 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             ListeningQuestions.Add(question);
             await _listeningQuestionService.Add(question);
         }
-        private async Task UpdateListeningLesson(object? o) {
-            if(o is ListeningLesson lesson) {
+        private async Task UpdateListeningLesson() {
+            foreach(var lesson in ListeningLessons) {
                 await _listeningService.Update(lesson);
-                MessageBox.Show("Update listening lesson successfully");
             }
-            else {
-                MessageBox.Show("Please select a listening lesson to update");
-            }
+            await LoadData();
+            MessageBox.Show("Update listening lesson successfully");
         }
-        private async Task UpdateListeningQuestion(object? o) {
-            if (o is ListeningQuestion question) {
+        private async Task UpdateListeningQuestion() {
+            foreach(var question in ListeningQuestions) {
                 await _listeningQuestionService.Update(question);
-                MessageBox.Show("Update listening question successfully");
             }
-            else {
-                MessageBox.Show("Please select a listening question to update");
-            }
+            await LoadData();
+            MessageBox.Show("Update listening question successfully");
         }
         private async Task DeleteListeningLesson(object obj) {
             if (obj is ListeningLesson lesson) {

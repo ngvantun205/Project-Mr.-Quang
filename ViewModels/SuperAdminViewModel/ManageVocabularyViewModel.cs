@@ -41,17 +41,14 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
 
             AddCommand = new RelayCommand(async o => await Add());
             DeleteCommand = new RelayCommand(async o => await Delete(SelectedVocabulary));
-            UpdateCommand = new RelayCommand(async o => await Update(SelectedVocabulary));
+            UpdateCommand = new RelayCommand(async o => await Update());
             ImportFromJsonCommand = new RelayCommand(async o => await ImportVocabularyFromJsonFile());
 
             _ = LoadData();
         }
         private async Task LoadData() {
             var vocab = await _vocabularyService.GetAll();
-            if (vocab != null)
-                VocabularyList = new ObservableCollection<Vocabulary>(vocab);
-            else
-                VocabularyList = new ObservableCollection<Vocabulary>();
+           VocabularyList = vocab != null ? new ObservableCollection<Vocabulary>(vocab) : new ObservableCollection<Vocabulary>();   
         }
         private async Task Add() {
             var vocab = new Vocabulary();
@@ -70,13 +67,12 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             else
                 MessageBox.Show("Please select a vocabulary to delete");
         }
-        private async Task Update(object o) {
-            if(o is Vocabulary vocab) {
+        private async Task Update() {
+            foreach (var vocab in VocabularyList) {
                 await _vocabularyService.Update(vocab);
-                VocabularyList.Remove(vocab);
-                MessageBox.Show("vocabulary updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            MessageBox.Show("Please select a vocabulary to update");
+            MessageBox.Show("All changes have been saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            await LoadData();
         }
         private async Task ImportVocabularyFromJsonFile() {
             var openFileDialog = new OpenFileDialog {

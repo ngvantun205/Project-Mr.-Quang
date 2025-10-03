@@ -22,7 +22,6 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             }
         }
         private User selectedUser;
-
         public User SelectedUser { get => selectedUser; set {
                 Set(ref selectedUser, value);
             }
@@ -37,7 +36,7 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
 
             AddUserCommand = new RelayCommand(async o => await AddUser());
             DeleteUserCommand = new RelayCommand(async o => await DeleteUser(SelectedUser));
-            UpdateUserCommand = new RelayCommand(async o => await UpdateUser(SelectedUser));
+            UpdateUserCommand = new RelayCommand(async o => await UpdateUser());
 
              _ = LoadData();
         }
@@ -66,14 +65,12 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                 MessageBox.Show("Please select user to delete");
             }
         }
-        private async Task UpdateUser(object o) {
-            if (o is User user) {
+        private async Task UpdateUser() {
+            foreach(var user in Users) {
                 await _userService.Update(user);
-                MessageBox.Show("Update user successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            else {
-                MessageBox.Show("Please select user to update");
-            }
+            await LoadData();
+            MessageBox.Show("Update user successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyname = "") {

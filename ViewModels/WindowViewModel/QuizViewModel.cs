@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace TDEduEnglish.ViewModels.WindowViewModel {
@@ -21,13 +24,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             get => showresults; set {
                 Set(ref showresults, value);
                 OnPropertyChanged(nameof(ShowResults));
-            }
-        }
-        private bool showExplaination;
-        public bool ShowExplaination {
-            get => showExplaination; set {
-                Set(ref showExplaination, value);
-                OnPropertyChanged(nameof(ShowExplaination));
             }
         }
 
@@ -70,6 +66,24 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(TimeRemaining));
             }
         }
+        private string explaination;
+        public string Explaination {
+            get => explaination; set {
+                Set(ref explaination, value);
+                OnPropertyChanged(nameof(Explaination));
+            }
+        }
+
+        private bool _isCorrect;
+        private bool _isWrong;
+        public bool IsCorrect {
+            get => _isCorrect;
+            set { _isCorrect = value; OnPropertyChanged(); }
+        }
+        public bool IsWrong {
+            get => _isWrong;
+            set { _isWrong = value; OnPropertyChanged(); }
+        }
 
         private DispatcherTimer _timer;
         public string Title { get; set; }
@@ -81,6 +95,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         public ICommand BackToHomeCommand { get; set; }
         public ICommand CloseQuizCommand { get; set; }
         public ICommand SkipQuestionCommand { get; set; }
+        public ICommand CheckAnswerCommand { get; }
 
         public QuizViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IQuizQuestionService quizQuestionService, IQuizService quizService) {
             _navigationService = appNavigationService;
@@ -88,12 +103,10 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             _quizQuestionService = quizQuestionService;
             _quizService = quizService;
 
-            NextQuestionCommand = new RelayCommand(o => NextQuestion());
-            PreviousQuestionCommand = new RelayCommand(o => PreviousQuestion());
             RetakeQuizCommand = new RelayCommand(o => RetakeQuiz());
             BackToHomeCommand = new RelayCommand(o => appNavigationService.NavigateToUserWindow());
             CloseQuizCommand = new RelayCommand(o => appNavigationService.NavigateToUserWindow());
-            SkipQuestionCommand = new RelayCommand(o => NextQuestion());
+            CheckAnswerCommand = new RelayCommand(o => CheckAnswer(o as string));
 
             _ = LoadData();
         }
@@ -107,7 +120,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             Questions = questions != null ? new List<QuizQuestion>(questions) : new List<QuizQuestion>();
 
             ShowResults = false;
-            ShowExplaination = false;
             CurrentQuestion = Questions[0];
             CurrentQuestionIndex = 1;
             TimeRemaining = CurrentQuestion.AnswerTime;
@@ -126,7 +138,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
             else {
                 _timer.Stop();
-                ShowExplaination = true;
                 if (CurrentQuestionIndex < TotalQuestions)
                     NextQuestion();
                 else
@@ -139,21 +150,13 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 CurrentQuestionIndex++;
                 CurrentQuestion = Questions[CurrentQuestionIndex - 1];
                 TimeRemaining = CurrentQuestion.AnswerTime;
-                ShowExplaination = false;
+                IsCorrect = false;
+                IsWrong = false;
                 _timer.Stop();
                 StartTimer();
             }
             else
                 FinishQuiz();
-        }
-        private void PreviousQuestion() {
-            if (CurrentQuestionIndex > 1) {
-                CurrentQuestionIndex--;
-                CurrentQuestion = Questions[CurrentQuestionIndex - 1];
-                ShowExplaination = false;
-            }
-            else
-                MessageBox.Show("No question before to previous");
         }
         private void FinishQuiz() {
             _timer?.Stop();
@@ -172,14 +175,58 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             ShowResults = true;
         }
         private void RetakeQuiz() {
+            foreach (var q in Questions) {
+                q.IsOption1Selected = false;
+                q.IsOption2Selected = false;
+                q.IsOption3Selected = false;
+                q.IsOption4Selected = false;
+            }
             CurrentQuestionIndex = 1;
             CurrentQuestion = Questions[0];
             ShowResults = false;
             CorrectAnswers = 0;
-            ShowExplaination = false;
             TimeRemaining = CurrentQuestion.AnswerTime;
             _timer?.Stop();
             StartTimer();
+        }
+        private void CheckAnswer(string selectedAnswer) {
+            if (string.IsNullOrEmpty(selectedAnswer) || CurrentQuestion == null)
+                return;
+            if (selectedAnswer == CurrentQuestion.CorrectAnswer) {
+                IsCorrect = true;
+                IsWrong = false;
+                Explaination = CurrentQuestion.Explaination;
+                PlayCorrectSound();
+            }
+            else {
+                IsCorrect = false;
+                IsWrong = true;
+                Explaination = CurrentQuestion.Explaination;
+                PlayWrongSound();
+            }
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(2);
+            timer.Tick += (s, e) => {
+                timer.Stop();
+                IsCorrect = false;
+                IsWrong = false;
+                NextQuestion();
+            };
+            timer.Start();
+        }
+        private void PlayCorrectSound() {
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            string path = "Assets\\Audio\\correctsound.mp3";
+            string fullpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+            mediaPlayer.Open(new Uri(fullpath, UriKind.Absolute));
+            mediaPlayer.Play();
+        }
+        private void PlayWrongSound() {
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            string path = "Assets\\Audio\\wrongsound.mp3";
+            string fullpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+            mediaPlayer.Open(new Uri(fullpath, UriKind.Absolute));
+            mediaPlayer.Play();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

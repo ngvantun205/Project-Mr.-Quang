@@ -144,8 +144,8 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             await _listeningService.SaveResult(result);
 
             System.Windows.MessageBox.Show(
-                $"Bạn trả lời đúng {correct}/{Questions.Count} câu 🏆.\nĐiểm số: {score}%",
-                "Kết quả bài nghe"
+                $"You answered {correct}/{Questions.Count} questions 🏆.\nScore: {score}%",
+                "Listening Result"
             );
             mediaPlayer.Stop();
             _appNavigationService.HideCurrentWindow();

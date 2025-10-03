@@ -47,14 +47,22 @@ namespace TDEduEnglish.ViewModels.WindowViewModel
 
             //_userRepository.Add(new User {
             //    FullName = "Admin",
-            //    Email = "admin@gmail.com",
-            //    PasswordHash = "123",
+            //    Email = "admin1@gmail.com",
+            //    PasswordHash = "12345678",
             //    Role = "SuperAdmin"
             //});
         }
 
         private async Task Login() {
             var user = await _authService.Login(LoginEmail, LoginPassword);
+            if (LoginEmail.IndexOf('@') == -1 || LoginEmail.IndexOf('.') == -1) {
+                MessageBox.Show("Please enter a valid email address.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (LoginPassword.Length < 8) {
+                MessageBox.Show("Password must be at least 8 characters long.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (user != null && user.Role == "User") {
                 _sessonService.SetCurrentUser(user);
                 MessageBox.Show($"Login successful!, Hello {user.FullName}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -77,6 +85,14 @@ namespace TDEduEnglish.ViewModels.WindowViewModel
                 string.IsNullOrWhiteSpace(Password) ||
                 string.IsNullOrWhiteSpace(ConfirmPassword)) {
                     MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if(Email.IndexOf('@') == -1 || Email.IndexOf('.') == -1) {
+                    MessageBox.Show("Please enter a valid email address.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                if (Password.Length < 8) {
+                    MessageBox.Show("Password must be at least 8 characters long.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 if (Password != ConfirmPassword) {

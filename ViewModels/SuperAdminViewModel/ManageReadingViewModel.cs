@@ -96,9 +96,6 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             this.sessonService = sessonService;
             this.readingQuestionService = readingQuestionService;
 
-            ReadingLessons = new ObservableCollection<ReadingLesson>(readingService.GetAll().Result);
-            ReadingQuestions = new ObservableCollection<ReadingQuestion>(readingQuestionService.GetAll().Result);
-
             ImportReadingLessonCommand = new RelayCommand(async o => await ImportReadingLessonFromJsonFile());
             DeleteReadingLessonCommand = new RelayCommand(async o => await DeleteReadingLesson(SelectedReadingLesson));
             AddReadingLessonCommand = new RelayCommand(async o => await AddReadingLesson());
