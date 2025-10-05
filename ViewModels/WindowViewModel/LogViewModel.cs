@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TDEduEnglish.Views.Pages;
 
-namespace TDEduEnglish.ViewModels.WindowViewModel
-{
-    public class LogViewModel {
+namespace TDEduEnglish.ViewModels.WindowViewModel {
+    public class LogViewModel : Bindable, INotifyPropertyChanged {
         private readonly AppNavigationService _navigationService;
         private readonly IRepository<User> _userRepository;
         private readonly IUserService _userService;
@@ -24,14 +25,58 @@ namespace TDEduEnglish.ViewModels.WindowViewModel
         public string PhoneNumber { get; set; }
         public bool AcceptTerms { get; set; }
 
-        
+        private bool isSuccessPopupVisible;
+        public bool IsSuccessPopupVisible {
+            get => isSuccessPopupVisible; set {
+                Set(ref isSuccessPopupVisible, value);
+                OnPropertyChanged(nameof(IsSuccessPopupVisible));
+            }
+        }
+        private bool isRegisterErrorPopupVisible;
+        public bool IsRegisterErrorPopupVisible {
+            get => isRegisterErrorPopupVisible; set {
+                Set(ref isRegisterErrorPopupVisible, value);
+                OnPropertyChanged(nameof(IsRegisterErrorPopupVisible));
+            }
+        }
+        private bool isLoginErrorPopupVisible;
+        public bool IsLoginErrorPopupVisible {
+            get => isLoginErrorPopupVisible; set {
+                Set(ref isLoginErrorPopupVisible, value);
+                OnPropertyChanged(nameof(IsLoginErrorPopupVisible));
+            }
+        }
+        private string successtext;
+        public string SuccessText {
+            get => successtext; set {
+                Set(ref successtext, value);
+                OnPropertyChanged(nameof(SuccessText));
+            }
+        }
+        private string registeErrorText;
+        public string RegisterErrorText {
+            get => registeErrorText; set {
+                Set(ref registeErrorText, value);
+                OnPropertyChanged(nameof(RegisterErrorText));
+            }
+        }
+        private string loginErrorText;
+        public string LoginErrorText {
+            get => loginErrorText; set {
+                Set(ref loginErrorText, value);
+                OnPropertyChanged(nameof(LoginErrorText));
+            }
+        }
+
+
 
         public string LoginEmail { get; set; }
         public string LoginPassword { get; set; }
-
         public ICommand LoginCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
         public ICommand CloseCommand { get; set; }
+        public ICommand ContinueCommand { get; set; }
+        public ICommand TryAgainCommand { get; set; }
 
 
         public LogViewModel(AppNavigationService navigationService, IRepository<User> userRepository, IUserService userService, ISessonService sessonService, IAuthService authService) {
@@ -44,10 +89,12 @@ namespace TDEduEnglish.ViewModels.WindowViewModel
             LoginCommand = new RelayCommand(async (parameter) => await Login());
             RegisterCommand = new RelayCommand(async (o) => await Register());
             CloseCommand = new RelayCommand((o) => Application.Current.Shutdown());
+            TryAgainCommand = new RelayCommand(o => TryAgain());
+            ContinueCommand = new RelayCommand(o => _navigationService.NavigateToUserWindow());
 
             //_userRepository.Add(new User {
             //    FullName = "Admin",
-            //    Email = "admin1@gmail.com",
+            //    Email = "admin@gmail.com",
             //    PasswordHash = "12345678",
             //    Role = "SuperAdmin"
             //});
@@ -56,27 +103,38 @@ namespace TDEduEnglish.ViewModels.WindowViewModel
         private async Task Login() {
             var user = await _authService.Login(LoginEmail, LoginPassword);
             if (LoginEmail.IndexOf('@') == -1 || LoginEmail.IndexOf('.') == -1) {
-                MessageBox.Show("Please enter a valid email address.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginErrorText = "Please enter a valid email address.";
+                IsLoginErrorPopupVisible = true;
                 return;
             }
             if (LoginPassword.Length < 8) {
-                MessageBox.Show("Password must be at least 8 characters long.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginErrorText = "Password must be at least 8 characters long.";
+                IsLoginErrorPopupVisible = true;
                 return;
             }
             if (user != null && user.Role == "User") {
                 _sessonService.SetCurrentUser(user);
-                MessageBox.Show($"Login successful!, Hello {user.FullName}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                SuccessText = $"Login successful!, Hello Mr {user.FullName}";
+                IsSuccessPopupVisible = true;
+                await Task.Delay(2000);
                 _navigationService?.NavigateToUserWindow();
             }
             else if (user != null && user.Role == "SuperAdmin") {
                 _sessonService.SetCurrentUser(user);
-                MessageBox.Show($"Login successful!, Hello Mr {user.FullName}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                SuccessText = $"Login successful!, Hello Mr {user.FullName}";
+                IsSuccessPopupVisible = true;
+                await Task.Delay(2000);
                 _navigationService?.NavigateToSuperAdminWindow();
             }
             else {
-                MessageBox.Show("Invalid email or password.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                LoginErrorText = "Invalid email or password.";
+                IsLoginErrorPopupVisible = true;
             }
 
+        }
+        private void TryAgain() {
+            IsLoginErrorPopupVisible = false;
+            IsRegisterErrorPopupVisible = false;
         }
         private async Task Register() {
             if (AcceptTerms) {
@@ -84,25 +142,35 @@ namespace TDEduEnglish.ViewModels.WindowViewModel
                 string.IsNullOrWhiteSpace(Email) ||
                 string.IsNullOrWhiteSpace(Password) ||
                 string.IsNullOrWhiteSpace(ConfirmPassword)) {
-                    MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    RegisterErrorText = "Please fill in all required fields.";
+                    IsRegisterErrorPopupVisible = true;
                     return;
                 }
-                if(Email.IndexOf('@') == -1 || Email.IndexOf('.') == -1) {
-                    MessageBox.Show("Please enter a valid email address.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (Email.IndexOf('@') == -1 || Email.IndexOf('.') == -1) {
+                    RegisterErrorText = "Please enter a valid email address.";
+                    IsRegisterErrorPopupVisible = true;
+                    return;
+                }
+                if (string.IsNullOrEmpty(PhoneNumber)) {
+                    RegisterErrorText = "Phone number is required.";
+                    IsRegisterErrorPopupVisible = true;
                     return;
                 }
                 if (Password.Length < 8) {
-                    MessageBox.Show("Password must be at least 8 characters long.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    RegisterErrorText = "Password must be at least 8 characters long.";
+                    IsRegisterErrorPopupVisible = true;
                     return;
                 }
                 if (Password != ConfirmPassword) {
-                    MessageBox.Show("Passwords do not match.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    RegisterErrorText = "Passwords do not match.";
+                    IsRegisterErrorPopupVisible = true;
                     return;
                 }
                 var existingUser = await _userRepository.GetAll();
-               
+
                 if (existingUser.Any(u => u.Email.Equals(Email, StringComparison.OrdinalIgnoreCase))) {
-                    MessageBox.Show("Email is already registered.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    RegisterErrorText = "An account with this email already exists.";
+                    IsRegisterErrorPopupVisible = true;
                     return;
                 }
                 var newUser = new User {
@@ -117,12 +185,21 @@ namespace TDEduEnglish.ViewModels.WindowViewModel
                 };
 
                 await _userRepository.Add(newUser);
-                MessageBox.Show($"Registration successful, Hello Mr {FullName}! You can now log in.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                SuccessText = "Registration successful! You can now log in.";
+                IsSuccessPopupVisible = true;
+                await Task.Delay(2000);
                 _navigationService?.NavigateToLogWindow();
             }
             else {
-                MessageBox.Show("You must accept the terms and conditions to register.", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return;
+                RegisterErrorText = "You must accept the terms and conditions to register.";
+                IsRegisterErrorPopupVisible = true;
+                return;
             }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "") {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

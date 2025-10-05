@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TDEduEnglish.IAppServices {
-    internal interface IReadingQuestionService {
+    public interface IReadingQuestionService {
         Task AddListAsync(IEnumerable<ReadingQuestion> questions);
         Task<IEnumerable<ReadingQuestion>> GetByLessonId(int lessonId);
         Task<IEnumerable<ReadingQuestion>> GetAll();

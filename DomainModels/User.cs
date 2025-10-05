@@ -13,11 +13,13 @@ namespace TDEduEnglish.DomainModels {
         public string FullName { get; set; } = "";
         public string Email { get; set; } = "";
         public string PasswordHash { get; set; } = "123";
-        public string PhoneNumber { get; set; } = "";
+        public string? PhoneNumber { get; set; } = "";
         public string Role { get; set; } = "";
         public DateTime JoinDate { get; set; } = DateTime.Now;
-        public DateTime DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; } = DateTime.Now;
         public string Level { get; set; } = "";
+        public virtual UserScore? UserScore { get; set; }
+        public virtual ICollection<UserAttempt> UserAttempts { get; set; } = new List<UserAttempt>();
         public ICollection<UserListeningResult> ListeningResults { get; set; } = new List<UserListeningResult>();
         public ICollection<UserReadingResult> ReadingResults { get; set; } = new List<UserReadingResult>();
     }

@@ -26,29 +26,62 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
 
         public string Title { get; set; }
         public string Level { get; set; }
-        public bool _isSubmitted { get; set; }   
+        public bool _isSubmitted { get; set; }
         public ListeningLesson listeningLesson { get; set; }
         private string isPlaying;
-        public string IsPlaying {get => isPlaying;set {Set(ref isPlaying, value);OnPropertyChanged(nameof(IsPlaying));}}
+        public string IsPlaying { get => isPlaying; set { Set(ref isPlaying, value); OnPropertyChanged(nameof(IsPlaying)); } }
         private double currentposition;
         public double CurrentPosition { get => currentposition; set { Set(ref currentposition, value); OnPropertyChanged(nameof(CurrentPosition)); } }
         private double totalduration;
-        public double TotalDuration {get => totalduration;set { Set(ref totalduration, value); OnPropertyChanged(nameof(TotalDuration)); }  }
+        public double TotalDuration { get => totalduration; set { Set(ref totalduration, value); OnPropertyChanged(nameof(TotalDuration)); } }
         private double volume;
-        public double Volume {get => volume; set {volume = value; mediaPlayer.Volume = volume; OnPropertyChanged(); } }
+        public double Volume { get => volume; set { volume = value; mediaPlayer.Volume = volume; OnPropertyChanged(); } }
+        private int totalscore;
+        public int TotalScore {
+            get => totalscore; set {
+                Set(ref totalscore, value);
+                OnPropertyChanged();
+            }
+        }
+        private int maxscore;
+        public int MaxScore {
+            get => maxscore; set {
+                Set(ref maxscore, value);
+                OnPropertyChanged();
+            }
+        }
+        private int correctanswers;
+        public int CorrectAnswers {
+            get => correctanswers; set {
+                Set(ref correctanswers, value);
+                OnPropertyChanged();
+            }
+        }
+        private bool isResultPopupVisible;
 
+        public bool IsResultPopupVisible {
+            get => isResultPopupVisible; set {
+                Set(ref isResultPopupVisible, value);
+                OnPropertyChanged();
+            }
+        }
+
+        public string ResultTitle { get; set; } = "Results";
+        public string ResultSubtitle { get; set; } = "Listening Session Subtitle";
 
         public DispatcherTimer _timer { get; set; }
         private int _elapsedSeconds;
 
         private ObservableCollection<ListeningQuestion> questions;
-        public ObservableCollection<ListeningQuestion> Questions {get => questions;set { if (value != null) Set(ref questions, value); else questions = new ObservableCollection<ListeningQuestion>(); } }
+        public ObservableCollection<ListeningQuestion> Questions { get => questions; set { if (value != null) Set(ref questions, value); else questions = new ObservableCollection<ListeningQuestion>(); } }
 
         public ICommand PlayPauseCommand { get; set; }
         public ICommand ExitCommand { get; set; }
         public ICommand Previous5sCommand { get; set; }
         public ICommand Next5sCommand { get; set; }
         public ICommand SubmitCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
+        public ICommand ContinueCommand { get; set; }
 
         public ListeningViewModel(AppNavigationService navigationService, IListeningService listening, ISessonService sesson, IListeningQuestionService listeningQuestionService, IUserListeningResultService userListeningResultService) {
             _appNavigationService = navigationService;
@@ -74,8 +107,12 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             PlayPauseCommand = new RelayCommand(o => PlayPause());
             ExitCommand = new RelayCommand(o => Exit());
             Previous5sCommand = new RelayCommand(o => Previous5s());
-            Next5sCommand = new RelayCommand( o => Next5s());
+            Next5sCommand = new RelayCommand(o => Next5s());
             SubmitCommand = new RelayCommand(async o => await SubmitAnswers());
+            CloseCommand = ContinueCommand = new RelayCommand(o => {
+                IsResultPopupVisible = false;
+                Exit();
+            });
         }
         public string TimeRemaining {
             get {
@@ -102,7 +139,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
             else { mediaPlayer.Play(); IsPlaying = "⏸️"; }
         }
-        
+
         private void Exit() {
             mediaPlayer.Stop();
             _appNavigationService.NavigateToUserWindow();
@@ -116,22 +153,27 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             CurrentPosition = mediaPlayer.Position.TotalSeconds;
         }
         private async Task SubmitAnswers() {
-            if (_isSubmitted) return;
+            if (_isSubmitted)
+                return;
             _isSubmitted = true;
             int correct = 0;
             foreach (var q in Questions) {
                 string? selected = null;
-                if (q.IsOption1Selected) selected = q.Option1;
-                else if (q.IsOption2Selected) selected = q.Option2;
-                else if (q.IsOption3Selected) selected = q.Option3;
-                else if (q.IsOption4Selected) selected = q.Option4;
+                if (q.IsOption1Selected)
+                    selected = q.Option1;
+                else if (q.IsOption2Selected)
+                    selected = q.Option2;
+                else if (q.IsOption3Selected)
+                    selected = q.Option3;
+                else if (q.IsOption4Selected)
+                    selected = q.Option4;
 
                 if (selected != null && selected == q.CorrectAnswer) {
                     correct++;
                 }
             }
 
-            int score = (int)Math.Round((double)correct / Questions.Count * 100);
+            int score = (int)Math.Round((double)correct / Questions.Count * 1000);
 
             var user = _sessonService.GetCurrentUser();
             var result = new UserListeningResult {
@@ -142,14 +184,13 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             };
 
             await _listeningService.SaveResult(result);
-
-            System.Windows.MessageBox.Show(
-                $"You answered {correct}/{Questions.Count} questions 🏆.\nScore: {score}%",
-                "Listening Result"
-            );
             mediaPlayer.Stop();
-            _appNavigationService.HideCurrentWindow();
-            
+
+            CorrectAnswers = correct;
+            TotalScore = score;
+            MaxScore = 1000;
+            IsResultPopupVisible = true;
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null) {

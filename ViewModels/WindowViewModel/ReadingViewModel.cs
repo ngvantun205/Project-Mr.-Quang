@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace TDEduEnglish.ViewModels.WindowViewModel {
-    internal class ReadingViewModel : INotifyPropertyChanged {
+    public class ReadingViewModel : Bindable, INotifyPropertyChanged {
         private readonly AppNavigationService _navigationService;
         private readonly IReadingService _readingService;
         private readonly ISessonService _sessonService;
@@ -21,6 +21,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         private readonly IReadingQuestionService _readingQuestionService;
         private readonly IUserVocabularyService _userVocabularyService;
         private readonly IVocabularyService _vocabularyService;
+        private readonly ILeaderBoardService _leaderBoardService;
 
         private DispatcherTimer _timer;
         private int _elapsedSeconds;
@@ -35,10 +36,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
         }
 
-        public ReadingLesson readingLesson { get; set; }
-        public ObservableCollection<ReadingQuestion> ReadingQuestions { get; set; }
-
-
         public string Title { get; set; }
         public string Content { get; set; }
         private bool _isPopupOpen;
@@ -49,7 +46,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged();
             }
         }
-
         private string _selectedWord;
         public string SelectedWord {
             get => _selectedWord;
@@ -58,13 +54,49 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged();
             }
         }
+        private bool isResultPopupVisible;
+        public bool IsResultPopupVisible {
+            get => isResultPopupVisible; set {
+                isResultPopupVisible = value;
+                OnPropertyChanged(nameof(isResultPopupVisible));
+            }
+        }
+        private int totalscore;
+        public int TotalScore {
+            get => totalscore; set {
+                Set(ref totalscore, value);
+                OnPropertyChanged(nameof(TotalScore));
+            }
+        }
+        private int maxscore;
+        public int MaxScore {
+            get => maxscore; set {
+                Set(ref maxscore, value);
+                OnPropertyChanged(nameof(MaxScore));
+            }
+        }
+        private int correctanswers;
+        public int CorrectAnswers {
+            get => correctanswers; set {
+                Set(ref correctanswers, value);
+                OnPropertyChanged(nameof(CorrectAnswers));
+            }
+        }
+
+
+
+        public ReadingLesson readingLesson { get; set; }
+        public ObservableCollection<ReadingQuestion> ReadingQuestions { get; set; }
+        public string ResultTitle { get; set; } = "Result";
+        public string ResultSubtitle { get; set; } = "Here your reading result";
 
         public ICommand WordSelectedCommand { get; }
         public ICommand AddToVocabularyCommand { get; }
-
         public ICommand SubmitCommand { get; set; }
         public ICommand ExitCommand { get; set; }
-        public ReadingViewModel(AppNavigationService navigationService, IReadingService readingService, ISessonService sessonService, IUserService userService, IReadingQuestionService readingQuestionService, IUserVocabularyService userVocabularyService, IVocabularyService vocabularyService) {
+        public ICommand ContinueCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
+        public ReadingViewModel(AppNavigationService navigationService, IReadingService readingService, ISessonService sessonService, IUserService userService, IReadingQuestionService readingQuestionService, IUserVocabularyService userVocabularyService, IVocabularyService vocabularyService, ILeaderBoardService leaderBoardService) {
             _navigationService = navigationService;
             _readingService = readingService;
             _sessonService = sessonService;
@@ -72,6 +104,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             _readingQuestionService = readingQuestionService;
             _vocabularyService = vocabularyService;
             _userVocabularyService = userVocabularyService;
+            _leaderBoardService = leaderBoardService;
 
             var currentReading = _sessonService.GetCurrentReading();
             if (currentReading != null) {
@@ -80,17 +113,23 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 Content = readingLesson.Content;
                 var questions = _readingQuestionService.GetByLessonId(currentReading.ReadingLessonId).Result;
                 ReadingQuestions = new ObservableCollection<ReadingQuestion>(questions);
-
-                SubmitCommand = new RelayCommand(o => SubmitAnswers());
+                CloseCommand = new RelayCommand(o => {
+                    IsResultPopupVisible = false;
+                    _navigationService.NavigateToUserWindow();
+                });
+                ContinueCommand = new RelayCommand(o => {
+                    IsResultPopupVisible = false;
+                    _navigationService.NavigateToUserWindow();
+                });
+                SubmitCommand = new RelayCommand(async o => await SubmitAnswers());
                 ExitCommand = new RelayCommand(o => Exit());
 
                 WordSelectedCommand = new RelayCommand(o => OnWordSelected(o as string));
-                AddToVocabularyCommand = new RelayCommand(o => OnAddToVocabulary());
+                AddToVocabularyCommand = new RelayCommand(async o => await OnAddToVocabulary());
 
                 _ = StartTimer();
 
             }
-
         }
         private void OnWordSelected(string word) {
             if (string.IsNullOrWhiteSpace(word))
@@ -173,7 +212,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 }
             }
 
-            int score = (int)Math.Round((double)correct / ReadingQuestions.Count * 100);
+            int score = (int)Math.Round((double)correct / ReadingQuestions.Count * 1000);
 
             var user = _sessonService.GetCurrentUser();
             var result = new UserReadingResult {
@@ -182,15 +221,20 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 Score = score,
                 CompletedAt = DateTime.Now
             };
-
+            bool addedToLeaderboard = await _leaderBoardService.SubmitAttemptAsync(
+                userId: user.UserId,
+                exerciseId: readingLesson.ReadingLessonId,
+                exerciseType: "Reading",
+                newScore: score,
+                maxScore: 1000
+                );
             await _readingService.SaveResult(result);
 
-            System.Windows.MessageBox.Show(
-                $"Bạn trả lời đúng {correct}/{ReadingQuestions.Count} câu 🏆.\nĐiểm số: {score}%",
-                "Kết quả bài đọc"
-            );
-            _navigationService.HideCurrentWindow();
-            _navigationService.NavigateToUserReadingResultWindow();
+            CorrectAnswers = correct;
+            MaxScore = 1000;
+            TotalScore = score;
+
+            IsResultPopupVisible = true;
         }
 
 

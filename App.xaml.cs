@@ -7,6 +7,7 @@ using System.Windows;
 using TDEduEnglish.AppServices;
 using TDEduEnglish.Data;
 using TDEduEnglish.Repository;
+using TDEduEnglish.Services;
 using TDEduEnglish.ViewModels;
 using TDEduEnglish.ViewModels.CoursePageViewModel;
 using TDEduEnglish.ViewModels.SuperAdminViewModel;
@@ -45,6 +46,8 @@ namespace TDEduEnglish {
             .AddScoped<IUserVocabularyRepository, UserVocabularyRepository>()
             .AddScoped<IQuizRepository, QuizRepository>()
             .AddScoped<IQuizQuestionRepository, QuizQuestionRepository>()
+            .AddScoped<IUserScoreRepository, UserScoreRepository>()
+            .AddScoped<IUserAttemptRepository, UserAttemptRepository>()
 
             .AddScoped<UserReadingResult>()
             .AddScoped<UserListeningResult>()
@@ -64,6 +67,7 @@ namespace TDEduEnglish {
             .AddScoped<IUserVocabularyService, UserVocabularyService>()
             .AddScoped<IQuizService, QuizService>()
             .AddScoped<IQuizQuestionService, QuizQuestionService>()
+            .AddScoped<ILeaderBoardService, LeaderBoardService>()
 
             .AddScoped<AppNavigationService>(sp => new AppNavigationService(null))
 

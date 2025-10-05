@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TDEduEnglish.IAppServices {
-    internal interface IVocabularyService {
+    public interface IVocabularyService {
         Task<IEnumerable<Vocabulary>> GetAll();
         Task<Vocabulary?> GetById(int id);
         Task Add(Vocabulary vocabulary);

@@ -232,225 +232,590 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="PopupOverlayStyle" TargetType="Border">
+            <Setter Property="Background" Value="#80000000"/>
+            <Setter Property="Opacity" Value="0"/>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                   To="1" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Popup Container Animation -->
+        <Style x:Key="PopupContainerStyle" TargetType="Border">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="Opacity" Value="0"/>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Border.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                   To="1" Duration="0:0:0.3"/>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                   To="1" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                   To="1" Duration="0:0:0.3">
+                                <DoubleAnimation.EasingFunction>
+                                    <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Popup Button Style -->
+        <Style x:Key="PopupButtonStyle" TargetType="Button">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        CornerRadius="8"
+                        Padding="24,12">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
+    <Grid>
+        <!-- Main Container with Glass Effect -->
+        <Border CornerRadius="16" Background="White" Margin="20">
+            <Border.Effect>
+                <DropShadowEffect Color="Gray" Direction="270" ShadowDepth="8" BlurRadius="30" Opacity="0.15"/>
+            </Border.Effect>
 
-    <!-- Main Container with Glass Effect -->
-    <Border CornerRadius="16" Background="White" Margin="20">
-        <Border.Effect>
-            <DropShadowEffect Color="Gray" Direction="270" ShadowDepth="8" BlurRadius="30" Opacity="0.15"/>
-        </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <!-- Header with Close Button -->
+                <Grid Grid.Row="0" Height="60">
+                    <Border Background="#FFF8FAFC" CornerRadius="16,16,0,0"/>
 
-            <!-- Header with Close Button -->
-            <Grid Grid.Row="0" Height="60">
-                <Border Background="#FFF8FAFC" CornerRadius="16,16,0,0"/>
-
-                <!-- Logo and Title -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                    <!-- Logo and Title -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
                            VerticalAlignment="Center">
-                    <Border Background="#FF6366F1" CornerRadius="8" Width="32" Height="32" Margin="0,0,12,0">
-                        <Border.Effect>
-                            <DropShadowEffect Color="#FF6366F1" Direction="270" ShadowDepth="2" BlurRadius="6" Opacity="0.3"/>
-                        </Border.Effect>
-                        <TextBlock Text="TD" FontSize="14" FontWeight="Bold" 
+                        <Border Background="#FF6366F1" CornerRadius="8" Width="32" Height="32" Margin="0,0,12,0">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#FF6366F1" Direction="270" ShadowDepth="2" BlurRadius="6" Opacity="0.3"/>
+                            </Border.Effect>
+                            <TextBlock Text="TD" FontSize="14" FontWeight="Bold" 
                                   Foreground="White" HorizontalAlignment="Center" 
                                   VerticalAlignment="Center"/>
-                    </Border>
-                    <TextBlock Text="TDEdu Login" FontSize="18" FontWeight="Bold" 
+                        </Border>
+                        <TextBlock Text="TDEdu Login" FontSize="18" FontWeight="Bold" 
                               Foreground="#FF1F2937" VerticalAlignment="Center"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <!-- Close Button -->
-                <Button HorizontalAlignment="Right" VerticalAlignment="Center"
+                    <!-- Close Button -->
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Center"
                        Margin="0,0,16,0" Style="{StaticResource CloseButtonStyle}"
                        >
-                    <Button Background="Transparent" Content="✕" FontSize="14" Command="{Binding CloseCommand}" />
-                </Button>
-            </Grid>
+                        <Button Background="Transparent" Content="✕" FontSize="14" Command="{Binding CloseCommand}" />
+                    </Button>
+                </Grid>
 
-            <!-- Main Content -->
-            <Grid Grid.Row="1" Margin="40,20,40,40">
-                <TabControl Style="{StaticResource ModernTabControlStyle}">
+                <!-- Main Content -->
+                <Grid Grid.Row="1" Margin="40,20,40,40">
+                    <TabControl Style="{StaticResource ModernTabControlStyle}">
 
-                    <!-- Login Tab -->
-                    <TabItem Header="Đăng nhập" Style="{StaticResource ModernTabItemStyle}">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <StackPanel>
-                                <!-- Welcome Message -->
-                                <TextBlock Text="Chào mừng trở lại!" 
+                        <!-- Login Tab -->
+                        <TabItem Header="Đăng nhập" Style="{StaticResource ModernTabItemStyle}">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <StackPanel>
+                                    <!-- Welcome Message -->
+                                    <TextBlock Text="Chào mừng trở lại!" 
                                           FontSize="24" FontWeight="Bold" 
                                           Foreground="#FF1F2937" 
                                           HorizontalAlignment="Center"
                                           Margin="0,20,0,8"/>
 
-                                <TextBlock Text="Đăng nhập để tiếp tục học tập" 
+                                    <TextBlock Text="Đăng nhập để tiếp tục học tập" 
                                           FontSize="14" Foreground="#FF6B7280" 
                                           HorizontalAlignment="Center"
                                           Margin="0,0,0,30"/>
 
-                                <!-- Login Form -->
-                                <StackPanel Margin="0,0,0,20">
-                                    <!-- Email -->
-                                    <StackPanel Margin="0,0,0,16">
-                                        <TextBlock Text="Email" FontWeight="SemiBold" 
+                                    <!-- Login Form -->
+                                    <StackPanel Margin="0,0,0,20">
+                                        <!-- Email -->
+                                        <StackPanel Margin="0,0,0,16">
+                                            <TextBlock Text="Email" FontWeight="SemiBold" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
-                                        <TextBox  Text="{Binding LoginEmail, Mode=TwoWay}" 
+                                            <TextBox  Text="{Binding LoginEmail, Mode=TwoWay}" 
                                                 Style="{StaticResource ModernTextBoxStyle}"
                                                 Tag="Enter your email"/>
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <!-- Password -->
-                                    <StackPanel Margin="0,0,0,16">
-                                        <TextBlock Text="Mật khẩu" FontWeight="SemiBold" 
+                                        <!-- Password -->
+                                        <StackPanel Margin="0,0,0,16">
+                                            <TextBlock Text="Mật khẩu" FontWeight="SemiBold" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
-                                        <PasswordBox helpers:PasswordBoxHelper.BoundPassword="{Binding LoginPassword, Mode=TwoWay}"
+                                            <PasswordBox helpers:PasswordBoxHelper.BoundPassword="{Binding LoginPassword, Mode=TwoWay}"
                                                     Style="{StaticResource ModernPasswordBoxStyle}"/>
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <!-- Remember Me & Forgot Password -->
-                                    <Grid Margin="0,0,0,24">
-                                        <CheckBox Content="Ghi nhớ đăng nhập" 
+                                        <!-- Remember Me & Forgot Password -->
+                                        <Grid Margin="0,0,0,24">
+                                            <CheckBox Content="Ghi nhớ đăng nhập" 
                                                  Foreground="#FF6B7280" FontSize="13"
                                                  HorizontalAlignment="Left"/>
-                                        <TextBlock Text="Quên mật khẩu?" 
+                                            <TextBlock Text="Quên mật khẩu?" 
                                                   Foreground="#FF6366F1" FontSize="13"
                                                   HorizontalAlignment="Right"
                                                   Cursor="Hand">
-                                            <TextBlock.TextDecorations>
-                                                <TextDecorationCollection>
-                                                    <TextDecoration Location="Underline"/>
-                                                </TextDecorationCollection>
-                                            </TextBlock.TextDecorations>
-                                        </TextBlock>
-                                    </Grid>
+                                                <TextBlock.TextDecorations>
+                                                    <TextDecorationCollection>
+                                                        <TextDecoration Location="Underline"/>
+                                                    </TextDecorationCollection>
+                                                </TextBlock.TextDecorations>
+                                            </TextBlock>
+                                        </Grid>
 
-                                    <!-- Login Button -->
-                                    <Button x:Name="btnLogin" Content="Đăng nhập" Command="{Binding LoginCommand}"
+                                        <!-- Login Button -->
+                                        <Button x:Name="btnLogin" Content="Đăng nhập" Command="{Binding LoginCommand}"
                                            Style="{StaticResource ModernButtonStyle}"
                                            Height="50" />
-                                </StackPanel>
+                                    </StackPanel>
 
-                                <!-- Divider -->
-                                <Grid Margin="0,20,0,20">
-                                    <Separator Background="#FFE5E7EB"/>
-                                    <TextBlock Text="hoặc" Background="White" 
+                                    <!-- Divider -->
+                                    <Grid Margin="0,20,0,20">
+                                        <Separator Background="#FFE5E7EB"/>
+                                        <TextBlock Text="hoặc" Background="White" 
                                               Foreground="#FF6B7280" FontSize="12"
                                               HorizontalAlignment="Center"
                                               Padding="12,0"/>
-                                </Grid>
+                                    </Grid>
 
-                                <!-- Social Login -->
-                                <StackPanel>
-                                    <Button Content="🌐 Đăng nhập với Google" 
+                                    <!-- Social Login -->
+                                    <StackPanel>
+                                        <Button Content="🌐 Đăng nhập với Google" 
                                            Style="{StaticResource SecondaryButtonStyle}"
                                            Height="50" Margin="0,0,0,12"/>
 
-                                    <Button Content="📘 Đăng nhập với Facebook" 
+                                        <Button Content="📘 Đăng nhập với Facebook" 
                                            Style="{StaticResource SecondaryButtonStyle}"
                                            Height="50"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </TabItem>
+                            </ScrollViewer>
+                        </TabItem>
 
-                    <!-- Register Tab -->
-                    <TabItem Header="Đăng ký" Style="{StaticResource ModernTabItemStyle}">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <StackPanel>
-                                <!-- Welcome Message -->
-                                <TextBlock Text="Tạo tài khoản mới!" 
+                        <!-- Register Tab -->
+                        <TabItem Header="Đăng ký" Style="{StaticResource ModernTabItemStyle}">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <StackPanel>
+                                    <!-- Welcome Message -->
+                                    <TextBlock Text="Tạo tài khoản mới!" 
                                           FontSize="24" FontWeight="Bold" 
                                           Foreground="#FF1F2937" 
                                           HorizontalAlignment="Center"
                                           Margin="0,20,0,8"/>
 
-                                <TextBlock Text="Bắt đầu hành trình học tập của bạn" 
+                                    <TextBlock Text="Bắt đầu hành trình học tập của bạn" 
                                           FontSize="14" Foreground="#FF6B7280" 
                                           HorizontalAlignment="Center"
                                           Margin="0,0,0,30"/>
 
-                                <!-- Register Form -->
-                                <StackPanel Margin="0,0,0,20">
-                                    <!-- Full Name -->
-                                    <StackPanel Margin="0,0,0,16">
-                                        <TextBlock Text="Họ và tên" FontWeight="SemiBold" 
+                                    <!-- Register Form -->
+                                    <StackPanel Margin="0,0,0,20">
+                                        <!-- Full Name -->
+                                        <StackPanel Margin="0,0,0,16">
+                                            <TextBlock Text="Họ và tên" FontWeight="SemiBold" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
-                                        <TextBox x:Name="txtRegisterName" Text="{Binding FullName}"
+                                            <TextBox x:Name="txtRegisterName" Text="{Binding FullName}"
                                                 Style="{StaticResource ModernTextBoxStyle}"/>
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <!-- Email -->
-                                    <StackPanel Margin="0,0,0,16">
-                                        <TextBlock Text="Email" FontWeight="SemiBold" 
+                                        <!-- Email -->
+                                        <StackPanel Margin="0,0,0,16">
+                                            <TextBlock Text="Email" FontWeight="SemiBold" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
-                                        <TextBox x:Name="txtRegisterEmail"  Text="{Binding Email}"
+                                            <TextBox x:Name="txtRegisterEmail"  Text="{Binding Email}"
                                                 Style="{StaticResource ModernTextBoxStyle}"/>
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <!-- Phone -->
-                                    <StackPanel Margin="0,0,0,16">
-                                        <TextBlock Text="Số điện thoại" FontWeight="SemiBold" 
+                                        <!-- Phone -->
+                                        <StackPanel Margin="0,0,0,16">
+                                            <TextBlock Text="Số điện thoại" FontWeight="SemiBold" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
-                                        <TextBox x:Name="txtRegisterPhone" Text="{Binding PhoneNumber}"
+                                            <TextBox x:Name="txtRegisterPhone" Text="{Binding PhoneNumber}"
                                                 Style="{StaticResource ModernTextBoxStyle}"/>
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <!-- Password -->
-                                    <StackPanel Margin="0,0,0,16">
-                                        <TextBlock Text="Mật khẩu" FontWeight="SemiBold" 
+                                        <!-- Password -->
+                                        <StackPanel Margin="0,0,0,16">
+                                            <TextBlock Text="Mật khẩu" FontWeight="SemiBold" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
-                                        <PasswordBox x:Name="txtRegisterPassword" helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}"
+                                            <PasswordBox x:Name="txtRegisterPassword" helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}"
                                                     Style="{StaticResource ModernPasswordBoxStyle}"/>
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <!-- Confirm Password -->
-                                    <StackPanel Margin="0,0,0,16">
-                                        <TextBlock Text="Xác nhận mật khẩu" FontWeight="SemiBold" 
+                                        <!-- Confirm Password -->
+                                        <StackPanel Margin="0,0,0,16">
+                                            <TextBlock Text="Xác nhận mật khẩu" FontWeight="SemiBold" 
                                                   Foreground="#FF374151" Margin="0,0,0,6"/>
-                                        <PasswordBox x:Name="txtRegisterConfirmPassword"  helpers:PasswordBoxHelper.BoundPassword="{Binding ConfirmPassword, Mode=TwoWay}"
+                                            <PasswordBox x:Name="txtRegisterConfirmPassword"  helpers:PasswordBoxHelper.BoundPassword="{Binding ConfirmPassword, Mode=TwoWay}"
                                                     Style="{StaticResource ModernPasswordBoxStyle}"/>
-                                    </StackPanel>
+                                        </StackPanel>
 
-                                    <!-- Terms and Conditions -->
-                                    <CheckBox Content="Tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật" 
+                                        <!-- Terms and Conditions -->
+                                        <CheckBox Content="Tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật" 
                                              Foreground="#FF6B7280" FontSize="13" IsChecked="{Binding AcceptTerms}"
                                              Margin="0,0,0,24"/>
 
-                                    <!-- Register Button -->
-                                    <Button x:Name="btnRegister" Content="Đăng ký"  Command="{Binding RegisterCommand}"
+                                        <!-- Register Button -->
+                                        <Button x:Name="btnRegister" Content="Đăng ký"  Command="{Binding RegisterCommand}"
                                            Style="{StaticResource ModernButtonStyle}"
                                            Height="50" />
-                                </StackPanel>
+                                    </StackPanel>
 
-                                <!-- Divider -->
-                                <Grid Margin="0,20,0,20">
-                                    <Separator Background="#FFE5E7EB"/>
-                                    <TextBlock Text="hoặc" Background="White" 
+                                    <!-- Divider -->
+                                    <Grid Margin="0,20,0,20">
+                                        <Separator Background="#FFE5E7EB"/>
+                                        <TextBlock Text="hoặc" Background="White" 
                                               Foreground="#FF6B7280" FontSize="12"
                                               HorizontalAlignment="Center"
                                               Padding="12,0"/>
-                                </Grid>
+                                    </Grid>
 
-                                <!-- Social Register -->
-                                <StackPanel>
-                                    <Button Content="🌐 Đăng ký với Google" 
+                                    <!-- Social Register -->
+                                    <StackPanel>
+                                        <Button Content="🌐 Đăng ký với Google" 
                                            Style="{StaticResource SecondaryButtonStyle}"
                                            Height="50" Margin="0,0,0,12"/>
 
-                                    <Button Content="📘 Đăng ký với Facebook" 
+                                        <Button Content="📘 Đăng ký với Facebook" 
                                            Style="{StaticResource SecondaryButtonStyle}"
                                            Height="50"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </ScrollViewer>
-                    </TabItem>
-                </TabControl>
+                            </ScrollViewer>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+                
             </Grid>
-        </Grid>
-    </Border>
+        </Border>
+        <Border x:Name="SuccessPopup" 
+        Visibility="{Binding IsSuccessPopupVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+        Style="{StaticResource PopupOverlayStyle}"
+        Grid.RowSpan="2">
+            <Grid>
+                <Border Style="{StaticResource PopupContainerStyle}"
+                Background="White"
+                CornerRadius="20"
+                Width="350"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="270" 
+                                ShadowDepth="0" BlurRadius="40" Opacity="0.2"/>
+                    </Border.Effect>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Success Icon with Gradient Background -->
+                        <Border Grid.Row="0" CornerRadius="20,20,0,0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#FF6366F1" Offset="0"/>
+                                    <GradientStop Color="#FF6366F1" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Grid>
+                                <Ellipse Width="80" Height="80" 
+                                 Fill="White" Opacity="0.2"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+
+                                <Ellipse Width="64" Height="64" 
+                                 Fill="White"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                                    <Ellipse.Effect>
+                                        <DropShadowEffect Color="#FF6366F1" Direction="270" 
+                                                ShadowDepth="0" BlurRadius="20" Opacity="0.5"/>
+                                    </Ellipse.Effect>
+                                </Ellipse>
+
+                                <Viewbox Width="32" Height="32"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                                    <Canvas Width="24" Height="24">
+                                        <Path Data="M9 12.75L11.25 15 15 9.75" 
+                                      Stroke="#FF6366F1" StrokeThickness="1.5"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Grid>
+                        </Border>
+
+                        <!-- Content -->
+                        <Grid Grid.Row="1" Margin="32,24,32,32">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                              Text="Thành công!" 
+                              FontSize="24" FontWeight="Bold"
+                              Foreground="#FF1F2937"
+                              HorizontalAlignment="Center"
+                              Margin="0,0,0,8"/>
+
+                            <TextBlock Grid.Row="1"
+                              x:Name="SuccessMessage"
+                              Text="{Binding SuccessText}"
+                              FontSize="14"
+                              Foreground="#FF6B7280"
+                              TextAlignment="Center"
+                              TextWrapping="Wrap"
+                              Margin="0,0,0,24"/>
+
+                            <Button Grid.Row="3"
+                            Content="Continue"
+                            Background="#FF6366F1"
+                            Foreground="White"
+                            Style="{StaticResource PopupButtonStyle}"
+                            Command="{Binding ContinueCommand}"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- ============================================ -->
+        <!-- 2. REGISTER ERROR POPUP - Lỗi đăng ký -->
+        <!-- ============================================ -->
+        <Border x:Name="RegisterErrorPopup"
+        Visibility="{Binding IsRegisterErrorPopupVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+        Style="{StaticResource PopupOverlayStyle}"
+        Grid.RowSpan="2">
+            <Grid>
+                <Border Style="{StaticResource PopupContainerStyle}"
+                Background="White"
+                CornerRadius="20"
+                Width="350"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="270" 
+                                ShadowDepth="0" BlurRadius="40" Opacity="0.2"/>
+                    </Border.Effect>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Warning Icon with Gradient Background -->
+                        <Border Grid.Row="0" CornerRadius="20,20,0,0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#FFF59E0B" Offset="0"/>
+                                    <GradientStop Color="#FFD97706" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Grid>
+                                <Ellipse Width="80" Height="80" 
+                                 Fill="White" Opacity="0.2"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+
+                                <Ellipse Width="64" Height="64" 
+                                 Fill="White"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                                    <Ellipse.Effect>
+                                        <DropShadowEffect Color="#FFF59E0B" Direction="270" 
+                                                ShadowDepth="0" BlurRadius="20" Opacity="0.5"/>
+                                    </Ellipse.Effect>
+                                </Ellipse>
+
+                                <TextBlock Text="!" 
+                                  FontSize="36" FontWeight="Bold"
+                                  Foreground="#FFF59E0B"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Content -->
+                        <Grid Grid.Row="1" Margin="32,24,32,32">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                              Text="Register Error" 
+                              FontSize="24" FontWeight="Bold"
+                              Foreground="#FF1F2937"
+                              HorizontalAlignment="Center"
+                              Margin="0,0,0,8"/>
+
+                            <TextBlock Grid.Row="1"
+                              x:Name="RegisterErrorMessage"
+                              Text="{Binding RegisterErrorText}"
+                              FontSize="14"
+                              Foreground="#FF6B7280"
+                              TextAlignment="Center"
+                              TextWrapping="Wrap"
+                              Margin="0,0,0,24"/>
+
+                            <Button Grid.Row="3"
+                            Content="Try again"
+                            Background="#FFF59E0B"
+                            Foreground="White"
+                            Style="{StaticResource PopupButtonStyle}"
+                            Command="{Binding TryAgainCommand}"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- ============================================ -->
+        <!-- 3. LOGIN ERROR POPUP - Lỗi đăng nhập -->
+        <!-- ============================================ -->
+        <Border x:Name="LoginErrorPopup"
+        Visibility="{Binding IsLoginErrorPopupVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+        Style="{StaticResource PopupOverlayStyle}"
+        Grid.RowSpan="2">
+            <Grid>
+                <Border Style="{StaticResource PopupContainerStyle}"
+                Background="White"
+                CornerRadius="20"
+                Width="350"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect Color="Black" Direction="270" 
+                                ShadowDepth="0" BlurRadius="40" Opacity="0.2"/>
+                    </Border.Effect>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Error Icon with Gradient Background -->
+                        <Border Grid.Row="0" CornerRadius="20,20,0,0">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#FFEF4444" Offset="0"/>
+                                    <GradientStop Color="#FFDC2626" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Grid>
+                                <Ellipse Width="80" Height="80" 
+                                 Fill="White" Opacity="0.2"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"/>
+
+                                <Ellipse Width="64" Height="64" 
+                                 Fill="White"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                                    <Ellipse.Effect>
+                                        <DropShadowEffect Color="#FFEF4444" Direction="270" 
+                                                ShadowDepth="0" BlurRadius="20" Opacity="0.5"/>
+                                    </Ellipse.Effect>
+                                </Ellipse>
+
+                                <Viewbox Width="32" Height="32"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center">
+                                    <Canvas Width="24" Height="24">
+                                        <Path Data="M6 18L18 6M6 6L18 18" 
+                                      Stroke="#FFEF4444" StrokeThickness="1.5"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Grid>
+                        </Border>
+
+                        <!-- Content -->
+                        <Grid Grid.Row="1" Margin="32,24,32,32">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                              Text="Login fail" 
+                              FontSize="24" FontWeight="Bold"
+                              Foreground="#FF1F2937"
+                              HorizontalAlignment="Center"
+                              Margin="0,0,0,8"/>
+
+                            <TextBlock Grid.Row="1"
+                              x:Name="LoginErrorMessage"
+                              Text="Email or Password is INCORRECT"
+                              FontSize="14"
+                              Foreground="#FF6B7280"
+                              TextAlignment="Center"
+                              TextWrapping="Wrap"
+                              Margin="0,0,0,24"/>
+
+                            <Button Grid.Row="3"
+                            Content="{Binding LoginErrorText}"
+                            Background="#FFEF4444"
+                            Foreground="White"
+                            Style="{StaticResource PopupButtonStyle}"
+                            Command="{Binding TryAgainCommand}"/>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
 </Window>
