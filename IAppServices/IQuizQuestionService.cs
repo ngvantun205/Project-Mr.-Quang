@@ -13,5 +13,6 @@ namespace TDEduEnglish.IAppServices {
         Task Update(QuizQuestion quiz);
         Task<IEnumerable<QuizQuestion>> GetByQuizId(int quizid);
         Task AddListAsync(IEnumerable<QuizQuestion> quizQuestions);
+        Task<IEnumerable<QuizQuestion>> GetUnCompletedOrFlaggedQuestion();
     }
 }

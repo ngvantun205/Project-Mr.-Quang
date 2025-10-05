@@ -402,7 +402,6 @@
                             <!-- Option 1 - Red -->
                             <RadioButton Grid.Row="0" Grid.Column="0"
                                          Foreground="#FFEF4444" Content="A"
-                                         Command="{Binding CheckAnswerCommand}"
                                         CommandParameter="{Binding CurrentQuestion.Option1}"
                                         GroupName="QuizAnswers"
                                         IsChecked="{Binding CurrentQuestion.IsOption1Selected}"
@@ -413,7 +412,6 @@
                             <!-- Option 2 - Blue -->
                             <RadioButton Grid.Row="0" Grid.Column="2"
                                         Content="B" Foreground="#FF3B82F6"
-                                         Command="{Binding CheckAnswerCommand}"
                                         CommandParameter="{Binding CurrentQuestion.Option2}"
                                         GroupName="QuizAnswers"
                                         IsChecked="{Binding CurrentQuestion.IsOption2Selected}"
@@ -424,7 +422,6 @@
                             <!-- Option 3 - Orange -->
                             <RadioButton Grid.Row="1" Grid.Column="0"
                                         Content="C" Foreground="#FFF59E0B"
-                                         Command="{Binding CheckAnswerCommand}"
                                         CommandParameter="{Binding CurrentQuestion.Option3}"
                                         GroupName="QuizAnswers"
                                         IsChecked="{Binding CurrentQuestion.IsOption3Selected}"
@@ -435,7 +432,6 @@
                             <!-- Option 4 - Green -->
                             <RadioButton Grid.Row="1" Grid.Column="2"
                                         Content="D" Foreground="#FF10B981"
-                                         Command="{Binding CheckAnswerCommand}"
                                         CommandParameter="{Binding CurrentQuestion.Option4}"
                                         GroupName="QuizAnswers"
                                         IsChecked="{Binding CurrentQuestion.IsOption4Selected}"
@@ -446,6 +442,56 @@
                     </StackPanel>
                 </ScrollViewer>
             </Border>
+            <!-- Navigation Footer -->
+            <Grid Grid.Row="2" Margin="0,24,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Previous Button -->
+                <Button Grid.Column="0"
+                       Content="← Previous" 
+                       Command="{Binding PreviousQuestionCommand}"
+                       Style="{StaticResource NavButtonStyle}"
+                       Width="150"/>
+                <Button Grid.Column="1" 
+                       Content="{Binding FlagButtonText}" 
+                       Command="{Binding FlagCommand}"
+                       Style="{StaticResource NavButtonStyle}"
+                       Width="150" Margin="20 0 0 0"/>
+                
+                <!-- Skip Button -->
+                <Button Grid.Column="2"
+                       Content="Skip" 
+                       Command="{Binding SkipQuestionCommand}"
+                       Style="{StaticResource NavButtonStyle}"
+                       Width="120"
+                       HorizontalAlignment="Center"
+                       Foreground="#FF3B82F6"
+                       FontSize="14" Height="45" VerticalAlignment="Top"/>
+                
+                <!-- Review Flagged Button -->
+                <Button Grid.Column="3"
+                       Content="Review Flagged" 
+                       Command="{Binding ReviewFlagedCommand}"
+                       Style="{StaticResource NavButtonStyle}"
+                       Background="#FF10B981"
+                       Foreground="White"
+                       Width="170" Margin="0 0 20 0"/>
+                
+                <!-- Next/Submit Button -->
+                <Button Grid.Column="4"
+                       Content="{Binding NextButtonText}" 
+                       Command="{Binding NextQuestionCommand}"
+                       Style="{StaticResource NavButtonStyle}"
+                       Background="#FF10B981"
+                       Foreground="White"
+                       Width="150"/>
+            </Grid>
         </Grid>
 
         <!-- Results Overlay (Shown after quiz completion) -->
@@ -525,85 +571,6 @@
                                Background="Transparent"
                                Foreground="#FF6B7280"/>
                     </StackPanel>
-                </StackPanel>
-            </Border>
-        </Grid>
-        <!-- Correct Answer Overlay -->
-        <Grid x:Name="CorrectOverlay"
-      Background="#80000000"
-      Visibility="{Binding IsCorrect, Converter={StaticResource BoolToVisibilityConverter}}">
-            <Border Background="White"
-            CornerRadius="24"
-            Padding="40"
-            MaxWidth="400"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center">
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="✅ Correct!"
-                       FontSize="36"
-                       FontWeight="Bold"
-                       Foreground="#FF10B981"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,12"/>
-                    <TextBlock Text="You handled that perfectly 🎉"
-                       FontSize="18"
-                       Foreground="#FF1F2937"
-                       TextAlignment="Center"
-                       Margin="0,0,0,12"/>
-                    <!-- ✅ Explanation line -->
-                    <TextBlock Text="{Binding Explaination}"
-                       FontSize="16"
-                       Foreground="#FF374151"
-                       TextWrapping="Wrap"
-                       TextAlignment="Center"/>
-                </StackPanel>
-            </Border>
-        </Grid>
-
-        <!-- Wrong Answer Overlay -->
-        <Grid x:Name="WrongOverlay"
-      Background="#80000000"
-      Visibility="{Binding IsWrong, Converter={StaticResource BoolToVisibilityConverter}}">
-            <Border Background="White"
-            CornerRadius="24"
-            Padding="40"
-            MaxWidth="400"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center">
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="❌ Wrong!"
-                       FontSize="36"
-                       FontWeight="Bold"
-                       Foreground="#FFEF4444"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,12"/>
-                    <TextBlock Text="That’s not correct, but don’t worry"
-                       FontSize="18"
-                       Foreground="#FF1F2937"
-                       TextAlignment="Center"
-                       Margin="0,0,0,12"/>
-                    <Border Background="#FFEFF6FF" 
-                            BorderBrush="#FF3B82F6"
-                            BorderThickness="2"
-                            CornerRadius="16" 
-                            Padding="24" 
-                            Margin="0,16,0,0">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                                <TextBlock Text="💡" FontSize="24" Margin="0,0,12,0"/>
-                                <TextBlock Text="Giải thích" 
-                                           FontSize="20" FontWeight="Bold" 
-                                           Foreground="#FF3B82F6"
-                                           VerticalAlignment="Center"/>
-
-                            </StackPanel>
-                            <TextBlock Text="{Binding Explaination}" 
-                                       FontSize="16" 
-                                       Foreground="#FF1F2937"
-                                       TextWrapping="Wrap"
-                                       LineHeight="24"/>
-                        </StackPanel>
-                    </Border>
                 </StackPanel>
             </Border>
         </Grid>

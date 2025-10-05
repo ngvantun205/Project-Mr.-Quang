@@ -30,9 +30,7 @@ namespace TDEduEnglish.Repository {
         public async Task Update(Quiz entity) {
             var q = await GetById(entity.QuizId);
             if(q != null) {
-                q.Title = entity.Title;
-                q.Level = entity.Level;
-                q.Topic = entity.Topic;
+                _context.Entry(q).CurrentValues.SetValues(entity);
                 await _context.SaveChangesAsync();
             }
         }

@@ -18,5 +18,6 @@ namespace TDEduEnglish.AppServices {
         public async Task<IEnumerable<QuizQuestion>> GetByQuizId(int quizid) => await _quizQuestionRepository.GetByQuizId(quizid);
         public async Task Update(QuizQuestion quiz) => await _quizQuestionRepository.Update(quiz);
         public async Task AddListAsync(IEnumerable<QuizQuestion> quizQuestions) => await _quizQuestionRepository.AddListAsync(quizQuestions);
+        public async Task<IEnumerable<QuizQuestion>> GetUnCompletedOrFlaggedQuestion() => await _quizQuestionRepository.GetUnCompletedOrFlaggedQuestion();
     }
 }

@@ -28,14 +28,7 @@ namespace TDEduEnglish.Repository {
         public async Task Update(QuizQuestion entity) {
             var q = await GetById(entity.QuizQuestionId);
             if (q != null) {
-                q.QuestionText = entity.QuestionText;
-                q.CorrectAnswer = entity.CorrectAnswer;
-                q.Explaination = entity.Explaination;
-                q.AnswerTime = entity.AnswerTime;
-                q.Option1 = entity.Option1;
-                q.Option2 = entity.Option2;
-                q.Option3 = entity.Option3;
-                q.Option4 = entity.Option4;
+                _context.Entry(q).CurrentValues.SetValues(entity);
                 await _context.SaveChangesAsync();
             }
         }
@@ -44,5 +37,8 @@ namespace TDEduEnglish.Repository {
             await _context.QuizQuestions.AddRangeAsync(questions);
             await _context.SaveChangesAsync();
         }
+        public async Task<IEnumerable<QuizQuestion>> GetUnCompletedOrFlaggedQuestion() => await _context.QuizQuestions
+            .Where(q => q.IsFlagged == true || (q.IsOption1Selected == false && q.IsOption2Selected == false && q.IsOption3Selected == false && q.IsOption4Selected == false))
+            .ToListAsync();
     }
 }

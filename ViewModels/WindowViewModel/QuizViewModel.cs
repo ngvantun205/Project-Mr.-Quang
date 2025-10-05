@@ -39,10 +39,14 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             get => currentQuestionIndex; set {
                 Set(ref currentQuestionIndex, value);
                 OnPropertyChanged(nameof(CurrentQuestionIndex));
+                OnPropertyChanged(nameof(NextButtonText));
             }
         }
-
         public string NextButtonText => currentQuestionIndex == TotalQuestions ? "Submit" : "Next";
+        public string FlagButtonText => CurrentQuestion?.IsFlagged == true ? "🚩 Flagged" : "🚩 Flag";
+        private List<QuizQuestion> flaggedQuestions;
+        private int currentFlagIndex = 0;
+
         public List<QuizQuestion> Questions { get; set; }
         private int totalQuestions;
         public int TotalQuestions {
@@ -74,17 +78,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
         }
 
-        private bool _isCorrect;
-        private bool _isWrong;
-        public bool IsCorrect {
-            get => _isCorrect;
-            set { _isCorrect = value; OnPropertyChanged(); }
-        }
-        public bool IsWrong {
-            get => _isWrong;
-            set { _isWrong = value; OnPropertyChanged(); }
-        }
-
+         
         private DispatcherTimer _timer;
         public string Title { get; set; }
         public string Level { get; set; }
@@ -95,7 +89,8 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         public ICommand BackToHomeCommand { get; set; }
         public ICommand CloseQuizCommand { get; set; }
         public ICommand SkipQuestionCommand { get; set; }
-        public ICommand CheckAnswerCommand { get; }
+        public ICommand FlagCommand { get; set; }
+        public ICommand ReviewFlagedCommand { get; set; }   
 
         public QuizViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IQuizQuestionService quizQuestionService, IQuizService quizService) {
             _navigationService = appNavigationService;
@@ -106,7 +101,11 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             RetakeQuizCommand = new RelayCommand(o => RetakeQuiz());
             BackToHomeCommand = new RelayCommand(o => appNavigationService.NavigateToUserWindow());
             CloseQuizCommand = new RelayCommand(o => appNavigationService.NavigateToUserWindow());
-            CheckAnswerCommand = new RelayCommand(o => CheckAnswer(o as string));
+            NextQuestionCommand = new RelayCommand(o => NextQuestion());
+            SkipQuestionCommand = new RelayCommand(o => SkipQuestion());
+            PreviousQuestionCommand = new RelayCommand(o => PreviousQuestion());
+            FlagCommand = new RelayCommand(o => FlagQuestion());
+            ReviewFlagedCommand = new RelayCommand(o => ReviewFlaggedQuestions());
 
             _ = LoadData();
         }
@@ -122,7 +121,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             ShowResults = false;
             CurrentQuestion = Questions[0];
             CurrentQuestionIndex = 1;
-            TimeRemaining = CurrentQuestion.AnswerTime;
+            TimeRemaining = _sessonService.CurrentQuiz.SuggestedTime;
             StartTimer();
         }
         private void StartTimer() {
@@ -138,25 +137,31 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
             else {
                 _timer.Stop();
-                if (CurrentQuestionIndex < TotalQuestions)
-                    NextQuestion();
-                else
-                    FinishQuiz();
+                FinishQuiz();
             }
-
         }
         private void NextQuestion() {
             if (CurrentQuestionIndex < TotalQuestions) {
                 CurrentQuestionIndex++;
                 CurrentQuestion = Questions[CurrentQuestionIndex - 1];
-                TimeRemaining = CurrentQuestion.AnswerTime;
-                IsCorrect = false;
-                IsWrong = false;
-                _timer.Stop();
-                StartTimer();
+                OnPropertyChanged(nameof(FlagButtonText));
             }
             else
                 FinishQuiz();
+        }
+        private void PreviousQuestion() {
+            if (CurrentQuestionIndex > 1) {
+                CurrentQuestionIndex--;
+                CurrentQuestion = Questions[CurrentQuestionIndex - 1];
+                OnPropertyChanged(nameof(FlagButtonText));
+            }
+        }
+        private void SkipQuestion() {
+            if (CurrentQuestionIndex < TotalQuestions) {
+                CurrentQuestionIndex++;
+                CurrentQuestion = Questions[CurrentQuestionIndex - 1];
+                OnPropertyChanged(nameof(FlagButtonText));
+            }
         }
         private void FinishQuiz() {
             _timer?.Stop();
@@ -174,59 +179,44 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             CorrectAnswers = corrects;
             ShowResults = true;
         }
-        private void RetakeQuiz() {
+        private async Task RetakeQuiz() {
             foreach (var q in Questions) {
                 q.IsOption1Selected = false;
                 q.IsOption2Selected = false;
                 q.IsOption3Selected = false;
                 q.IsOption4Selected = false;
+                q.IsFlagged = false;
             }
-            CurrentQuestionIndex = 1;
-            CurrentQuestion = Questions[0];
-            ShowResults = false;
-            CorrectAnswers = 0;
-            TimeRemaining = CurrentQuestion.AnswerTime;
             _timer?.Stop();
-            StartTimer();
+            CorrectAnswers = 0;
+            await LoadData();
+            OnPropertyChanged(nameof(FlagButtonText));
         }
-        private void CheckAnswer(string selectedAnswer) {
-            if (string.IsNullOrEmpty(selectedAnswer) || CurrentQuestion == null)
+        private void FlagQuestion() {
+            if (CurrentQuestion != null) {
+                CurrentQuestion.IsFlagged = !CurrentQuestion.IsFlagged;
+                OnPropertyChanged(nameof(FlagButtonText));
+            }
+        }
+        private void ReviewFlaggedQuestions() {
+            flaggedQuestions = Questions.Where(q => q.IsFlagged).ToList();
+
+            if (flaggedQuestions == null || flaggedQuestions.Count == 0) {
+                MessageBox.Show("No flagged questions to review.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
-            if (selectedAnswer == CurrentQuestion.CorrectAnswer) {
-                IsCorrect = true;
-                IsWrong = false;
-                Explaination = CurrentQuestion.Explaination;
-                PlayCorrectSound();
             }
-            else {
-                IsCorrect = false;
-                IsWrong = true;
-                Explaination = CurrentQuestion.Explaination;
-                PlayWrongSound();
-            }
-            var timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(2);
-            timer.Tick += (s, e) => {
-                timer.Stop();
-                IsCorrect = false;
-                IsWrong = false;
-                NextQuestion();
-            };
-            timer.Start();
+
+            currentFlagIndex = 0;
+            NavigateToFlaggedQuestion();
         }
-        private void PlayCorrectSound() {
-            MediaPlayer mediaPlayer = new MediaPlayer();
-            string path = "Assets\\Audio\\correctsound.mp3";
-            string fullpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
-            mediaPlayer.Open(new Uri(fullpath, UriKind.Absolute));
-            mediaPlayer.Play();
-        }
-        private void PlayWrongSound() {
-            MediaPlayer mediaPlayer = new MediaPlayer();
-            string path = "Assets\\Audio\\wrongsound.mp3";
-            string fullpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
-            mediaPlayer.Open(new Uri(fullpath, UriKind.Absolute));
-            mediaPlayer.Play();
+
+        private void NavigateToFlaggedQuestion() {
+            if (flaggedQuestions == null || flaggedQuestions.Count == 0)
+                return;
+
+            var question = flaggedQuestions[currentFlagIndex];
+            CurrentQuestion = question;
+            CurrentQuestionIndex = Questions.IndexOf(question) + 1;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

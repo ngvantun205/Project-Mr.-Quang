@@ -13,6 +13,7 @@ namespace TDEduEnglish.DomainModels {
         public string Title { get; set; } = "";
         public string Level { get; set; } = "";
         public string Topic { get; set; } = "";
+        public TimeSpan SuggestedTime { get; set; }
         public IEnumerable<QuizQuestion> Options { get; set; }
 	}
 }

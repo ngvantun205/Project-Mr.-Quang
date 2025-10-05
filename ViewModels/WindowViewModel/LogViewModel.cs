@@ -86,11 +86,12 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             _sessonService = sessonService;
             _authService = authService;
 
+
             LoginCommand = new RelayCommand(async (parameter) => await Login());
             RegisterCommand = new RelayCommand(async (o) => await Register());
             CloseCommand = new RelayCommand((o) => Application.Current.Shutdown());
             TryAgainCommand = new RelayCommand(o => TryAgain());
-            ContinueCommand = new RelayCommand(o => _navigationService.NavigateToUserWindow());
+            ContinueCommand = new RelayCommand(o => Continue());
 
             //_userRepository.Add(new User {
             //    FullName = "Admin",
@@ -98,6 +99,19 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             //    PasswordHash = "12345678",
             //    Role = "SuperAdmin"
             //});
+        }
+        private void Continue() {
+            if (_sessonService.CurrentUser == null) {
+                _navigationService?.NavigateToLogWindow();
+                return;
+            }
+            if (_sessonService.CurrentUser.Role == "User") {
+                _navigationService?.NavigateToUserWindow();
+            }
+            else if (_sessonService.CurrentUser.Role == "SuperAdmin") {
+                _navigationService?.NavigateToSuperAdminWindow();
+            }
+
         }
 
         private async Task Login() {
@@ -114,17 +128,13 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
             if (user != null && user.Role == "User") {
                 _sessonService.SetCurrentUser(user);
-                SuccessText = $"Login successful!, Hello Mr {user.FullName}";
+                SuccessText = $"Login successful!, Welcome back {user.FullName}";
                 IsSuccessPopupVisible = true;
-                await Task.Delay(2000);
-                _navigationService?.NavigateToUserWindow();
             }
             else if (user != null && user.Role == "SuperAdmin") {
                 _sessonService.SetCurrentUser(user);
-                SuccessText = $"Login successful!, Hello Mr {user.FullName}";
+                SuccessText = $"Login successful!, Welcome back {user.FullName}";
                 IsSuccessPopupVisible = true;
-                await Task.Delay(2000);
-                _navigationService?.NavigateToSuperAdminWindow();
             }
             else {
                 LoginErrorText = "Invalid email or password.";
@@ -187,8 +197,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 await _userRepository.Add(newUser);
                 SuccessText = "Registration successful! You can now log in.";
                 IsSuccessPopupVisible = true;
-                await Task.Delay(2000);
-                _navigationService?.NavigateToLogWindow();
             }
             else {
                 RegisterErrorText = "You must accept the terms and conditions to register.";
