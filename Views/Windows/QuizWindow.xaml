@@ -13,6 +13,161 @@
         AllowsTransparency="True">
 
     <Window.Resources>
+        <Style x:Key="QuestionNumberButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="52"/>
+            <Setter Property="Height" Value="52"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#FF6B7280"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#FFE5E7EB"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="MainBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="12">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Black" Direction="270" 
+                                            ShadowDepth="2" BlurRadius="6" Opacity="0.1"/>
+                                </Border.Effect>
+                                <Border.RenderTransform>
+                                    <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1" 
+                                          CenterX="26" CenterY="26"/>
+                                </Border.RenderTransform>
+
+                                <Grid>
+                                    <TextBlock x:Name="NumberText"
+                                      Text="{TemplateBinding Content}"
+                                      FontSize="{TemplateBinding FontSize}"
+                                      FontWeight="{TemplateBinding FontWeight}"
+                                      Foreground="{TemplateBinding Foreground}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+
+                                    <!-- Flag Icon -->
+                                    <TextBlock x:Name="FlagIcon"
+                                      Text="🚩"
+                                      FontSize="16"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Top"
+                                      Margin="0,-6,-6,0"
+                                      Visibility="Collapsed">
+                                        <TextBlock.RenderTransform>
+                                            <ScaleTransform x:Name="FlagScale" ScaleX="0" ScaleY="0"
+                                                  CenterX="8" CenterY="8"/>
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+
+                                    <!-- Answered Checkmark -->
+                                    <Border x:Name="CheckmarkBorder"
+                                   Background="#FF10B981"
+                                   CornerRadius="10"
+                                   Width="20" Height="20"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Bottom"
+                                   Margin="0,0,-6,-6"
+                                   Visibility="Collapsed">
+                                        <TextBlock Text="✓"
+                                          FontSize="12"
+                                          FontWeight="Bold"
+                                          Foreground="White"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <!-- Hover Effect -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#FF6366F1"/>
+                                <Setter TargetName="MainBorder" Property="Background" Value="#FFF8FAFC"/>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                   Storyboard.TargetProperty="ScaleX"
+                                                   To="1.08" Duration="0:0:0.15">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                   Storyboard.TargetProperty="ScaleY"
+                                                   To="1.08" Duration="0:0:0.15">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <CubicEase EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                   Storyboard.TargetProperty="ScaleX"
+                                                   To="1" Duration="0:0:0.15"/>
+                                            <DoubleAnimation Storyboard.TargetName="ScaleTransform"
+                                                   Storyboard.TargetProperty="ScaleY"
+                                                   To="1" Duration="0:0:0.15"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+
+                            <!-- Current Question State -->
+                            <DataTrigger Binding="{Binding IsCurrentQuestion}" Value="True">
+                                <Setter TargetName="MainBorder" Property="Background" Value="#FF6366F1"/>
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#FF6366F1"/>
+                                <Setter TargetName="NumberText" Property="Foreground" Value="White"/>
+                            </DataTrigger>
+
+                            <!-- Flagged State -->
+                            <DataTrigger Binding="{Binding IsFlagged}" Value="True">
+                                <Setter TargetName="FlagIcon" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#FFFBBF24"/>
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="FlagScale"
+                                                   Storyboard.TargetProperty="ScaleX"
+                                                   From="0" To="1" Duration="0:0:0.3">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation Storyboard.TargetName="FlagScale"
+                                                   Storyboard.TargetProperty="ScaleY"
+                                                   From="0" To="1" Duration="0:0:0.3">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <BackEase EasingMode="EaseOut" Amplitude="0.5"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+
+                            <!-- Answered State -->
+                            <DataTrigger Binding="{Binding IsAnswered}" Value="True">
+                                <Setter TargetName="CheckmarkBorder" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="MainBorder" Property="Background" Value="#FFF0FDF4"/>
+                                <Setter TargetName="MainBorder" Property="BorderBrush" Value="#FF10B981"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <!-- Radio Button Answer Style -->
         <Style x:Key="AnswerRadioButtonStyle" TargetType="RadioButton">
@@ -262,6 +417,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
     </Window.Resources>
 
     <Grid>
@@ -374,19 +530,19 @@
                     <StackPanel>
                         <!-- Question -->
                         <Border Background="#FFF8FAFC" 
-                               CornerRadius="16" 
-                               Padding="32" 
-                               Margin="0,0,0,32">
+                                CornerRadius="16" 
+                                Padding="32" 
+                                Margin="0,0,0,32">
                             <TextBlock Text="{Binding CurrentQuestion.QuestionText}" 
-                                      FontSize="28" 
-                                      FontWeight="SemiBold"
-                                      Foreground="#FF1F2937"
-                                      TextWrapping="Wrap"
-                                      LineHeight="40"/>
+                      FontSize="28" 
+                      FontWeight="SemiBold"
+                      Foreground="#FF1F2937"
+                      TextWrapping="Wrap"
+                      LineHeight="40"/>
                         </Border>
 
                         <!-- Answers Grid -->
-                        <Grid>
+                        <Grid Margin="0,0,0,32">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -401,47 +557,142 @@
 
                             <!-- Option 1 - Red -->
                             <RadioButton Grid.Row="0" Grid.Column="0"
-                                         Foreground="#FFEF4444" Content="A"
-                                        CommandParameter="{Binding CurrentQuestion.Option1}"
-                                        GroupName="QuizAnswers"
-                                        IsChecked="{Binding CurrentQuestion.IsOption1Selected}"
-                                        Tag="#FFEF4444"
-                                        Style="{StaticResource AnswerRadioButtonStyle}"
-                                        Margin="0,0,0,20"/>
+                         Foreground="#FFEF4444" Content="A"
+                        CommandParameter="{Binding CurrentQuestion.Option1}"
+                        GroupName="QuizAnswers"
+                        IsChecked="{Binding CurrentQuestion.IsOption1Selected}"
+                        Tag="#FFEF4444"
+                        Style="{StaticResource AnswerRadioButtonStyle}"
+                        Margin="0,0,0,20"/>
 
                             <!-- Option 2 - Blue -->
                             <RadioButton Grid.Row="0" Grid.Column="2"
-                                        Content="B" Foreground="#FF3B82F6"
-                                        CommandParameter="{Binding CurrentQuestion.Option2}"
-                                        GroupName="QuizAnswers"
-                                        IsChecked="{Binding CurrentQuestion.IsOption2Selected}"
-                                        Tag="#FF3B82F6"
-                                        Style="{StaticResource AnswerRadioButtonStyle}"
-                                        Margin="0,0,0,20"/>
+                        Content="B" Foreground="#FF3B82F6"
+                        CommandParameter="{Binding CurrentQuestion.Option2}"
+                        GroupName="QuizAnswers"
+                        IsChecked="{Binding CurrentQuestion.IsOption2Selected}"
+                        Tag="#FF3B82F6"
+                        Style="{StaticResource AnswerRadioButtonStyle}"
+                        Margin="0,0,0,20"/>
 
                             <!-- Option 3 - Orange -->
                             <RadioButton Grid.Row="1" Grid.Column="0"
-                                        Content="C" Foreground="#FFF59E0B"
-                                        CommandParameter="{Binding CurrentQuestion.Option3}"
-                                        GroupName="QuizAnswers"
-                                        IsChecked="{Binding CurrentQuestion.IsOption3Selected}"
-                                        Tag="#FFF59E0B"
-                                        Style="{StaticResource AnswerRadioButtonStyle}"
-                                        Margin="0,0,0,20"/>
+                        Content="C" Foreground="#FFF59E0B"
+                        CommandParameter="{Binding CurrentQuestion.Option3}"
+                        GroupName="QuizAnswers"
+                        IsChecked="{Binding CurrentQuestion.IsOption3Selected}"
+                        Tag="#FFF59E0B"
+                        Style="{StaticResource AnswerRadioButtonStyle}"
+                        Margin="0,0,0,20"/>
 
                             <!-- Option 4 - Green -->
                             <RadioButton Grid.Row="1" Grid.Column="2"
-                                        Content="D" Foreground="#FF10B981"
-                                        CommandParameter="{Binding CurrentQuestion.Option4}"
-                                        GroupName="QuizAnswers"
-                                        IsChecked="{Binding CurrentQuestion.IsOption4Selected}"
-                                        Tag="#FF10B981"
-                                        Style="{StaticResource AnswerRadioButtonStyle}"
-                                        Margin="0,0,0,20"/>
+                        Content="D" Foreground="#FF10B981"
+                        CommandParameter="{Binding CurrentQuestion.Option4}"
+                        GroupName="QuizAnswers"
+                        IsChecked="{Binding CurrentQuestion.IsOption4Selected}"
+                        Tag="#FF10B981"
+                        Style="{StaticResource AnswerRadioButtonStyle}"
+                        Margin="0,0,0,20"/>
                         </Grid>
+
+                        <!-- Question Navigator Panel -->
+                        <Border Background="#FFF8FAFC"
+                                CornerRadius="16"
+                                Padding="28,24">
+                            <StackPanel>
+                                <!-- Header -->
+                                <Grid Margin="0,0,0,16">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Tất cả câu hỏi"
+                                  FontSize="16"
+                                  FontWeight="Bold"
+                                  Foreground="#FF1F2937"
+                                  VerticalAlignment="Center"/>
+                                        <Border Background="#FF6366F1"
+                               CornerRadius="8"
+                               Padding="8,4"
+                               Margin="12,0,0,0">
+                                            <TextBlock Foreground="White"
+                                      FontSize="13"
+                                      FontWeight="SemiBold">
+                                                <Run Text="{Binding AnsweredCount}"/>
+                                                <Run Text="/"/>
+                                                <Run Text="{Binding TotalQuestions}"/>
+                                            </TextBlock>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <!-- Legend -->
+                                    <StackPanel Orientation="Horizontal" 
+                               HorizontalAlignment="Right">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,16,0">
+                                            <Border Background="#FF6366F1"
+                                   Width="18" Height="18"
+                                   CornerRadius="6"
+                                   Margin="0,0,6,0"/>
+                                            <TextBlock Text="Hiện tại"
+                                      FontSize="12"
+                                      Foreground="#FF6B7280"
+                                      VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,16,0">
+                                            <Border Background="#FFF0FDF4"
+                                   BorderBrush="#FF10B981"
+                                   BorderThickness="2"
+                                   Width="18" Height="18"
+                                   CornerRadius="6"
+                                   Margin="0,0,6,0"/>
+                                            <TextBlock Text="Đã làm"
+                                      FontSize="12"
+                                      Foreground="#FF6B7280"
+                                      VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Background="White"
+                                   BorderBrush="#FFFBBF24"
+                                   BorderThickness="2"
+                                   Width="18" Height="18"
+                                   CornerRadius="6"
+                                   Margin="0,0,6,0">
+                                                <TextBlock Text="🚩"
+                                          FontSize="9"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="Đã đánh dấu"
+                                      FontSize="12"
+                                      Foreground="#FF6B7280"
+                                      VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!-- Question Numbers Grid -->
+                                <ItemsControl ItemsSource="{Binding Questions}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding QuizQuestionNumber}"
+                                                   Command="{Binding DataContext.NavigateToQuestionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                   CommandParameter="{Binding QuizQuestionNumber}"
+                                                   DataContext="{Binding}"
+                                                   Style="{StaticResource QuestionNumberButtonStyle}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
                 </ScrollViewer>
             </Border>
+
             <!-- Navigation Footer -->
             <Grid Grid.Row="2" Margin="0,24,0,0">
                 <Grid.ColumnDefinitions>
@@ -458,31 +709,12 @@
                        Command="{Binding PreviousQuestionCommand}"
                        Style="{StaticResource NavButtonStyle}"
                        Width="150"/>
-                <Button Grid.Column="1" 
+                <Button Grid.Column="2" 
                        Content="{Binding FlagButtonText}" 
                        Command="{Binding FlagCommand}"
                        Style="{StaticResource NavButtonStyle}"
                        Width="150" Margin="20 0 0 0"/>
-                
-                <!-- Skip Button -->
-                <Button Grid.Column="2"
-                       Content="Skip" 
-                       Command="{Binding SkipQuestionCommand}"
-                       Style="{StaticResource NavButtonStyle}"
-                       Width="120"
-                       HorizontalAlignment="Center"
-                       Foreground="#FF3B82F6"
-                       FontSize="14" Height="45" VerticalAlignment="Top"/>
-                
-                <!-- Review Flagged Button -->
-                <Button Grid.Column="3"
-                       Content="Review Flagged" 
-                       Command="{Binding ReviewFlagedCommand}"
-                       Style="{StaticResource NavButtonStyle}"
-                       Background="#FF10B981"
-                       Foreground="White"
-                       Width="170" Margin="0 0 20 0"/>
-                
+
                 <!-- Next/Submit Button -->
                 <Button Grid.Column="4"
                        Content="{Binding NextButtonText}" 
@@ -493,7 +725,179 @@
                        Width="150"/>
             </Grid>
         </Grid>
+        <!-- Submit Confirmation Popup Overlay -->
+        <Grid x:Name="SubmitConfirmationOverlay" 
+      Background="#B3000000"
+      Visibility="{Binding ShowSubmitConfirmation, Converter={StaticResource BoolToVisibilityConverter}}"
+      Panel.ZIndex="1000">
 
+            <Border Background="White" 
+            CornerRadius="20"
+            Padding="40"
+            MaxWidth="420"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="270" 
+                            ShadowDepth="20" BlurRadius="40" Opacity="0.3"/>
+                </Border.Effect>
+
+                <Border.RenderTransform>
+                    <ScaleTransform x:Name="PopupScale" ScaleX="1" ScaleY="1" 
+                          CenterX="210" CenterY="150"/>
+                </Border.RenderTransform>
+
+                <StackPanel>
+                    <!-- Icon -->
+                    <Border Background="#FFF0F9FF" 
+                    Width="64" Height="64"
+                    CornerRadius="32"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,20">
+                        <TextBlock Text="📝" 
+                          FontSize="32"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Title -->
+                    <TextBlock Text="Nộp bài Quiz?" 
+                      FontSize="24" 
+                      FontWeight="Bold" 
+                      Foreground="#FF1F2937"
+                      HorizontalAlignment="Center"
+                      Margin="0,0,0,12"/>
+
+                    <!-- Description -->
+                    <TextBlock TextWrapping="Wrap"
+                      FontSize="15" 
+                      Foreground="#FF6B7280"
+                      HorizontalAlignment="Center"
+                      TextAlignment="Center"
+                      LineHeight="22"
+                      Margin="0,0,0,28">
+                <Run Text="Bạn đã hoàn thành"/>
+                <Run Text="{Binding AnsweredCount}" FontWeight="SemiBold" Foreground="#FF6366F1"/>
+                <Run Text="/"/>
+                <Run Text="{Binding TotalQuestions}" FontWeight="SemiBold" Foreground="#FF6366F1"/>
+                <Run Text="câu hỏi."/>
+                <LineBreak/>
+                <Run Text="Bạn có chắc muốn nộp bài không?"/>
+                    </TextBlock>
+
+                    <!-- Quick Stats -->
+                    <Border Background="#FFF8FAFC" 
+                    CornerRadius="12" 
+                    Padding="16"
+                    Margin="0,0,0,28">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Answered -->
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding AnsweredCount}" 
+                                  FontSize="20" 
+                                  FontWeight="Bold" 
+                                  Foreground="#FF10B981"
+                                  HorizontalAlignment="Center"/>
+                                <TextBlock Text="Đã làm" 
+                                  FontSize="12" 
+                                  Foreground="#FF6B7280"
+                                  HorizontalAlignment="Center"/>
+                            </StackPanel>
+
+                            <!-- Unanswered -->
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                                <TextBlock FontSize="20" 
+                                  FontWeight="Bold" 
+                                  Foreground="#FFEF4444"
+                                  HorizontalAlignment="Center">
+                            <Run Text="{Binding UnansweredCount}"/>
+                                </TextBlock>
+                                <TextBlock Text="Chưa làm" 
+                                  FontSize="12" 
+                                  Foreground="#FF6B7280"
+                                  HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Action Buttons -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Cancel Button -->
+                        <Button Grid.Column="0"
+                       Content="Hủy" 
+                       Command="{Binding CancelSubmitCommand}"
+                       Background="#FFF3F4F6"
+                       Foreground="#FF6B7280"
+                       BorderThickness="0"
+                       FontWeight="SemiBold"
+                       FontSize="15"
+                       Height="48"
+                       Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="ButtonBorder"
+                                   Background="{TemplateBinding Background}" 
+                                   CornerRadius="12"
+                                   Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="ButtonBorder" Property="Background" Value="#FFE5E7EB"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!-- Confirm Submit Button -->
+                        <Button Grid.Column="2"
+                       Content="Nộp bài" 
+                       Command="{Binding ConfirmSubmitCommand}"
+                       Background="#FF6366F1"
+                       Foreground="White"
+                       BorderThickness="0"
+                       FontWeight="SemiBold"
+                       FontSize="15"
+                       Height="48"
+                       Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="ButtonBorder"
+                                   Background="{TemplateBinding Background}" 
+                                   CornerRadius="12"
+                                   Padding="{TemplateBinding Padding}">
+                                        <Border.Effect>
+                                            <DropShadowEffect Color="#FF6366F1" Direction="270" 
+                                                    ShadowDepth="4" BlurRadius="12" Opacity="0.4"/>
+                                        </Border.Effect>
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="ButtonBorder" Property="Background" Value="#FF4F46E5"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
         <!-- Results Overlay (Shown after quiz completion) -->
         <Grid x:Name="ResultsOverlay" 
              Background="#E6FFFFFF"

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,13 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(ShowResults));
             }
         }
+        private bool showSubmitConfirmation;
+        public bool ShowSubmitConfirmation {
+            get => showSubmitConfirmation; set {
+                Set(ref showSubmitConfirmation, value);
+                OnPropertyChanged(nameof(ShowSubmitConfirmation));
+            }
+        }
 
         private QuizQuestion currentQuestion;
         public QuizQuestion CurrentQuestion {
@@ -40,14 +49,21 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 Set(ref currentQuestionIndex, value);
                 OnPropertyChanged(nameof(CurrentQuestionIndex));
                 OnPropertyChanged(nameof(NextButtonText));
+                UpdateCurrentQuestionState();
             }
         }
         public string NextButtonText => currentQuestionIndex == TotalQuestions ? "Submit" : "Next";
         public string FlagButtonText => CurrentQuestion?.IsFlagged == true ? "🚩 Flagged" : "🚩 Flag";
-        private List<QuizQuestion> flaggedQuestions;
-        private int currentFlagIndex = 0;
 
-        public List<QuizQuestion> Questions { get; set; }
+        private List<QuizQuestion> questions;
+        public List<QuizQuestion> Questions {
+            get => questions; set {
+                Set(ref questions, value);
+                OnPropertyChanged(nameof(Questions));
+                UpdateAnsweredCount();
+            }
+        }
+
         private int totalQuestions;
         public int TotalQuestions {
             get => Questions?.Count ?? totalQuestions;
@@ -77,8 +93,26 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(Explaination));
             }
         }
+        private int answeredCount;
+        public int AnsweredCount {
+            get => answeredCount;
+            set {
+                Set(ref answeredCount, value);
+                OnPropertyChanged(nameof(AnsweredCount));
+            }
+        }
+        public int UnansweredCount { get; set; }
 
-         
+        private bool showflagged;
+        public bool ShowFlagged {
+            get => showflagged; set {
+                Set(ref showflagged, value);
+                OnPropertyChanged(nameof(ShowFlagged));
+            }
+        }
+        public int QuizQuestionNumber { get; set; } = 1;
+
+
         private DispatcherTimer _timer;
         public string Title { get; set; }
         public string Level { get; set; }
@@ -90,7 +124,10 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         public ICommand CloseQuizCommand { get; set; }
         public ICommand SkipQuestionCommand { get; set; }
         public ICommand FlagCommand { get; set; }
-        public ICommand ReviewFlagedCommand { get; set; }   
+        public ICommand ReviewFlaggedCommand { get; set; }
+        public ICommand NavigateToQuestionCommand { get; set; }
+        public ICommand ConfirmSubmitCommand { get; set; }
+        public ICommand CancelSubmitCommand { get; set; }
 
         public QuizViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IQuizQuestionService quizQuestionService, IQuizService quizService) {
             _navigationService = appNavigationService;
@@ -105,9 +142,12 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             SkipQuestionCommand = new RelayCommand(o => SkipQuestion());
             PreviousQuestionCommand = new RelayCommand(o => PreviousQuestion());
             FlagCommand = new RelayCommand(o => FlagQuestion());
-            ReviewFlagedCommand = new RelayCommand(o => ReviewFlaggedQuestions());
+            NavigateToQuestionCommand = new RelayCommand(o => NavigateToQuestion(o));
+            ReviewFlaggedCommand = new RelayCommand(o => ReviewFlagged());
+            ConfirmSubmitCommand = new RelayCommand(o => ConfirmSubmit());
+            CancelSubmitCommand = new RelayCommand(o => ShowSubmitConfirmation = false);
 
-            _ = LoadData();
+            LoadData().ConfigureAwait(false);
         }
         private async Task LoadData() {
             var currentquiz = _sessonService.CurrentQuiz;
@@ -118,12 +158,51 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             var questions = await _quizQuestionService.GetByQuizId(currentquiz.QuizId);
             Questions = questions != null ? new List<QuizQuestion>(questions) : new List<QuizQuestion>();
 
+            for (int i = 0; i < Questions.Count; i++) {
+                Questions[i].QuizQuestionNumber = i + 1;
+                Questions[i].PropertyChanged += QuestionPropertyChanged;
+            }
+
+            OnPropertyChanged(nameof(Questions));
             ShowResults = false;
             CurrentQuestion = Questions[0];
             CurrentQuestionIndex = 1;
+            UpdateCurrentQuestionState();
             TimeRemaining = _sessonService.CurrentQuiz.SuggestedTime;
             StartTimer();
         }
+        private void QuestionPropertyChanged(object sender, PropertyChangedEventArgs e) {
+            if (e.PropertyName == nameof(QuizQuestion.IsOption1Selected) ||
+                e.PropertyName == nameof(QuizQuestion.IsOption2Selected) ||
+                e.PropertyName == nameof(QuizQuestion.IsOption3Selected) ||
+                e.PropertyName == nameof(QuizQuestion.IsOption4Selected)) {
+                UpdateAnsweredCount();
+                UpdateIsAnswered(sender as QuizQuestion);
+            }
+        }
+
+        private void UpdateIsAnswered(QuizQuestion question) {
+            if (question != null) {
+                question.IsAnswered = question.IsOption1Selected ||
+                                     question.IsOption2Selected ||
+                                     question.IsOption3Selected ||
+                                     question.IsOption4Selected;
+            }
+        }
+
+        private void UpdateCurrentQuestionState() {
+            if (Questions == null || Questions.Count == 0)
+                return;
+
+            foreach (var q in Questions) {
+                q.IsCurrentQuestion = false;
+            }
+
+            if (CurrentQuestionIndex >= 1 && CurrentQuestionIndex <= Questions.Count) {
+                Questions[CurrentQuestionIndex - 1].IsCurrentQuestion = true;
+            }
+        }
+
         private void StartTimer() {
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
@@ -137,7 +216,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
             else {
                 _timer.Stop();
-                FinishQuiz();
+                ConfirmSubmit();
             }
         }
         private void NextQuestion() {
@@ -146,8 +225,11 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 CurrentQuestion = Questions[CurrentQuestionIndex - 1];
                 OnPropertyChanged(nameof(FlagButtonText));
             }
-            else
-                FinishQuiz();
+            else {
+                UnansweredCount = TotalQuestions - AnsweredCount;
+                OnPropertyChanged(nameof(UnansweredCount));
+                ShowSubmitConfirmation = true;
+            }
         }
         private void PreviousQuestion() {
             if (CurrentQuestionIndex > 1) {
@@ -163,7 +245,9 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(FlagButtonText));
             }
         }
-        private void FinishQuiz() {
+
+        private void ConfirmSubmit() {
+            ShowSubmitConfirmation = false;
             _timer?.Stop();
             int corrects = 0;
             foreach (var q in Questions) {
@@ -186,6 +270,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 q.IsOption3Selected = false;
                 q.IsOption4Selected = false;
                 q.IsFlagged = false;
+                q.IsAnswered = false;
             }
             _timer?.Stop();
             CorrectAnswers = 0;
@@ -198,25 +283,24 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(FlagButtonText));
             }
         }
-        private void ReviewFlaggedQuestions() {
-            flaggedQuestions = Questions.Where(q => q.IsFlagged).ToList();
-
-            if (flaggedQuestions == null || flaggedQuestions.Count == 0) {
-                MessageBox.Show("No flagged questions to review.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
+        private void NavigateToQuestion(object parameter) {
+            if (parameter is int questionNumber) {
+                if (questionNumber >= 1 && questionNumber <= TotalQuestions) {
+                    CurrentQuestionIndex = questionNumber;
+                    CurrentQuestion = Questions[questionNumber - 1];
+                    OnPropertyChanged(nameof(FlagButtonText));
+                }
             }
-
-            currentFlagIndex = 0;
-            NavigateToFlaggedQuestion();
         }
-
-        private void NavigateToFlaggedQuestion() {
-            if (flaggedQuestions == null || flaggedQuestions.Count == 0)
+        private void ReviewFlagged() {
+            ShowFlagged = !ShowFlagged;
+        }
+        private void UpdateAnsweredCount() {
+            if (Questions == null)
                 return;
-
-            var question = flaggedQuestions[currentFlagIndex];
-            CurrentQuestion = question;
-            CurrentQuestionIndex = Questions.IndexOf(question) + 1;
+            AnsweredCount = Questions.Count(q =>
+                q.IsOption1Selected || q.IsOption2Selected ||
+                q.IsOption3Selected || q.IsOption4Selected);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

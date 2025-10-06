@@ -200,6 +200,7 @@
                                   ScrollViewer.VerticalScrollBarVisibility="Auto">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="#" Binding="{Binding QuizQuestionId}" Width="50"/>
+                                <DataGridTextColumn Header="Number" Binding="{Binding QuizQuestionNumber}" Width="50"/>
                                 <DataGridTextColumn Header="Question" Binding="{Binding QuestionText}" Width="150"/>
                                 <DataGridTextColumn Header="Correct" Binding="{Binding CorrectAnswer}" Width="120"/>
                                 <DataGridTextColumn Header="Explaination" Binding="{Binding Explaination}" Width="120"/>
