@@ -559,8 +559,8 @@
                             <RadioButton Grid.Row="0" Grid.Column="0"
                          Foreground="#FFEF4444" Content="A"
                         CommandParameter="{Binding CurrentQuestion.Option1}"
-                        GroupName="QuizAnswers"
-                        IsChecked="{Binding CurrentQuestion.IsOption1Selected}"
+                        GroupName="{Binding CurrentQuestion.QuizQuestionNumber}"
+                        IsChecked="{Binding CurrentQuestion.IsOption1Selected, Mode=TwoWay}"
                         Tag="#FFEF4444"
                         Style="{StaticResource AnswerRadioButtonStyle}"
                         Margin="0,0,0,20"/>
@@ -569,8 +569,8 @@
                             <RadioButton Grid.Row="0" Grid.Column="2"
                         Content="B" Foreground="#FF3B82F6"
                         CommandParameter="{Binding CurrentQuestion.Option2}"
-                        GroupName="QuizAnswers"
-                        IsChecked="{Binding CurrentQuestion.IsOption2Selected}"
+                        GroupName="{Binding CurrentQuestion.QuizQuestionNumber}"
+                        IsChecked="{Binding CurrentQuestion.IsOption2Selected, Mode=TwoWay}"
                         Tag="#FF3B82F6"
                         Style="{StaticResource AnswerRadioButtonStyle}"
                         Margin="0,0,0,20"/>
@@ -579,8 +579,8 @@
                             <RadioButton Grid.Row="1" Grid.Column="0"
                         Content="C" Foreground="#FFF59E0B"
                         CommandParameter="{Binding CurrentQuestion.Option3}"
-                        GroupName="QuizAnswers"
-                        IsChecked="{Binding CurrentQuestion.IsOption3Selected}"
+                        GroupName="{Binding CurrentQuestion.QuizQuestionNumber}"
+                        IsChecked="{Binding CurrentQuestion.IsOption3Selected, Mode=TwoWay}"
                         Tag="#FFF59E0B"
                         Style="{StaticResource AnswerRadioButtonStyle}"
                         Margin="0,0,0,20"/>
@@ -589,8 +589,8 @@
                             <RadioButton Grid.Row="1" Grid.Column="2"
                         Content="D" Foreground="#FF10B981"
                         CommandParameter="{Binding CurrentQuestion.Option4}"
-                        GroupName="QuizAnswers"
-                        IsChecked="{Binding CurrentQuestion.IsOption4Selected}"
+                        GroupName="{Binding CurrentQuestion.QuizQuestionNumber}"
+                        IsChecked="{Binding CurrentQuestion.IsOption4Selected, Mode=TwoWay}"
                         Tag="#FF10B981"
                         Style="{StaticResource AnswerRadioButtonStyle}"
                         Margin="0,0,0,20"/>

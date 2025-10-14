@@ -32,7 +32,6 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
         public ICommand AddReadingQuestionCommand { get; set; }
 
         private ObservableCollection<ReadingLesson> readinglessons;
-
         public ObservableCollection<ReadingLesson> ReadingLessons {
             get => readinglessons; set {
                 Set(ref readinglessons, value);
@@ -120,10 +119,20 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             await readingService.Add(lesson);
         }
         private async Task AddReadingQuestion() {
-            var question = new ReadingQuestion();
+            if (SelectedReadingLesson == null) {
+                MessageBox.Show("Please select a reading lesson before adding a question.");
+                return;
+            }
+
+            var question = new ReadingQuestion {
+                ReadingLessonId = SelectedReadingLesson.ReadingLessonId,
+                QuestionNumber = ReadingQuestions.Count + 1
+            };
+
             ReadingQuestions.Add(question);
             await readingQuestionService.Add(question);
         }
+
         private async Task UpdateReadingLesson(object? o) {
             if (o is ReadingLesson readingLesson) {
                 SelectedReadingLesson.Title = Title;

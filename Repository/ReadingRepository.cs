@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TDEduEnglish.Data;
 
 namespace TDEduEnglish.Repository {
@@ -27,7 +28,12 @@ namespace TDEduEnglish.Repository {
 
         public async Task Add(ReadingLesson entity) {
             await _context.ReadingLessons.AddAsync(entity);
-            await _context.SaveChangesAsync();
+            try {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex) {
+                MessageBox.Show(ex.InnerException?.Message ?? ex.Message);
+            }
         }
         public async Task Update(ReadingLesson entity) {
             var lesson = await GetById(entity.ReadingLessonId);
