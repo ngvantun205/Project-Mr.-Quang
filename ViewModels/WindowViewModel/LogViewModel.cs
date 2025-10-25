@@ -93,12 +93,12 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             TryAgainCommand = new RelayCommand(o => TryAgain());
             ContinueCommand = new RelayCommand(o => Continue());
 
-            //_userRepository.Add(new User {
-            //    FullName = "Admin",
-            //    Email = "admin@gmail.com",
-            //    PasswordHash = "12345678",
-            //    Role = "SuperAdmin"
-            //});
+            _userRepository.Add(new User {
+                FullName = "Admin",
+                Email = "admin@gmail.com",
+                PasswordHash = "12345678",
+                Role = "SuperAdmin"
+            });
         }
         private void Continue() {
             if (_sessonService.CurrentUser == null) {

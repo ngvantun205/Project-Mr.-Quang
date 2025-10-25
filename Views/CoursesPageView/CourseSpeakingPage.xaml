@@ -6,222 +6,74 @@
       xmlns:local="clr-namespace:TDEduEnglish.Views.CoursesPageView"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1200"
-      Title="CourseSpeakingPage">
+      Title="CourseSpeakingPage"
+      Background="White">
 
-    <Page.Resources>
-        <!-- Simple Button Style -->
-        <Style x:Key="SendButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#FF6366F1"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="10,8"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="6"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF5855E8"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#FF4F46E5"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <!-- Voice Button Style -->
-        <Style x:Key="VoiceButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#FFF3F4F6"/>
-            <Setter Property="Foreground" Value="#FF6366F1"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="#FFE5E7EB"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FFE5E7EB"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <!-- Tiêu đề -->
+        <TextBlock Text="🎤 Practice Your Speaking"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   Foreground="#1F2937"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,30"/>
 
-        <!-- TextBox Style -->
-        <Style x:Key="MessageTextBoxStyle" TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#FFE5E7EB"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="6"
-                                Padding="{TemplateBinding Padding}">
-                            <ScrollViewer x:Name="PART_ContentHost"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter Property="BorderBrush" Value="#FF6366F1"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <!-- Câu cần luyện -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <TextBlock Text="Sentence to Practice:" 
+                       FontSize="14" 
+                       Foreground="#6B7280"
+                       Margin="0,0,0,8"
+                       HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding ReferenceText, UpdateSourceTrigger=PropertyChanged}" 
+                     Width="420"
+                     FontSize="16"
+                     Padding="10"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     BorderBrush="#E5E7EB"
+                     BorderThickness="1"
+                     Background="White" />
+        </StackPanel>
 
-        <!-- User Message Style -->
-        <Style x:Key="UserMessageStyle" TargetType="Border">
-            <Setter Property="Background" Value="#FF6366F1"/>
-            <Setter Property="CornerRadius" Value="12,12,4,12"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="Margin" Value="60,4,12,4"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="MaxWidth" Value="350"/>
-        </Style>
+        <!-- Nút bắt đầu -->
+        <Button Grid.Row="2"
+                Content="🎙 Start Speaking"
+                Command="{Binding StartSpeakingCommand}"
+                Background="#2563EB"
+                Foreground="White"
+                FontSize="16"
+                FontWeight="Bold"
+                Width="220"
+                Height="50"
+                HorizontalAlignment="Center"
+                Margin="0,30,0,20"
+                BorderBrush="{x:Null}"
+                Cursor="Hand"
+                />
 
-        <!-- AI Message Style -->
-        <Style x:Key="AIMessageStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="CornerRadius" Value="12,12,12,4"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="Margin" Value="12,4,60,4"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="MaxWidth" Value="350"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="270" ShadowDepth="1" BlurRadius="6" Opacity="0.1"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
-
-    <Grid>
-        <!-- Simple Header -->
-        <Border Height="50" VerticalAlignment="Top" Background="White">
-            <Border.Effect>
-                <DropShadowEffect Color="Gray" Direction="270" ShadowDepth="1" BlurRadius="8" Opacity="0.05"/>
-            </Border.Effect>
-
-            <Grid Margin="20,0">
-                <TextBlock Text="Speaking Lesson - AI Chat" 
-                          FontSize="16" FontWeight="SemiBold" 
-                          Foreground="#FF1F2937" 
-                          VerticalAlignment="Center"/>
-
-                <Button Content="✕" FontSize="14" 
-                       Command="{Binding CloseCommand}"
-                       Style="{StaticResource VoiceButtonStyle}"
-                       Width="30" Height="30"
-                       HorizontalAlignment="Right"
-                       Padding="0"/>
-            </Grid>
-        </Border>
-
-        <!-- Chat Area -->
-        <Grid Margin="0,50,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <!-- Messages ScrollViewer -->
-            <ScrollViewer Grid.Row="0" x:Name="ChatScrollViewer"
-                         VerticalScrollBarVisibility="Auto"
-                         HorizontalScrollBarVisibility="Disabled"
-                         Background="#FFF8FAFC"
-                         Padding="0,10">
-
-                <ItemsControl ItemsSource="{Binding Messages}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <!-- User Message -->
-                                <Border Style="{StaticResource UserMessageStyle}"
-                                       Visibility="{Binding IsUser, Converter={StaticResource BoolToVisibilityConverter}}">
-                                    <TextBlock Text="{Binding Content}" 
-                                              Foreground="White"
-                                              FontSize="14"
-                                              TextWrapping="Wrap"/>
-                                </Border>
-
-                                <!-- AI Message -->
-                                <Border Style="{StaticResource AIMessageStyle}"
-                                       Visibility="{Binding IsAI, Converter={StaticResource BoolToVisibilityConverter}}">
-                                    <TextBlock Text="{Binding Content}" 
-                                              Foreground="#FF1F2937"
-                                              FontSize="14"
-                                              TextWrapping="Wrap"/>
-                                </Border>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+        <!-- Feedback -->
+        <Border Grid.Row="3" 
+                Background="White" 
+                CornerRadius="12" 
+                BorderBrush="#E5E7EB" 
+                BorderThickness="1"
+                Padding="20"
+                Width="420"
+                HorizontalAlignment="Center">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <TextBlock Text="{Binding Feedback}" 
+                           TextWrapping="Wrap"
+                           FontSize="15"
+                           Foreground="#111827"/>
             </ScrollViewer>
-
-            <!-- Input Area -->
-            <Border Grid.Row="1" Background="White" Padding="15"
-                   BorderBrush="#FFE5E7EB" BorderThickness="0,1,0,0">
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Voice Button -->
-                    <Button Grid.Column="0" Content="🎤" FontSize="16"
-                           Command="{Binding VoiceInputCommand}"
-                           Style="{StaticResource VoiceButtonStyle}"
-                           Width="40" Height="40"
-                           ToolTip="Speech to Text"
-                           Margin="0,0,10,0"/>
-
-                    <!-- Message TextBox -->
-                    <TextBox Grid.Column="1" x:Name="MessageTextBox"
-                            Text="{Binding CurrentMessage, UpdateSourceTrigger=PropertyChanged}"
-                            Style="{StaticResource MessageTextBoxStyle}"
-                            Height="40"
-                            VerticalContentAlignment="Center">
-                        <TextBox.InputBindings>
-                            <KeyBinding Key="Enter" Command="{Binding SendMessageCommand}"/>
-                        </TextBox.InputBindings>
-                    </TextBox>
-
-                    <!-- Send Button -->
-                    <Button Grid.Column="2" Content="Gửi" FontSize="14"
-                           Command="{Binding SendMessageCommand}"
-                           Style="{StaticResource SendButtonStyle}"
-                           Width="60" Height="40"
-                           Margin="10,0,0,0"/>
-                </Grid>
-            </Border>
-        </Grid>
+        </Border>
     </Grid>
 </Page>

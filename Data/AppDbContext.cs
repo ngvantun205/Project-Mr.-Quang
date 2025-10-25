@@ -24,6 +24,9 @@ namespace TDEduEnglish.Data {
         public DbSet<UserVocabulary> UserVocabularies { get; set; }
         public DbSet<UserScore> UserScores { get; set; }
         public DbSet<UserAttempt> UserAttempts { get; set; }
+        public DbSet<UserSpeakingRecord> UserSpeakingRecords { get; set; } 
+        public DbSet<Topic> Topics { get; set; }
+        public DbSet<SpeakingSentence> SpeakingSentences { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlite("Data Source=TDEduData.db");
         }
@@ -69,6 +72,10 @@ namespace TDEduEnglish.Data {
                 .WithOne(us => us.User)
                 .HasForeignKey<UserScore>(us => us.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserSpeakingRecord>()
+                        .Property(p => p.Accuracy)
+                        .HasPrecision(5, 2);
         }
 
     }

@@ -47,6 +47,7 @@ namespace TDEduEnglish {
             .AddScoped<IQuizQuestionRepository, QuizQuestionRepository>()
             .AddScoped<IUserScoreRepository, UserScoreRepository>()
             .AddScoped<IUserAttemptRepository, UserAttemptRepository>()
+            .AddScoped<IUserSpeakingRecordRepository, UserSpeakingRecordRepository>()
 
             .AddScoped<UserReadingResult>()
             .AddScoped<UserListeningResult>()
@@ -67,6 +68,7 @@ namespace TDEduEnglish {
             .AddScoped<IQuizQuestionService, QuizQuestionService>()
             .AddScoped<ILeaderBoardService, LeaderBoardService>()
             .AddScoped<IUserScoreService, UserScoreService>()
+            .AddScoped<ISpeechService, SpeechService>()
 
             .AddScoped<AppNavigationService>(sp => new AppNavigationService(null))
 
@@ -83,6 +85,7 @@ namespace TDEduEnglish {
             .AddTransient<ListeningViewModel>()
             .AddTransient<QuizViewModel>()
             .AddTransient<LeaderboardViewModel>()
+            
 
             .AddTransient<ManageListeningViewModel>()
             .AddTransient<ManageUserViewModel>()
@@ -97,6 +100,7 @@ namespace TDEduEnglish {
             .AddTransient<CoursesVocabularyListViewModel>()
             .AddTransient<CourseWritingViewModel>()
             .AddTransient<CourseMyVocabularyViewModel>()
+            .AddTransient<CourseSpeakingViewModel>()
 
             .AddSingleton<MainWindow>()
             .AddTransient<LogWindow>()
@@ -124,6 +128,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseWritingPage>()
             .AddTransient<CourseMyVocabularyPage>()
             .AddTransient<LeaderboardPage>()
+            .AddTransient<CourseSpeakingPage>()
 
             .AddScoped<GenerativeModel>()
 

@@ -14,6 +14,7 @@ namespace TDEduEnglish.AppServices {
         private readonly GenerativeModel _model;
         public WritingService(IWritingRepository writingRepository) {
             _writingRepository = writingRepository;
+
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
