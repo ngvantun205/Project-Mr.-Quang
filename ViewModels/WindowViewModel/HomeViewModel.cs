@@ -37,9 +37,6 @@ namespace TDEduEnglish.ViewModels {
                     case "QuizzesPage":
                         _navigationService.NavigateTo<QuizzesPage>();
                         break;
-                    case "CommunityPage":
-                        _navigationService.NavigateTo<CommunityPage>();
-                        break;
                     case "LeaderboardPage":
                         _navigationService.NavigateTo<LeaderboardPage>();
                         break;

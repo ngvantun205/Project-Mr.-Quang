@@ -934,7 +934,7 @@
                            Padding="32"
                            Margin="0,0,0,32">
                         <StackPanel>
-                            <TextBlock Text="{Binding ScorePercentage, StringFormat='{}{0}%'}" 
+                            <TextBlock Text="{Binding Score}" 
                                       FontSize="56" FontWeight="Bold" 
                                       Foreground="#FF10B981"
                                       HorizontalAlignment="Center"/>

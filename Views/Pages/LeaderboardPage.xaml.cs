@@ -22,7 +22,7 @@ namespace TDEduEnglish.Views.Pages {
     public partial class LeaderboardPage : Page {
         public LeaderboardPage(AppNavigationService appNavigationService) {
             InitializeComponent();
-            this.DataContext = new LeaderboardViewModel(appNavigationService);
+            this.DataContext = App.Provider?.GetRequiredService<LeaderboardViewModel>();
         }
     }
 }

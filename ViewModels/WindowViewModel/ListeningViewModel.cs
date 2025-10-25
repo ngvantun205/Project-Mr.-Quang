@@ -21,7 +21,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         private readonly ISessonService _sessonService;
         private readonly IListeningQuestionService _listeningQuestionService;
         private readonly IUserListeningResultService _userListeningResultService;
-
+        private readonly ILeaderBoardService _leaderBoardService;
         public MediaPlayer? mediaPlayer { get; set; } = new MediaPlayer();
 
         public string Title { get; set; }
@@ -83,12 +83,13 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         public ICommand CloseCommand { get; set; }
         public ICommand ContinueCommand { get; set; }
 
-        public ListeningViewModel(AppNavigationService navigationService, IListeningService listening, ISessonService sesson, IListeningQuestionService listeningQuestionService, IUserListeningResultService userListeningResultService) {
+        public ListeningViewModel(AppNavigationService navigationService, IListeningService listening, ISessonService sesson, IListeningQuestionService listeningQuestionService, IUserListeningResultService userListeningResultService, ILeaderBoardService leaderBoardService) {
             _appNavigationService = navigationService;
             _listeningService = listening;
             _sessonService = sesson;
             _listeningQuestionService = listeningQuestionService;
             _userListeningResultService = userListeningResultService;
+            _leaderBoardService = leaderBoardService;
 
             ListeningLesson? listeninglesson = _sessonService.GetCurrentListening();
             if (listeninglesson != null) {
@@ -186,11 +187,14 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             await _listeningService.SaveResult(result);
             mediaPlayer.Stop();
 
+            await _leaderBoardService.SubmitAttemptAsync(user.UserId, listeningLesson.ListeningLessonId, "Listening", score, 1000);
+
             CorrectAnswers = correct;
             TotalScore = score;
             MaxScore = 1000;
             IsResultPopupVisible = true;
 
+            
         }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null) {

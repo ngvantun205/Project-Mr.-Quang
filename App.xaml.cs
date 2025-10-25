@@ -41,7 +41,6 @@ namespace TDEduEnglish {
             .AddScoped<IUserReadingResultRepository, UserReadingResultRepository>()
             .AddScoped<IListeningQuestionRepository, ListeningQuestionRepository>()
             .AddScoped<IUserListeningResultRepository, UserListeningResultRepository>()
-            .AddScoped<IAIChatRepository, AIChatRepository>()
             .AddScoped<IWritingRepository, WritingRepository>()
             .AddScoped<IUserVocabularyRepository, UserVocabularyRepository>()
             .AddScoped<IQuizRepository, QuizRepository>()
@@ -62,12 +61,12 @@ namespace TDEduEnglish {
             .AddScoped<IUserReadingResultService, UserReadingResultService>()
             .AddScoped<IListeningQuestionService, ListeningQuestionService>()
             .AddScoped<IUserListeningResultService, UserListeningResultService>()
-            .AddScoped<IAIChatService, AIChatService>()
             .AddScoped<IWritingService, WritingService>()
             .AddScoped<IUserVocabularyService, UserVocabularyService>()
             .AddScoped<IQuizService, QuizService>()
             .AddScoped<IQuizQuestionService, QuizQuestionService>()
             .AddScoped<ILeaderBoardService, LeaderBoardService>()
+            .AddScoped<IUserScoreService, UserScoreService>()
 
             .AddScoped<AppNavigationService>(sp => new AppNavigationService(null))
 
@@ -76,7 +75,6 @@ namespace TDEduEnglish {
             .AddTransient<LeaderboardViewModel>()
             .AddTransient<UserProfileViewModel>()
             .AddTransient<QuizzesViewModel>()
-            .AddTransient<CommunityViewModel>()
             .AddTransient<LogViewModel>()
             .AddTransient<SuperAdminViewModel>()
             .AddTransient<CourseReadingListViewModel>()
@@ -84,6 +82,7 @@ namespace TDEduEnglish {
             .AddTransient<UserReadingResultViewModel>()
             .AddTransient<ListeningViewModel>()
             .AddTransient<QuizViewModel>()
+            .AddTransient<LeaderboardViewModel>()
 
             .AddTransient<ManageListeningViewModel>()
             .AddTransient<ManageUserViewModel>()
@@ -117,7 +116,6 @@ namespace TDEduEnglish {
             .AddTransient<LeaderboardPage>()
             .AddTransient<UserProfilePage>()
             .AddTransient<QuizzesPage>()
-            .AddTransient<CommunityPage>()
             .AddTransient<CourseVocabularyPage>()
             .AddTransient<CourseGrammarPage>()
             .AddTransient<CoursesVocabularyListPage>()
@@ -125,6 +123,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseListeningListPage>()
             .AddTransient<CourseWritingPage>()
             .AddTransient<CourseMyVocabularyPage>()
+            .AddTransient<LeaderboardPage>()
 
             .AddScoped<GenerativeModel>()
 

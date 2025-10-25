@@ -116,6 +116,11 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
 
         private async Task Login() {
             var user = await _authService.Login(LoginEmail, LoginPassword);
+            if (string.IsNullOrWhiteSpace(LoginEmail) || string.IsNullOrWhiteSpace(LoginPassword)) {
+                LoginErrorText = "Please fill in all required fields.";
+                IsLoginErrorPopupVisible = true;
+                return;
+            }
             if (LoginEmail.IndexOf('@') == -1 || LoginEmail.IndexOf('.') == -1) {
                 LoginErrorText = "Please enter a valid email address.";
                 IsLoginErrorPopupVisible = true;

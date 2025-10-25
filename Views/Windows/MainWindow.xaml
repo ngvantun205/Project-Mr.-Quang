@@ -212,7 +212,7 @@
                 </StackPanel>
 
                 <!-- Navigation Menu -->
-                <Menu Grid.Column="1" Background="Transparent" 
+                <Menu Margin="150 0 0 0" Grid.Column="1" Background="Transparent" 
                       HorizontalAlignment="Center" VerticalAlignment="Center"
                       FontSize="15" Width="571">
                     <MenuItem Header="🏠 Home" Command="{Binding NavigateCommand}" 
@@ -221,8 +221,6 @@
                              CommandParameter="CoursesPage" Style="{StaticResource ModernMenuItemStyle}"/>
                     <MenuItem Header="🎯 Quizzes" Command="{Binding NavigateCommand}" 
                              CommandParameter="QuizzesPage" Style="{StaticResource ModernMenuItemStyle}"/>
-                    <MenuItem Header="👥 Community" Command="{Binding NavigateCommand}" 
-                             CommandParameter="CommunityPage" Style="{StaticResource ModernMenuItemStyle}"/>
                     <MenuItem Header="🏆 Leaderboard" Command="{Binding NavigateCommand}" 
                              CommandParameter="LeaderboardPage" Style="{StaticResource ModernMenuItemStyle}"/>
                 </Menu>

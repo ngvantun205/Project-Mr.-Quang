@@ -21,10 +21,9 @@ namespace TDEduEnglish.Data {
         public DbSet<ListeningQuestion> ListeningQuestions { get; set; }
         public DbSet<UserListeningResult> UserListeningResults { get; set; }
         public DbSet<Writing> Writings { get; set; }
-        public DbSet<AIChat> AIChats { get; set; }
         public DbSet<UserVocabulary> UserVocabularies { get; set; }
         public DbSet<UserScore> UserScores { get; set; }
-        public DbSet<UserAttempt> UserAttempts { get; set; } 
+        public DbSet<UserAttempt> UserAttempts { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlite("Data Source=TDEduData.db");
         }
@@ -64,6 +63,12 @@ namespace TDEduEnglish.Data {
                 .HasOne(r => r.ReadingLesson)
                 .WithMany(l => l.UserReadingResults)
                 .HasForeignKey(r => r.ReadingLessonId);
+
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.UserScore)
+                .WithOne(us => us.User)
+                .HasForeignKey<UserScore>(us => us.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
     }

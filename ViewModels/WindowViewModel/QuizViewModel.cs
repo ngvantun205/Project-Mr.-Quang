@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using TDEduEnglish.DomainModels;
 
 namespace TDEduEnglish.ViewModels.WindowViewModel {
     public class QuizViewModel : Bindable, INotifyPropertyChanged {
@@ -20,6 +21,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         private readonly ISessonService _sessonService;
         private readonly IQuizQuestionService _quizQuestionService;
         private readonly IQuizService _quizService;
+        private readonly ILeaderBoardService _leaderBoardService;
 
         private bool showresults;
         public bool ShowResults {
@@ -28,6 +30,14 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(ShowResults));
             }
         }
+        private int score;
+        public int Score {
+            get => score; set {
+                Set(ref score, value);
+                OnPropertyChanged(nameof(Score));
+            }
+        }
+
         private bool showSubmitConfirmation;
         public bool ShowSubmitConfirmation {
             get => showSubmitConfirmation; set {
@@ -54,6 +64,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         }
         public string NextButtonText => currentQuestionIndex == TotalQuestions ? "Submit" : "Next";
         public string FlagButtonText => CurrentQuestion?.IsFlagged == true ? "🚩 Flagged" : "🚩 Flag";
+        public Quiz CurrentQuiz { get; set; }
 
         private List<QuizQuestion> questions;
         public List<QuizQuestion> Questions {
@@ -129,13 +140,15 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         public ICommand ConfirmSubmitCommand { get; set; }
         public ICommand CancelSubmitCommand { get; set; }
 
-        public QuizViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IQuizQuestionService quizQuestionService, IQuizService quizService) {
+        public QuizViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IQuizQuestionService quizQuestionService, IQuizService quizService, ILeaderBoardService leaderBoardService) {
             _navigationService = appNavigationService;
             _sessonService = sessonService;
             _quizQuestionService = quizQuestionService;
             _quizService = quizService;
+            _leaderBoardService = leaderBoardService;
 
-            RetakeQuizCommand = new RelayCommand(o => RetakeQuiz());
+            CurrentQuiz = _sessonService.CurrentQuiz;
+            RetakeQuizCommand = new RelayCommand(async o => await RetakeQuiz());
             BackToHomeCommand = new RelayCommand(o => appNavigationService.NavigateToUserWindow());
             CloseQuizCommand = new RelayCommand(o => appNavigationService.NavigateToUserWindow());
             NextQuestionCommand = new RelayCommand(o => NextQuestion());
@@ -261,7 +274,11 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                     corrects++;
             }
             CorrectAnswers = corrects;
+            Score = (int)Math.Round((double)corrects / TotalQuestions * 1000);
+            OnPropertyChanged(nameof(Score));
+            _leaderBoardService.SubmitAttemptAsync(_sessonService.GetCurrentUser().UserId, CurrentQuiz.QuizId, "Quiz", Score, 1000);
             ShowResults = true;
+
         }
         private async Task RetakeQuiz() {
             foreach (var q in Questions) {
