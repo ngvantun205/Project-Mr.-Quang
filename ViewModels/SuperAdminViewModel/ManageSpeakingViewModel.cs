@@ -155,8 +155,8 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                         foreach (var topic in newtopics)
                             Topics.Add(topic);
                     }
-                    MessageBox.Show("⚠️ File JSON rỗng hoặc không đúng định dạng.",
-                                        "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else MessageBox.Show("⚠️ File JSON rỗng hoặc không đúng định dạng.",
+                                            "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 } 
                 catch (Exception ex) {
                     MessageBox.Show($"❌ Lỗi khi đọc file JSON: {ex.Message}",

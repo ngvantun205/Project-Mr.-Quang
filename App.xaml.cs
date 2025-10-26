@@ -108,6 +108,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseSpeakingViewModel>()
             .AddTransient<CourseTopicSpeakingViewModel>()
 
+
             .AddSingleton<MainWindow>()
             .AddTransient<LogWindow>()
             .AddSingleton<SuperAdminWindow>()
@@ -137,6 +138,7 @@ namespace TDEduEnglish {
             .AddTransient<LeaderboardPage>()
             .AddTransient<CourseSpeakingPage>()
             .AddTransient<CourseTopicSpeakingPage>()
+
 
             .AddScoped<GenerativeModel>()
 

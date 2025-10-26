@@ -14,6 +14,7 @@ namespace TDEduEnglish.Repository {
         }
         public async Task Add(UserSpeakingRecord entity) {
             await _context.UserSpeakingRecords.AddAsync(entity);
+            
             await _context.SaveChangesAsync();
         }
         public async Task Delete(int id) {

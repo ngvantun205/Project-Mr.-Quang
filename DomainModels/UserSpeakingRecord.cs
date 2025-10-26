@@ -10,11 +10,14 @@ namespace TDEduEnglish.DomainModels {
         [Key]
         public int UserSpeakingRecordId { get; set; }
         public int UserId { get; set; }
-        public int SpeakingSentenceId { get; set; } 
+        public int SpeakingSentenceId { get; set; }
+        public string ReferenceText { get; set; } = "";
+        public string RecognizedText { get; set; } = "";
         public double Accuracy { get; set; }
         public double Fluency { get; set; }
         public double Completeness { get; set; }
         public double PronScore { get; set; }
+        public string DetailsJson { get; set; } = "";
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

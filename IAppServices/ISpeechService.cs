@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace TDEduEnglish.IAppServices {
     public interface ISpeechService {
-        Task<UserSpeakingRecord> AssessAndSaveAsync(int userId, string referenceText);
+        Task<UserSpeakingRecord> AssessAndSaveAsync(int userId, int sentenceId,  string referenceText);
     }
 }

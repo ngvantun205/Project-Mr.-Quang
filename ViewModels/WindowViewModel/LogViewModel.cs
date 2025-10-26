@@ -93,11 +93,18 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             TryAgainCommand = new RelayCommand(o => TryAgain());
             ContinueCommand = new RelayCommand(o => Continue());
 
+
             //_userRepository.Add(new User {
             //    FullName = "Admin",
             //    Email = "admin@gmail.com",
             //    PasswordHash = "12345678",
             //    Role = "SuperAdmin"
+            //});
+            //_userRepository.Add(new User {
+            //    FullName = "Van Tuan",
+            //    Email = "123@gmail.com",
+            //    PasswordHash = "12345678",
+            //    Role = "User"
             //});
         }
         private void Continue() {
@@ -113,7 +120,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
 
         }
-
         private async Task Login() {
             var user = await _authService.Login(LoginEmail, LoginPassword);
             if (string.IsNullOrWhiteSpace(LoginEmail) || string.IsNullOrWhiteSpace(LoginPassword)) {

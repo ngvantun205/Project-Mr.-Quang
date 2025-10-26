@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TDEduEnglish.AppServices;
 using TDEduEnglish.Views.CoursesPageView;
-
 namespace TDEduEnglish.ViewModels.CoursePageViewModel {
     public class CourseTopicSpeakingViewModel : Bindable, INotifyPropertyChanged {
         private readonly ISessonService _sessonService;
@@ -64,6 +63,7 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
             if (topic is Topic selectedTopic) {
                 _sessonService.SetCurrentSpeakingTopic(selectedTopic);
                 _appNavigationService.NavigateTo<CourseSpeakingPage>();
+                //_appNavigationService.NavigateTo<TestSpeakingPage>();
             }
         }
         public event PropertyChangedEventHandler? PropertyChanged;
