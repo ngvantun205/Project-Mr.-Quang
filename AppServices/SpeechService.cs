@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using TDEduEnglish.DomainModels; // <-- Đảm bảo bạn đã using DomainModels
 
 namespace TDEduEnglish.AppServices {
     public class SpeechService : ISpeechService {
@@ -53,43 +52,36 @@ namespace TDEduEnglish.AppServices {
                 var pronConfig = new PronunciationAssessmentConfig(referenceText,
                     GradingSystem.HundredMark, Granularity.Phoneme, enableMiscue: true);
 
-                // Áp dụng cấu hình đánh giá vào recognizer
                 pronConfig.ApplyTo(recognizer);
 
-                // Bắt đầu nhận dạng một lần
                 var result = await recognizer.RecognizeOnceAsync();
 
-                // 1. XỬ LÝ KẾT QUẢ THÀNH CÔNG
                 if (result.Reason == ResultReason.RecognizedSpeech) {
                     var pronResult = PronunciationAssessmentResult.FromResult(result);
 
                     var record = new UserSpeakingRecord {
                         UserId = userId,
-                        SpeakingSentenceId = speakingSentenceId, // <-- SỬA LỖI: Lưu ID câu
+                        SpeakingSentenceId = speakingSentenceId, 
                         ReferenceText = referenceText,
-                        RecognizedText = result.Text, // <-- SỬA LỖI: Lưu văn bản người dùng nói
+                        RecognizedText = result.Text,
                         Accuracy = pronResult.AccuracyScore,
                         Fluency = pronResult.FluencyScore,
                         Completeness = pronResult.CompletenessScore,
                         PronScore = pronResult.PronunciationScore,
-                        // SỬA LỖI: Lưu JSON chi tiết để phân tích lỗi sau này
                         DetailsJson = result.Properties.GetProperty(PropertyId.SpeechServiceResponse_JsonResult)
                     };
 
                     await _recordService.Add(record);
                     return record;
                 }
-                // 2. XỬ LÝ TRƯỜNG HỢP KHÔNG PHÁT HIỆN GIỌNG NÓI
                 else if (result.Reason == ResultReason.NoMatch) {
                     MessageBox.Show("❌ Không phát hiện thấy giọng nói. Vui lòng thử lại.", "Không có âm thanh", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return null;
                 }
-                // 3. XỬ LÝ LỖI (Mic, Mạng, Key)
                 else if (result.Reason == ResultReason.Canceled) {
                     var cancellation = CancellationDetails.FromResult(result);
                     string errorDetails = cancellation.ErrorDetails;
 
-                    // Cung cấp thông báo lỗi rõ ràng hơn
                     if (cancellation.Reason == CancellationReason.Error) {
                         if (errorDetails.Contains("SPXERR_MIC_NOT_AVAILABLE") || errorDetails.Contains("SPXERR_AUDIO_SYS_ERROR")) {
                             errorDetails = "Không tìm thấy micro hoặc micro đang được sử dụng. Vui lòng kiểm tra micro của bạn.";
@@ -107,11 +99,10 @@ namespace TDEduEnglish.AppServices {
                 }
             }
             catch (Exception ex) {
-                // Bắt các lỗi không mong muốn khác
                 MessageBox.Show($"Đã xảy ra lỗi không mong muốn: {ex.Message}", "Lỗi nghiêm trọng", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            return null; // Trả về null nếu có bất kỳ lỗi nào
+            return null; 
         }
     }
 }
