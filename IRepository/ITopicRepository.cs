@@ -6,5 +6,7 @@ using System.Threading.Tasks;
 
 namespace TDEduEnglish.IRepository {
     public interface ITopicRepository : IRepository<Topic> {
+        Task<IEnumerable<Topic>> GetByLevel(string level);
+        Task AddListAsync(IEnumerable<Topic> topicList);
     }
 }

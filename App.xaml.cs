@@ -48,6 +48,8 @@ namespace TDEduEnglish {
             .AddScoped<IUserScoreRepository, UserScoreRepository>()
             .AddScoped<IUserAttemptRepository, UserAttemptRepository>()
             .AddScoped<IUserSpeakingRecordRepository, UserSpeakingRecordRepository>()
+            .AddScoped<ITopicRepository, TopicRepository>()
+            .AddScoped<ISpeakingSentenceRepository, SpeakingSentenceRepository>()
 
             .AddScoped<UserReadingResult>()
             .AddScoped<UserListeningResult>()
@@ -69,6 +71,8 @@ namespace TDEduEnglish {
             .AddScoped<ILeaderBoardService, LeaderBoardService>()
             .AddScoped<IUserScoreService, UserScoreService>()
             .AddScoped<ISpeechService, SpeechService>()
+            .AddScoped<ITopicService, TopicService>()
+            .AddScoped<ISpeakingSentenceService, SpeakingSentenceService>()
 
             .AddScoped<AppNavigationService>(sp => new AppNavigationService(null))
 
@@ -92,6 +96,7 @@ namespace TDEduEnglish {
             .AddTransient<ManageVocabularyViewModel>()
             .AddTransient<ManageReadingViewModel>()
             .AddTransient<ManageQuizViewModel>()
+            .AddTransient<ManageSpeakingViewModel>()
 
 
             .AddTransient<CourseListeningListViewModel>()
@@ -101,6 +106,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseWritingViewModel>()
             .AddTransient<CourseMyVocabularyViewModel>()
             .AddTransient<CourseSpeakingViewModel>()
+            .AddTransient<CourseTopicSpeakingViewModel>()
 
             .AddSingleton<MainWindow>()
             .AddTransient<LogWindow>()
@@ -114,6 +120,7 @@ namespace TDEduEnglish {
             .AddTransient<ManageVocabularyWindow>()
             .AddTransient<QuizWindow>()
             .AddTransient<ManageQuizWindow>()
+            .AddTransient<ManageSpeakingWindow>()
 
             .AddSingleton<HomePage>()
             .AddTransient<CoursesPage>()
@@ -129,6 +136,7 @@ namespace TDEduEnglish {
             .AddTransient<CourseMyVocabularyPage>()
             .AddTransient<LeaderboardPage>()
             .AddTransient<CourseSpeakingPage>()
+            .AddTransient<CourseTopicSpeakingPage>()
 
             .AddScoped<GenerativeModel>()
 

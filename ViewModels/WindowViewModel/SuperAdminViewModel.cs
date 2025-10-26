@@ -26,6 +26,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         public ICommand ManageUserCommand { get; set; }
         public ICommand ManageVocabularyCommand { get; set; }
         public ICommand ManageQuizzesCommand { get; set; }
+        public ICommand ManageSpeakingCommand { get; set; }     
 
         public SuperAdminViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IUserService userService, IVocabularyService vocabularyService, IReadingService readingService) {
             this.appNavigationService = appNavigationService;
@@ -40,6 +41,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             ManageUserCommand = new RelayCommand(o => appNavigationService.NavigateToManageUserWindow());
             ManageVocabularyCommand = new RelayCommand(o => appNavigationService.NavigateToManageVocabularyWindow());
             ManageQuizzesCommand = new RelayCommand(o => appNavigationService.NavigateToManageQuizWindow());
+            ManageSpeakingCommand = new RelayCommand(o => appNavigationService.NaviagteToManageSpeakingWindow());
         }
         private void Logout() {
             sessonService.Logout();

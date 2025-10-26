@@ -1,0 +1,126 @@
+﻿<Page x:Class="TDEduEnglish.Views.CoursesPageView.CourseTopicSpeakingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TDEduEnglish.Views.CoursesPageView"
+      mc:Ignorable="d" 
+      d:DesignHeight="740" d:DesignWidth="1200"
+      Background="White"
+      Title="CourseTopicSpeakingPage">
+
+    <Grid Background="#F9FAFB">
+        <TabControl FontFamily="Segoe UI" FontSize="14" 
+                    Background="White"
+                    BorderBrush="#E5E7EB"
+                    BorderThickness="1"
+                    Padding="10">
+
+            <!-- Beginner Tab -->
+            <TabItem Header="Beginner">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding BeginnerTopics}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12"
+                                        Background="White" Margin="8" Padding="12" 
+                                        >
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding TopicName}" 
+                                                   FontWeight="Bold" FontSize="16" Foreground="#111827"/>
+                                        <TextBlock Text="{Binding Description}" 
+                                                   TextWrapping="Wrap" 
+                                                   FontSize="13" Foreground="#6B7280" Margin="0,4,0,8"/>
+                                        <Button Content="Start Speaking"
+                                                Command="{Binding DataContext.StartSpeakingCommand, 
+                                                                  RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}"
+                                                Background="#3B82F6" 
+                                                Foreground="White" 
+                                                Padding="6,3"
+                                                Width="130"
+                                                HorizontalAlignment="Left"
+                                                BorderBrush="{x:Null}"
+                                                Cursor="Hand"
+                                                FontWeight="SemiBold"
+                                                />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Intermediate Tab -->
+            <TabItem Header="Intermediate">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding IntermediateTopic}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12"
+                                        Background="White" Margin="8" Padding="12">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding TopicName}" 
+                                                   FontWeight="Bold" FontSize="16" Foreground="#111827"/>
+                                        <TextBlock Text="{Binding Description}" 
+                                                   TextWrapping="Wrap" 
+                                                   FontSize="13" Foreground="#6B7280" Margin="0,4,0,8"/>
+                                        <Button Content="Start Speaking"
+                                                Command="{Binding DataContext.StartSpeakingCommand, 
+                                                                  RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}"
+                                                Background="#10B981" 
+                                                Foreground="White" 
+                                                Padding="6,3"
+                                                Width="130"
+                                                HorizontalAlignment="Left"
+                                                BorderBrush="{x:Null}"
+                                                Cursor="Hand"
+                                                FontWeight="SemiBold"
+                                                />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Advanced Tab -->
+            <TabItem Header="Advanced">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding AdvancedTopic}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12"
+                                        Background="White" Margin="8" Padding="12">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding TopicName}" 
+                                                   FontWeight="Bold" FontSize="16" Foreground="#111827"/>
+                                        <TextBlock Text="{Binding Description}" 
+                                                   TextWrapping="Wrap" 
+                                                   FontSize="13" Foreground="#6B7280" Margin="0,4,0,8"/>
+                                        <Button Content="Start Speaking"
+                                                Command="{Binding DataContext.StartSpeakingCommand, 
+                                                                  RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}"
+                                                Background="#EF4444" 
+                                                Foreground="White" 
+                                                Padding="6,3"
+                                                Width="130"
+                                                HorizontalAlignment="Left"
+                                                BorderBrush="{x:Null}"
+                                                Cursor="Hand"
+                                                FontWeight="SemiBold"
+                                                />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

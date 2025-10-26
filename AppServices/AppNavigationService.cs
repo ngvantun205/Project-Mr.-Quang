@@ -104,6 +104,11 @@ namespace TDEduEnglish.Services {
             Application.Current.MainWindow = newwindow;
             newwindow?.Show();
         }
+        public void NaviagteToManageSpeakingWindow() {
+            var newwindow = App.Provider?.GetRequiredService<ManageSpeakingWindow>();
+            Application.Current.MainWindow = newwindow;
+            newwindow?.Show();
+        }
     }
 
 }

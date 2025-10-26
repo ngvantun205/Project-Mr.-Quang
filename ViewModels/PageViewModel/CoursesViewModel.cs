@@ -24,7 +24,7 @@ namespace TDEduEnglish.ViewModels {
             ListeningCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseListeningListPage>());
             WritingCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseWritingPage>());
             MyVocabularyCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseMyVocabularyPage>());
-            SpeakingCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseSpeakingPage>());
+            SpeakingCommand = new RelayCommand(o => _navigationService.NavigateTo<CourseTopicSpeakingPage>());
         }
         
 

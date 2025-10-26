@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +24,10 @@ namespace TDEduEnglish.Repository {
             }
         }
         public async Task<IEnumerable<Topic>> GetAll() {
-            return await Task.FromResult(_context.Topics.ToList());
+            return await _context.Topics.ToListAsync();
         }
         public async Task<Topic?> GetById(int id) {
-            return await Task.FromResult(_context.Topics.FirstOrDefault(t => t.TopicId == id));
+            return await _context.Topics.FirstOrDefaultAsync(t => t.TopicId == id);
         }
         public async Task Update(Topic entity) {
             var exsistingtopic = await GetById(entity.TopicId);
@@ -34,6 +35,13 @@ namespace TDEduEnglish.Repository {
                 _context.Entry(exsistingtopic).CurrentValues.SetValues(entity);
                 await _context.SaveChangesAsync();
             }
+        }
+        public async Task<IEnumerable<Topic>> GetByLevel(string level) {
+            return await _context.Topics.Where(t => t.Level == level).ToListAsync();
+        }
+        public async Task AddListAsync(IEnumerable<Topic> topiclist) {
+            await _context.Topics.AddRangeAsync(topiclist);
+            await _context.SaveChangesAsync();
         }
     }
 }

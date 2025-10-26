@@ -11,6 +11,7 @@ namespace TDEduEnglish.AppServices {
         public User? CurrentUser { get;  set; }
         public Quiz? CurrentQuiz { get;  set; }
         public string? CurrentTopic { get; set; }
+        public Topic? CurrentSpeakingTopic { get; set; }
         public ReadingLesson? CurrentReading { get; set; }
         public ListeningLesson? CurrentListening { get; set; }
         public void SetCurrentUser(User user) {
@@ -34,5 +35,6 @@ namespace TDEduEnglish.AppServices {
         public ListeningLesson? GetCurrentListening() => CurrentListening;
         public Quiz? GetCurrentQuiz() => CurrentQuiz;
         public void SetCurrentQuiz(Quiz quiz) => CurrentQuiz = quiz;
+        public void SetCurrentSpeakingTopic(Topic topic) => CurrentSpeakingTopic = topic;
     }
 }

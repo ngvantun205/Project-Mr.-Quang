@@ -12,5 +12,6 @@ namespace TDEduEnglish.IAppServices {
         Task<SpeakingSentence?> GetById(int id);
         Task<IEnumerable<SpeakingSentence>> GetAll();
         Task<IEnumerable<SpeakingSentence>> GetByTopicId(int topicId);
+        Task AddListAsync(IEnumerable<SpeakingSentence> sentences);
     }
 }

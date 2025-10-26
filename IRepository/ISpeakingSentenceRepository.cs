@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace TDEduEnglish.IRepository {
     public interface ISpeakingSentenceRepository : IRepository<SpeakingSentence> {
         Task<IEnumerable<SpeakingSentence>> GetByTopicId(int topicId);
+        Task AddListAsync(IEnumerable<SpeakingSentence> sentences);
     }
 }

@@ -15,5 +15,7 @@ namespace TDEduEnglish.AppServices {
         public async Task<IEnumerable<Topic>> GetAll() => await _topicRepository.GetAll();
         public async Task<Topic?> GetById(int id) => await _topicRepository.GetById(id);
         public async Task Update(Topic topic) => await _topicRepository.Update(topic);  
+        public async Task<IEnumerable<Topic>> GetByLevel(string level) => await _topicRepository.GetByLevel(level);
+        public async Task AddListAsync(IEnumerable<Topic> topiclist) => await _topicRepository.AddListAsync(topiclist);
     }
 }

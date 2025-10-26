@@ -11,5 +11,7 @@ namespace TDEduEnglish.IAppServices {
         Task Delete(int id);
         Task<Topic?> GetById(int id);
         Task<IEnumerable<Topic>> GetAll(); 
+        Task<IEnumerable<Topic>> GetByLevel(string level);
+        Task AddListAsync(IEnumerable<Topic> topicList);
     }
 }

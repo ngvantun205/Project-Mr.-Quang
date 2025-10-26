@@ -16,5 +16,6 @@ namespace TDEduEnglish.AppServices {
         public async Task<SpeakingSentence?> GetById(int id) => await _speakingSentenceRepository.GetById(id);
         public async Task<IEnumerable<SpeakingSentence>> GetByTopicId(int topicId) => await _speakingSentenceRepository.GetByTopicId(topicId);
         public async Task Update(SpeakingSentence sentence) => await _speakingSentenceRepository.Update(sentence);
+        public async Task AddListAsync(IEnumerable<SpeakingSentence> sentences) => await _speakingSentenceRepository.AddListAsync(sentences);
     }
 }

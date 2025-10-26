@@ -29,15 +29,21 @@ namespace TDEduEnglish.Repository {
         public async Task<SpeakingSentence?> GetById(int id) {
             return await _context.SpeakingSentences.FirstOrDefaultAsync(s => s.SpeakingSentenceId == id);
         }
-        public async Task<IEnumerable<SpeakingSentence>> GetByTopicId(int topicId) {
-            return await _context.SpeakingSentences.Where(s => s.TopicId == topicId).ToListAsync();
-        }
+        public async Task<IEnumerable<SpeakingSentence>> GetByTopicId(int topicId) => await _context.SpeakingSentences.Where(s => s.TopicId == topicId).ToListAsync();
         public async Task Update(SpeakingSentence entity) {
             var existingSentence = await GetById(entity.SpeakingSentenceId);
             if (existingSentence != null) {
                 _context.Entry(existingSentence).CurrentValues.SetValues(entity);
                 await _context.SaveChangesAsync();
             }
+            else {
+                await Add(entity);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task AddListAsync(IEnumerable<SpeakingSentence> sentences) {
+            await _context.SpeakingSentences.AddRangeAsync(sentences);
+            await _context.SaveChangesAsync();
         }
     }
 }

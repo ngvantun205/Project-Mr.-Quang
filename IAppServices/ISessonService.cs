@@ -11,6 +11,7 @@ namespace TDEduEnglish.IAppServices {
         ReadingLesson? CurrentReading { get; set; }
         ListeningLesson? CurrentListening { get; set; }
         string? CurrentTopic { get; set; }
+        public Topic? CurrentSpeakingTopic { get; set; }
         void SetCurrentUser(User user);
         User? GetCurrentUser();
         void Logout();
@@ -18,6 +19,7 @@ namespace TDEduEnglish.IAppServices {
         string GetCurrentTopic();
         void SetCurrentTopic(string topic);
         void SetCurrentReading(ReadingLesson reading);
+        void SetCurrentSpeakingTopic(Topic speakingTopic);
         ReadingLesson? GetCurrentReading();
         void SetCurrentListening(ListeningLesson listening);
         ListeningLesson? GetCurrentListening();
