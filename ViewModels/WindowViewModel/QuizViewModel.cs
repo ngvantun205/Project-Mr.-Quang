@@ -77,7 +77,12 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
 
         private int totalQuestions;
         public int TotalQuestions {
-            get => Questions?.Count ?? totalQuestions;
+            get {
+                if (Questions != null)
+                    return Questions.Count;
+                else
+                    return totalQuestions;
+            }
             set {
                 totalQuestions = value;
                 OnPropertyChanged();

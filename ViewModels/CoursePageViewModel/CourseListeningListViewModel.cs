@@ -42,7 +42,7 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
             }
         }
         private void LoadData() {
-            BeginnerListenings = _listeningService.GetByLevel("Beginner").Result.ToList();
+            BeginnerListenings =_listeningService.GetByLevel("Beginner").Result.ToList();
             IntermediateListenings = _listeningService.GetByLevel("Intermediate").Result.ToList();
             AdvancedListenings = _listeningService.GetByLevel("Advanced").Result.ToList();
         }

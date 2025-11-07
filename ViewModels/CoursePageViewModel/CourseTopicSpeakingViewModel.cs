@@ -20,7 +20,6 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
                 OnPropertyChanged(nameof(Topics));
             }
         }
-
         private IEnumerable<Topic> beginnerTopics;
         public IEnumerable<Topic> BeginnerTopics {
             get => beginnerTopics; set {
@@ -42,14 +41,13 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
                 OnPropertyChanged(nameof(AdvancedTopic));
             }
         }
-
         public ICommand StartSpeakingCommand { get; set; }
         public CourseTopicSpeakingViewModel(ISessonService sessonService, AppNavigationService appNavigationService, ITopicService topicService) {
             _sessonService = sessonService;
             _appNavigationService = appNavigationService;
             _topicService = topicService;
 
-            LoadData();
+            _ = LoadData();
 
             StartSpeakingCommand = new RelayCommand(o => StartSpeaking(o));
         }

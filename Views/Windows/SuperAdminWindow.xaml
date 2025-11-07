@@ -490,7 +490,7 @@
                 </Grid>
 
                 <!-- Recent Activity Table -->
-                <Border Grid.Row="3" Style="{StaticResource CardStyle}">
+                <!--<Border Grid.Row="3" Style="{StaticResource CardStyle}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -532,7 +532,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                </Border>
+                </Border>-->
             </Grid>
         </ScrollViewer>
     </Grid>

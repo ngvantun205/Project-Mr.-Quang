@@ -5,203 +5,378 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TDEduEnglish.Views.SuperAdminWindow"
         mc:Ignorable="d"
-        Title="ManageListeningWindow" Height="800" Width="1200">
+        Title="ManageListeningWindow" Height="800" Width="1500">
     <Window.Resources>
-        <!-- Small reusable styles -->
-        <Style x:Key="SmallPrimaryButton" TargetType="Button">
-            <Setter Property="Background" Value="#FF6366F1"/>
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#4F46E5"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="10,6"/>
-            <Setter Property="FontSize" Value="12"/>
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Margin" Value="6,0,0,0"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="90"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="8" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF5855E8"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4338CA"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#3730A3"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
-        <Style x:Key="SmallIconButton" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Width" Value="30"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Cursor" Value="Hand"/>
+        <!-- Delete Button Style -->
+        <Style x:Key="DeleteButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#EF4444"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#DC2626"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
-        <Style x:Key="CardBorder" TargetType="Border">
+        <!-- Success Button Style -->
+        <Style x:Key="SuccessButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#10B981"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#059669"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- TextBox Style -->
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Background" Value="White"/>
-            <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Padding" Value="12"/>
-            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="8">
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                        Padding="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#4F46E5"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- DataGrid Style -->
+        <Style x:Key="ModernDataGrid" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9FAFB"/>
+            <Setter Property="RowHeight" Value="45"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <!-- DataGrid Header Style -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F3F4F6"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#E5E7EB"/>
+            <Setter Property="Height" Value="45"/>
+        </Style>
+
+        <!-- DataGrid Row Style -->
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#EEF2FF"/>
+                    <Setter Property="Foreground" Value="#1E1B4B"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F5F3FF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Card Style -->
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="270" ShadowDepth="1" BlurRadius="8" Opacity="0.06"/>
+                    <DropShadowEffect Color="#000000" Opacity="0.08" BlurRadius="16" Direction="270" ShadowDepth="2"/>
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style TargetType="DataGrid" x:Key="CompactDataGrid">
-            <Setter Property="RowHeight" Value="36"/>
-            <Setter Property="HeadersVisibility" Value="Column"/>
-            <Setter Property="GridLinesVisibility" Value="None"/>
-            <Setter Property="CanUserAddRows" Value="False"/>
-            <Setter Property="CanUserDeleteRows" Value="False"/>
-            <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="IsReadOnly" Value="False"/>
-        </Style>
     </Window.Resources>
 
-    <Grid Background="#FFF7F8FB" Margin="12">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid Margin="24">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="1.2*"/>
+        </Grid.ColumnDefinitions>
 
-        <!-- Header -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" Margin="6">
-            <TextBlock Text="Listening Lessons Management" FontSize="20" FontWeight="Bold" Foreground="#FF1F2937"/>
-            <TextBlock Text="  •  Manage lessons annd questions" Foreground="#FF6B7280" VerticalAlignment="Center" Margin="8,0,0,0"/>
-        </StackPanel>
+        <!-- LEFT PANEL - Listening Lessons -->
+        <Border Grid.Column="0" Style="{StaticResource Card}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <!-- Controls: Search / Filter / Import / CRUD -->
-        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,12,0,12">
-            <DockPanel LastChildFill="False">
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
-                    <TextBlock Text="Search:" VerticalAlignment="Center" Margin="6" />
-                    <TextBox Width="260" Margin="6,0" 
-                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
-
-                    <TextBlock Text="Level:" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                    <ComboBox Width="140" Margin="6,0"
-                              ItemsSource="{Binding AvailableLevels}" 
-                              SelectedItem="{Binding SelectedLevel}" />
-
-                    <Button Style="{StaticResource SmallPrimaryButton}" Command="{Binding ClearFilterCommand}" Margin="12,0">Clear</Button>
+                <!-- Header -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="🎧" FontSize="28" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="Listening Lessons" 
+                             FontSize="24" 
+                             FontWeight="Bold" 
+                             Foreground="#1F2937"
+                             VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
-                    <Button Content="Import JSON" Style="{StaticResource SmallPrimaryButton}" Command="{Binding ImportLessonFromJsonCommand}"/>
-                    <Button Content="Add Lesson" Style="{StaticResource SmallPrimaryButton}" Command="{Binding AddListeningLessonCommand}"/>
-                    <Button Content="Update" Style="{StaticResource SmallPrimaryButton}" Command="{Binding UpdateListeningLessonCommand}" />
-                    <Button Content="Delete" Style="{StaticResource SmallPrimaryButton}" Command="{Binding DeleteListeningLessonCommand}" />
+                <!-- Search & Filter -->
+                <Grid Grid.Row="1" Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="SearchBox" 
+                           Grid.Column="0"
+                           Style="{StaticResource ModernTextBox}"
+                           Tag="🔍 Search lessons by title, level, or ID..."
+                           >
+                        <TextBox.Template>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border Background="{TemplateBinding Background}" 
+                                      BorderBrush="{TemplateBinding BorderBrush}" 
+                                      BorderThickness="{TemplateBinding BorderThickness}" 
+                                      CornerRadius="8">
+                                    <Grid>
+                                        <TextBlock Text="{TemplateBinding Tag}" 
+                                                 Foreground="#9CA3AF" 
+                                                 FontSize="14"
+                                                 Padding="12,10"
+                                                 IsHitTestVisible="False">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                        <ScrollViewer x:Name="PART_ContentHost" Padding="12,10"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+
+                    <Button Grid.Column="2" 
+                          Content="🗑️ Clear" 
+                          Style="{StaticResource ModernButton}"
+                          Background="#6B7280"
+                          Padding="16,10"
+                          />
+                </Grid>
+
+                <!-- Action Buttons -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,16">
+                    <Button Content="➕ Add Lesson" 
+                          Style="{StaticResource SuccessButton}"
+                          Command="{Binding AddListeningLessonCommand}"
+                          Margin="0,0,8,0"/>
+                    <Button Content="📥 Import JSON" 
+                          Style="{StaticResource ModernButton}"
+                          Command="{Binding ImportLessonFromJsonCommand}"
+                          Margin="0,0,8,0"/>
+                    <Button Content="💾 Update" 
+                          Style="{StaticResource ModernButton}"
+                          Background="#F59E0B"
+                          Command="{Binding UpdateListeningLessonCommand}"/>
                 </StackPanel>
-            </DockPanel>
+
+                <!-- Lessons DataGrid -->
+                <DataGrid Grid.Row="3" 
+                        x:Name="LessonsDataGrid"
+                        ItemsSource="{Binding ListeningLessons}"
+                        SelectedItem="{Binding SelectedLesson, Mode=TwoWay}"
+                        Style="{StaticResource ModernDataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ListeningLessonId}" Width="60"/>
+                        <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                        <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="80"/>
+                        <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="90"/>
+                        <DataGridTemplateColumn Header="Actions" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="🗑️" 
+                                          Style="{StaticResource DeleteButton}"
+                                          Command="{Binding DataContext.DeleteListeningLessonCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                          CommandParameter="{Binding}"
+                                          Padding="8,4"
+                                          ToolTip="Delete lesson"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Lesson Count -->
+                <TextBlock Grid.Row="4" 
+                         Margin="0,16,0,0"
+                         FontSize="13"
+                         Foreground="#6B7280">
+                    <Run Text="Total lessons:"/>
+                    <Run Text="{Binding ListeningLessons.Count, Mode=OneWay}" FontWeight="Bold" Foreground="#4F46E5"/>
+                </TextBlock>
+            </Grid>
         </Border>
 
-        <!-- Main area: left = lessons grid, right = lesson details & questions -->
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="470*"/>
-                <ColumnDefinition Width="22*"/>
-                <ColumnDefinition Width="683*"/>
-            </Grid.ColumnDefinitions>
+        <!-- RIGHT PANEL - Questions -->
+        <Border Grid.Column="2" Style="{StaticResource Card}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <!-- Left: Lessons list -->
-            <Border Grid.Column="0" Style="{StaticResource CardBorder}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                <!-- Header -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="❓" FontSize="28" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="Listening Questions" 
+                             FontSize="24" 
+                             FontWeight="Bold" 
+                             Foreground="#1F2937"
+                             VerticalAlignment="Center"/>
+                </StackPanel>
 
-                    <TextBlock Text="Listening Lessons" FontWeight="SemiBold" FontSize="14" Margin="0,0,0,8"/>
-
-                    <DataGrid Grid.Row="1" Style="{StaticResource CompactDataGrid}"
-                              ItemsSource="{Binding ListeningLessons}"
-                              SelectedItem="{Binding SelectedLesson, Mode=TwoWay}"
-                              SelectionMode="Single">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="#" Binding="{Binding ListeningLessonId}" Width="50"/>
-                            <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
-                            <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="120"/>
-                            <DataGridTextColumn Header="Time" Binding="{Binding SuggestedTime}" Width="120"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </Border>
-
-            <!-- Right: Selected lesson details + questions -->
-            <Border Style="{StaticResource CardBorder}" Grid.ColumnSpan="3" Margin="470,0,0,0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <!-- Lesson header & audio -->
-                    <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,0,8">
-                        <TextBlock Text="Lesson Details" FontWeight="SemiBold" FontSize="14"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,0">
-                            <Button Content="Save" Style="{StaticResource SmallPrimaryButton}" Command="{Binding SaveLessonCommand}" />
-                        </StackPanel>
+                <!-- Selected Lesson Info -->
+                <Border Grid.Row="1" 
+                      Background="#EEF2FF" 
+                      CornerRadius="8" 
+                      Padding="16,12"
+                      Margin="0,0,0,16">
+                    <StackPanel>
+                        <TextBlock Text="Selected Lesson:" 
+                                 FontSize="12" 
+                                 Foreground="#6B7280" 
+                                 Margin="0,0,0,4"/>
+                        <TextBlock FontSize="16" 
+                                 FontWeight="SemiBold" 
+                                 Foreground="#4F46E5">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value="{Binding SelectedLesson.Title}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedLesson}" Value="{x:Null}">
+                                            <Setter Property="Text" Value="No lesson selected"/>
+                                            <Setter Property="Foreground" Value="#9CA3AF"/>
+                                            <Setter Property="FontStyle" Value="Italic"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </StackPanel>
+                </Border>
 
-                    <!-- Form (no placeholders) -->
-                    <UniformGrid Grid.Row="1" Columns="2" Margin="0,0,0,8" HorizontalAlignment="Stretch">
-                        <StackPanel>
-                            <TextBlock Text="Title" />
-                            <TextBox Text="{Binding EditingLesson.Title, UpdateSourceTrigger=PropertyChanged}" />
-                            <TextBlock Text="Level" Margin="0,6,0,0"/>
-                            <ComboBox ItemsSource="{Binding AvailableLevels}" SelectedItem="{Binding EditingLesson.Level}" />
-                        </StackPanel>
+                <!-- Action Buttons -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,16">
+                    <Button Content="➕ Add Question" 
+                          Style="{StaticResource SuccessButton}"
+                          Command="{Binding AddListeningQuestionCommand}"
+                          Margin="0,0,8,0"/>
+                    <Button Content="📥 Import JSON" 
+                          Style="{StaticResource ModernButton}"
+                          Command="{Binding ImportQuestionFromJsonCommand}"
+                          Margin="0,0,8,0"/>
+                    <Button Content="💾 Update" 
+                          Style="{StaticResource ModernButton}"
+                          Background="#F59E0B"
+                          Command="{Binding UpdateListeningQuestionCommand}"/>
+                </StackPanel>
 
-                        <StackPanel>
-                            <TextBlock Text="Suggested Time (hh:mm:ss)" />
-                            <TextBox Text="{Binding EditingLesson.SuggestedTimeString, UpdateSourceTrigger=PropertyChanged}" />
-                            <TextBlock Text="Audio Path" Margin="0,6,0,0"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Text="{Binding EditingLesson.ListeningAudioPath}" Width="240" />
-                                <Button Style="{StaticResource SmallIconButton}" Command="{Binding BrowseAudioCommand}" ToolTip="Browse">
-                                    <TextBlock Text="⋯" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
-                    </UniformGrid>
+                <!-- Questions DataGrid -->
+                <DataGrid Grid.Row="3" 
+                        ItemsSource="{Binding ListeningQuestions}"
+                        SelectedItem="{Binding SelectedQuestion, Mode=TwoWay}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="3"
+                        Style="{StaticResource ModernDataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ListeningQuestionId}" Width="60"/>
+                        <DataGridTextColumn Header="Question" Binding="{Binding QuestionText}" Width="150"/>
+                        <DataGridTextColumn Header="Correct Answer" Binding="{Binding CorrectAnswer}" Width="120"/>
+                        <DataGridTextColumn Header="Option1" Binding="{Binding Option1}" Width="120"/>
+                        <DataGridTextColumn Header="Option2" Binding="{Binding Option2}" Width="120"/>
+                        <DataGridTextColumn Header="Option3" Binding="{Binding Option3}" Width="120"/>
+                        <DataGridTextColumn Header="Option4" Binding="{Binding option4}" Width="120"/>
+                        <DataGridTemplateColumn Header="Actions" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="🗑️" 
+                                          Style="{StaticResource DeleteButton}"
+                                          Command="{Binding DataContext.DeleteListeningQuestionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                          CommandParameter="{Binding}"
+                                          Padding="8,4"
+                                          ToolTip="Delete question"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
 
-                    <!-- Questions management -->
-                    <Grid Grid.Row="2">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,8">
-                            <TextBlock Text="Questions" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                            <Button Content="Add Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding AddListeningQuestionCommand}" Margin="8,0"/>
-                            <Button Content="Update Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding UpdateListeningQuestionCommand}" />
-                            <Button Content="Del Q" Style="{StaticResource SmallPrimaryButton}" Command="{Binding DeleteListeningQuestionCommand}" />
-                            <Button Content="Import JSON" Style="{StaticResource SmallPrimaryButton}" Command="{Binding ImportQuestionFromJsonCommand}" />
-
-                        </StackPanel>
-
-                        <DataGrid Grid.Row="1" Style="{StaticResource CompactDataGrid}" 
-                                  ItemsSource="{Binding ListeningQuestions}"
-                                  SelectedItem="{Binding SelectedQuestion, Mode=TwoWay}" SelectionChanged="DataGrid_SelectionChanged">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="#" Binding="{Binding QuestionNumber}" Width="50"/>
-                                <DataGridTextColumn Header="Question" Binding="{Binding QuestionText}" Width="*"/>
-                                <DataGridTextColumn Header="Correct" Binding="{Binding CorrectAnswer}" Width="90"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </Grid>
-            </Border>
-        </Grid>
+                <!-- Question Count -->
+                <TextBlock Grid.Row="4" 
+                         Margin="0,16,0,0"
+                         FontSize="13"
+                         Foreground="#6B7280">
+                    <Run Text="Total questions:"/>
+                    <Run Text="{Binding ListeningQuestions.Count, Mode=OneWay}" FontWeight="Bold" Foreground="#4F46E5"/>
+                </TextBlock>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

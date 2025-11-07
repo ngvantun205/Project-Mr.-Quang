@@ -42,7 +42,6 @@ namespace TDEduEnglish.AppServices {
                 return null;
             }
 
-            try {
                 var config = SpeechConfig.FromSubscription(_key, _region);
                 config.SpeechRecognitionLanguage = "en-US";
 
@@ -97,12 +96,24 @@ namespace TDEduEnglish.AppServices {
                     MessageBox.Show($"Đánh giá bị hủy.\nLý do: {cancellation.Reason}\nChi tiết: {errorDetails}", "Lỗi Dịch vụ Speech", MessageBoxButton.OK, MessageBoxImage.Error);
                     return null;
                 }
-            }
-            catch (Exception ex) {
-                MessageBox.Show($"Đã xảy ra lỗi không mong muốn: {ex.Message}", "Lỗi nghiêm trọng", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
 
             return null; 
+        }
+
+        public async Task SpeakAsync(string text, string voice = "en-US-JennyNeural") {
+            var config = SpeechConfig.FromSubscription(_key, _region);
+            config.SpeechSynthesisVoiceName = voice;
+
+            using var synthesizer = new SpeechSynthesizer(config);
+            var result = await synthesizer.SpeakTextAsync(text);
+
+            if (result.Reason == ResultReason.SynthesizingAudioCompleted) {
+                Console.WriteLine($"✅ Spoke: {text}");
+            }
+            else if (result.Reason == ResultReason.Canceled) {
+                var details = SpeechSynthesisCancellationDetails.FromResult(result);
+                Console.WriteLine($"❌ Canceled: {details.Reason}, {details.ErrorDetails}");
+            }
         }
     }
 }

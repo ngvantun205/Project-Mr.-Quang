@@ -235,13 +235,13 @@
                                Visibility="{Binding IsLoggedIn, Converter={StaticResource BoolToVisibilityConverter}}">
 
                         <!-- Notifications Button -->
-                        <Grid Margin="0,0,16,0">
+                        <!--<Grid Margin="0,0,16,0">
                             <Button Command="{Binding NotificationCommand}"
                                    Style="{StaticResource IconButtonStyle}"
                                    ToolTip="Thông báo">
                                 <TextBlock Text="🔔" FontSize="18"/>
                             </Button>
-                            <!-- Notification Badge -->
+                            --><!-- Notification Badge --><!--
                             <Border Style="{StaticResource NotificationBadge}"
                                    Visibility="{Binding HasNotifications, Converter={StaticResource BoolToVisibilityConverter}}">
                                 <TextBlock Text="{Binding NotificationCount}" 
@@ -249,7 +249,7 @@
                                           Foreground="White" HorizontalAlignment="Center" 
                                           VerticalAlignment="Center"/>
                             </Border>
-                        </Grid>
+                        </Grid>-->
 
                         <!-- User Profile Menu -->
                         <Grid>

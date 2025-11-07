@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TDEduEnglish.Framwork.Bindable {
     public class Bindable : INotifyPropertyChanged {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         public void Set<T>(ref T prop, T value, [CallerMemberName] string propertyname = "") {
             prop = value;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));

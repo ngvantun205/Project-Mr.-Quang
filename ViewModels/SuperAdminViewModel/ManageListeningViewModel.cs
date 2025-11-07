@@ -54,6 +54,7 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                 else {
                     ListeningQuestions = new ObservableCollection<ListeningQuestion>();
                 }
+                OnPropertyChanged(nameof(SelectedLesson));
             }
         }
         public ListeningQuestion SelectedQuestion { get; set; }
@@ -92,10 +93,14 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             ListeningQuestions = questions != null ? new ObservableCollection<ListeningQuestion>(questions) : new ObservableCollection<ListeningQuestion>();
         }
         private async Task AddListeningLesson() {
-            var lesson = new ListeningLesson();
-            ListeningLessons.Add(lesson);
+            var lesson = new ListeningLesson {
+                Title = "New lesson",
+                Level = "Beginner"
+            };
             await _listeningService.Add(lesson);
+            await LoadData(); 
         }
+
         private async Task AddListeningQuestion() {
             var question = new ListeningQuestion();
             ListeningQuestions.Add(question);

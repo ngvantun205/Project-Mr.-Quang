@@ -102,14 +102,14 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
         }
         private async Task AddQuiz() {
             var newQuiz = new Quiz();
-            Quizzes.Add(newQuiz);
             await _quizService.Add(newQuiz);
+            await LoadData();
         }
         private async Task AddQuizQuestion() {
             if (SelectedQuiz != null) {
                 var newQuestion = new QuizQuestion() {QuizId = SelectedQuiz.QuizId };
-                QuizQuestions.Add(newQuestion);
                 await _quizQuestionService.Add(newQuestion);
+                await LoadData();
             }
             else
                 MessageBox.Show("Please select a quiz to add quiz questions", "Infomation", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -122,6 +122,7 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                     await _quizService.Delete(quiz.QuizId);
                     MessageBox.Show("Delete successfully", "Successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                await LoadData();
             }
             else
                 MessageBox.Show("Please select a quiz to delete");
@@ -133,6 +134,7 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                     await _quizQuestionService.Delete(question.QuizQuestionId);
                     MessageBox.Show("Delete successfully", "Successfully", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                await LoadData();
             }
             else
                 MessageBox.Show("Please select a quiz to delete");

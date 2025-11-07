@@ -32,7 +32,7 @@ namespace TDEduEnglish.AppServices {
         public async Task Delete(int id) => await _writingRepository.Delete(id);
         public async Task Update(Writing chat) => await _writingRepository.Update(chat);
         public async Task<IEnumerable<Writing>> GetByUserId(int id) => await _writingRepository.GetByUserId(id);
-        public async Task<string?> GenerateTextAsync(string message, string userlevel, string writingtask) {
+        public async Task<string?> GenerateTextAsync(string message, string userlevel,string writingtopic,  string writingtask) {
             string prompt = $@"
                              You are an experienced IELTS Writing teacher and English writing coach.
                              Your job is to review and correct the following English writing submitted by a student.
@@ -52,11 +52,14 @@ namespace TDEduEnglish.AppServices {
                              6. **Improved Version**: Rewrite the entire passage in a more polished, natural, and advanced way, while keeping the original meaning.
                              7. **Score and Advice**: Give a band score (IELTS-style or CEFR-level) and provide specific advice for improvement.
 
-                             Return your response in this clear structure:
-
-                             ---
+                             **Original Topic (Writing’s Topic):**
+                             {writingtopic},
                              **Original Text (Student’s writing):**
                              {message}
+
+                              Return your response in this clear structure:
+
+                              ---
 
                               **Corrections and Comments:**
                               - Grammar: ...
@@ -68,7 +71,7 @@ namespace TDEduEnglish.AppServices {
                               **Improved Version:**
                               <your_revised_text>
 
-                              **Estimated Level:** B2 / Band 6.5  
+                              **Estimated Level:** B2/B1/A1/C1/... / Band 6.5  
                               **Advice:** <personalized feedback on how to improve>
                               ---
 

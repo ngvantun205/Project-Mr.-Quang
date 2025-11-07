@@ -10,435 +10,254 @@
       Title="CoursesPage">
 
     <Page.Resources>
-        <!-- Modern Card Style -->
-        <Style x:Key="ModernCardStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="24"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="270" 
-                                    ShadowDepth="4" BlurRadius="20" Opacity="0.08"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
         <!-- Course Card Style -->
         <Style x:Key="CourseCardStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="16"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="Margin" Value="12"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="270" 
-                                    ShadowDepth="2" BlurRadius="15" Opacity="0.1"/>
+                    <DropShadowEffect Color="#000000" Opacity="0.08" 
+                                    BlurRadius="20" ShadowDepth="0"/>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect Color="#FF6366F1" Direction="270" 
-                                            ShadowDepth="4" BlurRadius="20" Opacity="0.15"/>
+                            <DropShadowEffect Color="#4F46E5" Opacity="0.25" 
+                                            BlurRadius="30" ShadowDepth="0"/>
                         </Setter.Value>
                     </Setter>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <!-- Course Button Style -->
-        <Style x:Key="CourseButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <ContentPresenter/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+        <!-- Section Title Style -->
+        <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#1E293B"/>
+            <Setter Property="Margin" Value="12,24,12,16"/>
         </Style>
 
-        <!-- Search Box Style -->
-        <Style x:Key="SearchBoxStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="CornerRadius" Value="25"/>
-            <Setter Property="Padding" Value="20,12"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="270" 
-                                    ShadowDepth="2" BlurRadius="10" Opacity="0.08"/>
-                </Setter.Value>
-            </Setter>
+        <!-- Course Title Style -->
+        <Style x:Key="CourseTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#1E293B"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+
+        <!-- Description Style -->
+        <Style x:Key="DescriptionStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#64748B"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
     </Page.Resources>
 
-    <!-- Background gradient -->
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FFF8FAFC" Offset="0"/>
-                <GradientStop Color="#FFF1F5F9" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid Margin="40,32">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" 
-                     HorizontalScrollBarVisibility="Hidden"
-                     Padding="40,20,40,40">
-            <StackPanel>
-                <!-- Header Section -->
-                <StackPanel Margin="0,0,0,40">
-                    <TextBlock Text="English Courses" FontSize="42" FontWeight="Bold" 
-                              Foreground="#FF1F2937" Margin="0,0,0,8"/>
-                    <TextBlock Text="Choose the perfect course to enhance your English skills" 
-                              FontSize="18" Foreground="#FF6B7280" Margin="0,0,0,32"/>
+            <!-- Header Section -->
+            <StackPanel Grid.Row="0" Margin="0,0,0,32">
+                <TextBlock Text="📚 Your Learning Path" 
+                          FontSize="36" 
+                          FontWeight="Bold" 
+                          Foreground="#1E293B"
+                          Margin="0,0,0,8"/>
+                <TextBlock Text="Choose a skill to start learning today" 
+                          FontSize="16" 
+                          Foreground="#64748B"/>
+            </StackPanel>
 
-                    <!-- Search Box -->
-                    <Border Style="{StaticResource SearchBoxStyle}" 
-                           MaxWidth="500" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="🔍" FontSize="18" Margin="0,0,15,0" 
-                                      VerticalAlignment="Center" Foreground="#FF9CA3AF"/>
-                            <TextBox Background="Transparent" BorderThickness="0" 
-                                    Width="400" FontSize="16"
-                                    Text="Search courses..." 
-                                    Foreground="#FF9CA3AF" 
-                                    VerticalAlignment="Center"/>
+            <!-- Four Skills Section -->
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="🎯 Four Essential Skills" 
+                          Style="{StaticResource SectionTitleStyle}"/>
+
+                <UniformGrid Columns="4" Rows="1">
+
+                    <!-- Listening Course -->
+                    <Border Style="{StaticResource CourseCardStyle}">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" 
+                                        Command="{Binding ListeningCommand}"/>
+                        </Border.InputBindings>
+                        <StackPanel>
+                            <Border Background="#E0E7FF" 
+                                   CornerRadius="12" 
+                                   Width="80" Height="80"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="🎧" 
+                                         FontSize="40" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Listening" Style="{StaticResource CourseTitleStyle}"/>
+                            <TextBlock Text="Improve your listening comprehension with real-world exercises" 
+                                      Style="{StaticResource DescriptionStyle}"/>
                         </StackPanel>
                     </Border>
-                </StackPanel>
 
-                <!-- Basic Skills Section -->
-                <StackPanel Margin="0,0,0,50">
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,25">
-                        <Border Background="#FF6366F1" CornerRadius="8" Width="40" Height="40" 
-                               Margin="0,0,15,0">
-                            <TextBlock Text="🎯" FontSize="20" 
-                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <TextBlock Text="Basic Skills" FontSize="28" FontWeight="Bold" 
-                                  Foreground="#FF1F2937" VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <!-- Basic Skills Grid -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Listening Course -->
-                        <Button Name="ListeningBtn" Command="{Binding ListeningCommand}" Tag="Listening"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="0">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFECFDF5" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="👂" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Listening" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Improve your listening comprehension" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
+                    <!-- Speaking Course -->
+                    <Border Style="{StaticResource CourseCardStyle}">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" 
+                                        Command="{Binding SpeakingCommand}"/>
+                        </Border.InputBindings>
+                        <StackPanel>
+                            <Border Background="#D1FAE5" 
+                                   CornerRadius="12" 
+                                   Width="80" Height="80"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="🎤" 
+                                         FontSize="40" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center"/>
                             </Border>
-                        </Button>
-
-                        <!-- Speaking Course -->
-                        <Button Name="SpeakingBtn" Command="{Binding SpeakingCommand}" Tag="Speaking"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="1">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFFEF7E7" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="🗣️" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Speaking" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Enhance your speaking confidence" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-
-                        <!-- Reading Course -->
-                        <Button Name="ReadingBtn" Command="{Binding ReadingCommand}" Tag="Reading"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="2">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFEFF6FF" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="📖" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Reading" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Master reading comprehension" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-
-                        <!-- Writing Course -->
-                        <Button Name="WritingBtn" Command="{Binding WritingCommand}" Tag="Writing"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="3">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFF5F3FF" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="✍️" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Writing" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Develop excellent writing skills" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-                    </Grid>
-                </StackPanel>
-
-                <!-- Vocabulary & Grammar Section -->
-                <StackPanel Margin="0,0,0,50">
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,25">
-                        <Border Background="#FF10B981" CornerRadius="8" Width="40" Height="40" 
-                               Margin="0,0,15,0">
-                            <TextBlock Text="📚" FontSize="20" 
-                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <TextBlock Text="Vocabulary and Grammar" FontSize="28" FontWeight="Bold" 
-                                  Foreground="#FF1F2937" VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <!-- Vocabulary & Grammar Grid -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Vocabulary Course -->
-                        <Button Name="VocabularyBtn" Command="{Binding VocabularyCommand}" Tag="Vocabulary"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="0">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFECFDF5" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="📝" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Vocabulary" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Build a rich vocabulary base" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-
-                        <!-- Grammar Course -->
-                        <Button Name="GrammarBtn" Command="{Binding GrammarCommand}" Tag="Grammar"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="1">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFF5F3FF" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="⚙️" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Grammar" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Master English grammar rules" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-                        <Button  Command="{Binding MyVocabularyCommand}" Tag="My Vocabulary"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="2">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFF5F3FF" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="⚙️" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="My Vocabulary" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Master English grammar rules" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-                    </Grid>
-                </StackPanel>
-
-                <!-- Advanced Courses Section -->
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,25">
-                        <Border Background="#FFF59E0B" CornerRadius="8" Width="40" Height="40" 
-                               Margin="0,0,15,0">
-                            <TextBlock Text="🚀" FontSize="20" 
-                                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <TextBlock Text="Advanced Courses" FontSize="28" FontWeight="Bold" 
-                                  Foreground="#FF1F2937" VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <!-- Advanced Courses Grid -->
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- Business English -->
-                        <Button Name="BusinessEnglishBtn" Tag="BusinessEnglish"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="0">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFF5F3FF" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="💼" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Business English" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Professional communication skills" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-
-                        <!-- Academic English -->
-                        <Button Name="AcademicEnglishBtn" Tag="AcademicEnglish"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="1">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFECFDF5" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="🎓" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Academic English" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="Academic writing and research" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-
-                        <!-- IELTS Preparation -->
-                        <Button Name="IELTSBtn" Tag="IELTS"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="2">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFFEF7E7" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="📊" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="IELTS Prep" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="IELTS exam preparation" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-
-                        <!-- TOEFL Preparation -->
-                        <Button Name="TOEFLBtn" Tag="TOEFL"
-                               Style="{StaticResource CourseButtonStyle}" Grid.Column="3">
-                            <Border Style="{StaticResource CourseCardStyle}" MinHeight="160">
-                                <StackPanel HorizontalAlignment="Center">
-                                    <Border Background="#FFEFF6FF" CornerRadius="50" Width="80" Height="80" 
-                                           Margin="0,0,0,15">
-                                        <TextBlock Text="📋" FontSize="36" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="TOEIC Prep" FontSize="20" FontWeight="SemiBold" 
-                                              Foreground="#FF1F2937" TextAlignment="Center" Margin="0,0,0,8"/>
-                                    <TextBlock Text="TOEIC exam preparation" 
-                                              FontSize="13" Foreground="#FF6B7280" 
-                                              TextAlignment="Center" TextWrapping="Wrap" MaxWidth="140"/>
-                                </StackPanel>
-                            </Border>
-                        </Button>
-                    </Grid>
-                </StackPanel>
-
-                <!-- Progress Summary Card -->
-                <Border Background="White" CornerRadius="16" Padding="30" Margin="0,60,0,0">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <StackPanel Grid.Column="0">
-                            <TextBlock Text="Your Learning Progress" FontSize="24" FontWeight="Bold" 
-                                      Foreground="#FF1F2937" Margin="0,0,0,15"/>
-
-                            <Grid MaxWidth="400">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                                    <TextBlock Text="24" FontSize="32" FontWeight="Bold" 
-                                              Foreground="#FF6366F1" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Available Courses" FontSize="14" 
-                                              Foreground="#FF6B7280" HorizontalAlignment="Center"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                                    <TextBlock Text="85%" FontSize="32" FontWeight="Bold" 
-                                              Foreground="#FF10B981" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Completed" FontSize="14" 
-                                              Foreground="#FF6B7280" HorizontalAlignment="Center"/>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                                    <TextBlock Text="7.5" FontSize="32" FontWeight="Bold" 
-                                              Foreground="#FFF59E0B" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Average Band" FontSize="14" 
-                                              Foreground="#FF6B7280" HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </Grid>
+                            <TextBlock Text="Speaking" Style="{StaticResource CourseTitleStyle}"/>
+                            <TextBlock Text="Practice pronunciation and speak with confidence" 
+                                      Style="{StaticResource DescriptionStyle}"/>
                         </StackPanel>
+                    </Border>
 
-                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <Border Background="#FF6366F1" CornerRadius="50" Width="80" Height="80">
-                                <TextBlock Text="🎯" FontSize="36" 
-                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <!-- Reading Course -->
+                    <Border Style="{StaticResource CourseCardStyle}">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" 
+                                        Command="{Binding ReadingCommand}"/>
+                        </Border.InputBindings>
+                        <StackPanel>
+                            <Border Background="#FCE7F3" 
+                                   CornerRadius="12" 
+                                   Width="80" Height="80"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="📰" 
+                                         FontSize="40" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center"/>
                             </Border>
+                            <TextBlock Text="Reading" Style="{StaticResource CourseTitleStyle}"/>
+                            <TextBlock Text="Enhance reading skills through diverse passages and topics" 
+                                      Style="{StaticResource DescriptionStyle}"/>
                         </StackPanel>
-                    </Grid>
-                </Border>
+                    </Border>
+
+                    <!-- Writing Course -->
+                    <Border Style="{StaticResource CourseCardStyle}">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" 
+                                        Command="{Binding WritingCommand}"/>
+                        </Border.InputBindings>
+                        <StackPanel>
+                            <Border Background="#FED7AA" 
+                                   CornerRadius="12" 
+                                   Width="80" Height="80"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="✍️" 
+                                         FontSize="40" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Writing" Style="{StaticResource CourseTitleStyle}"/>
+                            <TextBlock Text="Develop academic and professional writing abilities" 
+                                      Style="{StaticResource DescriptionStyle}"/>
+                        </StackPanel>
+                    </Border>
+
+                </UniformGrid>
             </StackPanel>
-        </ScrollViewer>
-    </Grid>
+
+            <!-- Vocabulary & Grammar Section -->
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="📖 Vocabulary &amp; Grammar" 
+                          Style="{StaticResource SectionTitleStyle}"/>
+
+                <UniformGrid Columns="3" Rows="1">
+
+                    <!-- Vocabulary Course -->
+                    <Border Style="{StaticResource CourseCardStyle}">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" 
+                                        Command="{Binding VocabularyCommand}"/>
+                        </Border.InputBindings>
+                        <StackPanel>
+                            <Border Background="#FEF3C7" 
+                                   CornerRadius="12" 
+                                   Width="80" Height="80"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="📖" 
+                                         FontSize="40" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Vocabulary" Style="{StaticResource CourseTitleStyle}"/>
+                            <TextBlock Text="Learn and memorize new words through engaging topics" 
+                                      Style="{StaticResource DescriptionStyle}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Grammar Course -->
+                    <Border Style="{StaticResource CourseCardStyle}">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" 
+                                        Command="{Binding GrammarCommand}"/>
+                        </Border.InputBindings>
+                        <StackPanel>
+                            <Border Background="#DBEAFE" 
+                                   CornerRadius="12" 
+                                   Width="80" Height="80"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="✏️" 
+                                         FontSize="40" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Grammar" Style="{StaticResource CourseTitleStyle}"/>
+                            <TextBlock Text="Master essential grammar structures and rules" 
+                                      Style="{StaticResource DescriptionStyle}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- My Vocabulary -->
+                    <Border Style="{StaticResource CourseCardStyle}">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" 
+                                        Command="{Binding MyVocabularyCommand}"/>
+                        </Border.InputBindings>
+                        <StackPanel>
+                            <Border Background="#E9D5FF" 
+                                   CornerRadius="12" 
+                                   Width="80" Height="80"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="⭐" 
+                                         FontSize="40" 
+                                         HorizontalAlignment="Center" 
+                                         VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="My Vocabulary" Style="{StaticResource CourseTitleStyle}"/>
+                            <TextBlock Text="Manage and review your saved vocabulary words" 
+                                      Style="{StaticResource DescriptionStyle}"/>
+                        </StackPanel>
+                    </Border>
+
+                </UniformGrid>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </Page>

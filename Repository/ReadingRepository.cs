@@ -38,11 +38,7 @@ namespace TDEduEnglish.Repository {
         public async Task Update(ReadingLesson entity) {
             var lesson = await GetById(entity.ReadingLessonId);
             if (lesson != null) {
-                lesson.Title = entity.Title;
-                lesson.Content = entity.Content;
-                lesson.Questions = entity.Questions;
-                lesson.Level = entity.Level;
-                lesson.SuggestedTime = entity.SuggestedTime;
+               _context.Entry(lesson).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
         }

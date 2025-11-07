@@ -9,118 +9,414 @@
       Background="White"
       Title="CourseTopicSpeakingPage">
 
-    <Grid Background="#F9FAFB">
-        <TabControl FontFamily="Segoe UI" FontSize="14" 
-                    Background="White"
-                    BorderBrush="#E5E7EB"
-                    BorderThickness="1"
-                    Padding="10">
+    <Page.Resources>
+        <!-- Topic Card Style -->
+        <Style x:Key="TopicCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#000000" Opacity="0.05" 
+                                    BlurRadius="15" ShadowDepth="0"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#6366F1" Opacity="0.15" 
+                                            BlurRadius="20" ShadowDepth="0"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="#FAFBFC"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-            <!-- Beginner Tab -->
-            <TabItem Header="Beginner">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding BeginnerTopics}">
+        <!-- Level Tab Style -->
+        <Style x:Key="LevelTabStyle" TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Border" 
+                                Background="#F1F5F9"
+                                CornerRadius="10"
+                                Padding="20,10"
+                                Margin="0,0,10,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="Icon" 
+                                         Text="{TemplateBinding Tag}" 
+                                         FontSize="18" 
+                                         Margin="0,0,6,0"/>
+                                <TextBlock x:Name="Text"
+                                         Text="{TemplateBinding Content}" 
+                                         FontSize="14" 
+                                         FontWeight="SemiBold"
+                                         Foreground="#64748B"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#6366F1"/>
+                                <Setter TargetName="Text" Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#E0E7FF"/>
+                                <Setter TargetName="Text" Property="Foreground" Value="#6366F1"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsChecked" Value="True"/>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Border" Property="Background" Value="#5558E3"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Start Button Style -->
+        <Style x:Key="StartButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#6366F1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#5558E3"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#4F46E5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Level Badge Style -->
+        <Style x:Key="LevelBadgeStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="8,4"/>
+        </Style>
+
+        <!-- BoolToVisibilityConverter -->
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                     HorizontalScrollBarVisibility="Disabled">
+            <Grid Margin="40,30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header Section -->
+                <StackPanel Grid.Row="0" Margin="0,0,0,24">
+                    <TextBlock FontSize="32" 
+                             FontWeight="Bold" 
+                             Foreground="#1E293B"
+                             Margin="0,0,0,8">
+                        <Run Text="🎤"/>
+                        <Run Text="Speaking Topics"/>
+                    </TextBlock>
+                    <TextBlock Text="Choose a topic and practice your speaking skills with confidence" 
+                             FontSize="15" 
+                             Foreground="#64748B"/>
+                </StackPanel>
+
+                <!-- Level Selector -->
+                <StackPanel Grid.Row="1" 
+                          Orientation="Horizontal" 
+                          Margin="0,0,0,24">
+                    <RadioButton x:Name="BeginnerTab"
+                               Content="Beginner"
+                               Tag="🌱"
+                               Style="{StaticResource LevelTabStyle}"
+                               IsChecked="True"
+                               GroupName="LevelTabs"/>
+                    <RadioButton x:Name="IntermediateTab"
+                               Content="Intermediate"
+                               Tag="🚀"
+                               Style="{StaticResource LevelTabStyle}"
+                               GroupName="LevelTabs"/>
+                    <RadioButton x:Name="AdvancedTab"
+                               Content="Advanced"
+                               Tag="🎯"
+                               Style="{StaticResource LevelTabStyle}"
+                               GroupName="LevelTabs"/>
+                </StackPanel>
+
+                <!-- Content Grid -->
+                <Grid Grid.Row="2">
+                    <!-- Beginner Content -->
+                    <ItemsControl ItemsSource="{Binding BeginnerTopics}"
+                                Visibility="{Binding IsChecked, ElementName=BeginnerTab, 
+                                           Converter={StaticResource BoolToVisibilityConverter}}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12"
-                                        Background="White" Margin="8" Padding="12" 
-                                        >
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding TopicName}" 
-                                                   FontWeight="Bold" FontSize="16" Foreground="#111827"/>
-                                        <TextBlock Text="{Binding Description}" 
-                                                   TextWrapping="Wrap" 
-                                                   FontSize="13" Foreground="#6B7280" Margin="0,4,0,8"/>
-                                        <Button Content="Start Speaking"
-                                                Command="{Binding DataContext.StartSpeakingCommand, 
-                                                                  RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"
-                                                Background="#3B82F6" 
-                                                Foreground="White" 
-                                                Padding="6,3"
-                                                Width="130"
-                                                HorizontalAlignment="Left"
-                                                BorderBrush="{x:Null}"
-                                                Cursor="Hand"
-                                                FontWeight="SemiBold"
-                                                />
-                                    </StackPanel>
+                                <Border Style="{StaticResource TopicCardStyle}" Height="200">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" 
+                                                    Command="{Binding DataContext.StartSpeakingCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Page}}"
+                                                    CommandParameter="{Binding}"/>
+                                    </Border.InputBindings>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Icon & Level Badge -->
+                                        <Grid Grid.Row="0" Margin="0,0,0,12">
+                                            <Border Background="#D1FAE5"
+                                                  CornerRadius="10"
+                                                  Width="48" Height="48"
+                                                  HorizontalAlignment="Left">
+                                                <TextBlock Text="💬" 
+                                                         FontSize="24"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"/>
+                                            </Border>
+                                            <Border Style="{StaticResource LevelBadgeStyle}"
+                                                  Background="#D1FAE5"
+                                                  HorizontalAlignment="Right">
+                                                <TextBlock Text="Beginner" 
+                                                         Foreground="#059669" 
+                                                         FontSize="10" 
+                                                         FontWeight="SemiBold"/>
+                                            </Border>
+                                        </Grid>
+
+                                        <!-- Title -->
+                                        <TextBlock Grid.Row="1" 
+                                                 Text="{Binding TopicName}" 
+                                                 FontSize="16" 
+                                                 FontWeight="SemiBold" 
+                                                 Foreground="#1E293B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="22"
+                                                 MaxHeight="44"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 Margin="0,0,0,10"/>
+
+                                        <!-- Description -->
+                                        <TextBlock Grid.Row="2" 
+                                                 Text="{Binding Description}" 
+                                                 FontSize="13" 
+                                                 Foreground="#64748B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="18"
+                                                 MaxHeight="54"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 VerticalAlignment="Top"/>
+
+                                        <!-- Action Button -->
+                                        <Button Grid.Row="3" 
+                                              Content="Start Speaking" 
+                                              Style="{StaticResource StartButtonStyle}"
+                                              HorizontalAlignment="Stretch"
+                                              Command="{Binding DataContext.StartSpeakingCommand, 
+                                                      RelativeSource={RelativeSource AncestorType=Page}}"
+                                              CommandParameter="{Binding}"/>
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </ScrollViewer>
-            </TabItem>
 
-            <!-- Intermediate Tab -->
-            <TabItem Header="Intermediate">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding IntermediateTopic}">
+                    <!-- Intermediate Content -->
+                    <ItemsControl ItemsSource="{Binding IntermediateTopic}"
+                                Visibility="{Binding IsChecked, ElementName=IntermediateTab, 
+                                           Converter={StaticResource BoolToVisibilityConverter}}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12"
-                                        Background="White" Margin="8" Padding="12">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding TopicName}" 
-                                                   FontWeight="Bold" FontSize="16" Foreground="#111827"/>
-                                        <TextBlock Text="{Binding Description}" 
-                                                   TextWrapping="Wrap" 
-                                                   FontSize="13" Foreground="#6B7280" Margin="0,4,0,8"/>
-                                        <Button Content="Start Speaking"
-                                                Command="{Binding DataContext.StartSpeakingCommand, 
-                                                                  RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"
-                                                Background="#10B981" 
-                                                Foreground="White" 
-                                                Padding="6,3"
-                                                Width="130"
-                                                HorizontalAlignment="Left"
-                                                BorderBrush="{x:Null}"
-                                                Cursor="Hand"
-                                                FontWeight="SemiBold"
-                                                />
-                                    </StackPanel>
+                                <Border Style="{StaticResource TopicCardStyle}" Height="200">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" 
+                                                    Command="{Binding DataContext.StartSpeakingCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Page}}"
+                                                    CommandParameter="{Binding}"/>
+                                    </Border.InputBindings>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Margin="0,0,0,12">
+                                            <Border Background="#FEF3C7"
+                                                  CornerRadius="10"
+                                                  Width="48" Height="48"
+                                                  HorizontalAlignment="Left">
+                                                <TextBlock Text="💬" 
+                                                         FontSize="24"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"/>
+                                            </Border>
+                                            <Border Style="{StaticResource LevelBadgeStyle}"
+                                                  Background="#FEF3C7"
+                                                  HorizontalAlignment="Right">
+                                                <TextBlock Text="Intermediate" 
+                                                         Foreground="#D97706" 
+                                                         FontSize="10" 
+                                                         FontWeight="SemiBold"/>
+                                            </Border>
+                                        </Grid>
+
+                                        <TextBlock Grid.Row="1" 
+                                                 Text="{Binding TopicName}" 
+                                                 FontSize="16" 
+                                                 FontWeight="SemiBold" 
+                                                 Foreground="#1E293B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="22"
+                                                 MaxHeight="44"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 Margin="0,0,0,10"/>
+
+                                        <TextBlock Grid.Row="2" 
+                                                 Text="{Binding Description}" 
+                                                 FontSize="13" 
+                                                 Foreground="#64748B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="18"
+                                                 MaxHeight="54"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 VerticalAlignment="Top"/>
+
+                                        <Button Grid.Row="3" 
+                                              Content="Start Speaking" 
+                                              Style="{StaticResource StartButtonStyle}"
+                                              HorizontalAlignment="Stretch"
+                                              Command="{Binding DataContext.StartSpeakingCommand, 
+                                                      RelativeSource={RelativeSource AncestorType=Page}}"
+                                              CommandParameter="{Binding}"/>
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </ScrollViewer>
-            </TabItem>
 
-            <!-- Advanced Tab -->
-            <TabItem Header="Advanced">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding AdvancedTopic}">
+                    <!-- Advanced Content -->
+                    <ItemsControl ItemsSource="{Binding AdvancedTopic}"
+                                Visibility="{Binding IsChecked, ElementName=AdvancedTab, 
+                                           Converter={StaticResource BoolToVisibilityConverter}}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12"
-                                        Background="White" Margin="8" Padding="12">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding TopicName}" 
-                                                   FontWeight="Bold" FontSize="16" Foreground="#111827"/>
-                                        <TextBlock Text="{Binding Description}" 
-                                                   TextWrapping="Wrap" 
-                                                   FontSize="13" Foreground="#6B7280" Margin="0,4,0,8"/>
-                                        <Button Content="Start Speaking"
-                                                Command="{Binding DataContext.StartSpeakingCommand, 
-                                                                  RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"
-                                                Background="#EF4444" 
-                                                Foreground="White" 
-                                                Padding="6,3"
-                                                Width="130"
-                                                HorizontalAlignment="Left"
-                                                BorderBrush="{x:Null}"
-                                                Cursor="Hand"
-                                                FontWeight="SemiBold"
-                                                />
-                                    </StackPanel>
+                                <Border Style="{StaticResource TopicCardStyle}" Height="200">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" 
+                                                    Command="{Binding DataContext.StartSpeakingCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Page}}"
+                                                    CommandParameter="{Binding}"/>
+                                    </Border.InputBindings>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Margin="0,0,0,12">
+                                            <Border Background="#FEE2E2"
+                                                  CornerRadius="10"
+                                                  Width="48" Height="48"
+                                                  HorizontalAlignment="Left">
+                                                <TextBlock Text="💬" 
+                                                         FontSize="24"
+                                                         HorizontalAlignment="Center"
+                                                         VerticalAlignment="Center"/>
+                                            </Border>
+                                            <Border Style="{StaticResource LevelBadgeStyle}"
+                                                  Background="#FEE2E2"
+                                                  HorizontalAlignment="Right">
+                                                <TextBlock Text="Advanced" 
+                                                         Foreground="#DC2626" 
+                                                         FontSize="10" 
+                                                         FontWeight="SemiBold"/>
+                                            </Border>
+                                        </Grid>
+
+                                        <TextBlock Grid.Row="1" 
+                                                 Text="{Binding TopicName}" 
+                                                 FontSize="16" 
+                                                 FontWeight="SemiBold" 
+                                                 Foreground="#1E293B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="22"
+                                                 MaxHeight="44"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 Margin="0,0,0,10"/>
+
+                                        <TextBlock Grid.Row="2" 
+                                                 Text="{Binding Description}" 
+                                                 FontSize="13" 
+                                                 Foreground="#64748B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="18"
+                                                 MaxHeight="54"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 VerticalAlignment="Top"/>
+
+                                        <Button Grid.Row="3" 
+                                              Content="Start Speaking" 
+                                              Style="{StaticResource StartButtonStyle}"
+                                              HorizontalAlignment="Stretch"
+                                              Command="{Binding DataContext.StartSpeakingCommand, 
+                                                      RelativeSource={RelativeSource AncestorType=Page}}"
+                                              CommandParameter="{Binding}"/>
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

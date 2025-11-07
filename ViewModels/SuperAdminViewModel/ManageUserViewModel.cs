@@ -48,9 +48,10 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             else Users = new ObservableCollection<User>();
         }
         private async Task AddUser() {
-            var newuser = new User();
-            Users.Add(newuser);
+            var newuser = new User() { Role = "User", PasswordHash = "12345678"};
             await _userService.Add(newuser);
+            ;
+            await LoadData();
         }
         private async Task DeleteUser(object o) {
             if(o is  User user) {

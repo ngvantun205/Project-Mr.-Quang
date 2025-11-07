@@ -5,114 +5,342 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TDEduEnglish.Views.SuperAdminWindow"
         mc:Ignorable="d"
-        Title="ManageSpeakingWindow" Height="740" Width="1350">
+        Title="ManageSpeakingWindow" Height="740" Width="1500"
+         WindowStartupLocation="CenterScreen"
+        Background="#F5F7FA">
 
-    <Grid Margin="20">
+    <Window.Resources>
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#357ABD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Danger Button Style -->
+        <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#E74C3C"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#C0392B"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Success Button Style -->
+        <Style x:Key="SuccessButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#27AE60"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#229954"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Modern TextBox Style -->
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderBrush" Value="#DDE3E9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                        Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#4A90E2"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#4A90E2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Modern ComboBox Style -->
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#DDE3E9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- Card Style -->
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#E0E0E0" BlurRadius="12" 
+                                    ShadowDepth="2" Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- DataGrid Style -->
+        <Style x:Key="ModernDataGrid" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="RowHeight" Value="38"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="AlternatingRowBackground" Value="#F8F9FA"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+
+        <!-- DataGrid Header Style -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="BorderBrush" Value="#E8EDF2"/>
+        </Style>
+
+        <!-- DataGrid Cell Style -->
+        <Style TargetType="DataGridCell">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#E3F2FD"/>
+                    <Setter Property="Foreground" Value="#1976D2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="380"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- 🧭 LEFT: TOPICS TABLE -->
-        <Border Grid.Column="0" CornerRadius="12" Background="White" Padding="16" Margin="0,0,10,0"
-                BorderBrush="#E5E7EB" BorderThickness="1" >
-            <DockPanel>
+        <!-- LEFT PANEL - TOPICS -->
+        <Border Grid.Column="0" Style="{StaticResource Card}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
                 <!-- Header -->
-                <StackPanel DockPanel.Dock="Top" Margin="0,0,0,8">
-                    <TextBlock Text="📚 Topics" FontSize="20" FontWeight="Bold" Foreground="#111827"/>
-                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0" HorizontalAlignment="Stretch">
-                        <ComboBox Width="150" Margin="0,0,8,0" 
-                                  Text="Filter by Level"
-                                  SelectedItem="{Binding SelectedLevel, Mode=TwoWay}">
-                            <ComboBoxItem Content="All"/>
-                            <ComboBoxItem Content="Beginner"/>
-                            <ComboBoxItem Content="Intermediate"/>
-                            <ComboBoxItem Content="Advanced"/>
-                        </ComboBox>
-                        <Button Content="Add" Width="40" Margin="0,0,4,0"
-                                Background="#3B82F6" Foreground="White" Command="{Binding AddTopicCommand}"/>
-                        <Button Content="Update" Width="50" Margin="0,0,4,0"
-                                Background="#10B981" Foreground="White" Command="{Binding UpdateTopicCommand}"/>
-                        <Button Content="Delete" Width="50" Margin="0,0,4,0"
-                                Background="#EF4444" Foreground="White"
-                                Command="{Binding DeleteTopicCommand}"
-                                CommandParameter="{Binding SelectedTopic}"/>
-                        <Button Content="Import JSON" Width="80"
-                                Background="#6366F1" Foreground="White"
-                                Command="{Binding ImportTopicFromJsonFileCommand}"/>
-                    </StackPanel>
+                <TextBlock Grid.Row="0"
+                         Text="📚 Topics List" 
+                         FontSize="16" 
+                         FontWeight="Bold" 
+                         Foreground="#2C3E50"
+                         Margin="0,0,0,12"/>
+
+                <!-- Filter Section -->
+                <Grid Grid.Row="1" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0"
+                             x:Name="SearchTopicTextBox"
+                             Style="{StaticResource ModernTextBox}"
+                             />
+
+                    <ComboBox Grid.Column="2"
+                              x:Name="LevelFilterComboBox"
+                              Style="{StaticResource ModernComboBox}"
+                              >
+                        <ComboBoxItem Content="All" IsSelected="True"/>
+                        <ComboBoxItem Content="Beginner"/>
+                        <ComboBoxItem Content="Intermediate"/>
+                        <ComboBoxItem Content="Advanced"/>
+                    </ComboBox>
+                </Grid>
+
+                <!-- Action Buttons -->
+                <StackPanel Grid.Row="2" 
+                          Orientation="Horizontal" 
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,10">
+                    <Button Content="➕ Add" 
+                          Style="{StaticResource SuccessButton}"
+                          Command="{Binding AddTopicCommand}"
+                          Margin="0,0,4,0"/>
+                    <Button Content="💾 Save" 
+                          Style="{StaticResource ModernButton}"
+                          Command="{Binding UpdateTopicCommand}"
+                          Margin="4,0"/>
+                    <Button Content="📥 Import" 
+                          Style="{StaticResource ModernButton}"
+                          Command="{Binding ImportTopicFromJsonFileCommand}"
+                          Margin="4,0,0,0"/>
                 </StackPanel>
 
-                <!-- Topics Table -->
-                <DataGrid ItemsSource="{Binding Topics}" 
-                          SelectedItem="{Binding SelectedTopic, Mode=TwoWay}"
-                          AutoGenerateColumns="False"
-                          CanUserAddRows="False"
-                          IsReadOnly="False"
-                          GridLinesVisibility="Horizontal"
-                          HeadersVisibility="Column"
-                          SelectionMode="Single"
-                          RowHeight="36"
-                          BorderThickness="0"
-                          Background="White"
-                          Foreground="#111827"
-                          AlternatingRowBackground="#F3F4F6">
-
+                <!-- Topics DataGrid -->
+                <DataGrid Grid.Row="3"
+                        Style="{StaticResource ModernDataGrid}"
+                        ItemsSource="{Binding Topics}"
+                        SelectedItem="{Binding SelectedTopic, Mode=TwoWay}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding TopicId}" Width="50" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Topic Name" Binding="{Binding TopicName}" Width="2*"/>
-                        <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="*" />
-                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*"/>
+                        <DataGridTextColumn Header="Topic Name" 
+                                          Binding="{Binding TopicName, UpdateSourceTrigger=PropertyChanged}" 
+                                          Width="*"/>
+                        <DataGridTextColumn Header="Level" 
+                                          Binding="{Binding Level, UpdateSourceTrigger=PropertyChanged}" 
+                                          Width="90"/>
+                        <DataGridTemplateColumn Header="" Width="40">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="🗑️" 
+                                          Background="Transparent"
+                                          BorderThickness="0"
+                                          Foreground="#E74C3C"
+                                          FontSize="14"
+                                          Cursor="Hand"
+                                          Command="{Binding DataContext.DeleteTopicCommand, 
+                                                   RelativeSource={RelativeSource AncestorType=Window}}"
+                                          CommandParameter="{Binding}"
+                                          ToolTip="Delete topic"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-            </DockPanel>
+            </Grid>
         </Border>
 
-        <!-- 🗣️ RIGHT: SPEAKING SENTENCES TABLE -->
-        <Border Grid.Column="1" CornerRadius="12" Background="White" Padding="16"
-                BorderBrush="#E5E7EB" BorderThickness="1">
-            <DockPanel>
+        <!-- RIGHT PANEL - SPEAKING SENTENCES -->
+        <Border Grid.Column="2" Style="{StaticResource Card}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
                 <!-- Header -->
-                <StackPanel DockPanel.Dock="Top" Margin="0,0,0,8">
-                    <TextBlock Text="🗣️ Speaking Sentences" FontSize="20" FontWeight="Bold" Foreground="#111827"/>
-                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                        <Button Content="Add" Width="70" Margin="0,0,4,0"
-                                Background="#3B82F6" Foreground="White" Command="{Binding AddSpeakingSentenceCommand}"/>
-                        <Button Content="Update" Width="80" Margin="0,0,4,0"
-                                Background="#10B981" Foreground="White" Command="{Binding UpdateSpeakingSentenceCommand}"/>
-                        <Button Content="Delete" Width="80" Margin="0,0,4,0"
-                                Background="#EF4444" Foreground="White"
-                                Command="{Binding DeleteSpeakingSentenceCommand}"
-                                CommandParameter="{Binding SelectedSentence}"/>
-                        <Button Content="Import JSON" Width="110"
-                                Background="#6366F1" Foreground="White"
-                                Command="{Binding ImportSpeakingSentenceFromJsonFileCommand}"/>
-                    </StackPanel>
+                <TextBlock Grid.Row="0" 
+                         FontSize="16" 
+                         FontWeight="Bold" 
+                         Foreground="#2C3E50"
+                         Margin="0,0,0,12">
+                    <Run Text="💬 Speaking Sentences"/>
+                    <Run Text="-" Foreground="#95A5A6"/>
+                    <Run Text="{Binding SelectedTopic.TopicName, FallbackValue='Select a topic'}" 
+                         Foreground="#3498DB"/>
+                </TextBlock>
+
+                <!-- Action Buttons -->
+                <StackPanel Grid.Row="1" 
+                          Orientation="Horizontal" 
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,10">
+                    <Button Content="➕ Add Sentence" 
+                          Style="{StaticResource SuccessButton}"
+                          Command="{Binding AddSpeakingSentenceCommand}"
+                          IsEnabled="{Binding SelectedTopic}"
+                          Margin="0,0,4,0"/>
+                    <Button Content="💾 Save All" 
+                          Style="{StaticResource ModernButton}"
+                          Command="{Binding UpdateSpeakingSentenceCommand}"
+                          IsEnabled="{Binding SelectedTopic}"
+                          Margin="4,0"/>
+                    <Button Content="📥 Import JSON" 
+                          Style="{StaticResource ModernButton}"
+                          Command="{Binding ImportSpeakingSentenceFromJsonFileCommand}"
+                          IsEnabled="{Binding SelectedTopic}"
+                          Margin="4,0,0,0"/>
                 </StackPanel>
 
-                <!-- Speaking Sentences Table -->
-                <DataGrid ItemsSource="{Binding Sentences}" 
-                          SelectedItem="{Binding SelectedSentence, Mode=TwoWay}"
-                          AutoGenerateColumns="False"
-                          CanUserAddRows="False"
-                          IsReadOnly="False"
-                          GridLinesVisibility="Horizontal"
-                          HeadersVisibility="Column"
-                          SelectionMode="Single"
-                          RowHeight="36"
-                          BorderThickness="0"
-                          Background="White"
-                          Foreground="#111827"
-                          AlternatingRowBackground="#F3F4F6">
-
+                <!-- Sentences DataGrid -->
+                <DataGrid Grid.Row="2"
+                        x:Name="SentencesDataGrid"
+                        Style="{StaticResource ModernDataGrid}"
+                        ItemsSource="{Binding Sentences}"
+                        SelectedItem="{Binding SelectedSentence, Mode=TwoWay}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding SpeakingSentenceId}" Width="50" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Topic ID" Binding="{Binding TopicId}" Width="60"/>
-                        <DataGridTextColumn Header="Sentence (EN)" Binding="{Binding SentenceText}" Width="2*"/>
-                        <DataGridTextColumn Header="Sentence (VN)" Binding="{Binding Level}" Width="2*"/>
+                        <DataGridTextColumn Header="Sentence Text" 
+                                          Binding="{Binding SentenceText, UpdateSourceTrigger=PropertyChanged}" 
+                                          Width="*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextWrapping" Value="Wrap"/>
+                                    <Setter Property="Padding" Value="4"/>
+                                    <Setter Property="Foreground" Value="#16A085"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Level" 
+                                          Binding="{Binding Level, UpdateSourceTrigger=PropertyChanged}" 
+                                          Width="100"/>
+                        <DataGridTemplateColumn Header="" Width="40">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="🗑️" 
+                                          Background="Transparent"
+                                          BorderThickness="0"
+                                          Foreground="#E74C3C"
+                                          FontSize="14"
+                                          Cursor="Hand"
+                                          Command="{Binding DataContext.DeleteSpeakingSentenceCommand, 
+                                                   RelativeSource={RelativeSource AncestorType=Window}}"
+                                          CommandParameter="{Binding}"
+                                          ToolTip="Delete sentence"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-            </DockPanel>
+            </Grid>
         </Border>
     </Grid>
 </Window>

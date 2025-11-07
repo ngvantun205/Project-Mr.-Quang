@@ -45,15 +45,7 @@ namespace TDEduEnglish.Repository {
         public async Task Update(ListeningQuestion entity) {
            var question = await GetById(entity.ListeningQuestionId);
             if(question != null) {
-                question.QuestionText = entity.QuestionText;
-                question.ListeningLessonId = entity.ListeningLessonId;
-                question.QuestionNumber = entity.QuestionNumber;
-                question.Explanation = entity.Explanation;  
-                question.CorrectAnswer = entity.CorrectAnswer;
-                question.Option1 = entity.Option1;
-                question.Option2 = entity.Option2;
-                question.Option3 = entity.Option3;
-                question.Option4 = entity.Option4;
+                _context.Entry(entity).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
         }

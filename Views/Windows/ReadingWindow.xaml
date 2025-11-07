@@ -12,7 +12,6 @@
 
     <Window.Resources>
         <BackEase x:Key="BackEase" EasingMode="EaseOut" Amplitude="0.5"/>
-        <!-- Giữ nguyên toàn bộ Style -->
         <Style x:Key="CompactButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#FF6366F1"/>
             <Setter Property="Foreground" Value="White"/>

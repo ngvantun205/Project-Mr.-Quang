@@ -33,28 +33,62 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
                 OnPropertyChanged(nameof(WritingText));
             }
         }
-        private ObservableCollection<Writing> writinghistorylist    ;
+        private string writingTopic;
+        public string WritingTopic {
+            get => writingTopic; set {
+                Set(ref writingTopic, value);
+                OnPropertyChanged(nameof(WritingTopic));
+            }
+        }
 
+        private ObservableCollection<Writing> writinghistorylist;
         public ObservableCollection<Writing> WritingHistoryList {get => writinghistorylist; set {
                 Set(ref writinghistorylist, value);
                 OnPropertyChanged(nameof(WritingHistoryList));
             }
         }
+        private bool showWritingDetail;
+        public bool ShowWritingDetail {
+            get => showWritingDetail; set {
+                Set(ref showWritingDetail, value);
+                OnPropertyChanged(nameof(ShowWritingDetail));
+            }
+        }
+
+        private string currentText;
+        public string CurrentText {
+            get => currentText; set {
+                Set(ref currentText, value);
+                OnPropertyChanged(nameof(CurrentText));
+            }
+        }
+        private string currentFeedback;
+        public string CurrentFeedback {
+            get => currentFeedback; set {
+                Set(ref currentFeedback, value);
+                OnPropertyChanged(nameof(CurrentFeedback));
+            }
+        }
+
+
 
         public ICommand GradeWritingCommand { get; set; }
-
+        public ICommand ViewDetailCommand { get; set; }
+        public ICommand NewWritingCommand { get; set; }
         public CourseWritingViewModel(IWritingService writingService, ISessonService sessonService) {
             _writingService = writingService;
             _sessonService = sessonService;
 
             GradeWritingCommand = new RelayCommand(async o => await GradeWriting());
+            ViewDetailCommand = new RelayCommand(o => ShowDetailWriting(o));
+            NewWritingCommand = new RelayCommand( o => NewWriting());
 
             _ = LoadHistoryData();
         }
 
         private async Task GradeWriting() {
             Content = "Correcting ...";
-            var result = await _writingService.GenerateTextAsync(WritingText, _sessonService.GetCurrentUser().Level, "Writing Task 2");
+            var result = await _writingService.GenerateTextAsync(WritingText, _sessonService.GetCurrentUser().Level,WritingTopic, "Writing Task 2");
             Content = result;
             Writing writing = new Writing() {
                 Text = WritingText,
@@ -67,7 +101,18 @@ namespace TDEduEnglish.ViewModels.CoursePageViewModel {
             var writingHistory = await _writingService.GetAll();
             WritingHistoryList = new ObservableCollection<Writing>(writingHistory);
         }
-
+        private void ShowDetailWriting(object o) {
+            if(o is Writing writing) {
+                ShowWritingDetail = true;
+                CurrentText = writing.Text;
+                CurrentFeedback = writing.Feedback;
+            }
+        }
+        private void NewWriting() {
+            WritingText = "";
+            WritingTopic = "";
+            Content = "";
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

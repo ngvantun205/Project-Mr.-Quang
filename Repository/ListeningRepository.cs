@@ -29,14 +29,13 @@ namespace TDEduEnglish.Repository {
             await _context.SaveChangesAsync();
         }
         public async Task Update(ListeningLesson entity) {
-            var lesson = await GetById(entity.ListeningLessonId);
-            if (lesson != null) {
-                lesson.Title = entity.Title;
-                lesson.Level = entity.Level;
-                lesson.SuggestedTime = entity.SuggestedTime;
+            var existing = await GetById(entity.ListeningLessonId);
+            if (existing != null) {
+                _context.Entry(entity).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
         }
+
         public async Task Delete(int id) {
             var lesson = await GetById(id);
             if (lesson != null) {

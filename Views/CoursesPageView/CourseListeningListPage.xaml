@@ -10,214 +10,195 @@
       Title="CourseListeningListPage">
 
     <Page.Resources>
-        <!-- Reading Card Style -->
-        <Style x:Key="ReadingCardStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="8"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Effect">
+        <!-- TabControl Style -->
+        <Style x:Key="ModernTabControl" TargetType="TabControl">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <!-- TabItem Style -->
+        <Style x:Key="ModernTabItem" TargetType="TabItem">
+            <Setter Property="Template">
                 <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="270" ShadowDepth="2" BlurRadius="10" Opacity="0.08"/>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="Border" 
+                                Background="White"
+                                BorderBrush="#E2E8F0"
+                                BorderThickness="0,0,0,3"
+                                Padding="32,16"
+                                Margin="0,0,8,0"
+                                CornerRadius="12,12,0,0"
+                                Cursor="Hand">
+                            <ContentPresenter x:Name="ContentSite"
+                                            ContentSource="Header"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#4F46E5"/>
+                                <Setter TargetName="Border" Property="Background" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
+                                <Setter TargetName="Border" Property="Background" Value="#F8FAFC"/>
+                                <Setter TargetName="Border" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Opacity" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <!-- Reading Card Hover Style -->
-        <Style x:Key="ReadingCardHoverStyle" TargetType="Border" BasedOn="{StaticResource ReadingCardStyle}">
+        <!-- Tab Header Style -->
+        <Style x:Key="TabHeaderStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+
+        <!-- Listening Card Style -->
+        <Style x:Key="ListeningCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#000000" Opacity="0.06" 
+                                    BlurRadius="16" ShadowDepth="0"/>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect Color="#FF6366F1" Direction="270" ShadowDepth="4" BlurRadius="15" Opacity="0.2"/>
+                            <DropShadowEffect Color="#4F46E5" Opacity="0.2" 
+                                            BlurRadius="24" ShadowDepth="0"/>
                         </Setter.Value>
                     </Setter>
-                    <Setter Property="Background" Value="#FFFAFBFC"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <!-- Tab Header Style -->
-        <Style x:Key="ModernTabItemStyle" TargetType="TabItem">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#FF6B7280"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="20,12"/>
-            <Setter Property="Margin" Value="0,0,4,0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TabItem">
-                        <Border x:Name="Border" Background="{TemplateBinding Background}"
-                                CornerRadius="8,8,0,0"
-                                Padding="{TemplateBinding Padding}"
-                                BorderThickness="0,0,0,2"
-                                BorderBrush="Transparent">
-                            <ContentPresenter ContentSource="Header"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FFF8FAFC"/>
-                                <Setter Property="Foreground" Value="#FF6366F1"/>
-                            </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="White"/>
-                                <Setter Property="Foreground" Value="#FF6366F1"/>
-                                <Setter Property="Panel.ZIndex" Value="1"/>
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF6366F1"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
         <!-- Level Badge Style -->
         <Style x:Key="LevelBadgeStyle" TargetType="Border">
-            <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="8,4"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
-        <!-- Start Button Style -->
-        <Style x:Key="StartButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#FF6366F1"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="12,6"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="6"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF5855E8"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#FF4F46E5"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+        <!-- Difficulty Icon Style -->
+        <Style x:Key="DifficultyIconStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,0,4,0"/>
         </Style>
     </Page.Resources>
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FFF8FAFC" Offset="0"/>
-                <GradientStop Color="#FFF1F5F9" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Margin="40,32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <!-- Page Header -->
-        <StackPanel Margin="40,20,40,0" VerticalAlignment="Top">
-            <TextBlock Text="📖 Listening Practice" 
-                       FontSize="32" FontWeight="Bold" 
-                       Foreground="#FF1F2937" 
-                       Margin="0,0,0,8"/>
-            <TextBlock Text="Improve your listening comprehension with engaging articles and stories" 
-                       FontSize="16" 
-                       Foreground="#FF6B7280" 
-                       Margin="0,0,0,30"/>
+        <!-- Header Section -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,32">
+            <TextBlock Text="🎧 Listening Practice" 
+                      FontSize="36" 
+                      FontWeight="Bold" 
+                      Foreground="#1E293B"
+                      Margin="0,0,0,8"/>
+            <TextBlock Text="Choose your level and start practicing listening comprehension" 
+                      FontSize="16" 
+                      Foreground="#64748B"/>
         </StackPanel>
 
         <!-- TabControl for Levels -->
-        <TabControl Margin="40,120,40,40" 
-                    Background="Transparent" 
-                    BorderThickness="0"
-                    TabStripPlacement="Top">
-            <TabControl.Resources>
-                <Style TargetType="TabPanel">
-                    <Setter Property="HorizontalAlignment" Value="Left"/>
-                    <Setter Property="Margin" Value="0,0,0,20"/>
-                </Style>
-            </TabControl.Resources>
+        <TabControl Grid.Row="1" 
+                   Style="{StaticResource ModernTabControl}">
 
             <!-- Beginner Tab -->
-            <TabItem Header="🌱 Beginner (A1-A2)" Style="{StaticResource ModernTabItemStyle}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0,20,0,0">
-                    <ItemsControl ItemsSource="{Binding BeginnerListenings}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="3"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+            <TabItem Style="{StaticResource ModernTabItem}">
+                <TabItem.Header>
+                    <StackPanel Style="{StaticResource TabHeaderStyle}">
+                        <TextBlock Text="🌱" FontSize="20" Margin="0,0,8,0"/>
+                        <TextBlock Text="Beginner" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#1E293B"/>
+                    </StackPanel>
+                </TabItem.Header>
 
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                            HorizontalScrollBarVisibility="Disabled"
+                            Margin="0,24,0,0">
+                    <ItemsControl ItemsSource="{Binding BeginnerListenings}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Style="{StaticResource ReadingCardHoverStyle}"
-                                        Tag="{Binding}"
-                                        Height="200">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                <Border Style="{StaticResource ListeningCardStyle}">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" 
+                                                    Command="{Binding DataContext.StartListeningCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Page}}"
+                                                    CommandParameter="{Binding}"/>
+                                    </Border.InputBindings>
 
-                                        <!-- Level Badge -->
-                                        <Border Grid.Row="0" Style="{StaticResource LevelBadgeStyle}"
-                                                Background="#FF10B981" Margin="0,0,0,8">
-                                            <TextBlock Text="{Binding Level}" 
-                                                       Foreground="White" 
-                                                       FontSize="10" 
-                                                       FontWeight="SemiBold"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Icon -->
+                                        <Border Grid.Column="0"
+                                               Background="#D1FAE5"
+                                               CornerRadius="10"
+                                               Width="56" Height="56"
+                                               Margin="0,0,20,0">
+                                            <TextBlock Text="🎧" 
+                                                     FontSize="28"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"/>
                                         </Border>
 
-                                        <!-- Title -->
-                                        <TextBlock Grid.Row="1" 
-                                                   Text="{Binding Title}" 
-                                                   FontSize="14" 
-                                                   FontWeight="SemiBold" 
-                                                   Foreground="#FF1F2937"
-                                                   TextWrapping="Wrap"
-                                                   LineHeight="18"
-                                                   MaxHeight="54"
-                                                   TextTrimming="WordEllipsis"
-                                                   Margin="0,0,0,8"/>
-
-                                        <!-- Bottom Info -->
-                                        <StackPanel Grid.Row="2" Orientation="Horizontal" 
-                                                   VerticalAlignment="Center" Margin="0,0,0,8">
-                                            <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock FontSize="11" 
-                                                       Foreground="#FF6B7280"
-                                                       Margin="0,0,8,0">
-                                                <TextBlock.Text>
-                                                    <Binding Path="SuggestedTime" StringFormat="{}{0:mm}min"/>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock Text="{Binding Questions.Count}" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
-                                            <TextBlock Text="q" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
+                                        <!-- Content -->
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Title}" 
+                                                     FontSize="18" 
+                                                     FontWeight="SemiBold"
+                                                     Foreground="#1E293B"
+                                                     Margin="0,0,0,6"/>
+                                            <TextBlock Text="{Binding Description}" 
+                                                     FontSize="14" 
+                                                     Foreground="#64748B"
+                                                     TextWrapping="Wrap"
+                                                     Margin="0,0,0,8"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Style="{StaticResource DifficultyIconStyle}" Text="⏱️"/>
+                                                <TextBlock Text="{Binding Duration, StringFormat='{}{0} mins'}" 
+                                                         FontSize="13"
+                                                         Foreground="#64748B"
+                                                         Margin="0,0,16,0"/>
+                                                <TextBlock Style="{StaticResource DifficultyIconStyle}" Text="📝"/>
+                                                <TextBlock Text="{Binding QuestionCount, StringFormat='{}{0} questions'}" 
+                                                         FontSize="13"
+                                                         Foreground="#64748B"/>
+                                            </StackPanel>
                                         </StackPanel>
 
-                                        <!-- Start Button -->
-                                        <Button Grid.Row="3" 
-                                                Content="Start Reading" 
-                                                Style="{StaticResource StartButtonStyle}"
-                                                FontSize="11"
-                                                Height="32"
-                                                Command="{Binding DataContext.StartListeningCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"/>
+                                        <!-- Level Badge -->
+                                        <Border Grid.Column="2"
+                                               Style="{StaticResource LevelBadgeStyle}"
+                                               Background="#D1FAE5">
+                                            <TextBlock Text="Beginner" 
+                                                     FontSize="13"
+                                                     FontWeight="Medium"
+                                                     Foreground="#059669"/>
+                                        </Border>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
@@ -227,73 +208,84 @@
             </TabItem>
 
             <!-- Intermediate Tab -->
-            <TabItem Header="🚀 Intermediate (B1-B2)" Style="{StaticResource ModernTabItemStyle}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0,20,0,0">
-                    <ItemsControl ItemsSource="{Binding IntermediateListenings}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="3"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+            <TabItem Style="{StaticResource ModernTabItem}">
+                <TabItem.Header>
+                    <StackPanel Style="{StaticResource TabHeaderStyle}">
+                        <TextBlock Text="🔥" FontSize="20" Margin="0,0,8,0"/>
+                        <TextBlock Text="Intermediate" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#1E293B"/>
+                    </StackPanel>
+                </TabItem.Header>
 
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                            HorizontalScrollBarVisibility="Disabled"
+                            Margin="0,24,0,0">
+                    <ItemsControl ItemsSource="{Binding IntermediateListenings}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Style="{StaticResource ReadingCardHoverStyle}"
-                                        Tag="{Binding}"
-                                        Height="200">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                <Border Style="{StaticResource ListeningCardStyle}">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" 
+                                                    Command="{Binding DataContext.StartListeningCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Page}}"
+                                                    CommandParameter="{Binding}"/>
+                                    </Border.InputBindings>
 
-                                        <Border Grid.Row="0" Style="{StaticResource LevelBadgeStyle}"
-                                                Background="#FF6366F1" Margin="0,0,0,8">
-                                            <TextBlock Text="{Binding Level}" 
-                                                       Foreground="White" 
-                                                       FontSize="10" 
-                                                       FontWeight="SemiBold"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Icon -->
+                                        <Border Grid.Column="0"
+                                               Background="#FEF3C7"
+                                               CornerRadius="10"
+                                               Width="56" Height="56"
+                                               Margin="0,0,20,0">
+                                            <TextBlock Text="🎧" 
+                                                     FontSize="28"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"/>
                                         </Border>
 
-                                        <TextBlock Grid.Row="1" 
-                                                   Text="{Binding Title}" 
-                                                   FontSize="14" 
-                                                   FontWeight="SemiBold" 
-                                                   Foreground="#FF1F2937"
-                                                   TextWrapping="Wrap"
-                                                   LineHeight="18"
-                                                   MaxHeight="54"
-                                                   TextTrimming="WordEllipsis"
-                                                   Margin="0,0,0,8"/>
-
-                                        <StackPanel Grid.Row="2" Orientation="Horizontal" 
-                                                   VerticalAlignment="Center" Margin="0,0,0,8">
-                                            <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock FontSize="11" 
-                                                       Foreground="#FF6B7280"
-                                                       Margin="0,0,8,0">
-                                                <TextBlock.Text>
-                                                    <Binding Path="SuggestedTime" StringFormat="{}{0:mm}min"/>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock Text="{Binding Questions.Count}" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
-                                            <TextBlock Text="q" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
+                                        <!-- Content -->
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Title}" 
+                                                     FontSize="18" 
+                                                     FontWeight="SemiBold"
+                                                     Foreground="#1E293B"
+                                                     Margin="0,0,0,6"/>
+                                            <TextBlock Text="{Binding Description}" 
+                                                     FontSize="14" 
+                                                     Foreground="#64748B"
+                                                     TextWrapping="Wrap"
+                                                     Margin="0,0,0,8"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Style="{StaticResource DifficultyIconStyle}" Text="⏱️"/>
+                                                <TextBlock Text="{Binding Duration, StringFormat='{}{0} mins'}" 
+                                                         FontSize="13"
+                                                         Foreground="#64748B"
+                                                         Margin="0,0,16,0"/>
+                                                <TextBlock Style="{StaticResource DifficultyIconStyle}" Text="📝"/>
+                                                <TextBlock Text="{Binding QuestionCount, StringFormat='{}{0} questions'}" 
+                                                         FontSize="13"
+                                                         Foreground="#64748B"/>
+                                            </StackPanel>
                                         </StackPanel>
 
-                                        <Button Grid.Row="3" 
-                                                Content="Start Reading" 
-                                                Style="{StaticResource StartButtonStyle}"
-                                                FontSize="11"
-                                                Height="32"
-                                                Command="{Binding DataContext.StartListeningCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"/>
+                                        <!-- Level Badge -->
+                                        <Border Grid.Column="2"
+                                               Style="{StaticResource LevelBadgeStyle}"
+                                               Background="#FEF3C7">
+                                            <TextBlock Text="Intermediate" 
+                                                     FontSize="13"
+                                                     FontWeight="Medium"
+                                                     Foreground="#D97706"/>
+                                        </Border>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
@@ -303,73 +295,84 @@
             </TabItem>
 
             <!-- Advanced Tab -->
-            <TabItem Header="🎯 Advanced (C1-C2)" Style="{StaticResource ModernTabItemStyle}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0,20,0,0">
-                    <ItemsControl ItemsSource="{Binding AdvancedListenings}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="3"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+            <TabItem Style="{StaticResource ModernTabItem}">
+                <TabItem.Header>
+                    <StackPanel Style="{StaticResource TabHeaderStyle}">
+                        <TextBlock Text="⚡" FontSize="20" Margin="0,0,8,0"/>
+                        <TextBlock Text="Advanced" 
+                                  FontSize="16" 
+                                  FontWeight="SemiBold"
+                                  Foreground="#1E293B"/>
+                    </StackPanel>
+                </TabItem.Header>
 
+                <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                            HorizontalScrollBarVisibility="Disabled"
+                            Margin="0,24,0,0">
+                    <ItemsControl ItemsSource="{Binding AdvancedListenings}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Style="{StaticResource ReadingCardHoverStyle}"
-                                        Tag="{Binding}"
-                                        Height="200">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
+                                <Border Style="{StaticResource ListeningCardStyle}">
+                                    <Border.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" 
+                                                    Command="{Binding DataContext.StartListeningCommand, 
+                                                    RelativeSource={RelativeSource AncestorType=Page}}"
+                                                    CommandParameter="{Binding}"/>
+                                    </Border.InputBindings>
 
-                                        <Border Grid.Row="0" Style="{StaticResource LevelBadgeStyle}"
-                                                Background="#FFEF4444" Margin="0,0,0,8">
-                                            <TextBlock Text="{Binding Level}" 
-                                                       Foreground="White" 
-                                                       FontSize="10" 
-                                                       FontWeight="SemiBold"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Icon -->
+                                        <Border Grid.Column="0"
+                                               Background="#FCE7F3"
+                                               CornerRadius="10"
+                                               Width="56" Height="56"
+                                               Margin="0,0,20,0">
+                                            <TextBlock Text="🎧" 
+                                                     FontSize="28"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"/>
                                         </Border>
 
-                                        <TextBlock Grid.Row="1" 
-                                                   Text="{Binding Title}" 
-                                                   FontSize="14" 
-                                                   FontWeight="SemiBold" 
-                                                   Foreground="#FF1F2937"
-                                                   TextWrapping="Wrap"
-                                                   LineHeight="18"
-                                                   MaxHeight="54"
-                                                   TextTrimming="WordEllipsis"
-                                                   Margin="0,0,0,8"/>
-
-                                        <StackPanel Grid.Row="2" Orientation="Horizontal" 
-                                                   VerticalAlignment="Center" Margin="0,0,0,8">
-                                            <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock FontSize="11" 
-                                                       Foreground="#FF6B7280"
-                                                       Margin="0,0,8,0">
-                                                <TextBlock.Text>
-                                                    <Binding Path="SuggestedTime" StringFormat="{}{0:mm}min"/>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock Text="{Binding Questions.Count}" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
-                                            <TextBlock Text="q" 
-                                                       FontSize="11" 
-                                                       Foreground="#FF6B7280"/>
+                                        <!-- Content -->
+                                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Title}" 
+                                                     FontSize="18" 
+                                                     FontWeight="SemiBold"
+                                                     Foreground="#1E293B"
+                                                     Margin="0,0,0,6"/>
+                                            <TextBlock Text="{Binding Description}" 
+                                                     FontSize="14" 
+                                                     Foreground="#64748B"
+                                                     TextWrapping="Wrap"
+                                                     Margin="0,0,0,8"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Style="{StaticResource DifficultyIconStyle}" Text="⏱️"/>
+                                                <TextBlock Text="{Binding Duration, StringFormat='{}{0} mins'}" 
+                                                         FontSize="13"
+                                                         Foreground="#64748B"
+                                                         Margin="0,0,16,0"/>
+                                                <TextBlock Style="{StaticResource DifficultyIconStyle}" Text="📝"/>
+                                                <TextBlock Text="{Binding QuestionCount, StringFormat='{}{0} questions'}" 
+                                                         FontSize="13"
+                                                         Foreground="#64748B"/>
+                                            </StackPanel>
                                         </StackPanel>
 
-                                        <Button Grid.Row="3" 
-                                                Content="Start Reading" 
-                                                Style="{StaticResource StartButtonStyle}"
-                                                FontSize="11"
-                                                Height="32"
-                                                Command="{Binding DataContext.StartListeningCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"/>
+                                        <!-- Level Badge -->
+                                        <Border Grid.Column="2"
+                                               Style="{StaticResource LevelBadgeStyle}"
+                                               Background="#FCE7F3">
+                                            <TextBlock Text="Advanced" 
+                                                     FontSize="13"
+                                                     FontWeight="Medium"
+                                                     Foreground="#DB2777"/>
+                                        </Border>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
@@ -377,6 +380,7 @@
                     </ItemsControl>
                 </ScrollViewer>
             </TabItem>
+
         </TabControl>
     </Grid>
 </Page>

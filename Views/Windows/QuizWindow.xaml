@@ -951,14 +951,14 @@
 
                     <!-- Action Buttons -->
                     <StackPanel>
-                        <Button Content="Xem lại đáp án" 
+                        <!--<Button Content="Xem lại đáp án" 
                                Command="{Binding ReviewAnswersCommand}"
                                Style="{StaticResource NavButtonStyle}"
                                Background="#FF6366F1"
                                Foreground="White"
                                HorizontalAlignment="Stretch"
                                Height="50"
-                               Margin="0,0,0,12"/>
+                               Margin="0,0,0,12"/>-->
 
                         <Button Content="Làm lại Quiz" 
                                Command="{Binding RetakeQuizCommand}"

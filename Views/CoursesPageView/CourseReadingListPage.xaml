@@ -5,88 +5,86 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TDEduEnglish.ViewModels.CoursePageViewModel"
       mc:Ignorable="d" 
+      Background="White"
       d:DesignHeight="740" d:DesignWidth="1200"
       Title="CourseReadingListPage">
 
     <Page.Resources>
-        <!-- Reading Card Style -->
-        <Style x:Key="ReadingCardStyle" TargetType="Border">
+        <!-- Modern Card Style -->
+        <Style x:Key="ModernCardStyle" TargetType="Border">
             <Setter Property="Background" Value="White"/>
             <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Padding" Value="16"/>
             <Setter Property="Margin" Value="8"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="Gray" Direction="270" ShadowDepth="2" BlurRadius="10" Opacity="0.08"/>
+                    <DropShadowEffect Color="#000000" Opacity="0.05" 
+                                    BlurRadius="15" ShadowDepth="0"/>
                 </Setter.Value>
             </Setter>
-        </Style>
-
-        <!-- Reading Card Hover Style -->
-        <Style x:Key="ReadingCardHoverStyle" TargetType="Border" BasedOn="{StaticResource ReadingCardStyle}">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Effect">
                         <Setter.Value>
-                            <DropShadowEffect Color="#FF6366F1" Direction="270" ShadowDepth="4" BlurRadius="15" Opacity="0.2"/>
+                            <DropShadowEffect Color="#6366F1" Opacity="0.15" 
+                                            BlurRadius="20" ShadowDepth="0"/>
                         </Setter.Value>
                     </Setter>
-                    <Setter Property="Background" Value="#FFFAFBFC"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <!-- Tab Header Style -->
-        <Style x:Key="ModernTabItemStyle" TargetType="TabItem">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#FF6B7280"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="20,12"/>
-            <Setter Property="Margin" Value="0,0,4,0"/>
+        <!-- Level Tab Style -->
+        <Style x:Key="LevelTabStyle" TargetType="RadioButton">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="TabItem">
-                        <Border x:Name="Border" Background="{TemplateBinding Background}"
-                                CornerRadius="8,8,0,0"
-                                Padding="{TemplateBinding Padding}"
-                                BorderThickness="0,0,0,2"
-                                BorderBrush="Transparent">
-                            <ContentPresenter ContentSource="Header"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Border" 
+                                Background="#F1F5F9"
+                                CornerRadius="10"
+                                Padding="20,10"
+                                Margin="0,0,10,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="Icon" 
+                                         Text="{TemplateBinding Tag}" 
+                                         FontSize="18" 
+                                         Margin="0,0,6,0"/>
+                                <TextBlock x:Name="Text"
+                                         Text="{TemplateBinding Content}" 
+                                         FontSize="14" 
+                                         FontWeight="SemiBold"
+                                         Foreground="#64748B"/>
+                            </StackPanel>
                         </Border>
                         <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#6366F1"/>
+                                <Setter TargetName="Text" Property="Foreground" Value="White"/>
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FFF8FAFC"/>
-                                <Setter Property="Foreground" Value="#FF6366F1"/>
+                                <Setter TargetName="Border" Property="Background" Value="#E0E7FF"/>
+                                <Setter TargetName="Text" Property="Foreground" Value="#6366F1"/>
                             </Trigger>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="White"/>
-                                <Setter Property="Foreground" Value="#FF6366F1"/>
-                                <Setter Property="Panel.ZIndex" Value="1"/>
-                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF6366F1"/>
-                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsChecked" Value="True"/>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Border" Property="Background" Value="#5558E3"/>
+                            </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <!-- Level Badge Style -->
-        <Style x:Key="LevelBadgeStyle" TargetType="Border">
-            <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="Padding" Value="8,4"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
-
         <!-- Start Button Style -->
         <Style x:Key="StartButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#FF6366F1"/>
+            <Setter Property="Background" Value="#6366F1"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Padding" Value="12,8"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -97,69 +95,88 @@
                                 CornerRadius="6"
                                 Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center"/>
+                                            VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF5855E8"/>
+                                <Setter Property="Background" Value="#5558E3"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#FF4F46E5"/>
+                                <Setter Property="Background" Value="#4F46E5"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Level Badge Style -->
+        <Style x:Key="LevelBadgeStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Padding" Value="8,4"/>
+        </Style>
     </Page.Resources>
 
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FFF8FAFC" Offset="0"/>
-                <GradientStop Color="#FFF1F5F9" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                     HorizontalScrollBarVisibility="Disabled">
+            <Grid Margin="40,30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-        <!-- Page Header -->
-        <StackPanel Margin="40,20,40,0" VerticalAlignment="Top">
-            <TextBlock Text="📖 Reading Practice" 
-                       FontSize="32" FontWeight="Bold" 
-                       Foreground="#FF1F2937" 
-                       Margin="0,0,0,8"/>
-            <TextBlock Text="Improve your reading comprehension with engaging articles and stories" 
-                       FontSize="16" 
-                       Foreground="#FF6B7280" 
-                       Margin="0,0,0,30"/>
-        </StackPanel>
+                <!-- Header Section -->
+                <StackPanel Grid.Row="0" Margin="0,0,0,24">
+                    <TextBlock FontSize="32" 
+                             FontWeight="Bold" 
+                             Foreground="#1E293B"
+                             Margin="0,0,0,8">
+                        <Run Text="📖"/>
+                        <Run Text="Reading Practice"/>
+                    </TextBlock>
+                    <TextBlock Text="Enhance your reading comprehension skills with carefully selected passages" 
+                             FontSize="15" 
+                             Foreground="#64748B"/>
+                </StackPanel>
 
-        <!-- TabControl for Levels -->
-        <TabControl Margin="40,120,40,40" 
-                    Background="Transparent" 
-                    BorderThickness="0"
-                    TabStripPlacement="Top">
-            <TabControl.Resources>
-                <Style TargetType="TabPanel">
-                    <Setter Property="HorizontalAlignment" Value="Left"/>
-                    <Setter Property="Margin" Value="0,0,0,20"/>
-                </Style>
-            </TabControl.Resources>
+                <!-- Level Selector -->
+                <StackPanel Grid.Row="1" 
+                          Orientation="Horizontal" 
+                          Margin="0,0,0,24">
+                    <RadioButton x:Name="BeginnerTab"
+                               Content="Beginner"
+                               Tag="🌱"
+                               Style="{StaticResource LevelTabStyle}"
+                               IsChecked="True"
+                               GroupName="LevelTabs"/>
+                    <RadioButton x:Name="IntermediateTab"
+                               Content="Intermediate"
+                               Tag="🚀"
+                               Style="{StaticResource LevelTabStyle}"
+                               GroupName="LevelTabs"/>
+                    <RadioButton x:Name="AdvancedTab"
+                               Content="Advanced"
+                               Tag="🎯"
+                               Style="{StaticResource LevelTabStyle}"
+                               GroupName="LevelTabs"/>
+                </StackPanel>
 
-            <!-- Beginner Tab -->
-            <TabItem Header="🌱 Beginner (A1-A2)" Style="{StaticResource ModernTabItemStyle}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0,20,0,0">
-                    <ItemsControl ItemsSource="{Binding BeginnerReadings}">
+                <!-- Content Grid -->
+                <Grid Grid.Row="2">
+                    <!-- Beginner Content -->
+                    <ItemsControl ItemsSource="{Binding BeginnerReadings}"
+                                Visibility="{Binding IsChecked, ElementName=BeginnerTab, 
+                                           Converter={StaticResource BoolToVisibilityConverter}}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="3"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Style="{StaticResource ReadingCardHoverStyle}"
-                                        Tag="{Binding}"
-                                        Height="200">
+                                <Border Style="{StaticResource ModernCardStyle}" Height="220">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
@@ -169,71 +186,85 @@
                                         </Grid.RowDefinitions>
 
                                         <!-- Level Badge -->
-                                        <Border Grid.Row="0" Style="{StaticResource LevelBadgeStyle}"
-                                                Background="#FF10B981" Margin="0,0,0,8">
-                                            <TextBlock Text="{Binding Level}" 
-                                                       Foreground="White" 
-                                                       FontSize="10" 
-                                                       FontWeight="SemiBold"/>
+                                        <Border Grid.Row="0" 
+                                              Style="{StaticResource LevelBadgeStyle}"
+                                              Background="#D1FAE5"
+                                              HorizontalAlignment="Left"
+                                              Margin="0,0,0,10">
+                                            <TextBlock Text="Beginner" 
+                                                     Foreground="#059669" 
+                                                     FontSize="11" 
+                                                     FontWeight="SemiBold"/>
                                         </Border>
 
                                         <!-- Title -->
                                         <TextBlock Grid.Row="1" 
-                                                   Text="{Binding Title}" 
-                                                   FontSize="14" 
-                                                   FontWeight="SemiBold" 
-                                                   Foreground="#FF1F2937"
-                                                   TextWrapping="Wrap"
-                                                   LineHeight="18"
-                                                   MaxHeight="54"
-                                                   TextTrimming="WordEllipsis"
-                                                   Margin="0,0,0,8"/>
+                                                 Text="{Binding Title}" 
+                                                 FontSize="15" 
+                                                 FontWeight="SemiBold" 
+                                                 Foreground="#1E293B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="20"
+                                                 MaxHeight="60"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 VerticalAlignment="Top"
+                                                 Margin="0,0,0,10"/>
 
-                                        <!-- Bottom Info -->
-                                        <StackPanel Grid.Row="2" Orientation="Horizontal" 
-                                                   VerticalAlignment="Center" Margin="0,0,0,8">
-                                            <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock FontSize="11" 
-                                                       Foreground="#FF6B7280"
-                                                       Margin="0,0,8,0">
-                                                <TextBlock.Text>
-                                                    <Binding Path="SuggestedTime" StringFormat="{}{0:mm}min"/>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
+                                        <!-- Stats -->
+                                        <StackPanel Grid.Row="2" 
+                                                  Orientation="Horizontal" 
+                                                  Margin="0,0,0,12">
+                                            <Border Background="#F8FAFC" 
+                                                  CornerRadius="5" 
+                                                  Padding="8,4"
+                                                  Margin="0,0,6,0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
+                                                    <TextBlock Text="{Binding SuggestedTime, StringFormat='{}{0}m'}" 
+                                                             FontSize="11"
+                                                             Foreground="#64748B"
+                                                             FontWeight="Medium"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Background="#F8FAFC" 
+                                                  CornerRadius="5" 
+                                                  Padding="8,4">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="📝" FontSize="11" Margin="0,0,3,0"/>
+                                                    <TextBlock Text="{Binding QuestionCount, StringFormat='{}{0}q'}" 
+                                                             FontSize="11"
+                                                             Foreground="#64748B"
+                                                             FontWeight="Medium"/>
+                                                </StackPanel>
+                                            </Border>
                                         </StackPanel>
 
-                                        <!-- Start Button -->
+                                        <!-- Action Button -->
                                         <Button Grid.Row="3" 
-                                                Content="Start Reading" 
-                                                Style="{StaticResource StartButtonStyle}"
-                                                FontSize="11"
-                                                Height="32"
-                                                Command="{Binding DataContext.StartReadingCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"/>
+                                              Content="Start Reading" 
+                                              Style="{StaticResource StartButtonStyle}"
+                                              HorizontalAlignment="Stretch"
+                                              Command="{Binding DataContext.StartReadingCommand, 
+                                                      RelativeSource={RelativeSource AncestorType=Page}}"
+                                              CommandParameter="{Binding}"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </ScrollViewer>
-            </TabItem>
 
-            <!-- Intermediate Tab -->
-            <TabItem Header="🚀 Intermediate (B1-B2)" Style="{StaticResource ModernTabItemStyle}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0,20,0,0">
-                    <ItemsControl ItemsSource="{Binding IntermediateReadings}">
+                    <!-- Intermediate Content -->
+                    <ItemsControl ItemsSource="{Binding IntermediateReadings}"
+                                Visibility="{Binding IsChecked, ElementName=IntermediateTab, 
+                                           Converter={StaticResource BoolToVisibilityConverter}}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="3"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Style="{StaticResource ReadingCardHoverStyle}"
-                                        Tag="{Binding}"
-                                        Height="200">
+                                <Border Style="{StaticResource ModernCardStyle}" Height="220">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
@@ -242,68 +273,82 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <Border Grid.Row="0" Style="{StaticResource LevelBadgeStyle}"
-                                                Background="#FF6366F1" Margin="0,0,0,8">
-                                            <TextBlock Text="{Binding Level}" 
-                                                       Foreground="White" 
-                                                       FontSize="10" 
-                                                       FontWeight="SemiBold"/>
+                                        <Border Grid.Row="0" 
+                                              Style="{StaticResource LevelBadgeStyle}"
+                                              Background="#FEF3C7"
+                                              HorizontalAlignment="Left"
+                                              Margin="0,0,0,10">
+                                            <TextBlock Text="Intermediate" 
+                                                     Foreground="#D97706" 
+                                                     FontSize="11" 
+                                                     FontWeight="SemiBold"/>
                                         </Border>
 
                                         <TextBlock Grid.Row="1" 
-                                                   Text="{Binding Title}" 
-                                                   FontSize="14" 
-                                                   FontWeight="SemiBold" 
-                                                   Foreground="#FF1F2937"
-                                                   TextWrapping="Wrap"
-                                                   LineHeight="18"
-                                                   MaxHeight="54"
-                                                   TextTrimming="WordEllipsis"
-                                                   Margin="0,0,0,8"/>
+                                                 Text="{Binding Title}" 
+                                                 FontSize="15" 
+                                                 FontWeight="SemiBold" 
+                                                 Foreground="#1E293B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="20"
+                                                 MaxHeight="60"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 VerticalAlignment="Top"
+                                                 Margin="0,0,0,10"/>
 
-                                        <StackPanel Grid.Row="2" Orientation="Horizontal" 
-                                                   VerticalAlignment="Center" Margin="0,0,0,8">
-                                            <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock FontSize="11" 
-                                                       Foreground="#FF6B7280"
-                                                       Margin="0,0,8,0">
-                                                <TextBlock.Text>
-                                                    <Binding Path="SuggestedTime" StringFormat="{}{0:mm}min"/>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
+                                        <StackPanel Grid.Row="2" 
+                                                  Orientation="Horizontal" 
+                                                  Margin="0,0,0,12">
+                                            <Border Background="#F8FAFC" 
+                                                  CornerRadius="5" 
+                                                  Padding="8,4"
+                                                  Margin="0,0,6,0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
+                                                    <TextBlock Text="{Binding SuggestedTime, StringFormat='{}{0}m'}" 
+                                                             FontSize="11"
+                                                             Foreground="#64748B"
+                                                             FontWeight="Medium"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Background="#F8FAFC" 
+                                                  CornerRadius="5" 
+                                                  Padding="8,4">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="📝" FontSize="11" Margin="0,0,3,0"/>
+                                                    <TextBlock Text="{Binding QuestionCount, StringFormat='{}{0}q'}" 
+                                                             FontSize="11"
+                                                             Foreground="#64748B"
+                                                             FontWeight="Medium"/>
+                                                </StackPanel>
+                                            </Border>
                                         </StackPanel>
 
                                         <Button Grid.Row="3" 
-                                                Content="Start Reading" 
-                                                Style="{StaticResource StartButtonStyle}"
-                                                FontSize="11"
-                                                Height="32"
-                                                Command="{Binding DataContext.StartReadingCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"/>
+                                              Content="Start Reading" 
+                                              Style="{StaticResource StartButtonStyle}"
+                                              HorizontalAlignment="Stretch"
+                                              Command="{Binding DataContext.StartReadingCommand, 
+                                                      RelativeSource={RelativeSource AncestorType=Page}}"
+                                              CommandParameter="{Binding}"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </ScrollViewer>
-            </TabItem>
 
-            <!-- Advanced Tab -->
-            <TabItem Header="🎯 Advanced (C1-C2)" Style="{StaticResource ModernTabItemStyle}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0,20,0,0">
-                    <ItemsControl ItemsSource="{Binding AdvancedReadings}">
+                    <!-- Advanced Content -->
+                    <ItemsControl ItemsSource="{Binding AdvancedReadings}"
+                                Visibility="{Binding IsChecked, ElementName=AdvancedTab, 
+                                           Converter={StaticResource BoolToVisibilityConverter}}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <UniformGrid Columns="3"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Style="{StaticResource ReadingCardHoverStyle}"
-                                        Tag="{Binding}"
-                                        Height="200">
+                                <Border Style="{StaticResource ModernCardStyle}" Height="220">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
@@ -312,53 +357,71 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <Border Grid.Row="0" Style="{StaticResource LevelBadgeStyle}"
-                                                Background="#FFEF4444" Margin="0,0,0,8">
-                                            <TextBlock Text="{Binding Level}" 
-                                                       Foreground="White" 
-                                                       FontSize="10" 
-                                                       FontWeight="SemiBold"/>
+                                        <Border Grid.Row="0" 
+                                              Style="{StaticResource LevelBadgeStyle}"
+                                              Background="#FEE2E2"
+                                              HorizontalAlignment="Left"
+                                              Margin="0,0,0,10">
+                                            <TextBlock Text="Advanced" 
+                                                     Foreground="#DC2626" 
+                                                     FontSize="11" 
+                                                     FontWeight="SemiBold"/>
                                         </Border>
 
                                         <TextBlock Grid.Row="1" 
-                                                   Text="{Binding Title}" 
-                                                   FontSize="14" 
-                                                   FontWeight="SemiBold" 
-                                                   Foreground="#FF1F2937"
-                                                   TextWrapping="Wrap"
-                                                   LineHeight="18"
-                                                   MaxHeight="54"
-                                                   TextTrimming="WordEllipsis"
-                                                   Margin="0,0,0,8"/>
+                                                 Text="{Binding Title}" 
+                                                 FontSize="15" 
+                                                 FontWeight="SemiBold" 
+                                                 Foreground="#1E293B"
+                                                 TextWrapping="Wrap"
+                                                 LineHeight="20"
+                                                 MaxHeight="60"
+                                                 TextTrimming="CharacterEllipsis"
+                                                 VerticalAlignment="Top"
+                                                 Margin="0,0,0,10"/>
 
-                                        <StackPanel Grid.Row="2" Orientation="Horizontal" 
-                                                   VerticalAlignment="Center" Margin="0,0,0,8">
-                                            <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
-                                            <TextBlock FontSize="11" 
-                                                       Foreground="#FF6B7280"
-                                                       Margin="0,0,8,0">
-                                                <TextBlock.Text>
-                                                    <Binding Path="SuggestedTime" StringFormat="{}{0:mm}min"/>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                            <TextBlock Text="❓" FontSize="11" Margin="0,0,3,0"/>
-                                            <Button Style="{StaticResource SecondaryButtonStyle}"  Height="35" FontSize="10" Content="View result before" Command="{Binding ShowResultCommand}"/>
+                                        <StackPanel Grid.Row="2" 
+                                                  Orientation="Horizontal" 
+                                                  Margin="0,0,0,12">
+                                            <Border Background="#F8FAFC" 
+                                                  CornerRadius="5" 
+                                                  Padding="8,4"
+                                                  Margin="0,0,6,0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="⏱️" FontSize="11" Margin="0,0,3,0"/>
+                                                    <TextBlock Text="{Binding SuggestedTime, StringFormat='{}{0}m'}" 
+                                                             FontSize="11"
+                                                             Foreground="#64748B"
+                                                             FontWeight="Medium"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Background="#F8FAFC" 
+                                                  CornerRadius="5" 
+                                                  Padding="8,4">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="📝" FontSize="11" Margin="0,0,3,0"/>
+                                                    <TextBlock Text="{Binding QuestionCount, StringFormat='{}{0}q'}" 
+                                                             FontSize="11"
+                                                             Foreground="#64748B"
+                                                             FontWeight="Medium"/>
+                                                </StackPanel>
+                                            </Border>
                                         </StackPanel>
 
                                         <Button Grid.Row="3" 
-                                                Content="Start Reading" 
-                                                Style="{StaticResource StartButtonStyle}"
-                                                FontSize="11"
-                                                Height="32"
-                                                Command="{Binding DataContext.StartReadingCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}"/>
+                                              Content="Start Reading" 
+                                              Style="{StaticResource StartButtonStyle}"
+                                              HorizontalAlignment="Stretch"
+                                              Command="{Binding DataContext.StartReadingCommand, 
+                                                      RelativeSource={RelativeSource AncestorType=Page}}"
+                                              CommandParameter="{Binding}"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

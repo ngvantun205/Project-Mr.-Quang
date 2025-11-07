@@ -12,6 +12,6 @@ namespace TDEduEnglish.IAppServices {
         Task Delete(int id);
         Task Update(Writing writing);
         Task<IEnumerable<Writing>> GetByUserId(int userId);
-        Task<string?> GenerateTextAsync(string message, string userlevel, string writingtask);
+        Task<string?> GenerateTextAsync(string message, string userlevel,string writingtopic, string writingtask);
     }
 }

@@ -57,6 +57,7 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                     Level = SelectedReadingLesson.Level;
                     SuggestedTime = SelectedReadingLesson.SuggestedTime;
                 }
+                OnPropertyChanged(nameof(SelectedReadingLesson));
             }
         }
         private string title;
@@ -114,9 +115,13 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             ReadingQuestions = questions != null ? new ObservableCollection<ReadingQuestion>(questions) : new ObservableCollection<ReadingQuestion>();
         }
         private async Task AddReadingLesson() {
-            var lesson = new ReadingLesson();
-            ReadingLessons.Add(lesson);
+            var lesson = new ReadingLesson() {
+                Title = "Reading",
+                Content = "",
+                Level = "Beginner",
+            };
             await readingService.Add(lesson);
+            await LoadData();
         }
         private async Task AddReadingQuestion() {
             if (SelectedReadingLesson == null) {
@@ -135,10 +140,6 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
 
         private async Task UpdateReadingLesson(object? o) {
             if (o is ReadingLesson readingLesson) {
-                SelectedReadingLesson.Title = Title;
-                SelectedReadingLesson.Level = Level;
-                SelectedReadingLesson.Content = Content;
-                SelectedReadingLesson.SuggestedTime = SuggestedTime;
                 await readingService.Update(readingLesson);
                 await LoadData();
                 MessageBox.Show("Reading lesson is updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -52,6 +52,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Assets\Audio\listening2.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Audio\listening3.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\JsonFile\appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

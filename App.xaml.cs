@@ -56,8 +56,8 @@ namespace TDEduEnglish {
 
             .AddScoped<IUserService, UserService>()
             .AddScoped<IVocabularyService, VocabularyService>()
-            .AddScoped<ISessonService, SessonService>()
             .AddScoped<IAuthService, AuthService>()
+            .AddScoped<ISessonService, SessonService>()
             .AddScoped<IReadingService, ReadingService>()
             .AddScoped<IListeningService, ListeningService>()
             .AddScoped<IReadingQuestionService, ReadingQuestionService>()
