@@ -51,7 +51,7 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             get => _selectedWord;
             set {
                 _selectedWord = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedWord));
             }
         }
         private bool isResultPopupVisible;
@@ -82,7 +82,14 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(CorrectAnswers));
             }
         }
-
+        private string _wordMeaning;
+        public string WordMeaning {
+            get => _wordMeaning;
+            set {
+               Set(ref _wordMeaning, value);
+                OnPropertyChanged(nameof(WordMeaning));
+            }
+        }
 
 
         public ReadingLesson readingLesson { get; set; }
@@ -124,19 +131,28 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 SubmitCommand = new RelayCommand(async o => await SubmitAnswers());
                 ExitCommand = new RelayCommand(o => Exit());
 
-                WordSelectedCommand = new RelayCommand(o => OnWordSelected(o as string));
+                WordSelectedCommand = new RelayCommand(async o => await OnWordSelected(o as string));
                 AddToVocabularyCommand = new RelayCommand(async o => await OnAddToVocabulary());
 
                 _ = StartTimer();
 
             }
         }
-        private void OnWordSelected(string word) {
+        private async Task OnWordSelected(string word) {
+            WordMeaning = "Đang tải ý nghĩa...";    
             if (string.IsNullOrWhiteSpace(word))
                 return;
             SelectedWord = word;
             IsPopupOpen = true;
-
+            var meaning = await _vocabularyService.GetByWord(_selectedWord);
+            if(meaning != null) {
+                WordMeaning = $"{meaning.WordType}/ {meaning.Meaning}";
+            }
+            else {
+                var readingContext = readingLesson.Content;
+                var getMeaningTask = await _readingQuestionService.GetMeaningAsync(word, readingLesson);
+                WordMeaning = getMeaningTask;
+            }
         }
 
         private async Task OnAddToVocabulary() {

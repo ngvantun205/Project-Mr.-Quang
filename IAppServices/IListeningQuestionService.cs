@@ -13,5 +13,6 @@ namespace TDEduEnglish.IAppServices {
         Task Update(ListeningQuestion question);
         Task<IEnumerable<ListeningQuestion>> GetByListeningId(int id);
         Task AddListAsync(IEnumerable<ListeningQuestion> listeningQuestions);
+        Task<string?> GetMeaningAsync(string word);
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -22,6 +23,8 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         private readonly IListeningQuestionService _listeningQuestionService;
         private readonly IUserListeningResultService _userListeningResultService;
         private readonly ILeaderBoardService _leaderBoardService;
+        private readonly IVocabularyService _vocabularyService;
+        private readonly IUserVocabularyService _userVocabularyService;
         public MediaPlayer? mediaPlayer { get; set; } = new MediaPlayer();
 
         public string Title { get; set; }
@@ -43,11 +46,35 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged();
             }
         }
+        private string _selectedWord;
+        public string SelectedWord {
+            get => _selectedWord;
+            set {
+                _selectedWord = value;
+                OnPropertyChanged(nameof(SelectedWord));
+            }
+        }
+        private string _wordMeaning;
+        public string WordMeaning {
+            get => _wordMeaning;
+            set {
+                Set(ref _wordMeaning, value);
+                OnPropertyChanged(nameof(WordMeaning));
+            }
+        }
+        private bool _isPopupOpen;
+        public bool IsPopupOpen {
+            get => _isPopupOpen;
+            set {
+                _isPopupOpen = value;
+                OnPropertyChanged(nameof(IsPopupOpen));
+            }
+        }
         private int maxscore;
         public int MaxScore {
             get => maxscore; set {
                 Set(ref maxscore, value);
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(MaxScore));
             }
         }
         private int correctanswers;
@@ -58,7 +85,6 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             }
         }
         private bool isResultPopupVisible;
-
         public bool IsResultPopupVisible {
             get => isResultPopupVisible; set {
                 Set(ref isResultPopupVisible, value);
@@ -82,14 +108,18 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         public ICommand SubmitCommand { get; set; }
         public ICommand CloseCommand { get; set; }
         public ICommand ContinueCommand { get; set; }
+        public ICommand AddToVocabularyCommand { get; set; }
+        public ICommand WordSelectedCommand { get; set; }       
 
-        public ListeningViewModel(AppNavigationService navigationService, IListeningService listening, ISessonService sesson, IListeningQuestionService listeningQuestionService, IUserListeningResultService userListeningResultService, ILeaderBoardService leaderBoardService) {
+        public ListeningViewModel(AppNavigationService navigationService, IListeningService listening, ISessonService sesson, IListeningQuestionService listeningQuestionService, IUserListeningResultService userListeningResultService, ILeaderBoardService leaderBoardService, IVocabularyService vocabularyService, IUserVocabularyService userVocabularyService) {
             _appNavigationService = navigationService;
             _listeningService = listening;
             _sessonService = sesson;
             _listeningQuestionService = listeningQuestionService;
             _userListeningResultService = userListeningResultService;
             _leaderBoardService = leaderBoardService;
+            _vocabularyService = vocabularyService;
+            _userVocabularyService = userVocabularyService;
 
             ListeningLesson? listeninglesson = _sessonService.GetCurrentListening();
             if (listeninglesson != null) {
@@ -114,6 +144,46 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 IsResultPopupVisible = false;
                 Exit();
             });
+            WordSelectedCommand = new RelayCommand(async o => await OnWordSelected(o as string));
+            AddToVocabularyCommand = new RelayCommand(async o => await OnAddToVocabulary());
+        }
+        private async Task OnWordSelected(string word) {
+            WordMeaning = "Đang tải ý nghĩa...";
+            if (string.IsNullOrWhiteSpace(word))
+                return;
+            SelectedWord = word;
+            IsPopupOpen = true;
+            var meaning = await _vocabularyService.GetByWord(_selectedWord);
+            if (meaning != null) {
+                WordMeaning = $"{meaning.WordType}/ {meaning.Meaning}";
+            }
+            else {
+                var getMeaningTask = await _listeningQuestionService.GetMeaningAsync(word);
+                WordMeaning = getMeaningTask;
+            }
+        }
+
+        private async Task OnAddToVocabulary() {
+            if (string.IsNullOrEmpty(SelectedWord))
+                return;
+            Vocabulary existing = await _vocabularyService.GetByWord(SelectedWord.ToLower());
+            if (existing != null) {
+                var vocab = new UserVocabulary() {
+                    UserId = _sessonService.GetCurrentUser().UserId,
+                    Word = SelectedWord,
+                    Meaning = existing.Meaning,
+                    IPATranscription = existing.IPATranscription,
+                    WordType = existing.WordType,
+                };
+                await _userVocabularyService.Add(vocab);
+            }
+            else
+                await _userVocabularyService.Add(new UserVocabulary() {
+                    UserId = _sessonService.GetCurrentUser().UserId,
+                    Word = SelectedWord,
+                });
+            MessageBox.Show($"Đã thêm từ '{SelectedWord}' vào danh sách từ vựng của bạn 📚", "Vocabulary");
+            IsPopupOpen = false;
         }
         public string TimeRemaining {
             get {

@@ -1,5 +1,4 @@
-﻿using GenerativeAI.Types;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Mscc.GenerativeAI;
 using System;
 using System.Collections.Generic;

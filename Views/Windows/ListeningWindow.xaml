@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TDEduEnglish.Views.Windows"
+        xmlns:behaviors="clr-namespace:TDEduEnglish.Behaviors"
+        PreviewMouseDown="Window_PreviewMouseDown"
         mc:Ignorable="d"
         Title="ListeningWindow" Height="800" Width="1200">
     <Window.Resources>
@@ -365,9 +367,9 @@
                                                      FontWeight="Medium"
                                                      Foreground="#FF1F2937"
                                                      Background="Transparent"
-                                                     
-                                                     
-                                                     VerticalAlignment="Center">
+                                                     VerticalAlignment="Center"
+                                                     IsDocumentEnabled="True"
+                                                     behaviors:TextSelectionBehavior.SelectedTextCommand="{Binding DataContext.WordSelectedCommand, RelativeSource={RelativeSource AncestorType=Window}}">
                                             <FlowDocument>
                                                 <Paragraph>
                                                     <Run Text="{Binding QuestionText}" />
@@ -463,7 +465,72 @@
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
+        
+        <!-- Popup for Word Meaning -->
+        <Popup IsOpen="{Binding IsPopupOpen, Mode=TwoWay}"
+       Placement="MousePoint"
+       StaysOpen="False">
+            <Border Background="#FF111827" 
+            CornerRadius="8" 
+            Padding="12"
+            MinWidth="180">
+                <StackPanel>
+                    <!-- Từ được chọn -->
+                    <TextBlock Text="{Binding SelectedWord}"
+                       Foreground="#60A5FA"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       MaxWidth="250"/>
 
+                    <!-- TextBox hiển thị nghĩa -->
+                    <TextBox Text="{Binding WordMeaning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0,6,0,8"
+                     FontSize="13"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Foreground="White"
+                     Background="#1F2937"
+                     BorderBrush="#374151"
+                     BorderThickness="1"
+                     Padding="8"/>
+
+                    <!-- Separator nhẹ -->
+                    <Border Height="1" 
+                    Background="#1F2937"
+                    Margin="0,2"/>
+
+                    <!-- Button thêm từ vựng -->
+                    <Border Background="#1F2937"
+                    CornerRadius="6"
+                    Padding="10,6"
+                    Cursor="Hand">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#374151"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick"
+                                  Command="{Binding AddToVocabularyCommand}"
+                                  CommandParameter="{Binding SelectedWord}" />
+                        </Border.InputBindings>
+
+                        <TextBlock Foreground="White" 
+                           FontSize="13"
+                           TextAlignment="Center">
+                    <Run Text="➕"/>
+                    <Run Text="Thêm vào từ vựng của tôi"/>
+                        </TextBlock>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Popup>
         <!-- Fixed Bottom Section -->
         <Border Height="80" VerticalAlignment="Bottom" 
                Background="White" 
@@ -516,21 +583,6 @@
                            IsEnabled="{Binding CanSubmit}"
                            FontWeight="Bold"/>
                 </StackPanel>
-                <Popup IsOpen="{Binding IsPopupOpen}"
-               Placement="MousePoint"
-               StaysOpen="False">
-                    <Border Background="#FF111827" CornerRadius="6" Padding="8,4">
-                        <TextBlock Text="➕ Thêm vào từ vựng của tôi"
-                           Foreground="White" FontSize="13"
-                           Cursor="Hand">
-                            <TextBlock.InputBindings>
-                                <MouseBinding MouseAction="LeftClick"
-                                      Command="{Binding AddToVocabularyCommand}"
-                                      CommandParameter="{Binding SelectedWord}" />
-                            </TextBlock.InputBindings>
-                        </TextBlock>
-                    </Border>
-                </Popup>
             </Grid>
         </Border>
         <Grid Visibility="{Binding IsResultPopupVisible, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -750,5 +802,6 @@
                 </Grid>
             </Border>
         </Grid>
+        
     </Grid>
 </Window>

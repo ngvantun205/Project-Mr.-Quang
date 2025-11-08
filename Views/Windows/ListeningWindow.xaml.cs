@@ -20,7 +20,10 @@ namespace TDEduEnglish.Views.Windows {
             this.DataContext = App.Provider?.GetRequiredService<ListeningViewModel>();
         }
 
-        
+        private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e) {
+            if (DataContext is ReadingViewModel vm)
+                vm.IsPopupOpen = false;
+        }
     }
 
 }

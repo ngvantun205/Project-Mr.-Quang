@@ -402,6 +402,18 @@
                        TextWrapping="Wrap"
                        MaxWidth="250"/>
 
+                        <!-- TextBox hiển thị nghĩa -->
+                        <TextBox Text="{Binding WordMeaning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="0,6,0,8"
+                     FontSize="13"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Foreground="White"
+                     Background="#1F2937"
+                     BorderBrush="#374151"
+                     BorderThickness="1"
+                     Padding="8"/>
+
                         <!-- Separator nhẹ -->
                         <Border Height="1" 
                     Background="#1F2937"
@@ -437,6 +449,7 @@
                     </StackPanel>
                 </Border>
             </Popup>
+
         </Grid>
         <Grid Visibility="{Binding IsResultPopupVisible, Converter={StaticResource BoolToVisibilityConverter}}"
       Background="#80000000"

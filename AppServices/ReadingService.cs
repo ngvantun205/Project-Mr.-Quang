@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Mscc.GenerativeAI;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,5 +21,7 @@ namespace TDEduEnglish.AppServices {
         public async Task SaveResult(UserReadingResult result) => await _readingRepository.SaveResult(result);
         public async Task AddListAsync(IEnumerable<ReadingLesson> readinglesson) => await _readingRepository.AddListAsync(readinglesson);
         public async Task<IEnumerable<ReadingLesson>> GetByLevel(string level) => await _readingRepository.GetByLevel(level);
+
+        
     }
 }
