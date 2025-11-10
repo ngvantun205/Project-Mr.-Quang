@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Printing;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -126,6 +127,21 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(ShowFlagged));
             }
         }
+        private bool showHintPopup;
+        public bool ShowHintPopup {
+            get => showHintPopup; set {
+                Set(ref showHintPopup, value);
+                OnPropertyChanged(nameof(ShowHintPopup));
+            }
+        }
+        private string hint;
+        public string Hint {
+            get => hint; set {
+                Set(ref hint, value);
+                OnPropertyChanged(nameof(Hint));
+            }
+        }
+
         public int QuizQuestionNumber { get; set; } = 1;
 
 
@@ -144,6 +160,8 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
         public ICommand NavigateToQuestionCommand { get; set; }
         public ICommand ConfirmSubmitCommand { get; set; }
         public ICommand CancelSubmitCommand { get; set; }
+        public ICommand ShowHintCommand { get; set; }
+        public ICommand CloseHintCommand { get; set; }
 
         public QuizViewModel(AppNavigationService appNavigationService, ISessonService sessonService, IQuizQuestionService quizQuestionService, IQuizService quizService, ILeaderBoardService leaderBoardService) {
             _navigationService = appNavigationService;
@@ -164,9 +182,21 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
             ReviewFlaggedCommand = new RelayCommand(o => ReviewFlagged());
             ConfirmSubmitCommand = new RelayCommand(o => ConfirmSubmit());
             CancelSubmitCommand = new RelayCommand(o => ShowSubmitConfirmation = false);
+            ShowHintCommand = new RelayCommand(async o => await ShowHint());
+            CloseHintCommand = new RelayCommand(o => CloseHint());
 
             LoadData().ConfigureAwait(false);
         }
+        private async Task ShowHint() {
+            ShowHintPopup = true;
+            Hint = "Getting suggestion ...";
+            var suggestion = await _quizQuestionService.GetSuggestionAsync(CurrentQuestion);
+            Hint = suggestion ?? "No suggestion available.";
+            
+        } 
+        private void CloseHint() {
+            ShowHintPopup = false;
+        }   
         private async Task LoadData() {
             var currentquiz = _sessonService.CurrentQuiz;
             Title = currentquiz.Title;

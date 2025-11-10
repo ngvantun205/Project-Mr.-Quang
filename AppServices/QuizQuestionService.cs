@@ -34,15 +34,30 @@ namespace TDEduEnglish.AppServices {
         public async Task Update(QuizQuestion quiz) => await _quizQuestionRepository.Update(quiz);
         public async Task AddListAsync(IEnumerable<QuizQuestion> quizQuestions) => await _quizQuestionRepository.AddListAsync(quizQuestions);
         public async Task<IEnumerable<QuizQuestion>> GetUnCompletedOrFlaggedQuestion() => await _quizQuestionRepository.GetUnCompletedOrFlaggedQuestion();
-        public async Task<string?> GetSuggestionAsync(string question) {
+        public async Task<string?> GetSuggestionAsync(QuizQuestion question) {
             string prompt = $@"
-                               You are an expert English quiz question advisor.
-                               Provide a suggestion for users that they can use to improve their quiz question.
-                               Question: '{question}'
-                               Respond with only the revised question without any additional explanations.
-                               Note: Make sure the suggestion is clear, concise, and relevant to the original question, your response should be not related to the answer of the question, explain that user can understand and can solve the question better.
-                                     Less than 50 words.
+                              You are an experienced English teacher helping students with quiz questions.
+                              Your task: give a helpful hint that makes the question clearer or easier to understand — 
+                              but never reveal or imply the correct answer.
+
+                              Question: '{question.QuestionText}'
+                              Options:
+                              A. {question.Option1}
+                              B. {question.Option2}
+                              C. {question.Option3}
+                              D. {question.Option4}
+
+                              Rules:
+                              - Do NOT mention or hint which option is correct.
+                              - Focus on explaining context, grammar, or vocabulary related to the question.
+                              - The hint should guide understanding, not give the answer.
+                              - Keep it concise (under 50 words).
+                              - Write naturally as if speaking to a learner.
+                              - Answer in Vietnamese.   
+
+                              Return only the hint text, no explanation or intro words.
                               ";
+
             var result = await _model.GenerateContent(prompt);
             if (result == null)
                 return "⚠️ No response from AI model.";
@@ -52,5 +67,6 @@ namespace TDEduEnglish.AppServices {
                            ?? "⚠️ Empty response from AI.";
             return content.Trim();
         }
+
     }
 }

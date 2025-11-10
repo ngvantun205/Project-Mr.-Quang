@@ -82,8 +82,8 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 OnPropertyChanged(nameof(CorrectAnswers));
             }
         }
-        private string _wordMeaning;
-        public string WordMeaning {
+        private string? _wordMeaning;
+        public string? WordMeaning {
             get => _wordMeaning;
             set {
                Set(ref _wordMeaning, value);
@@ -152,6 +152,16 @@ namespace TDEduEnglish.ViewModels.WindowViewModel {
                 var readingContext = readingLesson.Content;
                 var getMeaningTask = await _readingQuestionService.GetMeaningAsync(word, readingLesson);
                 WordMeaning = getMeaningTask;
+                var newWord = getMeaningTask.Split('/');
+                if (newWord.Length == 2) {
+                       var vocab = new Vocabulary() {
+                        Word = word.ToLower(),
+                        WordType = newWord[0].Trim(),
+                        Meaning = newWord[1].Trim(),
+                        IPATranscription = "",
+                    };
+                    await _vocabularyService.Add(vocab);
+                }
             }
         }
 

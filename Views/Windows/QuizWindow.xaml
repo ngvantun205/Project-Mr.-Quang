@@ -714,7 +714,12 @@
                        Command="{Binding FlagCommand}"
                        Style="{StaticResource NavButtonStyle}"
                        Width="150" Margin="20 0 0 0"/>
-
+                <Button Grid.Column="3"
+                       Content="💡 Gợi ý" 
+                       Command="{Binding ShowHintCommand}"
+                       Style="{StaticResource NavButtonStyle}"
+                       Width="150"/>
+                
                 <!-- Next/Submit Button -->
                 <Button Grid.Column="4"
                        Content="{Binding NextButtonText}" 
@@ -725,6 +730,92 @@
                        Width="150"/>
             </Grid>
         </Grid>
+        <!-- Hint Popup Overlay -->
+        <Grid x:Name="HintPopupOverlay"
+      Background="#B3000000"
+      Visibility="{Binding ShowHintPopup, Converter={StaticResource BoolToVisibilityConverter}}"
+      Panel.ZIndex="999">
+
+            <Border Background="White"
+            CornerRadius="20"
+            Padding="36"
+            MaxWidth="460"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" Direction="270"
+                              ShadowDepth="15" BlurRadius="40" Opacity="0.3"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <!-- Icon -->
+                    <Border Background="#FFF0F9FF"
+                    Width="64" Height="64"
+                    CornerRadius="32"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,20">
+                        <TextBlock Text="💡"
+                           FontSize="32"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                    </Border>
+
+                    <!-- Title -->
+                    <TextBlock Text="Gợi ý cho câu hỏi này"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#FF1F2937"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,16"/>
+
+                    <!-- Hint Content -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          MaxHeight="200"
+                          Margin="0,0,0,24">
+                        <TextBlock Text="{Binding Hint}"
+                           FontSize="16"
+                           Foreground="#FF4B5563"
+                           TextWrapping="Wrap"
+                           LineHeight="22"
+                           TextAlignment="Center"/>
+                    </ScrollViewer>
+
+                    <!-- Close Button -->
+                    <Button Content="Đóng"
+                    Command="{Binding CloseHintCommand}"
+                    Background="#FF6366F1"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontWeight="SemiBold"
+                    FontSize="15"
+                    Height="44"
+                    Cursor="Hand"
+                    HorizontalAlignment="Stretch">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="12"
+                                Padding="{TemplateBinding Padding}">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="#FF6366F1" Direction="270"
+                                                  ShadowDepth="4" BlurRadius="12" Opacity="0.4"/>
+                                    </Border.Effect>
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonBorder" Property="Background" Value="#FF4F46E5"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+
         <!-- Submit Confirmation Popup Overlay -->
         <Grid x:Name="SubmitConfirmationOverlay" 
       Background="#B3000000"
@@ -894,6 +985,7 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
+                        
                     </Grid>
                 </StackPanel>
             </Border>
