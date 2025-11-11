@@ -23,6 +23,7 @@
     <Content Include="Assets\Audio\listening1.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="bin\Debug\net8.0-windows\appsettings.json" />
     <Content Include="bin\Debug\net8.0-windows\Assets\Audio\correctsound.mp3" />
     <Content Include="bin\Debug\net8.0-windows\Assets\Audio\wrongsound.mp3" />
   </ItemGroup>
@@ -43,12 +44,6 @@
 
   <ItemGroup>
     <Folder Include="Assets\Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="bin\Debug\net8.0-windows\appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

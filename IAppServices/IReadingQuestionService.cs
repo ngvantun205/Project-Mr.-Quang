@@ -14,5 +14,6 @@ namespace TDEduEnglish.IAppServices {
         Task Update(ReadingQuestion entity);
         Task Delete(int id);
         Task<string?> GetMeaningAsync(string word, ReadingLesson readinglesson);
+        Task GenerateQuestionsAsync(ReadingLesson readingLesson, int numberOfQuestions);
     }
 }

@@ -235,7 +235,12 @@
                           Style="{StaticResource ModernButton}"
                           Background="#F59E0B"
                           Command="{Binding UpdateReadingLessonCommand}"
-                          CommandParameter="{Binding SelectedReadingLesson}"/>
+                          CommandParameter="{Binding SelectedReadingLesson}"
+                            Margin="0,0,8,0"/>
+                    <Button Content="Add by AI" 
+                          Style="{StaticResource ModernButton}"
+                          Background="#F59E0B"
+                          Command="{Binding AddReadingLessonByAICommand}"/>
                 </StackPanel>
 
                 <!-- Lessons DataGrid -->
@@ -368,6 +373,12 @@
                           Background="#F59E0B"
                           Command="{Binding UpdateReadingQuestionCommand}"
                           CommandParameter="{Binding SelectedReadingQuestion}"/>
+                    <Button Content="✨ Generate by AI"
+                            Style="{StaticResource ModernButton}"
+                            Background="#6366F1"
+                            Command="{Binding AddReadingQuestionByAICommand}"
+                            Margin="0,0,8,0"/>
+
                 </StackPanel>
 
                 <!-- Questions DataGrid -->
@@ -410,5 +421,111 @@
                 </TextBlock>
             </Grid>
         </Border>
+        <!-- Popup Add by AI -->
+        <Border x:Name="AddByAIPopup"
+        Background="#80000000" 
+            Visibility="{Binding IsAddByAIPopupVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+        Grid.ColumnSpan="3"
+        CornerRadius="8"
+        Padding="30"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Panel.ZIndex="100">
+
+            <Border Background="White"
+            CornerRadius="12"
+            Padding="24"
+            Width="400"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="✨ Generate Reading Lessons by AI" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       Foreground="#4F46E5"
+                       TextAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Topic:" FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding AITopic, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="0,5,0,12" 
+                     Padding="10"/>
+
+                    <TextBlock Text="Level:" FontWeight="SemiBold"/>
+                    <ComboBox SelectedItem="{Binding AILevel, UpdateSourceTrigger=PropertyChanged}"
+                      ItemsSource="{Binding Levels}"
+                      Margin="0,5,0,12" 
+                      Padding="10"/>
+
+                    <TextBlock Text="Suggested Time (minutes):" FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding AISuggestedTime, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="0,5,0,20" 
+                     Padding="10"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Cancel" 
+                        Width="100"
+                        Margin="0,0,10,0"
+                        Background="#9CA3AF"
+                        Foreground="White"
+                        Command="{Binding CancelAddByAICommand}"/>
+
+                        <Button Content="Generate"
+                        Width="120"
+                        Background="#4F46E5"
+                        Foreground="White"
+                        Command="{Binding GenerateReadingByAICommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+        <!-- Popup Add Question by AI -->
+        <Border x:Name="AddQuestionByAIPopup"
+        Background="#80000000" 
+        Visibility="{Binding IsAddQuestionByAIPopupVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+        Grid.ColumnSpan="3"
+        CornerRadius="8"
+        Padding="30"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Panel.ZIndex="110">
+
+            <Border Background="White"
+            CornerRadius="12"
+            Padding="24"
+            Width="400"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="🤖 Generate Reading Questions by AI" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       Foreground="#4F46E5"
+                       TextAlignment="Center"
+                       Margin="0,0,0,20"/>
+
+                    <TextBlock Text="Number of questions:" FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding AIQuestionCount, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="0,5,0,20" 
+                     Padding="10"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Cancel" 
+                        Width="100"
+                        Margin="0,0,10,0"
+                        Background="#9CA3AF"
+                        Foreground="White"
+                        Command="{Binding CancelAddQuestionByAICommand}"/>
+
+                        <Button Content="Generate"
+                        Width="120"
+                        Background="#4F46E5"
+                        Foreground="White"
+                        Command="{Binding GenerateReadingQuestionByAICommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+
     </Grid>
 </Window>

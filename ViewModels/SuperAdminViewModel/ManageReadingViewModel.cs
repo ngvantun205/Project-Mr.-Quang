@@ -30,6 +30,13 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
         public ICommand UpdateReadingQuestionCommand { get; set; }
         public ICommand DeleteReadingQuestionCommand { get; set; }
         public ICommand AddReadingQuestionCommand { get; set; }
+        public ICommand CancelAddByAICommand { get; set; }
+        public ICommand GenerateReadingByAICommand { get; set; }
+        public ICommand AddReadingLessonByAICommand { get; set; }
+        public ICommand AddReadingQuestionByAICommand { get; set; }
+        public ICommand CancelAddQuestionByAICommand { get; set; }
+        public ICommand GenerateReadingQuestionByAICommand { get; set; }
+
 
         private ObservableCollection<ReadingLesson> readinglessons;
         public ObservableCollection<ReadingLesson> ReadingLessons {
@@ -88,6 +95,41 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                 OnPropertyChanged(nameof(SuggestedTime));
             }
         }
+        private bool isAddByAIPopupVisible;
+        public bool IsAddByAIPopupVisible {
+            get => isAddByAIPopupVisible;
+            set { Set(ref isAddByAIPopupVisible, value); OnPropertyChanged(); }
+        }
+
+        private string aiTopic;
+        public string AITopic {
+            get => aiTopic;
+            set { Set(ref aiTopic, value); OnPropertyChanged(); }
+        }
+
+        private string aiLevel;
+        public string AILevel {
+            get => aiLevel;
+            set { Set(ref aiLevel, value); OnPropertyChanged(); }
+        }
+
+        private string aiSuggestedTime;
+        public string AISuggestedTime {
+            get => aiSuggestedTime;
+            set { Set(ref aiSuggestedTime, value); OnPropertyChanged(); }
+        }
+        private bool isAddQuestionByAIPopupVisible;
+        public bool IsAddQuestionByAIPopupVisible {
+            get => isAddQuestionByAIPopupVisible;
+            set { Set(ref isAddQuestionByAIPopupVisible, value); OnPropertyChanged(); }
+        }
+
+        private string aiQuestionCount;
+        public string AIQuestionCount {
+            get => aiQuestionCount;
+            set { Set(ref aiQuestionCount, value); OnPropertyChanged(); }
+        }
+        public List<string> Levels { get; set; } = new() { "Beginner", "Intermediate", "Advanced" };
         public ReadingQuestion SelectedReadingQuestion { get; set; }
 
         public ManageReadingViewModel(AppNavigationService appNavigationService, IReadingService readingService, ISessonService sessonService, IReadingQuestionService readingQuestionService) {
@@ -106,11 +148,74 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
             AddReadingQuestionCommand = new RelayCommand(async o => await AddReadingQuestion());
             UpdateReadingQuestionCommand = new RelayCommand(async o => await UpdateReadingQuestion(SelectedReadingQuestion));
 
+            AddReadingLessonByAICommand = new RelayCommand(o => IsAddByAIPopupVisible = true);
+            CancelAddByAICommand = new RelayCommand(o => IsAddByAIPopupVisible = false);
+            GenerateReadingByAICommand = new RelayCommand(async o => await GenerateReadingByAI());
+
+            AddReadingQuestionByAICommand = new RelayCommand(o => IsAddQuestionByAIPopupVisible = true);
+            CancelAddQuestionByAICommand = new RelayCommand(o => IsAddQuestionByAIPopupVisible = false);
+            GenerateReadingQuestionByAICommand = new RelayCommand(async o => await GenerateReadingQuestionByAI());
+
             _ = LoadData();
         }
+        private async Task GenerateReadingQuestionByAI() {
+            try {
+                if (SelectedReadingLesson == null) {
+                    MessageBox.Show("⚠️ Please select a reading lesson before generating questions by AI.",
+                                    "Missing Lesson", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(AIQuestionCount) || !int.TryParse(AIQuestionCount, out int numQuestions) || numQuestions <= 0) {
+                    MessageBox.Show("⚠️ Please enter a valid number of questions.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                IsAddQuestionByAIPopupVisible = false;
+
+                MessageBox.Show("🧠 AI is generating questions... Please wait.", "Generating", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                await readingQuestionService.GenerateQuestionsAsync(SelectedReadingLesson, numQuestions);
+
+                await LoadData();
+
+                MessageBox.Show("✅ Questions generated and saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"❌ Error while generating questions: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async Task GenerateReadingByAI() {
+            try {
+                if (string.IsNullOrWhiteSpace(AITopic) || string.IsNullOrWhiteSpace(AILevel) || string.IsNullOrWhiteSpace(AISuggestedTime)) {
+                    MessageBox.Show("⚠️ Please fill all fields before generating.", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (!double.TryParse(AISuggestedTime, out double minutes)) {
+                    MessageBox.Show("⚠️ Suggested time must be a number.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                IsAddByAIPopupVisible = false;
+
+                MessageBox.Show("🧠 AI is generating lessons... Please wait.", "Generating", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                await readingService.GenerateReadingAsync(AITopic, AILevel, TimeSpan.FromMinutes(minutes));
+
+                await LoadData();
+
+                MessageBox.Show("✅ Lessons generated and saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"❌ Error while generating lessons: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private async Task LoadData() {
             var lessons = await readingService.GetAll();
-            ReadingLessons = lessons != null ?  new ObservableCollection<ReadingLesson>(lessons) :  new ObservableCollection<ReadingLesson>();
+            ReadingLessons = lessons != null ? new ObservableCollection<ReadingLesson>(lessons) : new ObservableCollection<ReadingLesson>();
             var questions = await readingQuestionService.GetAll();
             ReadingQuestions = questions != null ? new ObservableCollection<ReadingQuestion>(questions) : new ObservableCollection<ReadingQuestion>();
         }
@@ -201,7 +306,6 @@ namespace TDEduEnglish.ViewModels.SuperAdminViewModel {
                                     "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-
         }
         private async Task ImportReadingQuestionFromJsonFile() {
             if (selectedReadingLesson != null) {

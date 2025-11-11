@@ -14,5 +14,6 @@ namespace TDEduEnglish.IAppServices {
         Task SaveResult(UserReadingResult result);
         Task AddListAsync(IEnumerable<ReadingLesson> readinglesson);
         Task<IEnumerable<ReadingLesson>> GetByLevel(string level);
+        Task GenerateReadingAsync(string topic, string level, TimeSpan suggestedtime);
     }
 }
